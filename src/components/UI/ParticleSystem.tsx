@@ -25,7 +25,7 @@ export const ParticleSystem: React.FC<ParticleSystemProps> = ({
   colors = ['#8B5A42', '#9CAF88', '#A67B5B', '#B8956D']
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
   const particlesRef = useRef<Particle[]>([]);
 
   useEffect(() => {

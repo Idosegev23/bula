@@ -1,6 +1,7 @@
 // AccessibilityProvider - WCAG AA Compliance Component
 // Provides comprehensive accessibility features across the entire website
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import styles from './AccessibilityProvider.module.css';
 
 interface AccessibilitySettings {
@@ -342,6 +343,6 @@ export const withAccessibleFocus = <P extends object>(
       }
     }, [ref, announceToScreenReader]);
 
-    return <Component {...props} ref={ref} />;
+    return <Component {...(props as P)} ref={ref} />;
   });
 };
