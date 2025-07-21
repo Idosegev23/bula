@@ -1,0 +1,57 @@
+/* ParticleSystem - Beautiful floating particle effects */
+
+.particleSystem {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Optional: Add some ambient glow effects */
+.particleSystem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(139, 90, 66, 0.01) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(156, 175, 136, 0.01) 0%, transparent 50%);
+  animation: ambientGlow 10s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes ambientGlow {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .particleSystem {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particleSystem {
+    display: none;
+  }
+}

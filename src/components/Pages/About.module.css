@@ -1,0 +1,655 @@
+/* About Page - Minimalistic Text-focused Design */
+/* Following established design language from other components */
+
+.aboutPage {
+  min-height: 100vh;
+  background: #ffffff;
+  direction: rtl;
+  font-family: 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroMedia {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.heroImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.4)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroMediaText {
+  color: #ffffff;
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 300;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 16px 24px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 64px 48px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 200;
+  line-height: 1.1;
+  color: #000000;
+  margin: 0 0 32px 0;
+  letter-spacing: -0.02em;
+}
+
+.heroDescription {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 300;
+  color: #333333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Section Headers */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  color: #000000;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.01em;
+}
+
+.sectionSubtitle {
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-weight: 300;
+  color: #666666;
+  margin: 0;
+  line-height: 1.5;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Team Section */
+.teamSection {
+  padding: 140px 0;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+}
+
+.teamMember {
+  text-align: center;
+  padding: 32px 24px;
+  transition: all 0.3s ease;
+}
+
+.teamMember:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.memberImagePlaceholder {
+  width: 200px;
+  height: 200px;
+  background: #f5f5f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+  border: 3px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.teamMember:hover .memberImagePlaceholder {
+  border-color: #e0e0e0;
+}
+
+.memberImageText {
+  font-size: 0.95rem;
+  color: #666666;
+  font-weight: 300;
+  text-align: center;
+}
+
+.memberInfo {
+  text-align: center;
+}
+
+.memberName {
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 400;
+  color: #000000;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.01em;
+}
+
+.memberRole {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  font-weight: 300;
+  color: #666666;
+  margin: 0 0 12px 0;
+}
+
+.memberDescription {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: 300;
+  color: #333333;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Video Section */
+.videoSection {
+  padding: 140px 0;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.videoCard {
+  text-align: center;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.videoCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.videoThumbnail {
+  position: relative;
+  height: 200px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.videoPlayButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.videoCard:hover .videoPlayButton {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.videoPlaceholderText {
+  font-size: 1rem;
+  color: #666666;
+  font-weight: 300;
+}
+
+.videoInfo {
+  padding: 24px;
+}
+
+.videoTitle {
+  font-size: clamp(1.25rem, 2.5vw, 1.375rem);
+  font-weight: 400;
+  color: #000000;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.01em;
+}
+
+.videoDescription {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: 300;
+  color: #666666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Testimonials Section */
+.testimonialsSection {
+  padding: 140px 0;
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.testimonialCard {
+  text-align: center;
+  padding: 40px 32px;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.testimonialCard:hover {
+  border-color: #e0e0e0;
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.testimonialText {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 300;
+  color: #333333;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  font-style: italic;
+}
+
+.testimonialAuthor {
+  text-align: center;
+}
+
+.authorName {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  font-weight: 400;
+  color: #000000;
+  margin: 0 0 4px 0;
+}
+
+.authorRole {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: 300;
+  color: #666666;
+  margin: 0;
+}
+
+/* Stats Section */
+.statsSection {
+  padding: 140px 0;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.statCard {
+  text-align: center;
+  padding: 32px 24px;
+}
+
+.statNumber {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 100;
+  color: #000000;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.statLabel {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: 300;
+  color: #666666;
+  line-height: 1.3;
+}
+
+/* CTA Section */
+.ctaSection {
+  padding: 140px 0;
+}
+
+.ctaContent {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 300;
+  color: #000000;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.01em;
+}
+
+.ctaDescription {
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-weight: 300;
+  color: #666666;
+  margin: 0 0 40px 0;
+  line-height: 1.5;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaButton,
+.ctaButtonSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  min-width: 160px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.ctaButton {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.ctaButton:hover {
+  background: #333333;
+  border-color: #333333;
+  transform: translateY(-1px);
+}
+
+.ctaButtonSecondary {
+  background: transparent;
+  color: #000000;
+  border-color: #000000;
+}
+
+.ctaButtonSecondary:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 24px;
+  }
+  
+  .heroContent {
+    padding: 48px 32px;
+  }
+  
+  .teamSection,
+  .videoSection,
+  .testimonialsSection,
+  .statsSection,
+  .ctaSection {
+    padding: 120px 0;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 70px;
+  }
+  
+  .teamGrid {
+    gap: 40px;
+  }
+  
+  .videoGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  .testimonialsGrid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  
+  .heroContent {
+    padding: 40px 24px;
+    margin: 20px;
+  }
+  
+  .teamSection,
+  .videoSection,
+  .testimonialsSection,
+  .statsSection,
+  .ctaSection {
+    padding: 100px 0;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 60px;
+  }
+  
+  .teamGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  
+  .memberImagePlaceholder {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .videoGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .videoThumbnail {
+    height: 160px;
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  
+  .testimonialsGrid {
+    gap: 36px;
+  }
+  
+  .testimonialCard {
+    padding: 32px 24px;
+  }
+  
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .ctaButton,
+  .ctaButtonSecondary {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .heroContent {
+    padding: 32px 20px;
+    margin: 16px;
+  }
+  
+  .teamSection,
+  .videoSection,
+  .testimonialsSection,
+  .statsSection,
+  .ctaSection {
+    padding: 80px 0;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 50px;
+  }
+  
+  .teamGrid {
+    gap: 40px;
+  }
+  
+  .memberImagePlaceholder {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .testimonialCard {
+    padding: 28px 20px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .teamMember,
+  .videoCard,
+  .testimonialCard,
+  .ctaButton,
+  .ctaButtonSecondary {
+    transition: none;
+  }
+  
+  .videoCard:hover,
+  .ctaButton:hover,
+  .ctaButtonSecondary:hover {
+    transform: none;
+  }
+  
+  .videoPlayButton {
+    transition: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .heroTitle,
+  .sectionTitle,
+  .memberName,
+  .videoTitle,
+  .authorName,
+  .ctaTitle {
+    color: #000000;
+  }
+  
+  .statNumber {
+    color: #000000;
+  }
+  
+  .testimonialCard,
+  .memberImagePlaceholder {
+    border-color: #000000;
+  }
+  
+  .ctaButtonSecondary {
+    border-width: 2px;
+  }
+}
+
+/* Focus states for accessibility */
+.videoCard:focus-visible,
+.ctaButton:focus-visible,
+.ctaButtonSecondary:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .aboutPage {
+    page-break-inside: avoid;
+  }
+  
+  .heroMedia {
+    display: none;
+  }
+  
+  .ctaButtons {
+    display: none;
+  }
+  
+  .videoGrid {
+    display: none;
+  }
+  
+  .teamMember,
+  .testimonialCard,
+  .statCard {
+    break-inside: avoid;
+  }
+}

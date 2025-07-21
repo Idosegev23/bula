@@ -1,0 +1,442 @@
+/* Services Page - Minimalistic Text-focused Design */
+/* Following established design language from other components */
+
+.servicesPage {
+  min-height: 100vh;
+  background: #ffffff;
+  direction: rtl;
+  font-family: 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Hero Section */
+.heroSection {
+  padding: 160px 0 120px 0;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 200;
+  line-height: 1.1;
+  color: #000000;
+  margin: 0 0 32px 0;
+  letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 300;
+  color: #666666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Services Section */
+.servicesSection {
+  padding: 0 0 140px 0;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 80px;
+  margin-bottom: 120px;
+}
+
+.service {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 32px;
+}
+
+.serviceNumber {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 100;
+  color: #000000;
+  margin-bottom: 24px;
+  line-height: 1;
+  position: relative;
+  display: inline-block;
+}
+
+.serviceNumber::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 1px;
+  background: #000000;
+}
+
+.serviceTitle {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 300;
+  color: #000000;
+  margin: 32px 0 24px 0;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.serviceDescription {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  color: #333333;
+  line-height: 1.6;
+  margin: 0 0 40px 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.serviceDetails {
+  text-align: right;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.detailsTitle {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  color: #000000;
+  margin: 0 0 20px 0;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 12px;
+}
+
+.detailsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detailsList li {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: 300;
+  color: #333333;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  padding-right: 20px;
+  position: relative;
+}
+
+.detailsList li::before {
+  content: '•';
+  position: absolute;
+  right: 0;
+  color: #000000;
+  font-weight: 400;
+}
+
+/* Process Section */
+.processSection {
+  margin-bottom: 120px;
+  text-align: center;
+}
+
+.processTitle {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 300;
+  color: #000000;
+  margin: 0 0 60px 0;
+  letter-spacing: -0.01em;
+}
+
+.processFlow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.processStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 180px;
+}
+
+.processNumber {
+  font-size: 1.5rem;
+  font-weight: 100;
+  color: #000000;
+  margin-bottom: 8px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.processText {
+  font-size: clamp(0.95rem, 2vw, 1.125rem);
+  font-weight: 300;
+  color: #333333;
+  line-height: 1.4;
+}
+
+.processArrow {
+  font-size: 1.5rem;
+  color: #000000;
+  font-weight: 100;
+}
+
+/* CTA Section */
+.ctaSection {
+  text-align: center;
+  padding: 80px 32px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.ctaTitle {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 300;
+  color: #000000;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.01em;
+}
+
+.ctaDescription {
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-weight: 300;
+  color: #666666;
+  margin: 0 0 40px 0;
+  line-height: 1.5;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaButton,
+.ctaButtonSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  min-width: 160px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.ctaButton {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.ctaButton:hover {
+  background: #333333;
+  border-color: #333333;
+  transform: translateY(-1px);
+}
+
+.ctaButtonSecondary {
+  background: transparent;
+  color: #000000;
+  border-color: #000000;
+}
+
+.ctaButtonSecondary:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 24px;
+  }
+  
+  .heroSection {
+    padding: 140px 0 100px 0;
+  }
+  
+  .servicesGrid {
+    gap: 70px;
+    margin-bottom: 100px;
+  }
+  
+  .service {
+    padding: 40px 24px;
+  }
+  
+  .processSection {
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  
+  .heroSection {
+    padding: 120px 0 80px 0;
+  }
+  
+  .servicesGrid {
+    gap: 60px;
+    margin-bottom: 80px;
+  }
+  
+  .service {
+    padding: 32px 20px;
+  }
+  
+  .serviceDetails {
+    text-align: center;
+  }
+  
+  .processFlow {
+    flex-direction: column;
+    gap: 32px;
+  }
+  
+  .processArrow {
+    transform: rotate(90deg);
+  }
+  
+  .processStep {
+    min-width: auto;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .processSection {
+    margin-bottom: 80px;
+  }
+  
+  .ctaSection {
+    padding: 60px 20px;
+  }
+  
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .ctaButton,
+  .ctaButtonSecondary {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .heroSection {
+    padding: 100px 0 60px 0;
+  }
+  
+  .servicesGrid {
+    gap: 50px;
+    margin-bottom: 60px;
+  }
+  
+  .service {
+    padding: 24px 16px;
+  }
+  
+  .processSection {
+    margin-bottom: 60px;
+  }
+  
+  .ctaSection {
+    padding: 50px 16px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .ctaButton,
+  .ctaButtonSecondary {
+    transition: none;
+  }
+  
+  .ctaButton:hover,
+  .ctaButtonSecondary:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .heroTitle,
+  .serviceTitle,
+  .processTitle,
+  .ctaTitle {
+    color: #000000;
+  }
+  
+  .serviceNumber,
+  .processNumber {
+    color: #000000;
+    border-color: #000000;
+  }
+  
+  .serviceNumber::after {
+    background: #000000;
+  }
+  
+  .ctaButtonSecondary {
+    border-width: 2px;
+  }
+}
+
+/* Focus states for accessibility */
+.ctaButton:focus-visible,
+.ctaButtonSecondary:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .servicesPage {
+    page-break-inside: avoid;
+  }
+  
+  .ctaButtons {
+    display: none;
+  }
+  
+  .processArrow {
+    display: none;
+  }
+}

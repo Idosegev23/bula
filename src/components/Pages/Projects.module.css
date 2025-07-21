@@ -1,0 +1,497 @@
+/* Projects Page - Minimalistic Text-focused Design */
+/* Following established design language from other components */
+
+.projectsPage {
+  min-height: 100vh;
+  background: #ffffff;
+  direction: rtl;
+  font-family: 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Hero Section */
+.heroSection {
+  padding: 160px 0 80px 0;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 200;
+  line-height: 1.1;
+  color: #000000;
+  margin: 0 0 32px 0;
+  letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 300;
+  color: #666666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Categories Filter */
+.categoriesSection {
+  padding: 40px 0 80px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.categoriesFilter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.categoryButton {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 300;
+  background: transparent;
+  color: #666666;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  direction: rtl;
+}
+
+.categoryButton:hover {
+  color: #000000;
+  border-color: #000000;
+}
+
+.categoryButton.active {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+/* Projects Section */
+.projectsSection {
+  padding: 80px 0 140px 0;
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 120px;
+}
+
+.projectCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.projectCard:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: #f0f0f0;
+}
+
+.projectNumber {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 100;
+  color: #000000;
+  line-height: 1;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.projectNumber::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 1px;
+  background: #000000;
+}
+
+.projectContent {
+  text-align: center;
+  width: 100%;
+}
+
+.projectMeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.projectCategory {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #000000;
+  padding: 4px 12px;
+  border: 1px solid #000000;
+  background: transparent;
+}
+
+.projectLocation {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: #666666;
+}
+
+.projectTitle {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 400;
+  color: #000000;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.projectDescription {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  font-weight: 300;
+  color: #333333;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  max-width: 600px;
+}
+
+.projectLink {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000000;
+  text-decoration: none;
+  border-bottom: 1px solid #000000;
+  transition: opacity 0.2s ease;
+}
+
+.projectLink:hover {
+  opacity: 0.7;
+}
+
+/* Stats Section */
+.statsSection {
+  margin-bottom: 120px;
+  padding: 80px 0;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  text-align: center;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statNumber {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 100;
+  color: #000000;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.statLabel {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: 300;
+  color: #666666;
+  line-height: 1.3;
+}
+
+/* CTA Section */
+.ctaSection {
+  text-align: center;
+  padding: 80px 32px;
+}
+
+.ctaTitle {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 300;
+  color: #000000;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.01em;
+}
+
+.ctaDescription {
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-weight: 300;
+  color: #666666;
+  margin: 0 0 40px 0;
+  line-height: 1.5;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaButton,
+.ctaButtonSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  min-width: 160px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.ctaButton {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.ctaButton:hover {
+  background: #333333;
+  border-color: #333333;
+  transform: translateY(-1px);
+}
+
+.ctaButtonSecondary {
+  background: transparent;
+  color: #000000;
+  border-color: #000000;
+}
+
+.ctaButtonSecondary:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 24px;
+  }
+  
+  .heroSection {
+    padding: 140px 0 70px 0;
+  }
+  
+  .categoriesSection {
+    padding: 35px 0 70px 0;
+  }
+  
+  .projectsSection {
+    padding: 70px 0 120px 0;
+  }
+  
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 100px;
+  }
+  
+  .projectCard {
+    padding: 32px 20px;
+  }
+  
+  .statsSection {
+    margin-bottom: 100px;
+    padding: 70px 0;
+  }
+  
+  .statsGrid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  
+  .heroSection {
+    padding: 120px 0 60px 0;
+  }
+  
+  .categoriesSection {
+    padding: 30px 0 60px 0;
+  }
+  
+  .categoriesFilter {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .categoryButton {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .projectsSection {
+    padding: 60px 0 100px 0;
+  }
+  
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 80px;
+  }
+  
+  .projectCard {
+    padding: 28px 16px;
+  }
+  
+  .statsSection {
+    margin-bottom: 80px;
+    padding: 60px 0;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .ctaSection {
+    padding: 60px 20px;
+  }
+  
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .ctaButton,
+  .ctaButtonSecondary {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .heroSection {
+    padding: 100px 0 50px 0;
+  }
+  
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+  
+  .projectCard {
+    padding: 24px 16px;
+  }
+  
+  .statsSection {
+    margin-bottom: 60px;
+    padding: 50px 0;
+  }
+  
+  .ctaSection {
+    padding: 50px 16px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .categoryButton,
+  .projectCard,
+  .projectLink,
+  .ctaButton,
+  .ctaButtonSecondary {
+    transition: none;
+  }
+  
+  .ctaButton:hover,
+  .ctaButtonSecondary:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .heroTitle,
+  .projectTitle,
+  .ctaTitle {
+    color: #000000;
+  }
+  
+  .projectNumber,
+  .statNumber {
+    color: #000000;
+  }
+  
+  .projectNumber::after {
+    background: #000000;
+  }
+  
+  .categoryButton.active {
+    background: #000000;
+    color: #ffffff;
+  }
+  
+  .ctaButtonSecondary {
+    border-width: 2px;
+  }
+}
+
+/* Focus states for accessibility */
+.categoryButton:focus-visible,
+.projectLink:focus-visible,
+.ctaButton:focus-visible,
+.ctaButtonSecondary:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .projectsPage {
+    page-break-inside: avoid;
+  }
+  
+  .categoriesFilter,
+  .ctaButtons {
+    display: none;
+  }
+  
+  .projectCard {
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,219 @@
+/* ComplexitySection - Text-focused Minimalistic Design */
+/* Emphasizing typography and centered layout */
+
+.complexitySection {
+  background: #ffffff;
+  padding: 140px 0;
+  position: relative;
+  direction: rtl;
+  font-family: 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px;
+  text-align: center;
+}
+
+/* Problem Statement */
+.problemStatement {
+  margin-bottom: 120px;
+}
+
+.problemTitle {
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-weight: 200;
+  line-height: 1.2;
+  color: #000000;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.problemTitle:last-child {
+  margin-bottom: 0;
+}
+
+/* Solution Section */
+.solution {
+  text-align: center;
+}
+
+.solutionTitle {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 300;
+  color: #000000;
+  margin: 0 0 80px 0;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+/* Process Text */
+.processText {
+  margin-bottom: 80px;
+}
+
+.processDescription {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 300;
+  color: #333333;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 0.02em;
+}
+
+/* Tagline */
+.tagline {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  color: #666666;
+  text-align: center;
+  margin: 0;
+  padding-top: 60px;
+  border-top: 1px solid #f0f0f0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .complexitySection {
+    padding: 120px 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    padding: 0 24px;
+  }
+  
+  .problemStatement {
+    margin-bottom: 100px;
+  }
+  
+  .solutionTitle {
+    margin-bottom: 70px;
+  }
+  
+  .processText {
+    margin-bottom: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .complexitySection {
+    padding: 100px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  .problemStatement {
+    margin-bottom: 80px;
+  }
+  
+  .problemTitle {
+    margin-bottom: 20px;
+  }
+  
+  .solutionTitle {
+    margin-bottom: 60px;
+  }
+  
+  .processText {
+    margin-bottom: 60px;
+  }
+  
+  .tagline {
+    padding-top: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .complexitySection {
+    padding: 80px 0;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .problemStatement {
+    margin-bottom: 60px;
+  }
+  
+  .problemTitle {
+    margin-bottom: 16px;
+    font-size: 2rem;
+  }
+  
+  .solutionTitle {
+    margin-bottom: 50px;
+  }
+  
+  .processText {
+    margin-bottom: 50px;
+  }
+  
+  .processDescription {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+  
+  .tagline {
+    padding-top: 40px;
+    font-size: 1rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .problemTitle,
+  .solutionTitle {
+    color: #000000;
+  }
+  
+  .processDescription {
+    color: #000000;
+  }
+  
+  .tagline {
+    color: #000000;
+    border-top-color: #000000;
+  }
+}
+
+/* Focus states for accessibility */
+.container:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .complexitySection {
+    padding: 40px 0;
+    page-break-inside: avoid;
+  }
+  
+  .problemTitle,
+  .solutionTitle,
+  .processDescription,
+  .tagline {
+    color: #000000;
+  }
+}

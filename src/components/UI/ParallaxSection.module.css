@@ -1,0 +1,35 @@
+/* ParallaxSection - Sophisticated parallax effects */
+
+.parallaxSection {
+  position: relative;
+  will-change: transform, filter;
+  transition: transform 0.1s ease-out, filter 0.1s ease-out;
+  transform-style: preserve-3d;
+}
+
+/* Performance optimizations */
+.parallaxSection * {
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .parallaxSection {
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* GPU acceleration */
+.parallaxSection {
+  transform: translateZ(0);
+}
+
+/* Smooth scrolling on mobile */
+@media (max-width: 768px) {
+  .parallaxSection {
+    transform: none !important;
+    filter: none !important;
+  }
+}

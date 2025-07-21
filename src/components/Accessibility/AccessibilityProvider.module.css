@@ -1,0 +1,460 @@
+/* Accessibility Provider Styles - WCAG AA Compliant */
+/* Provides comprehensive accessibility features across the website */
+
+/* Skip Links */
+.skipLinks {
+  position: absolute;
+  top: -200px;
+  left: 0;
+  z-index: 9999;
+  direction: rtl;
+}
+
+.skipLink {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #000000;
+  color: #ffffff;
+  padding: 12px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Heebo', 'Inter', sans-serif;
+  border: 2px solid #ffffff;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s ease;
+  min-width: 200px;
+  text-align: center;
+}
+
+.skipLink:focus,
+.skipLink:focus-visible {
+  top: 0;
+  outline: 3px solid #0066cc;
+  outline-offset: 2px;
+}
+
+.skipLink:hover {
+  background: #333333;
+}
+
+/* Accessibility Button */
+.accessibilityButton {
+  position: fixed;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  z-index: 9998;
+  background: #000000;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 50px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-family: 'Heebo', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  direction: rtl;
+}
+
+.accessibilityButton:hover {
+  background: #333333;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.accessibilityButton:focus,
+.accessibilityButton:focus-visible {
+  outline: 3px solid #0066cc;
+  outline-offset: 2px;
+}
+
+.accessibilityIcon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.accessibilityText {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Accessibility Menu */
+.accessibilityMenu {
+  position: fixed;
+  top: 50%;
+  left: 80px;
+  transform: translateY(-50%);
+  z-index: 9999;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 12px;
+  width: 320px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  font-family: 'Heebo', 'Inter', sans-serif;
+  direction: rtl;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9997;
+}
+
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.menuTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: #f5f5f5;
+  border-color: #000000;
+  color: #000000;
+}
+
+.closeButton:focus,
+.closeButton:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+.menuContent {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Control Groups */
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.controlLabel {
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.controlButton {
+  background: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+  transition: all 0.2s ease;
+  min-width: 60px;
+  text-align: center;
+}
+
+.controlButton:hover {
+  border-color: #000000;
+  background: #f5f5f5;
+}
+
+.controlButton:focus,
+.controlButton:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+.controlButton.active {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.controlButton.active:hover {
+  background: #333333;
+}
+
+/* Checkbox Styles */
+.checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #000000;
+  cursor: pointer;
+}
+
+.checkbox:focus,
+.checkbox:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* Reset Button */
+.resetButton {
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.resetButton:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.resetButton:focus,
+.resetButton:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* Screen Reader Only */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .accessibilityButton {
+    left: 8px;
+    padding: 10px 12px;
+  }
+  
+  .accessibilityText {
+    display: none;
+  }
+  
+  .accessibilityMenu {
+    left: 60px;
+    width: 280px;
+  }
+  
+  .menuContent {
+    padding: 16px;
+    gap: 20px;
+  }
+  
+  .buttonGroup {
+    gap: 6px;
+  }
+  
+  .controlButton {
+    padding: 6px 12px;
+    font-size: 13px;
+    min-width: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .accessibilityMenu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100vw - 32px);
+    max-width: 300px;
+  }
+}
+
+/* Global Accessibility Styles Applied via Data Attributes */
+/* These styles only apply when accessibility features are enabled */
+
+/* Font Size Settings - Only adjust base font size */
+:root[data-font-size="small"] {
+  --accessibility-font-scale: 0.875;
+}
+
+:root[data-font-size="medium"] {
+  --accessibility-font-scale: 1;
+}
+
+:root[data-font-size="large"] {
+  --accessibility-font-scale: 1.125;
+}
+
+:root[data-font-size="extra-large"] {
+  --accessibility-font-scale: 1.25;
+}
+
+/* Apply font scaling only to text elements */
+:root[data-font-size] body,
+:root[data-font-size] p,
+:root[data-font-size] span,
+:root[data-font-size] div,
+:root[data-font-size] h1,
+:root[data-font-size] h2,
+:root[data-font-size] h3,
+:root[data-font-size] h4,
+:root[data-font-size] h5,
+:root[data-font-size] h6,
+:root[data-font-size] a,
+:root[data-font-size] button,
+:root[data-font-size] input,
+:root[data-font-size] textarea,
+:root[data-font-size] select {
+  font-size: calc(var(--accessibility-font-scale, 1) * 1rem) !important;
+}
+
+/* High Contrast Mode - Only apply when specifically enabled */
+:root[data-contrast="high"] {
+  --text-contrast: #000000;
+  --bg-contrast: #ffffff;
+  --border-contrast: #000000;
+}
+
+:root[data-contrast="high"] body {
+  background-color: var(--bg-contrast) !important;
+  color: var(--text-contrast) !important;
+}
+
+:root[data-contrast="high"] h1,
+:root[data-contrast="high"] h2,
+:root[data-contrast="high"] h3,
+:root[data-contrast="high"] h4,
+:root[data-contrast="high"] h5,
+:root[data-contrast="high"] h6,
+:root[data-contrast="high"] p,
+:root[data-contrast="high"] span,
+:root[data-contrast="high"] div {
+  color: var(--text-contrast) !important;
+}
+
+:root[data-contrast="high"] a {
+  color: var(--text-contrast) !important;
+  text-decoration: underline !important;
+}
+
+:root[data-contrast="high"] button {
+  background-color: var(--text-contrast) !important;
+  color: var(--bg-contrast) !important;
+  border: 2px solid var(--text-contrast) !important;
+}
+
+:root[data-contrast="high"] input,
+:root[data-contrast="high"] textarea,
+:root[data-contrast="high"] select {
+  background-color: var(--bg-contrast) !important;
+  color: var(--text-contrast) !important;
+  border: 2px solid var(--text-contrast) !important;
+}
+
+:root[data-contrast="high"] img,
+:root[data-contrast="high"] video {
+  filter: contrast(1.2) brightness(1.1);
+}
+
+/* Reduced Motion - Only when enabled */
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Enhanced Focus Visibility - Only when enabled */
+:root[data-focus-visible="true"] *:focus,
+:root[data-focus-visible="true"] *:focus-visible {
+  outline: 3px solid #0066cc !important;
+  outline-offset: 2px !important;
+}
+
+:root[data-focus-visible="true"] input:focus,
+:root[data-focus-visible="true"] textarea:focus,
+:root[data-focus-visible="true"] select:focus {
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3) !important;
+}
+
+/* Print accessibility */
+@media print {
+  .accessibilityButton,
+  .accessibilityMenu,
+  .overlay,
+  .skipLinks {
+    display: none !important;
+  }
+  
+  * {
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+}
+
+/* High contrast media query support */
+@media (prefers-contrast: high) {
+  :root {
+    --text-contrast: #000000;
+    --bg-contrast: #ffffff;
+    --border-contrast: #000000;
+  }
+}
+
+/* Reduced motion media query support */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --animation-duration: 0.01ms;
+    --transition-duration: 0.01ms;
+  }
+}
