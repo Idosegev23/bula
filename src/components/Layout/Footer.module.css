@@ -8,9 +8,9 @@
 
 .footerContent {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-lg);
-  padding: var(--space-xl) 0 var(--space-lg);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  padding: var(--space-lg) 0 var(--space-md);
   direction: rtl;
 }
 
@@ -18,19 +18,33 @@
   .footerContent {
     grid-template-columns: 2fr 1fr 1fr;
     gap: var(--space-2xl);
+    padding: var(--space-xl) 0 var(--space-lg);
   }
 }
 
 /* === מותג === */
 .footerBrand {
   max-width: 320px;
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+  .footerBrand {
+    grid-column: auto;
+  }
 }
 
 .footerLogo {
   display: inline-block;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
   text-decoration: none;
   transition: opacity var(--transition-fast);
+}
+
+@media (min-width: 768px) {
+  .footerLogo {
+    margin-bottom: var(--space-sm);
+  }
 }
 
 .footerLogo:hover {
@@ -38,30 +52,56 @@
 }
 
 .logoText {
-  font-size: var(--text-h3);
+  font-size: var(--text-h4);
   font-weight: 500;
   color: var(--color-black);
   text-decoration: none;
 }
 
+@media (min-width: 768px) {
+  .logoText {
+    font-size: var(--text-h3);
+  }
+}
+
 .footerTagline {
-  font-size: var(--text-body);
+  font-size: var(--text-small);
   color: var(--color-dark-gray);
-  line-height: 1.6;
+  line-height: 1.5;
   text-align: right;
+}
+
+@media (min-width: 768px) {
+  .footerTagline {
+    font-size: var(--text-body);
+    line-height: 1.6;
+  }
 }
 
 /* === קטגוריות === */
 .footerSection {
-  min-width: 200px;
+  min-width: 150px;
+}
+
+@media (min-width: 768px) {
+  .footerSection {
+    min-width: 200px;
+  }
 }
 
 .footerSectionTitle {
-  font-size: var(--text-h3);
+  font-size: var(--text-body);
   font-weight: 600;
   color: var(--color-black);
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
   text-align: right;
+}
+
+@media (min-width: 768px) {
+  .footerSectionTitle {
+    font-size: var(--text-h3);
+    margin-bottom: var(--space-md);
+  }
 }
 
 .footerLinks {
@@ -76,11 +116,18 @@
 
 .footerLink {
   display: inline-block;
-  font-size: var(--text-body);
+  font-size: var(--text-small);
   color: var(--color-dark-gray);
   text-decoration: none;
   transition: all var(--transition-fast);
-  padding: var(--space-xs) 0;
+  padding: 2px 0;
+}
+
+@media (min-width: 768px) {
+  .footerLink {
+    font-size: var(--text-body);
+    padding: var(--space-xs) 0;
+  }
 }
 
 .footerLink:hover {
@@ -91,14 +138,20 @@
 /* === תחתית === */
 .footerBottom {
   border-top: 1px solid var(--color-light-gray);
-  padding: var(--space-lg) 0;
+  padding: var(--space-md) 0;
+}
+
+@media (min-width: 768px) {
+  .footerBottom {
+    padding: var(--space-lg) 0;
+  }
 }
 
 .footerBottomContent {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   text-align: center;
 }
 
@@ -107,6 +160,7 @@
     flex-direction: row;
     justify-content: space-between;
     text-align: right;
+    gap: var(--space-sm);
   }
 }
 
