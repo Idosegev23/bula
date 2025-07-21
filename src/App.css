@@ -1,12 +1,15 @@
 /* App.css - Bulla Studio */
 
 /* סגנונות ספציפיים לקומפוננטת App */
-.app {
+.App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--color-white);
+  color: var(--color-black);
 }
 
-.main-content {
+#main-content {
   flex: 1;
+  padding-top: var(--header-height);
 }

@@ -1,53 +1,19 @@
-/* CSS Variables - Bulla Studio "Earth & Craft" Color Palette 2025 */
+/* CSS Variables - Bulla Studio Clean Monochrome Design */
 
 :root {
-  /* === פלטת צבעים שחור-לבן מתקדמת 2025 === */
+  /* === פלטת צבעים שחור-לבן === */
   
-  /* צבעים עיקריים - Black & White */
-  --color-black: #000000;         /* שחור טהור */
-  --color-charcoal: #1a1a1a;      /* פחם כהה */
-  --color-dark-gray: #2d2d2d;     /* אפור כהה */
-  --color-medium-gray: #4a4a4a;   /* אפור בינוני */
-  --color-light-gray: #808080;    /* אפור בהיר */
-  --color-silver: #c0c0c0;        /* כסף */
-  --color-off-white: #f8f8f8;     /* לבן מעט אפור */
-  --color-white: #ffffff;         /* לבן טהור */
-  
-  /* צבעים משניים */
-  --color-warm-white: #fafafa;    /* לבן חמים */
-  --color-light-cream: #f5f5f5;   /* קרם בהיר */
-  --color-soft-gray: #e5e5e5;     /* אפור רך */
-  --color-warm-gray: #6a6a6a;     /* אפור חמים */
-  
-  /* אפורים מדורגים */
-  --color-gray-light: #e8e8e8;
-  --color-gray-medium: #d0d0d0; 
-  --color-gray-dark: #5a5a5a;
-  
-  /* צבעי פוקוס וקישורים */
-  --color-focus: #333333;         /* אפור כהה לפוקוס */
-  --color-accent: #000000;        /* שחור לאקסנט */
-  
-  /* צבעים דינמיים */
-  --color-mocha: var(--color-charcoal);
-  --color-cinnamon: var(--color-dark-gray);
-  --color-sage: var(--color-medium-gray);
-  --color-cream: var(--color-off-white);
+  /* צבעים עיקריים */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-charcoal: #1a1a1a;
+  --color-dark-gray: #333333;
+  --color-medium-gray: #666666;
+  --color-light-gray: #cccccc;
+  --color-off-white: #f8f8f8;
   
   /* === טיפוגרפיה === */
-  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-family-display: 'Playfair Display', Georgia, serif;
-  --font-family-mono: 'Space Grotesk', 'Courier New', monospace;
-  --font-family: var(--font-family-primary);
-  --font-thin: 100;
-  --font-light: 200;
-  --font-normal: 300;
-  --font-regular: 400;
-  --font-medium: 500;
-  --font-semibold: 600;
-  --font-bold: 700;
-  --font-extrabold: 800;
-  --font-black: 900;
+  --font-family: 'Inter', 'Heebo', -apple-system, BlinkMacSystemFont, sans-serif;
   
   /* גדלי טקסט */
   --text-hero: clamp(2.5rem, 8vw, 4.5rem);
@@ -66,29 +32,15 @@
   --space-2xl: 4rem;     /* 64px */
   --space-3xl: 6rem;     /* 96px */
   
-  /* === מעברים ואנימציות === */
+  /* === מעברים === */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
   
-  /* === Breakpoints === */
-  --breakpoint-sm: 640px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1280px;
-  
-  /* === צללים מתקדמים === */
-  --shadow-light: 0 2px 8px rgba(139, 90, 66, 0.08);
-  --shadow-medium: 0 4px 16px rgba(139, 90, 66, 0.12);
-  --shadow-heavy: 0 8px 32px rgba(139, 90, 66, 0.16);
-  --shadow-button: 0 3px 12px rgba(139, 90, 66, 0.15);
-  --shadow-hover: 0 6px 20px rgba(139, 90, 66, 0.2);
-  
   /* === Border Radius === */
-  --radius-sm: 0.375rem;   /* 6px */
-  --radius-md: 0.5rem;     /* 8px */
-  --radius-lg: 1rem;       /* 16px */
-  --radius-xl: 1.5rem;     /* 24px */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
   
   /* === Container === */
   --container-max-width: 1280px;
@@ -101,58 +53,4 @@
   --z-header: 1000;
   --z-modal: 2000;
   --z-tooltip: 3000;
-  
-  /* === גרדיאנטים מתקדמים B&W === */
-  --gradient-warm: linear-gradient(135deg, var(--color-off-white) 0%, var(--color-white) 100%);
-  --gradient-earth: linear-gradient(135deg, var(--color-black) 0%, var(--color-charcoal) 100%);
-  --gradient-sage: linear-gradient(135deg, var(--color-dark-gray) 0%, var(--color-medium-gray) 100%);
-  
-  /* === גלואינג אפקטים B&W === */
-  --glow-black: 0 0 20px rgba(0, 0, 0, 0.3);
-  --glow-white: 0 0 20px rgba(255, 255, 255, 0.3);
-  --glow-soft: 0 0 15px rgba(0, 0, 0, 0.15);
-  --glow-magical: 0 0 30px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 255, 255, 0.3);
-  --glow-aurora: 0 0 40px rgba(0, 0, 0, 0.5), 0 0 80px rgba(128, 128, 128, 0.4), 0 0 120px rgba(255, 255, 255, 0.3);
-  --glow-mocha: var(--glow-black);
-  --glow-sage: var(--glow-white);
-
-  /* === Glass Morphism === */
-  --glass-light: rgba(255, 255, 255, 0.1);
-  --glass-medium: rgba(255, 255, 255, 0.15);
-  --glass-dark: rgba(0, 0, 0, 0.1);
-  --backdrop-blur: blur(20px);
-  --backdrop-blur-heavy: blur(40px);
-
-  /* === גרדיאנטים מתקדמים === */
-  --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
-  --gradient-glass-dark: linear-gradient(135deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05));
-  --gradient-aurora: linear-gradient(45deg, #000000, #333333, #666666, #999999);
-  --gradient-magical: conic-gradient(from 0deg, #000000, #333333, #666666, #999999, #000000);
-  --gradient-monochrome: linear-gradient(135deg, #000000 0%, #333333 25%, #666666 50%, #999999 75%, #cccccc 100%);
-
-  /* === אפקטי 3D === */
-  --transform-hover: translateY(-8px) scale(1.02);
-  --transform-hover-heavy: translateY(-12px) scale(1.05) rotateX(5deg);
-  --perspective: 1000px;
-
-  /* === אנימציות מתקדמות === */
-  --animation-float: float 6s ease-in-out infinite;
-  --animation-glow: glow 4s ease-in-out infinite alternate;
-  --animation-rotate: rotate 20s linear infinite;
-  --animation-pulse: pulse 3s ease-in-out infinite;
-
-  /* === צללים מתקדמים === */
-  --shadow-glass: 0 8px 32px rgba(31, 38, 135, 0.15);
-  --shadow-glass-hover: 0 15px 35px rgba(31, 38, 135, 0.25);
-  --shadow-neon: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
-  --shadow-depth: 
-    0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24),
-    0 4px 8px rgba(0, 0, 0, 0.12),
-    0 8px 16px rgba(0, 0, 0, 0.08);
-
-  /* === Particle אפקטים === */
-  --particle-size: 3px;
-  --particle-opacity: 0.6;
-  --particle-speed: 20s;
-} 
+}

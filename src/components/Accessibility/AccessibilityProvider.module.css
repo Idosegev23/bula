@@ -337,23 +337,20 @@
   --accessibility-font-scale: 1.25;
 }
 
-/* Apply font scaling only to text elements */
-:root[data-font-size] body,
-:root[data-font-size] p,
-:root[data-font-size] span,
-:root[data-font-size] div,
-:root[data-font-size] h1,
-:root[data-font-size] h2,
-:root[data-font-size] h3,
-:root[data-font-size] h4,
-:root[data-font-size] h5,
-:root[data-font-size] h6,
-:root[data-font-size] a,
-:root[data-font-size] button,
-:root[data-font-size] input,
-:root[data-font-size] textarea,
-:root[data-font-size] select {
-  font-size: calc(var(--accessibility-font-scale, 1) * 1rem) !important;
+/* Apply font scaling only when different from medium */
+:root[data-font-size="small"] body,
+:root[data-font-size="small"] p,
+:root[data-font-size="small"] span,
+:root[data-font-size="small"] div,
+:root[data-font-size="large"] body,
+:root[data-font-size="large"] p,
+:root[data-font-size="large"] span,
+:root[data-font-size="large"] div,
+:root[data-font-size="extra-large"] body,
+:root[data-font-size="extra-large"] p,
+:root[data-font-size="extra-large"] span,
+:root[data-font-size="extra-large"] div {
+  font-size: calc(var(--accessibility-font-scale, 1) * 1rem);
 }
 
 /* High Contrast Mode - Only apply when specifically enabled */
