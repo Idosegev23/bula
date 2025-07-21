@@ -1,4 +1,4 @@
-/* ComplexitySection - סרט מדידה קבוע עם חץ נע */
+/* ComplexitySection - סרט מדידה אינטראקטיבי Canvas */
 
 .complexitySection {
   background: 
@@ -118,108 +118,58 @@
   opacity: 1;
 }
 
-/* === סרט מדידה קבוע === */
-.measuringTapeContainer {
+/* === Canvas Container === */
+.canvasContainer {
   position: relative;
   margin-bottom: 80px;
+  padding: 30px 0;
 }
 
-.measuringTape {
-  position: relative;
+.measureCanvas {
   width: 100%;
-  height: 40px;
-  background: 
-    linear-gradient(135deg, 
-      #FFD700 0%, 
-      #FFC107 25%, 
-      #FFB300 50%, 
-      #FF8F00 75%, 
-      #FF6F00 100%
-    );
+  height: 60px;
   border-radius: 20px;
-  border: 3px solid #8B5A42;
   box-shadow: 
     0 8px 24px rgba(255, 215, 0, 0.3),
-    inset 0 4px 8px rgba(255, 255, 255, 0.3),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-  overflow: visible;
+    0 4px 12px rgba(139, 90, 66, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
 }
 
-/* סמנים על הסרט */
-.tapeMarkings {
+/* תצוגת מדידה */
+.measurementDisplay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-}
-
-.tapeMark {
-  position: absolute;
-  bottom: 8px;
-  width: 2px;
-  height: 12px;
-  background: #8B5A42;
-  border-radius: 1px;
-  transform: translateX(-50%);
-}
-
-.tapeMark.majorMark {
-  height: 20px;
-  width: 3px;
-  bottom: 6px;
-  background: #654321;
-}
-
-.markLabel {
-  position: absolute;
-  bottom: -25px;
+  top: -30px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #8B5A42;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 2px 6px;
-  border-radius: 4px;
-  border: 1px solid #8B5A42;
-  white-space: nowrap;
+  background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 2px solid #8B5A42;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
-/* החץ הנע */
-.movingArrow {
-  position: absolute;
-  top: -20px;
-  transform: translateX(-50%);
-  transition: left 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  z-index: 10;
+.measurementValue {
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
 }
 
-.arrowPointer {
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-top: 20px solid #DC143C;
-  margin: 0 auto;
-  filter: drop-shadow(0 4px 8px rgba(220, 20, 60, 0.4));
-  animation: arrowPulse 2s ease-in-out infinite;
-}
-
-@keyframes arrowPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-.arrowLine {
-  width: 3px;
-  height: 60px;
-  background: linear-gradient(180deg, #DC143C 0%, #8B0000 100%);
-  margin: 0 auto;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(220, 20, 60, 0.3);
+.measurementLabel {
+  font-size: 0.75rem;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* === השלבים === */
@@ -381,12 +331,17 @@
     padding: 60px 0 50px;
   }
   
-  .measuringTape {
-    height: 35px;
+  .measureCanvas {
+    height: 50px;
   }
   
-  .arrowLine {
-    height: 55px;
+  .measurementDisplay {
+    top: -25px;
+    padding: 10px 16px;
+  }
+  
+  .measurementValue {
+    font-size: 1.2rem;
   }
 }
 
@@ -420,33 +375,21 @@
     height: 28px;
   }
   
-  .measuringTape {
-    height: 30px;
+  .measureCanvas {
+    height: 45px;
   }
   
-  .arrowLine {
-    height: 50px;
+  .measurementDisplay {
+    top: -22px;
+    padding: 8px 12px;
   }
   
-  .arrowPointer {
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 15px solid #DC143C;
+  .measurementValue {
+    font-size: 1.1rem;
   }
   
-  .tapeMark {
-    height: 10px;
-    bottom: 6px;
-  }
-  
-  .tapeMark.majorMark {
-    height: 16px;
-    bottom: 4px;
-  }
-  
-  .markLabel {
+  .measurementLabel {
     font-size: 0.7rem;
-    bottom: -22px;
   }
 }
 
@@ -482,15 +425,24 @@
     font-size: 1rem;
   }
   
-  .measuringTape {
-    height: 25px;
+  .measureCanvas {
+    height: 40px;
   }
   
-  .arrowLine {
-    height: 45px;
+  .measurementDisplay {
+    top: -20px;
+    padding: 6px 10px;
   }
   
   .measurementValue {
+    font-size: 1rem;
+  }
+  
+  .measurementLabel {
+    font-size: 0.65rem;
+  }
+  
+  .measurementIndicator .measurementValue {
     font-size: 1rem;
     padding: 6px 12px;
   }
@@ -508,10 +460,6 @@
     opacity: 1;
     transform: none;
   }
-  
-  .movingArrow {
-    transition: none;
-  }
 }
 
 /* === Print Styles === */
@@ -522,7 +470,8 @@
   }
   
   .backgroundPattern,
-  .movingArrow {
+  .measureCanvas,
+  .measurementDisplay {
     display: none;
   }
   
@@ -537,5 +486,7 @@
   .processStep {
     background: white !important;
     border: 2px solid #8B5A42;
+    opacity: 1;
+    transform: none;
   }
 }

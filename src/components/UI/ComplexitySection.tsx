@@ -1,4 +1,4 @@
-// ComplexitySection - סקציית הבנת המורכבות עם סרט מדידה קבוע וחץ נע
+// ComplexitySection - סקציית הבנת המורכבות עם סרט מדידה אינטראקטיבי
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import styles from './ComplexitySection.module.css';
 
@@ -8,19 +8,23 @@ interface ComplexitySectionProps {
 
 export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className = '' }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeStep, setActiveStep] = useState(-1);
+  const [activeSteps, setActiveSteps] = useState<number[]>([]);
   const [arrowPosition, setArrowPosition] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationCompleted, setAnimationCompleted] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [currentMeasurement, setCurrentMeasurement] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationFrameRef = useRef<number | undefined>(undefined);
 
-  // השלבים של התהליך
+  // השלבים של התהליך (בס"מ)
   const processSteps = [
     {
       id: 'planning',
       title: 'תכנון',
       description: 'מדידה מדויקת ותכנון פרויקט מפורט עם שימוש בטכנולוגיות מתקדמות',
-      measurement: 1.0,
+      measurement: 10, // ס"מ
       position: 20, // אחוז במסלול
       backgroundImage: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       icon: (
@@ -37,7 +41,7 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
       id: 'design',
       title: 'עיצוב',
       description: 'יצירת תכניות מפורטות ותלת-ממד עם דגש על פונקציונליות ואסתטיקה',
-      measurement: 2.5,
+      measurement: 25, // ס"מ
       position: 40,
       backgroundImage: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       icon: (
@@ -53,7 +57,7 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
       id: 'production',
       title: 'ייצור',
       description: 'עיבוד מדויק ונגרות מקצועית בסדנה המתקדמת שלנו עם כלים חדישים',
-      measurement: 4.2,
+      measurement: 42, // ס"מ
       position: 65,
       backgroundImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       icon: (
@@ -68,7 +72,7 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
       id: 'installation',
       title: 'התקנה',
       description: 'התקנה מושלמת והשלמת הפרויקט באתר הלקוח עם אחריות מלאה',
-      measurement: 5.8,
+      measurement: 58, // ס"מ
       position: 85,
       backgroundImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       icon: (
@@ -81,6 +85,180 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
       )
     }
   ];
+
+  // ציור סרט המדידה ב-Canvas
+  const drawMeasureTape = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+
+    const width = rect.width;
+    const height = rect.height;
+
+    // ניקוי Canvas
+    ctx.clearRect(0, 0, width, height);
+
+    // ציור רקע הסרט - צהוב
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, '#FFD700');
+    gradient.addColorStop(0.5, '#FFC107');
+    gradient.addColorStop(1, '#FFB300');
+    
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+
+    // מסגרת
+    ctx.strokeStyle = '#8B5A42';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(1.5, 1.5, width - 3, height - 3);
+
+    // ציור סמנים - כל ס"מ
+    ctx.strokeStyle = '#654321';
+    ctx.lineWidth = 1;
+    
+    const maxCm = 60; // מקסימום ס"מ
+    const stepWidth = width / maxCm;
+    
+    for (let cm = 0; cm <= maxCm; cm++) {
+      const x = width - (cm * stepWidth); // RTL - מימין לשמאל
+      const markHeight = cm % 10 === 0 ? height * 0.6 : cm % 5 === 0 ? height * 0.4 : height * 0.2;
+      
+      ctx.beginPath();
+      ctx.moveTo(x, height - markHeight);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+      
+      // תוויות מספרים כל 10 ס"מ
+      if (cm % 10 === 0) {
+        ctx.fillStyle = '#654321';
+        ctx.font = 'bold 10px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(cm.toString(), x, height - markHeight - 5);
+      }
+    }
+
+    // ציור החץ
+    const arrowX = width - (arrowPosition / 100 * width); // RTL
+    ctx.fillStyle = '#DC143C';
+    ctx.beginPath();
+    ctx.moveTo(arrowX, -5);
+    ctx.lineTo(arrowX - 10, -20);
+    ctx.lineTo(arrowX + 10, -20);
+    ctx.closePath();
+    ctx.fill();
+
+    // קו החץ
+    ctx.strokeStyle = '#DC143C';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(arrowX, -5);
+    ctx.lineTo(arrowX, height + 5);
+    ctx.stroke();
+
+    // תצוגת מדידה נוכחית
+    const currentCm = Math.round((100 - arrowPosition) * maxCm / 100);
+    setCurrentMeasurement(currentCm);
+
+  }, [arrowPosition]);
+
+  // פונקציות עדכון מיקום החץ
+  const updateArrowPosition = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = Math.max(0, Math.min(100, ((rect.width - x) / rect.width) * 100)); // RTL
+    setArrowPosition(percentage);
+  }, []);
+
+  const updateArrowPositionTouch = useCallback((e: React.TouchEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    const percentage = Math.max(0, Math.min(100, ((rect.width - x) / rect.width) * 100)); // RTL
+    setArrowPosition(percentage);
+  }, []);
+
+  // טיפול באירועי עכבר ומגע
+  const handleMouseDown = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
+    setIsDragging(true);
+    updateArrowPosition(e);
+  }, [updateArrowPosition]);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent<HTMLCanvasElement>) => {
+    setIsDragging(true);
+    updateArrowPositionTouch(e);
+  }, [updateArrowPositionTouch]);
+
+  // אירועי עכבר גלובליים
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging) return;
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percentage = Math.max(0, Math.min(100, ((rect.width - x) / rect.width) * 100)); // RTL
+      setArrowPosition(percentage);
+    };
+
+    const handleMouseUp = () => setIsDragging(false);
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isDragging) return;
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const touch = e.touches[0];
+      const x = touch.clientX - rect.left;
+      const percentage = Math.max(0, Math.min(100, ((rect.width - x) / rect.width) * 100)); // RTL
+      setArrowPosition(percentage);
+    };
+
+    const handleTouchEnd = () => setIsDragging(false);
+
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('touchmove', handleTouchMove);
+      document.addEventListener('touchend', handleTouchEnd);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isDragging]);
+
+  // ציור Canvas
+  useEffect(() => {
+    const animate = () => {
+      drawMeasureTape();
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+    animate();
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [drawMeasureTape]);
 
   // Intersection Observer
   useEffect(() => {
@@ -104,7 +282,7 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
     return () => observer.disconnect();
   }, [isVisible, animationCompleted]);
 
-  // אנימציית החץ על הסרט - פעם אחת בלבד
+  // אנימציית החץ - פעם אחת, השלבים נשארים
   const startMeasurementAnimation = useCallback(() => {
     if (animationCompleted) return;
     
@@ -124,10 +302,10 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
       // הזזת החץ למיקום השלב
       setArrowPosition(currentStep.position);
       
-      // הצגת השלב אחרי שהחץ מגיע
+      // הצגת השלב אחרי שהחץ מגיע - השלב נשאר!
       setTimeout(() => {
-        setActiveStep(stepIndex);
-      }, 800); // זמן עד שהחץ מגיע למיקום
+        setActiveSteps(prev => [...prev, stepIndex]);
+      }, 800);
       
       stepIndex++;
       
@@ -164,41 +342,29 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
           {/* אזור האנימציה */}
           <div className={styles.processAnimation}>
             
-            {/* סרט מדידה קבוע */}
-            <div className={styles.measuringTapeContainer}>
-              <div className={styles.measuringTape}>
-                {/* סמנים על הסרט */}
-                <div className={styles.tapeMarkings}>
-                  {Array.from({ length: 21 }, (_, i) => (
-                    <div 
-                      key={i} 
-                      className={`${styles.tapeMark} ${i % 5 === 0 ? styles.majorMark : ''}`}
-                      style={{ left: `${i * 5}%` }}
-                    >
-                      {i % 5 === 0 && (
-                        <span className={styles.markLabel}>{i / 5}</span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-                
-                {/* החץ הנע */}
-                <div 
-                  className={styles.movingArrow}
-                  style={{ left: `${arrowPosition}%` }}
-                >
-                  <div className={styles.arrowPointer}></div>
-                  <div className={styles.arrowLine}></div>
-                </div>
+            {/* סרט מדידה Canvas */}
+            <div className={styles.canvasContainer}>
+              <canvas
+                ref={canvasRef}
+                className={styles.measureCanvas}
+                onMouseDown={handleMouseDown}
+                onTouchStart={handleTouchStart}
+                style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+              />
+              
+              {/* תצוגת מדידה נוכחית */}
+              <div className={styles.measurementDisplay}>
+                <span className={styles.measurementValue}>{currentMeasurement} ס"מ</span>
+                <span className={styles.measurementLabel}>מדידה מדויקת</span>
               </div>
             </div>
 
-            {/* השלבים - יופיעו רק כשהחץ מגיע */}
+            {/* השלבים - נשארים אחרי הופעה */}
             <div className={styles.processSteps}>
               {processSteps.map((step, index) => (
                 <div 
                   key={step.id}
-                  className={`${styles.processStep} ${index === activeStep ? styles.active : ''}`}
+                  className={`${styles.processStep} ${activeSteps.includes(index) ? styles.active : ''}`}
                   style={{
                     backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.85)), url(${step.backgroundImage})`
                   }}
@@ -214,7 +380,7 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
                     {/* מחוון מדידה */}
                     <div className={styles.measurementIndicator}>
                       <span className={styles.measurementValue}>
-                        {step.measurement.toFixed(1)}מ'
+                        {step.measurement} ס"מ
                       </span>
                     </div>
                   </div>
