@@ -1,5 +1,5 @@
 // Hero - Bulla Studio Design & Fabrication
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Hero.module.css';
 
@@ -9,24 +9,40 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ className = '' }) => {
   const cuttingLineRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const line = cuttingLineRef.current;
-    if (line) {
-      // Trigger the cutting animation after component mounts
-      setTimeout(() => {
-        line.classList.add(styles.animate);
-      }, 100);
-    }
+    // Sequential animation trigger
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+      
+      const line = cuttingLineRef.current;
+      if (line) {
+        setTimeout(() => {
+          line.classList.add(styles.animate);
+        }, 600); // After title animation
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <section className={`${styles.hero} ${className}`}>
+      {/* Dark overlay for text readability */}
+      <div className={styles.overlay}></div>
+      
       <div className={styles.heroContainer}>
-        <div className={styles.heroContent}>
-          {/* Main Headline */}
+        <div 
+          ref={heroContentRef}
+          className={`${styles.heroContent} ${isLoaded ? styles.loaded : ''}`}
+        >
+          {/* Main Headline with dramatic entrance */}
           <h1 className={styles.heroTitle}>
-            בונים עסקים. מעצבים חוויות. מייצרים מציאות.
+            <span className={styles.titleLine1}>בונים עסקים.</span>
+            <span className={styles.titleLine2}>מעצבים חוויות.</span>
+            <span className={styles.titleLine3}>מייצרים מציאות.</span>
           </h1>
           
           {/* Sharp Cutting Line */}
@@ -40,11 +56,11 @@ export const Hero: React.FC<HeroProps> = ({ className = '' }) => {
           {/* CTA Buttons */}
           <div className={styles.heroActions}>
             <Link to="/projects" className={`${styles.btn} ${styles.btnPrimary}`}>
-              צפו בעבודות
+              <span>צפו בעבודות</span>
             </Link>
             
             <Link to="/process" className={`${styles.btn} ${styles.btnSecondary}`}>
-              איך אנחנו עובדים
+              <span>איך אנחנו עובדים</span>
             </Link>
           </div>
         </div>
