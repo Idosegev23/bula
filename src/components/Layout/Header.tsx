@@ -27,9 +27,21 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
   return (
     <header className={`${styles.header} ${className}`} role="banner">
-      <div className="container">
+      <div className={styles.headerContainer}>
         <div className={styles.headerContent}>
-          {/* לוגו */}
+          {/* כפתור תפריט נייד - צד שמאל */}
+          <button
+            className={`${styles.mobileMenuButton} ${isMobileMenuOpen ? styles.open : ''}`}
+            onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? "סגור תפריט ניווט" : "פתח תפריט ניווט"}
+            aria-expanded={isMobileMenuOpen}
+          >
+            <span className={styles.hamburgerLine}></span>
+            <span className={styles.hamburgerLine}></span>
+            <span className={styles.hamburgerLine}></span>
+          </button>
+
+          {/* לוגו - מרכז במובייל */}
           <Link to="/" className={styles.logo} aria-label="בולה סטודיו - דף הבית">
             <span className={styles.logoText}>Bulla Studio</span>
           </Link>
@@ -52,25 +64,33 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             </ul>
           </nav>
 
-          {/* כפתור תפריט נייד */}
-          <button
-            className={styles.mobileMenuButton}
-            onClick={toggleMobileMenu}
-            aria-label="פתח תפריט ניווט"
-            aria-expanded={isMobileMenuOpen}
-          >
-            <span className={styles.hamburgerLine}></span>
-            <span className={styles.hamburgerLine}></span>
-            <span className={styles.hamburgerLine}></span>
-          </button>
+          {/* מקום ריק לאיזון במובייל */}
+          <div className={styles.rightSpacer}></div>
         </div>
       </div>
 
       {/* תפריט נייד */}
       {isMobileMenuOpen && (
         <>
-          <div className={styles.mobileBackdrop} onClick={toggleMobileMenu}></div>
+          <div 
+            className={styles.mobileBackdrop} 
+            onClick={toggleMobileMenu}
+            aria-hidden="true"
+          ></div>
           <nav className={styles.mobileNav} role="navigation" aria-label="תפריט נייד">
+            {/* כפתור סגירה */}
+            <div className={styles.mobileNavHeader}>
+              <button
+                className={styles.closeButton}
+                onClick={toggleMobileMenu}
+                aria-label="סגור תפריט"
+              >
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            
             <ul className={styles.mobileNavList}>
               {navigationItems.map((item) => (
                 <li key={item.path} className={styles.mobileNavItem}>

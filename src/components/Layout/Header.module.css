@@ -1,4 +1,4 @@
-/* Header Styles - Bulla Studio Clean Design */
+/* Header Styles - Mobile-First Responsive Design */
 
 .header {
   position: fixed;
@@ -7,10 +7,20 @@
   right: 0;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-light-gray);
-  z-index: var(--z-header);
-  height: var(--header-height);
-  transition: all var(--transition-normal);
+  border-bottom: 1px solid #e5e5e5;
+  z-index: 1000;
+  height: 70px;
+  transition: all 0.3s ease;
+  width: 100%;
+  overflow: hidden;
+}
+
+.headerContainer {
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .headerContent {
@@ -18,27 +28,74 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  padding: 0 var(--space-lg);
-  max-width: var(--container-max-width);
-  margin: 0 auto;
+  position: relative;
 }
 
-/* === לוגו === */
+/* === לוגו - מרכז במובייל === */
 .logo {
-  font-size: 1.5rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--color-black);
+  color: #000000;
   text-decoration: none;
-  transition: all var(--transition-fast);
+  transition: all 0.2s ease;
+  z-index: 2;
 }
 
 .logo:hover {
-  transform: translateY(-2px);
-  color: var(--color-dark-gray);
+  color: #333333;
 }
 
 .logoText {
   display: block;
+  white-space: nowrap;
+}
+
+/* === כפתור המבורגר - צד שמאל === */
+.mobileMenuButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 10;
+  position: relative;
+  gap: 4px;
+}
+
+.hamburgerLine {
+  width: 24px;
+  height: 2px;
+  background: #000000;
+  transition: all 0.3s ease;
+  transform-origin: center;
+  border-radius: 1px;
+}
+
+/* אנימציה של המבורגר ל-X */
+.mobileMenuButton.open .hamburgerLine:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobileMenuButton.open .hamburgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.mobileMenuButton.open .hamburgerLine:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* === מקום ריק לאיזון === */
+.rightSpacer {
+  width: 32px;
+  height: 32px;
 }
 
 /* === ניווט דסקטופ === */
@@ -47,6 +104,21 @@
 }
 
 @media (min-width: 768px) {
+  .headerContainer {
+    padding: 0 24px;
+  }
+  
+  .logo {
+    position: static;
+    transform: none;
+    font-size: 1.5rem;
+  }
+  
+  .mobileMenuButton,
+  .rightSpacer {
+    display: none;
+  }
+  
   .desktopNav {
     display: block;
   }
@@ -54,7 +126,7 @@
 
 .navList {
   display: flex;
-  gap: var(--space-lg);
+  gap: 2rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -63,53 +135,26 @@
 
 .navLink {
   display: inline-block;
-  padding: var(--space-sm) var(--space-md);
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-black);
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #000000;
   text-decoration: none;
-  transition: all var(--transition-fast);
-  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  border-radius: 4px;
 }
 
 .navLink:hover {
-  background: var(--color-off-white);
+  background: #f5f5f5;
   transform: translateY(-1px);
 }
 
 .navLink.active {
-  background: var(--color-black);
-  color: var(--color-white);
+  background: #000000;
+  color: #ffffff;
 }
 
 /* === תפריט נייד === */
-.mobileMenuButton {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 10;
-}
-
-@media (min-width: 768px) {
-  .mobileMenuButton {
-    display: none;
-  }
-}
-
-.hamburgerLine {
-  width: 30px;
-  height: 3px;
-  background: var(--color-black);
-  transition: all var(--transition-fast);
-  transform-origin: 1px;
-}
-
 .mobileBackdrop {
   position: fixed;
   top: 0;
@@ -117,48 +162,183 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 998;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .mobileNav {
   position: fixed;
-  top: var(--header-height);
-  right: 0;
-  width: 100%;
-  max-width: 300px;
-  background: var(--color-white);
-  border-left: 1px solid var(--color-light-gray);
-  border-bottom: 1px solid var(--color-light-gray);
-  z-index: 1000;
-  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.1);
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 999;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+  animation: slideInLeft 0.3s ease;
+  direction: rtl;
+  overflow-y: auto;
+}
+
+@keyframes slideInLeft {
+  from { 
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to { 
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.mobileNavHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: #f5f5f5;
+}
+
+.closeButton svg {
+  width: 20px;
+  height: 20px;
+  color: #000000;
 }
 
 .mobileNavList {
   list-style: none;
   margin: 0;
-  padding: var(--space-md) 0;
+  padding: 0;
 }
 
 .mobileNavItem {
   margin: 0;
+  border-bottom: 1px solid #f5f5f5;
 }
 
 .mobileNavLink {
   display: block;
-  padding: var(--space-md) var(--space-lg);
-  color: var(--color-black);
+  padding: 16px 20px;
+  color: #000000;
   text-decoration: none;
-  font-weight: 500;
-  transition: all var(--transition-fast);
-  border-bottom: 1px solid var(--color-off-white);
+  font-weight: 400;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  text-align: right;
 }
 
 .mobileNavLink:hover {
-  background: var(--color-off-white);
-  padding-right: calc(var(--space-lg) + var(--space-sm));
+  background: #f8f8f8;
+  padding-right: 24px;
 }
 
 .mobileNavLink.active {
-  background: var(--color-black);
-  color: var(--color-white);
+  background: #000000;
+  color: #ffffff;
+}
+
+/* === תיקוני Overflow למובייל === */
+@media (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+  }
+  
+  .header {
+    width: 100vw;
+    max-width: 100%;
+  }
+  
+  .headerContainer {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 12px;
+  }
+  
+  .logo {
+    font-size: 1.125rem;
+    max-width: 60%;
+    text-align: center;
+  }
+  
+  .logoText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* === במסכים קטנים מאוד === */
+@media (max-width: 320px) {
+  .headerContainer {
+    padding: 0 8px;
+  }
+  
+  .logo {
+    font-size: 1rem;
+    max-width: 50%;
+  }
+  
+  .mobileNav {
+    width: 100vw;
+  }
+}
+
+/* === הסתרת scroll במובייל === */
+@media (max-width: 767px) {
+  html {
+    overflow-x: hidden;
+  }
+  
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* === Focus states === */
+.mobileMenuButton:focus-visible,
+.closeButton:focus-visible,
+.navLink:focus-visible,
+.mobileNavLink:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* === Animation for reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  .mobileNav,
+  .mobileBackdrop,
+  .hamburgerLine,
+  .logo,
+  .navLink,
+  .mobileNavLink {
+    transition: none;
+    animation: none;
+  }
 }
