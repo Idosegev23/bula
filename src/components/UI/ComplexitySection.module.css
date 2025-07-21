@@ -1,29 +1,13 @@
-/* ComplexitySection - סרט מדידה אינטראקטיבי Canvas */
+/* ComplexitySection - אנימציית סרט מדידה שחור לבן מינימליסטי */
 
 .complexitySection {
-  background: 
-    linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8f8f8 100%);
-  padding: 140px 0;
+  background: #ffffff;
+  padding: 100px 0 60px 0;
   position: relative;
   direction: rtl;
   font-family: 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow: hidden;
-  min-height: 100vh;
-}
-
-/* רקע מתקדם עם תבנית עץ */
-.backgroundPattern {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z' fill='%23D4B483' fill-opacity='0.02'/%3E%3C/g%3E%3C/svg%3E") repeat,
-    radial-gradient(circle at 20% 80%, rgba(139, 90, 66, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(156, 175, 136, 0.04) 0%, transparent 50%);
-  pointer-events: none;
-  opacity: 0.6;
+  min-height: 80vh;
 }
 
 .container {
@@ -35,304 +19,210 @@
   z-index: 1;
 }
 
-/* Problem Statement */
-.problemStatement {
-  margin-bottom: 120px;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.complexitySection.visible .problemStatement {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.problemTitle {
-  font-size: clamp(2.25rem, 6vw, 4rem);
-  font-weight: 200;
-  line-height: 1.1;
-  color: #1a1a1a;
-  margin: 0 0 24px 0;
-  letter-spacing: -0.02em;
-  text-align: center;
-}
-
-.titleAccent {
-  display: block;
-  background: linear-gradient(135deg, #8B5A42 0%, #A67B5B 50%, #D4B483 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 300;
-}
-
-/* Solution Section */
-.solution {
-  text-align: center;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease 0.6s;
-}
-
-.complexitySection.visible .solution {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.solutionTitle {
-  font-size: clamp(1.75rem, 4vw, 2.8rem);
-  font-weight: 300;
-  color: #2a2a2a;
-  margin: 0 0 80px 0;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-  position: relative;
-}
-
-.solutionTitle::after {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #8B5A42, transparent);
-  border-radius: 2px;
-}
-
-/* === אזור האנימציה === */
-.processAnimation {
-  position: relative;
-  max-width: 1100px;
-  margin: 0 auto 100px;
-  padding: 80px 0 60px;
-  transform: scale(0.9);
-  opacity: 0;
-  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s;
-}
-
-.complexitySection.visible .processAnimation {
-  transform: scale(1);
-  opacity: 1;
-}
-
-/* === Canvas Container === */
-.canvasContainer {
-  position: relative;
+/* כותרת */
+.header {
   margin-bottom: 80px;
-  padding: 20px 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
 }
 
-.measureCanvas {
+.complexitySection.visible .header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: #000000;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  color: #666666;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+/* קונטיינר סרט המדידה */
+.tapeContainer {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto 0;
+  padding: 40px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease 0.3s;
+}
+
+.complexitySection.visible .tapeContainer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Canvas של סרט המדידה */
+.measureTape {
   width: 100%;
-  height: 40px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 110px;
+  border-radius: 4px;
+
+  background: transparent;
+  border: none;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: none;
-  background: #ffffff;
-  border: 2px solid #000000;
 }
 
-/* תצוגת מדידה */
+/* תצוגת שלב נוכחי */
 .measurementDisplay {
   position: absolute;
-  top: -25px;
+  bottom: -35px;
   left: 50%;
   transform: translateX(-50%);
   background: #000000;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
+  color: #ffffff;
+  padding: 8px 20px;
+  border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
+  z-index: 10;
 }
 
 .measurementValue {
-  font-family: 'Monaco', 'Consolas', monospace;
+  font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
   font-size: 1.1rem;
-  font-weight: bold;
-  color: white;
-}
-
-.measurementLabel {
-  font-size: 0.65rem;
-  color: #ccc;
-  text-transform: uppercase;
+  font-weight: 300;
+  color: #ffffff;
   letter-spacing: 1px;
 }
 
-/* === השלבים === */
-.processSteps {
+/* קונטיינר השלבים */
+.stagesContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-top: 60px;
-  position: relative;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 0;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
 }
 
-.processStep {
-  opacity: 0;
-  transform: translateY(60px) scale(0.8);
-  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  padding: 2.5rem 2rem;
-  background-size: cover;
-  background-position: center;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(139, 90, 66, 0.2);
+.complexitySection.visible .stagesContainer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* שלב בודד */
+.stage {
+  background: #ffffff;
+  border: 2px solid #cccccc;
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  text-align: center;
   position: relative;
-  overflow: hidden;
-  min-height: 400px;
+  opacity: 0.3;
+  transform: scale(0.95);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  min-height: 200px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.processStep::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: inherit;
-  filter: blur(2px);
-  z-index: -1;
-}
-
-.processStep.active {
+.stage.active {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  border-color: #8B5A42;
+  transform: scale(1);
+  border-color: #000000;
+  background: #ffffff;
   box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.15),
-    0 8px 24px rgba(139, 90, 66, 0.2);
-  animation: stepAppear 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05);
+  animation: stageActivate 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-@keyframes stepAppear {
+@keyframes stageActivate {
   0% {
-    opacity: 0;
-    transform: translateY(60px) scale(0.8);
+    opacity: 0.3;
+    transform: scale(0.9);
+    border-color: #cccccc;
+  }
+  50% {
+    transform: scale(1.05);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: scale(1);
+    border-color: #000000;
   }
 }
 
-.stepContent {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  width: 100%;
-}
-
-.stepIcon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, #8B5A42 0%, #A67B5B 100%);
+/* מזהה השלב (A, B, C, D) */
+.stageId {
+  width: 60px;
+  height: 60px;
+  background: #000000;
+  color: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  box-shadow: 
-    0 8px 24px rgba(139, 90, 66, 0.3),
-    inset 0 2px 4px rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  font-size: 1.8rem;
+  font-weight: 100;
+  margin-bottom: 1rem;
+  font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+  letter-spacing: 1px;
 }
 
-.processStep.active .stepIcon {
-  animation: iconBounce 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.stage.active .stageId {
+  animation: idPulse 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-@keyframes iconBounce {
-  0% { transform: scale(0.8); }
+@keyframes idPulse {
+  0% { transform: scale(1); }
   50% { transform: scale(1.1); }
   100% { transform: scale(1); }
 }
 
-.stepIcon svg {
-  width: 36px;
-  height: 36px;
-}
-
-.stepTitle {
-  font-size: 1.6rem;
+/* כותרת השלב */
+.stageTitle {
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #2a2a2a;
-  margin: 0 0 1rem 0;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+  color: #000000;
+  margin: 0 0 0.8rem 0;
+  letter-spacing: -0.01em;
 }
 
-.stepDescription {
-  font-size: 1.1rem;
-  color: #555;
-  line-height: 1.6;
-  margin: 0 0 1.5rem 0;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-}
-
-/* מחוון מדידה */
-.measurementIndicator {
-  margin-top: 1.5rem;
-}
-
-.measurementValue {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #8B5A42;
-  font-family: 'Monaco', 'Consolas', monospace;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 8px 16px;
-  border-radius: 12px;
-  border: 2px solid #8B5A42;
-  box-shadow: 0 4px 12px rgba(139, 90, 66, 0.2);
-}
-
-/* Tagline */
-.tagline {
-  font-size: clamp(1.2rem, 2.8vw, 1.6rem);
-  font-weight: 300;
-  color: #555;
-  text-align: center;
+/* תיאור השלב */
+.stageDescription {
+  font-size: 1rem;
+  color: #666666;
+  line-height: 1.5;
   margin: 0;
-  padding: 40px 60px 20px;
-  border-top: 2px solid transparent;
-  border-image: linear-gradient(90deg, transparent, #8B5A42, transparent) 1;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-  position: relative;
+  font-weight: 400;
 }
 
 /* === Responsive === */
 @media (max-width: 1024px) {
-  .processSteps {
+  .stagesContainer {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
   
-  .processAnimation {
-    padding: 60px 0 50px;
-  }
-  
-  .measureCanvas {
-    height: 35px;
+  .measureTape {
+    height: 100px;
   }
   
   .measurementDisplay {
-    top: -22px;
-    padding: 6px 12px;
+    bottom: -30px;
+    padding: 6px 16px;
   }
   
   .measurementValue {
@@ -342,104 +232,87 @@
 
 @media (max-width: 768px) {
   .complexitySection {
-    padding: 100px 0;
+    padding: 80px 0 50px 0;
   }
   
   .container {
     padding: 0 20px;
   }
   
-  .processSteps {
+  .header {
+    margin-bottom: 60px;
+  }
+  
+  .stagesContainer {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin-top: 50px;
   }
   
-  .processStep {
-    padding: 2rem 1.5rem;
-    min-height: 350px;
+  .stage {
+    padding: 1.8rem 1.2rem;
+    min-height: 180px;
   }
   
-  .stepIcon {
-    width: 60px;
-    height: 60px;
+  .stageId {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
   }
   
-  .stepIcon svg {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .measureCanvas {
-    height: 35px;
+  .measureTape {
+    height: 100px;
   }
   
   .measurementDisplay {
-    top: -20px;
-    padding: 6px 10px;
+    bottom: -28px;
+    padding: 5px 12px;
   }
   
   .measurementValue {
-    font-size: 1rem;
-  }
-  
-  .measurementLabel {
-    font-size: 0.6rem;
+    font-size: 0.95rem;
   }
 }
 
 @media (max-width: 480px) {
   .complexitySection {
-    padding: 80px 0;
+    padding: 60px 0 40px 0;
   }
   
-  .processAnimation {
-    padding: 40px 0 40px;
+  .tapeContainer {
+    margin-bottom: 40px;
+    padding: 30px 0;
   }
   
-  .processStep {
+  .stage {
     padding: 1.5rem 1rem;
-    min-height: 300px;
+    min-height: 160px;
   }
   
-  .stepIcon {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .stepIcon svg {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .stepTitle {
+  .stageId {
+    width: 45px;
+    height: 45px;
     font-size: 1.3rem;
   }
   
-  .stepDescription {
-    font-size: 1rem;
+  .stageTitle {
+    font-size: 1.2rem;
   }
   
-  .measureCanvas {
-    height: 30px;
+  .stageDescription {
+    font-size: 0.9rem;
+  }
+  
+  .measureTape {
+    height: 100px;
   }
   
   .measurementDisplay {
-    top: -18px;
-    padding: 4px 8px;
+    bottom: -25px;
+    padding: 4px 10px;
   }
   
   .measurementValue {
     font-size: 0.9rem;
-  }
-  
-  .measurementLabel {
-    font-size: 0.55rem;
-  }
-  
-  .measurementIndicator .measurementValue {
-    font-size: 1rem;
-    padding: 6px 12px;
   }
 }
 
@@ -451,7 +324,12 @@
     transition-duration: 0.01ms !important;
   }
   
-  .processStep {
+  .stage {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .stagesContainer {
     opacity: 1;
     transform: none;
   }
@@ -464,24 +342,26 @@
     background: white;
   }
   
-  .backgroundPattern,
-  .measureCanvas,
+  .measureTape,
   .measurementDisplay {
     display: none;
   }
   
-  .processSteps {
+  .stagesContainer {
     grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .stepIcon {
-    background: #8B5A42;
-  }
-  
-  .processStep {
-    background: white !important;
-    border: 2px solid #8B5A42;
     opacity: 1;
     transform: none;
+  }
+  
+  .stage {
+    background: white;
+    border: 2px solid #000000;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .stageId {
+    background: #000000;
+    color: white;
   }
 }
