@@ -80,7 +80,9 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ className = '' }) =>
               className={styles.navButton}
               aria-label="טסטמוניאל קודם"
             >
-              ←
+              <svg viewBox="0 0 24 24" fill="none" className={styles.arrowIcon}>
+                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </button>
             
             <div className={styles.indicators}>
@@ -101,7 +103,9 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ className = '' }) =>
               className={styles.navButton}
               aria-label="טסטמוניאל הבא"
             >
-              →
+              <svg viewBox="0 0 24 24" fill="none" className={styles.arrowIcon}>
+                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </button>
           </div>
         </div>

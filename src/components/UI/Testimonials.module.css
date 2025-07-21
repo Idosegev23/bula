@@ -105,6 +105,16 @@
   outline-offset: 2px;
 }
 
+.arrowIcon {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--transition-fast);
+}
+
+.navButton:hover .arrowIcon {
+  transform: scale(1.1);
+}
+
 .indicators {
   display: flex;
   gap: var(--space-sm);
