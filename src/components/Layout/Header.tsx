@@ -45,10 +45,6 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                     role="menuitem"
                     aria-current={location.pathname === item.path ? 'page' : undefined}
                   >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
                     {item.label}
                   </Link>
                 </li>

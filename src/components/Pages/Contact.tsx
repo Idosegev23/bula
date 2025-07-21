@@ -59,28 +59,24 @@ export const Contact: React.FC<ContactProps> = ({ className = '' }) => {
   const contactInfo = [
     {
       id: 'phone',
-      icon: '📞',
       label: 'טלפון',
       value: '050-123-4567',
       link: 'tel:+972501234567'
     },
     {
       id: 'email',
-      icon: '✉️',
       label: 'אימייל',
       value: 'info@bullastudio.com',
       link: 'mailto:info@bullastudio.com'
     },
     {
       id: 'address',
-      icon: '📍',
       label: 'כתובת',
       value: 'רחוב התעשייה 15, תל אביב',
       link: 'https://maps.google.com'
     },
     {
       id: 'hours',
-      icon: '🕐',
       label: 'שעות פעילות',
       value: 'א׳-ה׳: 8:00-17:00',
       link: null
@@ -234,9 +230,6 @@ export const Contact: React.FC<ContactProps> = ({ className = '' }) => {
               <div className={styles.contactInfo}>
                 {contactInfo.map((info) => (
                   <div key={info.id} className={styles.contactItem}>
-                    <div className={styles.contactIcon}>
-                      {info.icon}
-                    </div>
                     <div className={styles.contactDetails}>
                       <h3 className={styles.contactLabel}>{info.label}</h3>
                       {info.link ? (
