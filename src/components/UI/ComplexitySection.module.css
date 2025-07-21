@@ -1,108 +1,809 @@
-/* ComplexitySection - Text-focused Minimalistic Design */
-/* Emphasizing typography and centered layout */
+/* ComplexitySection - אנימציית סרט מדידה מתקדמת ומציאותית */
 
 .complexitySection {
-  background: #ffffff;
+  background: 
+    linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8f8f8 100%),
+    radial-gradient(ellipse at top, rgba(139, 90, 66, 0.05) 0%, transparent 50%);
   padding: 140px 0;
   position: relative;
   direction: rtl;
   font-family: 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* רקע מתקדם עם תבנית עץ */
+.backgroundPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z' fill='%23D4B483' fill-opacity='0.02'/%3E%3C/g%3E%3C/svg%3E") repeat,
+    radial-gradient(circle at 20% 80%, rgba(139, 90, 66, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(156, 175, 136, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(212, 180, 131, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  animation: patternFloat 20s ease-in-out infinite;
+}
+
+@keyframes patternFloat {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 32px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
-/* Problem Statement */
+/* Problem Statement עם אפקטים */
 .problemStatement {
   margin-bottom: 120px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.complexitySection.visible .problemStatement {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .problemTitle {
-  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-size: clamp(2.25rem, 6vw, 4rem);
   font-weight: 200;
-  line-height: 1.2;
-  color: #000000;
+  line-height: 1.1;
+  color: #1a1a1a;
   margin: 0 0 24px 0;
   letter-spacing: -0.02em;
   text-align: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.problemTitle:last-child {
-  margin-bottom: 0;
+.titleAccent {
+  display: block;
+  background: linear-gradient(135deg, #8B5A42 0%, #A67B5B 50%, #D4B483 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 300;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* Solution Section */
 .solution {
   text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease 0.6s;
+}
+
+.complexitySection.visible .solution {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .solutionTitle {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.75rem, 4vw, 2.8rem);
   font-weight: 300;
-  color: #000000;
+  color: #2a2a2a;
   margin: 0 0 80px 0;
   letter-spacing: -0.01em;
   line-height: 1.3;
+  position: relative;
 }
 
-/* Process Text */
-.processText {
-  margin-bottom: 80px;
+.solutionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #8B5A42, transparent);
+  border-radius: 2px;
 }
 
-.processDescription {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: 300;
-  color: #333333;
-  line-height: 1.6;
-  margin: 0;
+/* === אזור האנימציה המתקדם === */
+.processAnimation {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto 100px;
+  padding: 80px 0 120px;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s;
+}
+
+.complexitySection.visible .processAnimation {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* === סרט מדידה מתקדם === */
+.measuringTapeContainer {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.measuringTape {
+  position: relative;
+  height: 20px;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  border-radius: 10px;
+  box-shadow: 
+    inset 0 2px 8px rgba(0,0,0,0.3),
+    0 4px 16px rgba(0,0,0,0.2);
+  overflow: hidden;
+  border: 2px solid #333;
+}
+
+.tapeBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      #2a2a2a 0px,
+      #2a2a2a 2px,
+      #333 2px,
+      #333 4px
+    );
+}
+
+.tapeProgress {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    #FFD700 0%, 
+    #FFA500 25%, 
+    #FF8C00 50%, 
+    #FF6347 75%, 
+    #DC143C 100%
+  );
+  border-radius: 8px;
+  position: relative;
+  transition: width 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.6),
+    inset 0 2px 4px rgba(255,255,255,0.3);
+  overflow: hidden;
+}
+
+.tapeGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(255,255,255,0.4) 0%, 
+      transparent 30%, 
+      transparent 70%, 
+      rgba(0,0,0,0.2) 100%
+    );
+}
+
+.tapeMarkings {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tapeMark {
+  width: 2px;
+  height: 60%;
+  background: rgba(0,0,0,0.4);
+  border-radius: 1px;
+  animation: markPulse 2s ease-in-out infinite;
+}
+
+.tapeMark:nth-child(3n) {
+  height: 80%;
+  background: rgba(0,0,0,0.6);
+}
+
+@keyframes markPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.tapeTip {
+  position: absolute;
+  right: -12px;
+  top: -6px;
+  width: 24px;
+  height: 32px;
+  background: linear-gradient(135deg, #C0C0C0 0%, #808080 100%);
+  border-radius: 4px 8px 8px 4px;
+  border: 2px solid #666;
+  box-shadow: 
+    0 4px 12px rgba(0,0,0,0.3),
+    inset 0 2px 4px rgba(255,255,255,0.3);
+  animation: tipGlow 2s ease-in-out infinite;
+}
+
+.tapeTipInner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 16px;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+}
+
+@keyframes tipGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 4px 12px rgba(0,0,0,0.3),
+      inset 0 2px 4px rgba(255,255,255,0.3);
+  }
+  50% { 
+    box-shadow: 
+      0 4px 20px rgba(255, 215, 0, 0.4),
+      inset 0 2px 4px rgba(255,255,255,0.3);
+  }
+}
+
+/* === תצוגה דיגיטלית === */
+.digitalDisplay {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: 
+    linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+  border: 3px solid #555;
+  border-radius: 12px;
+  padding: 16px 24px;
+  box-shadow: 
+    0 8px 24px rgba(0,0,0,0.4),
+    inset 0 2px 4px rgba(255,255,255,0.1);
+}
+
+.displayScreen {
+  background: #000;
+  border: 2px inset #333;
+  border-radius: 6px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.displayScreen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 255, 255, 0.1) 50%, 
+    transparent 100%
+  );
+  animation: scanLine 3s ease-in-out infinite;
+}
+
+@keyframes scanLine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.measurementNumber {
+  font-family: 'Monaco', 'Consolas', 'Digital-7', monospace;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #00FF41;
+  text-shadow: 
+    0 0 10px #00FF41,
+    0 0 20px #00FF41,
+    0 0 30px #00FF41;
+  animation: digitalGlow 2s ease-in-out infinite;
+}
+
+.measurementUnit {
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-size: 1.2rem;
+  color: #00FF41;
+  margin-right: 8px;
+  opacity: 0.8;
+}
+
+@keyframes digitalGlow {
+  0%, 100% { 
+    text-shadow: 
+      0 0 10px #00FF41,
+      0 0 20px #00FF41,
+      0 0 30px #00FF41;
+  }
+  50% { 
+    text-shadow: 
+      0 0 15px #00FF41,
+      0 0 30px #00FF41,
+      0 0 45px #00FF41;
+  }
+}
+
+.displayLabel {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   text-align: center;
+}
+
+/* === השלבים מתקדמים === */
+.processSteps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+  margin-top: 100px;
+  position: relative;
+}
+
+.processStep {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(60px) rotateX(15deg);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 2.5rem 1.5rem;
+  border-radius: 20px;
+  background: 
+    linear-gradient(135deg, 
+      rgba(255,255,255,0.9) 0%, 
+      rgba(255,255,255,0.7) 100%
+    );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.processStep::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--step-color, #8B5A42);
+  border-radius: 20px 20px 0 0;
+}
+
+.processStep.active {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+  background: 
+    linear-gradient(135deg, 
+      rgba(255,255,255,0.95) 0%, 
+      rgba(255,255,255,0.85) 100%
+    );
+  box-shadow: 
+    0 16px 48px rgba(0,0,0,0.1),
+    0 8px 24px rgba(139, 90, 66, 0.1);
+  animation: stepPulse 3s ease-in-out infinite;
+}
+
+@keyframes stepPulse {
+  0%, 100% { 
+    transform: translateY(0) scale(1);
+    box-shadow: 
+      0 16px 48px rgba(0,0,0,0.1),
+      0 8px 24px rgba(139, 90, 66, 0.1);
+  }
+  50% { 
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+      0 20px 60px rgba(0,0,0,0.15),
+      0 12px 32px rgba(139, 90, 66, 0.2);
+  }
+}
+
+/* כלי עבודה מרחפים */
+.floatingTools {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 40px;
+  pointer-events: none;
+}
+
+.floatingTool {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0;
+  animation: floatTool 4s ease-in-out infinite;
+}
+
+.floatingTool:nth-child(1) { left: 20%; animation-delay: 0s; }
+.floatingTool:nth-child(2) { left: 50%; animation-delay: 1s; }
+.floatingTool:nth-child(3) { left: 80%; animation-delay: 2s; }
+
+@keyframes floatTool {
+  0%, 90%, 100% { 
+    opacity: 0; 
+    transform: translateY(0) rotate(0deg); 
+  }
+  10%, 80% { 
+    opacity: 0.8; 
+    transform: translateY(-10px) rotate(10deg); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: translateY(-15px) rotate(-5deg); 
+  }
+}
+
+.stepContent {
+  position: relative;
+  z-index: 2;
+}
+
+.stepIcon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: 
+    linear-gradient(135deg, 
+      var(--step-color, #8B5A42) 0%, 
+      color-mix(in srgb, var(--step-color, #8B5A42) 80%, white) 100%
+    );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transform: scale(0.8);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 8px 24px rgba(0,0,0,0.15),
+    inset 0 2px 4px rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.iconGlow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle, 
+      rgba(255,255,255,0.3) 0%, 
+      transparent 70%
+    );
+  opacity: 0;
+  animation: iconGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconGlowPulse {
+  0%, 100% { 
+    opacity: 0; 
+    transform: scale(0.8) rotate(0deg); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.2) rotate(180deg); 
+  }
+}
+
+.processStep.active .stepIcon {
+  transform: scale(1);
+  animation: iconBounce 2s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: scale(1) rotateY(0deg); }
+  50% { transform: scale(1.1) rotateY(10deg); }
+}
+
+.stepIcon svg {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  z-index: 2;
+}
+
+.stepTitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2a2a2a;
+  margin: 0 0 0.8rem 0;
+  transition: all 0.3s ease;
+}
+
+.processStep.active .stepTitle {
+  color: var(--step-color, #8B5A42);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stepDescription {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0 0 1.5rem 0;
+}
+
+/* מחוון מדידה מתקדם */
+.measurementIndicator {
+  margin-top: 1.5rem;
+  opacity: 0;
+  transition: all 0.6s ease 0.4s;
+}
+
+.processStep.active .measurementIndicator {
+  opacity: 1;
+}
+
+.measurementRuler {
+  width: 60px;
+  height: 4px;
+  background: var(--step-color, #8B5A42);
+  margin: 0 auto 0.8rem;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.rulerMarks {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.rulerMark {
+  width: 1px;
+  background: var(--step-color, #8B5A42);
+  border-radius: 1px;
+}
+
+.rulerMark:nth-child(odd) { height: 8px; }
+.rulerMark:nth-child(even) { height: 12px; }
+
+.measurementValue {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--step-color, #8B5A42);
+  font-family: 'Monaco', 'Consolas', monospace;
+  background: rgba(255,255,255,0.8);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--step-color, #8B5A42);
+}
+
+/* בר התקדמות */
+.progressBar {
+  margin-top: 1rem;
+  height: 6px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--step-color, #8B5A42) 0%, 
+    color-mix(in srgb, var(--step-color, #8B5A42) 70%, white) 100%
+  );
+  border-radius: 3px;
+  transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+}
+
+.progressFill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255,255,255,0.4) 50%, 
+    transparent 100%
+  );
+  animation: progressShine 2s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* === סרט מדידה תלת-ממדי === */
+.tape3D {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tapeReel {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  animation: reelSpin 10s linear infinite;
+}
+
+@keyframes reelSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.reelSide {
+  width: 80px;
+  height: 80px;
+  background: 
+    radial-gradient(circle at 30% 30%, 
+      #FFD700 0%, 
+      #FFA500 50%, 
+      #FF8C00 100%
+    );
+  border-radius: 50%;
+  border: 4px solid #8B5A42;
+  box-shadow: 
+    0 8px 16px rgba(0,0,0,0.3),
+    inset 0 4px 8px rgba(255,255,255,0.3);
+}
+
+.reelCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: 
+    radial-gradient(circle, 
+      #333 0%, 
+      #1a1a1a 100%
+    );
+  border-radius: 50%;
+  border: 2px solid #555;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.tapeUnwinding {
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  width: 30px;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    #FFD700 0%, 
+    #FFA500 100%
+  );
+  transform: translateY(-50%);
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.tapeBrand {
+  background: 
+    linear-gradient(135deg, 
+      rgba(139, 90, 66, 0.9) 0%, 
+      rgba(166, 123, 91, 0.9) 100%
+    );
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 
+    0 8px 24px rgba(139, 90, 66, 0.3),
+    inset 0 2px 4px rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.tapeBrand span:first-child {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.tapeBrand span:last-child {
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
+/* Tagline מתקדם */
+.tagline {
+  font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+  font-weight: 300;
+  color: #555;
+  text-align: center;
+  margin: 0;
+  padding: 40px 60px 20px;
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(90deg, transparent, #8B5A42, transparent) 1;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  letter-spacing: 0.02em;
+  line-height: 1.6;
+  position: relative;
 }
 
-/* Tagline */
-.tagline {
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-  font-weight: 300;
-  color: #666666;
-  text-align: center;
-  margin: 0;
-  padding-top: 60px;
-  border-top: 1px solid #f0f0f0;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.5;
+.taglineIcon {
+  font-size: 1.8rem;
+  margin-left: 12px;
+  animation: iconPulse 3s ease-in-out infinite;
 }
 
-/* Responsive Design */
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.taglineAccent {
+  display: block;
+  font-size: 0.9rem;
+  color: #8B5A42;
+  font-weight: 500;
+  margin-top: 12px;
+  opacity: 0.8;
+}
+
+/* === Responsive עם אנימציות === */
 @media (max-width: 1024px) {
-  .complexitySection {
-    padding: 120px 0;
+  .processSteps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
   
-  .container {
-    max-width: 800px;
-    padding: 0 24px;
+  .processAnimation {
+    padding: 60px 0 100px;
   }
   
-  .problemStatement {
-    margin-bottom: 100px;
+  .digitalDisplay {
+    top: -70px;
   }
   
-  .solutionTitle {
-    margin-bottom: 70px;
-  }
-  
-  .processText {
-    margin-bottom: 70px;
+  .measurementNumber {
+    font-size: 2rem;
   }
 }
 
@@ -115,24 +816,51 @@
     padding: 0 20px;
   }
   
-  .problemStatement {
-    margin-bottom: 80px;
+  .processSteps {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 80px;
   }
   
-  .problemTitle {
-    margin-bottom: 20px;
+  .processStep {
+    padding: 2rem 1.5rem;
   }
   
-  .solutionTitle {
-    margin-bottom: 60px;
+  .stepIcon {
+    width: 60px;
+    height: 60px;
   }
   
-  .processText {
-    margin-bottom: 60px;
+  .stepIcon svg {
+    width: 28px;
+    height: 28px;
   }
   
-  .tagline {
-    padding-top: 50px;
+  .measuringTape {
+    height: 16px;
+  }
+  
+  .digitalDisplay {
+    top: -60px;
+    padding: 12px 20px;
+  }
+  
+  .measurementNumber {
+    font-size: 1.8rem;
+  }
+  
+  .tape3D {
+    bottom: -40px;
+  }
+  
+  .tapeReel {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .reelSide {
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -141,79 +869,92 @@
     padding: 80px 0;
   }
   
-  .container {
-    padding: 0 16px;
+  .processAnimation {
+    padding: 40px 0 80px;
   }
   
-  .problemStatement {
-    margin-bottom: 60px;
+  .stepIcon {
+    width: 50px;
+    height: 50px;
   }
   
-  .problemTitle {
-    margin-bottom: 16px;
-    font-size: 2rem;
+  .stepIcon svg {
+    width: 24px;
+    height: 24px;
   }
   
-  .solutionTitle {
-    margin-bottom: 50px;
+  .stepTitle {
+    font-size: 1.2rem;
   }
   
-  .processText {
-    margin-bottom: 50px;
+  .stepDescription {
+    font-size: 0.9rem;
   }
   
-  .processDescription {
-    font-size: 1.125rem;
-    line-height: 1.7;
+  .digitalDisplay {
+    top: -50px;
+    padding: 10px 16px;
   }
   
-  .tagline {
-    padding-top: 40px;
+  .measurementNumber {
+    font-size: 1.5rem;
+  }
+  
+  .measurementUnit {
     font-size: 1rem;
   }
+  
+  .tapeBrand {
+    padding: 8px 12px;
+    font-size: 0.65rem;
+  }
+  
+  .floatingTool {
+    font-size: 1.2rem;
+  }
 }
 
-/* Accessibility */
+/* === Accessibility === */
 @media (prefers-reduced-motion: reduce) {
   * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .processStep {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .tapeProgress {
     transition: none;
   }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-  .problemTitle,
-  .solutionTitle {
-    color: #000000;
-  }
   
-  .processDescription {
-    color: #000000;
-  }
-  
-  .tagline {
-    color: #000000;
-    border-top-color: #000000;
+  .backgroundPattern {
+    animation: none;
   }
 }
 
-/* Focus states for accessibility */
-.container:focus-visible {
-  outline: 2px solid #0066cc;
-  outline-offset: 2px;
-}
-
-/* Print styles */
+/* === Print Styles === */
 @media print {
   .complexitySection {
     padding: 40px 0;
-    page-break-inside: avoid;
+    background: white;
   }
   
-  .problemTitle,
-  .solutionTitle,
-  .processDescription,
-  .tagline {
-    color: #000000;
+  .backgroundPattern,
+  .digitalDisplay,
+  .tape3D,
+  .floatingTools {
+    display: none;
+  }
+  
+  .processSteps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .stepIcon {
+    background: #8B5A42;
   }
 }
