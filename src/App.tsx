@@ -11,7 +11,6 @@ import { Footer } from './components/Layout/Footer';
 import { Hero } from './components/UI/Hero';
 import { ComplexitySection } from './components/UI/ComplexitySection';
 import { TargetAudiences } from './components/UI/TargetAudiences';
-import { ProcessSteps } from './components/UI/ProcessSteps';
 import { FeaturedProjects } from './components/UI/FeaturedProjects';
 
 // Page Components
@@ -39,16 +38,13 @@ const HomePage: React.FC = () => {
       {/* 3. שלושת הקהלים */}
       <TargetAudiences />
       
-      {/* 4. תהליך העבודה */}
-      <ProcessSteps />
-      
-      {/* 5. פרויקטים נבחרים */}
+      {/* 4. פרויקטים נבחרים */}
       <FeaturedProjects />
       
-      {/* 6. לקוחות מספרים */}
+      {/* 5. לקוחות מספרים */}
       <Testimonials />
       
-      {/* 7. קריאה לפעולה */}
+      {/* 6. קריאה לפעולה */}
       <CTASection />
     </main>
   );
