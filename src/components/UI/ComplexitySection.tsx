@@ -106,22 +106,22 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
     // ניקוי Canvas
     ctx.clearRect(0, 0, width, height);
 
-    // ציור רקע הסרט - צהוב
+    // ציור רקע הסרט - שחור לבן
     const gradient = ctx.createLinearGradient(0, 0, 0, height);
-    gradient.addColorStop(0, '#FFD700');
-    gradient.addColorStop(0.5, '#FFC107');
-    gradient.addColorStop(1, '#FFB300');
+    gradient.addColorStop(0, '#ffffff');
+    gradient.addColorStop(0.5, '#f5f5f5');
+    gradient.addColorStop(1, '#e8e8e8');
     
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
     // מסגרת
-    ctx.strokeStyle = '#8B5A42';
+    ctx.strokeStyle = '#333333';
     ctx.lineWidth = 3;
     ctx.strokeRect(1.5, 1.5, width - 3, height - 3);
 
     // ציור סמנים - כל ס"מ
-    ctx.strokeStyle = '#654321';
+    ctx.strokeStyle = '#000000';
     ctx.lineWidth = 1;
     
     const maxCm = 60; // מקסימום ס"מ
@@ -138,16 +138,16 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
       
       // תוויות מספרים כל 10 ס"מ
       if (cm % 10 === 0) {
-        ctx.fillStyle = '#654321';
+        ctx.fillStyle = '#000000';
         ctx.font = 'bold 10px Arial';
         ctx.textAlign = 'center';
         ctx.fillText(cm.toString(), x, height - markHeight - 5);
       }
     }
 
-    // ציור החץ
+    // ציור החץ - שחור
     const arrowX = width - (arrowPosition / 100 * width); // RTL
-    ctx.fillStyle = '#DC143C';
+    ctx.fillStyle = '#000000';
     ctx.beginPath();
     ctx.moveTo(arrowX, -5);
     ctx.lineTo(arrowX - 10, -20);
@@ -156,7 +156,7 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
     ctx.fill();
 
     // קו החץ
-    ctx.strokeStyle = '#DC143C';
+    ctx.strokeStyle = '#000000';
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(arrowX, -5);
