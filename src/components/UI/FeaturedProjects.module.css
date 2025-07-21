@@ -1,226 +1,445 @@
-/* FeaturedProjects Styles - סקציית פרויקטים נבחרים */
+/* FeaturedProjects - גריד יפה עם תמונות רקע וטקסט בתוך */
 
 .projectsSection {
-  padding: var(--space-2xl) 0;
-  background: 
-    radial-gradient(ellipse at top, var(--color-warm-white), var(--color-light-cream)),
-    var(--bg-particles);
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 50%, #f8f8f8 100%);
+  padding: 140px 0;
   position: relative;
+  direction: rtl;
+  font-family: 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow: hidden;
 }
 
-.projectsSection::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 30% 20%, rgba(0, 0, 0, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(128, 128, 128, 0.03) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.sectionHeader {
-  text-align: center;
-  margin-bottom: var(--space-2xl);
-}
-
-.sectionTitle {
-  font-family: var(--font-family-display);
-  font-size: var(--text-h1);
-  font-weight: var(--font-bold);
-  background: var(--gradient-monochrome);
-  background-size: 400% 400%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: morphGradient 12s ease infinite;
-  margin-bottom: var(--space-sm);
-  text-align: center;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.sectionSubtitle {
-  font-size: var(--text-body);
-  font-weight: var(--font-light);
-  color: var(--color-gray-dark);
-  text-align: center;
-}
-
-.projectsGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-2xl);
-}
-
-.projectCard {
-  background: var(--gradient-glass);
-  backdrop-filter: var(--backdrop-blur);
-  border: 1px solid var(--glass-light);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: all var(--transition-normal);
-  box-shadow: var(--shadow-glass);
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
   position: relative;
-  transform-style: preserve-3d;
-}
-
-.projectCard:hover {
-  transform: translateY(-12px) scale(1.02) rotateX(5deg);
-  box-shadow: var(--shadow-glass-hover), var(--glow-magical);
-  background: var(--glass-medium);
-}
-
-.projectCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left var(--transition-slow);
   z-index: 1;
 }
 
-.projectCard:hover::before {
-  left: 100%;
+/* === כותרת הסקציה === */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 100px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
 }
 
-.projectImage {
+.projectsSection.visible .sectionHeader {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sectionTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 300;
+  line-height: 1.2;
+  color: #1a1a1a;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.01em;
+}
+
+.sectionSubtitle {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 300;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* === גריד הפרויקטים === */
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 100px;
+}
+
+/* === כרטיס פרויקט === */
+.projectCard {
   position: relative;
-  width: 100%;
-  height: 250px;
+  min-height: 450px;
+  border-radius: 24px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  opacity: 0;
+  transform: translateY(60px) scale(0.9);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-.imagePlaceholder {
-  width: 100%;
+.projectCard.cardVisible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.projectCard:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.25),
+    0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* === תוכן הכרטיס === */
+.projectContent {
+  position: relative;
+  z-index: 3;
   height: 100%;
-  background-color: var(--color-gray-light);
+  padding: 2.5rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.placeholderText {
-  font-size: var(--text-small);
-  color: var(--color-gray-dark);
-  font-weight: var(--font-light);
-}
-
-.projectInfo {
-  padding: var(--space-lg);
-  text-align: right;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 450px;
 }
 
 .projectMeta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-sm);
-  direction: rtl;
+  margin-bottom: 1.5rem;
 }
 
 .projectCategory {
-  font-size: var(--text-small);
-  font-weight: var(--font-light);
-  color: var(--color-gray-dark);
-  background-color: var(--color-gray-light);
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .projectLocation {
-  font-size: var(--text-small);
-  font-weight: var(--font-light);
-  color: var(--color-gray-dark);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
 }
 
 .projectTitle {
-  font-size: var(--text-h3);
-  font-weight: var(--font-light);
-  color: var(--color-black);
-  text-align: right;
-  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
 }
 
+.projectDescription {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* === כפתור בכרטיס === */
+.projectButton {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-family: inherit;
+  align-self: flex-start;
+}
+
+.projectCard:hover .projectButton {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.buttonArrow {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.projectCard:hover .buttonArrow {
+  transform: translateX(-4px);
+}
+
+/* === Overlay למעבר עכבר === */
+.projectOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg, 
+    rgba(0, 0, 0, 0.3) 0%, 
+    rgba(0, 0, 0, 0.1) 50%, 
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.projectCard:hover .projectOverlay {
+  background: linear-gradient(
+    135deg, 
+    rgba(0, 0, 0, 0.4) 0%, 
+    rgba(0, 0, 0, 0.2) 50%, 
+    rgba(0, 0, 0, 0.5) 100%
+  );
+}
+
+/* === כפתור צפה בכל הפרויקטים === */
 .sectionFooter {
   text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.6s;
+}
+
+.projectsSection.visible .sectionFooter {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .viewAllButton {
-  display: inline-block;
-  padding: var(--space-sm) var(--space-lg);
-  font-size: var(--text-body);
-  font-weight: var(--font-light);
-  color: var(--color-black);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1a1a1a;
   text-decoration: none;
-  border: 1px solid var(--color-black);
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
+  border: 2px solid #1a1a1a;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
 }
 
 .viewAllButton:hover {
-  background-color: var(--color-black);
-  color: var(--color-white);
-  transform: translateY(-2px);
+  background: #1a1a1a;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.viewAllArrow {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.viewAllButton:hover .viewAllArrow {
+  transform: translateX(-4px);
 }
 
 /* === Responsive === */
-@media (min-width: 768px) {
+@media (max-width: 1200px) {
   .projectsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
   }
   
-  .projectImage {
-    height: 200px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .projectsGrid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-xl);
+  .projectCard {
+    min-height: 400px;
   }
   
-  .projectImage {
-    height: 220px;
+  .projectContent {
+    padding: 2rem;
+    min-height: 400px;
   }
 }
 
-/* === Animation === */
-.projectCard {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.8s ease forwards;
+@media (max-width: 1024px) {
+  .projectsSection {
+    padding: 120px 0;
+  }
+  
+  .container {
+    padding: 0 24px;
+  }
+  
+  .projectsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 80px;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 80px;
+  }
 }
 
-.projectCard:nth-child(1) { animation-delay: 0.1s; }
-.projectCard:nth-child(2) { animation-delay: 0.2s; }
-.projectCard:nth-child(3) { animation-delay: 0.3s; }
-.projectCard:nth-child(4) { animation-delay: 0.4s; }
-.projectCard:nth-child(5) { animation-delay: 0.5s; }
-.projectCard:nth-child(6) { animation-delay: 0.6s; }
+@media (max-width: 768px) {
+  .projectsSection {
+    padding: 100px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 70px;
+  }
+  
+  .projectCard {
+    min-height: 350px;
+  }
+  
+  .projectContent {
+    padding: 1.5rem;
+    min-height: 350px;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 70px;
+  }
+}
 
+@media (max-width: 480px) {
+  .projectsSection {
+    padding: 80px 0;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .projectCard {
+    min-height: 300px;
+  }
+  
+  .projectContent {
+    padding: 1.2rem;
+    min-height: 300px;
+  }
+  
+  .projectButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .viewAllButton {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 60px;
+  }
+}
+
+/* === אנימציות === */
 @keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+  }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
+/* === Accessibility === */
 @media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
   .projectCard {
     opacity: 1;
     transform: none;
-    animation: none;
   }
-} 
+  
+  .sectionHeader,
+  .sectionFooter {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* === High contrast mode === */
+@media (prefers-contrast: high) {
+  .sectionTitle {
+    color: #000;
+  }
+  
+  .sectionSubtitle {
+    color: #000;
+  }
+  
+  .projectCard {
+    border: 3px solid #000;
+  }
+}
+
+/* === Focus states === */
+.projectCard:focus-visible,
+.viewAllButton:focus-visible {
+  outline: 3px solid #0066cc;
+  outline-offset: 4px;
+}
+
+/* === Print styles === */
+@media print {
+  .projectsSection {
+    padding: 40px 0;
+    background: white;
+  }
+  
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .projectCard {
+    background: white !important;
+    border: 2px solid #000;
+    color: #000 !important;
+    min-height: auto;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .projectContent {
+    color: #000 !important;
+    min-height: auto;
+  }
+  
+  .projectCategory {
+    background: #f0f0f0;
+    color: #000;
+  }
+  
+     .projectButton {
+     background: #000;
+     color: white;
+   }
+ } 
