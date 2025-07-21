@@ -1,104 +1,299 @@
-/* TargetAudiences - Text-focused Minimalistic Design */
-/* Emphasizing typography and centered layout */
+/* TargetAudiences - שלושה תחומים עיקריים עם תמונות רקע */
 
+/* === Lottie Divider === */
+.lottieDivider {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fafafa 0%, #ffffff 50%, #f8f8f8 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+.lottieAnimation {
+  width: 400px;
+  height: 100px;
+  opacity: 0.8;
+}
+
+/* === Section עיקרי === */
 .audiencesSection {
-  background: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 50%, #f8f8f8 100%);
   padding: 140px 0;
   position: relative;
   direction: rtl;
   font-family: 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow: hidden;
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 32px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
-/* Section Title */
+/* === כותרת הסקציה === */
 .titleSection {
   margin-bottom: 100px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.audiencesSection.visible .titleSection {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .sectionTitle {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 300;
-  line-height: 1.3;
-  color: #000000;
-  margin: 0;
-  letter-spacing: -0.01em;
-  text-align: center;
-}
-
-/* Audiences Grid */
-.audiencesGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 48px;
-  margin-bottom: 80px;
-}
-
-.audience {
-  text-align: center;
-  padding: 32px 24px;
-}
-
-.audienceTitle {
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-  font-weight: 400;
-  color: #000000;
-  margin: 0 0 16px 0;
-  letter-spacing: -0.01em;
   line-height: 1.2;
-}
-
-.audienceDescription {
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-  font-weight: 300;
-  color: #333333;
-  line-height: 1.6;
-  margin: 0;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  letter-spacing: 0.01em;
-}
-
-/* Tagline */
-.tagline {
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-  font-weight: 300;
-  color: #666666;
+  color: #1a1a1a;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.01em;
   text-align: center;
+}
+
+.sectionSubtitle {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 300;
+  color: #555;
   margin: 0;
-  padding-top: 60px;
-  border-top: 1px solid #f0f0f0;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
   line-height: 1.5;
 }
 
-/* Responsive Design */
+/* === Grid הקונטיינרים === */
+.audiencesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 100px;
+}
+
+/* === כרטיס תחום === */
+.audienceCard {
+  position: relative;
+  min-height: 500px;
+  border-radius: 24px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(60px) scale(0.9);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(139, 90, 66, 0.1);
+}
+
+.audienceCard.cardVisible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.audienceCard:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.25),
+    0 12px 32px rgba(139, 90, 66, 0.2);
+}
+
+/* === תוכן הכרטיס === */
+.cardContent {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.cardIcon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.audienceCard:hover .cardIcon {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.cardIcon svg {
+  width: 36px;
+  height: 36px;
+  color: white;
+}
+
+.cardTitle {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  line-height: 1.3;
+}
+
+.cardDescription {
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0 0 2.5rem 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* === כפתור בכרטיס === */
+.cardButton {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.cardButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.buttonArrow {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.cardButton:hover .buttonArrow {
+  transform: translateX(-4px);
+}
+
+/* === Overlay למעבר עכבר === */
+.cardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg, 
+    rgba(0, 0, 0, 0.1) 0%, 
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.audienceCard:hover .cardOverlay {
+  background: linear-gradient(
+    135deg, 
+    rgba(0, 0, 0, 0.2) 0%, 
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* === סיכום === */
+.summarySection {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.6s;
+}
+
+.audiencesSection.visible .summarySection {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tagline {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 300;
+  color: #666;
+  margin: 0;
+  padding: 40px 60px;
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(90deg, transparent, #8B5A42, transparent) 1;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* === Responsive === */
+@media (max-width: 1200px) {
+  .audiencesGrid {
+    gap: 1.5rem;
+  }
+  
+  .audienceCard {
+    min-height: 450px;
+  }
+  
+  .cardContent {
+    padding: 2.5rem 2rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .audiencesSection {
     padding: 120px 0;
   }
   
   .container {
-    max-width: 800px;
     padding: 0 24px;
   }
   
-  .titleSection {
+  .audiencesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
     margin-bottom: 80px;
   }
   
-  .audiencesGrid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    margin-bottom: 70px;
+  .audienceCard {
+    min-height: 400px;
+  }
+  
+  .lottieDivider {
+    height: 80px;
+  }
+  
+  .lottieAnimation {
+    width: 300px;
+    height: 80px;
   }
 }
 
@@ -112,21 +307,41 @@
   }
   
   .titleSection {
-    margin-bottom: 70px;
+    margin-bottom: 80px;
   }
   
   .audiencesGrid {
     grid-template-columns: 1fr;
-    gap: 40px;
-    margin-bottom: 60px;
+    gap: 1.5rem;
+    margin-bottom: 70px;
   }
   
-  .audienceTitle {
-    margin-bottom: 14px;
+  .audienceCard {
+    min-height: 350px;
   }
   
-  .tagline {
-    padding-top: 50px;
+  .cardContent {
+    padding: 2rem 1.5rem;
+  }
+  
+  .cardIcon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cardIcon svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .lottieDivider {
+    height: 60px;
+  }
+  
+  .lottieAnimation {
+    width: 250px;
+    height: 60px;
   }
 }
 
@@ -143,68 +358,131 @@
     margin-bottom: 60px;
   }
   
-  .audiencesGrid {
-    grid-template-columns: 1fr;
-    gap: 36px;
-    margin-bottom: 50px;
+  .audienceCard {
+    min-height: 300px;
   }
   
-  .audienceTitle {
-    margin-bottom: 12px;
+  .cardContent {
+    padding: 1.5rem 1rem;
   }
   
-  .audienceDescription {
-    line-height: 1.7;
+  .cardIcon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+  }
+  
+  .cardIcon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .cardButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
   }
   
   .tagline {
-    padding-top: 40px;
-    font-size: 1rem;
+    padding: 30px 40px;
+    font-size: 1.1rem;
+  }
+  
+  .lottieDivider {
+    height: 50px;
+  }
+  
+  .lottieAnimation {
+    width: 200px;
+    height: 50px;
   }
 }
 
-/* Accessibility */
+/* === Accessibility === */
 @media (prefers-reduced-motion: reduce) {
   * {
-    transition: none;
-    animation: none;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .audienceCard {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .titleSection,
+  .summarySection {
+    opacity: 1;
+    transform: none;
   }
 }
 
-/* High contrast mode */
+/* === High contrast mode === */
 @media (prefers-contrast: high) {
-  .sectionTitle,
-  .audienceTitle {
-    color: #000000;
+  .sectionTitle {
+    color: #000;
   }
   
-  .audienceDescription {
-    color: #000000;
-  }
-  
+  .sectionSubtitle,
   .tagline {
-    color: #000000;
-    border-top-color: #000000;
+    color: #000;
+  }
+  
+  .audienceCard {
+    border: 3px solid #000;
   }
 }
 
-/* Focus states for accessibility */
-.container:focus-visible {
-  outline: 2px solid #0066cc;
+/* === Focus states === */
+.cardButton:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
   outline-offset: 2px;
 }
 
-/* Print styles */
+.audienceCard:focus-visible {
+  outline: 3px solid #8B5A42;
+  outline-offset: 4px;
+}
+
+/* === Print styles === */
 @media print {
   .audiencesSection {
     padding: 40px 0;
-    page-break-inside: avoid;
+    background: white;
   }
   
-  .sectionTitle,
-  .audienceTitle,
-  .audienceDescription,
-  .tagline {
-    color: #000000;
+  .lottieDivider {
+    display: none;
+  }
+  
+  .audiencesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .audienceCard {
+    background: white !important;
+    border: 2px solid #8B5A42;
+    color: #000 !important;
+    min-height: auto;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .cardContent {
+    color: #000 !important;
+  }
+  
+  .cardIcon {
+    background: #8B5A42;
+  }
+  
+  .cardIcon svg {
+    color: white;
+  }
+  
+  .cardButton {
+    background: #8B5A42;
+    color: white;
   }
 }
