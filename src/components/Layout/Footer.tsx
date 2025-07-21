@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
             </div>
             
             <div className={styles.footerCredit}>
-              עוצב ופותח בידי <a href="https://github.com/idosegev" target="_blank" rel="noopener noreferrer">Ido Segev</a>
+              עוצב ופותח בידי <a href="https://2-create.co.il" target="_blank" rel="noopener noreferrer">2-create</a>
             </div>
           </div>
         </div>
