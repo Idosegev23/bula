@@ -72,8 +72,8 @@
 /* === Grid הקונטיינרים === */
 .audiencesGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   margin-bottom: 100px;
 }
 
@@ -259,7 +259,6 @@
 @media (max-width: 1200px) {
   .audiencesGrid {
     gap: 1.5rem;
-    grid-template-columns: repeat(2, 1fr);
   }
   
   .audienceCard {

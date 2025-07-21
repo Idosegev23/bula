@@ -81,20 +81,6 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({ className = ''
           <path d="M10 20V14H14V20H19V12H22L12 3L2 12H5V20H10Z" fill="currentColor"/>
         </svg>
       )
-    },
-    {
-      id: 'renovation',
-      title: 'שיפוץ ושדרוג',
-      description: 'שיפוץ מקצועי של רהיטים קיימים וחידוש מוצרים עם טכנולוגיות מתקדמות',
-      backgroundImage: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none">
-          <path d="M12 15L8 21H16L12 15Z" fill="currentColor"/>
-          <path d="M12 2L8 8H16L12 2Z" fill="currentColor"/>
-          <path d="M6 6L2 12L6 18L10 12L6 6Z" fill="currentColor"/>
-          <path d="M18 6L14 12L18 18L22 12L18 6Z" fill="currentColor"/>
-        </svg>
-      )
     }
   ];
 

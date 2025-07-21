@@ -24,8 +24,8 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
       id: 'planning',
       title: 'תכנון',
       description: 'מדידה מדויקת ותכנון פרויקט מפורט עם שימוש בטכנולוגיות מתקדמות',
-      measurement: 10, // ס"מ
-      position: 20, // אחוז במסלול
+      measurement: 15, // ס"מ
+      position: 15, // אחוז במסלול
       backgroundImage: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       icon: (
         <svg viewBox="0 0 24 24" fill="none">
@@ -41,8 +41,8 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
       id: 'design',
       title: 'עיצוב',
       description: 'יצירת תכניות מפורטות ותלת-ממד עם דגש על פונקציונליות ואסתטיקה',
-      measurement: 25, // ס"מ
-      position: 40,
+      measurement: 35, // ס"מ
+      position: 35, // אחוז במסלול
       backgroundImage: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       icon: (
         <svg viewBox="0 0 24 24" fill="none">
@@ -57,8 +57,8 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
       id: 'production',
       title: 'ייצור',
       description: 'עיבוד מדויק ונגרות מקצועית בסדנה המתקדמת שלנו עם כלים חדישים',
-      measurement: 42, // ס"מ
-      position: 65,
+      measurement: 65, // ס"מ
+      position: 65, // אחוז במסלול
       backgroundImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       icon: (
         <svg viewBox="0 0 24 24" fill="none">
@@ -72,8 +72,8 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
       id: 'installation',
       title: 'התקנה',
       description: 'התקנה מושלמת והשלמת הפרויקט באתר הלקוח עם אחריות מלאה',
-      measurement: 58, // ס"מ
-      position: 85,
+      measurement: 85, // ס"מ
+      position: 85, // אחוז במסלול
       backgroundImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
       icon: (
         <svg viewBox="0 0 24 24" fill="none">
@@ -86,7 +86,7 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
     }
   ];
 
-  // ציור סרט המדידה ב-Canvas
+  // ציור סרט המדידה ב-Canvas - פשוט שחור לבן
   const drawMeasureTape = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -106,65 +106,63 @@ export const ComplexitySection: React.FC<ComplexitySectionProps> = ({ className 
     // ניקוי Canvas
     ctx.clearRect(0, 0, width, height);
 
-    // ציור רקע הסרט - שחור לבן
-    const gradient = ctx.createLinearGradient(0, 0, 0, height);
-    gradient.addColorStop(0, '#ffffff');
-    gradient.addColorStop(0.5, '#f5f5f5');
-    gradient.addColorStop(1, '#e8e8e8');
-    
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, width, height);
-
-    // מסגרת
-    ctx.strokeStyle = '#333333';
-    ctx.lineWidth = 3;
-    ctx.strokeRect(1.5, 1.5, width - 3, height - 3);
-
-    // ציור סמנים - כל ס"מ
+    // ציור קו בסיס פשוט - שחור
     ctx.strokeStyle = '#000000';
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0, height / 2);
+    ctx.lineTo(width, height / 2);
+    ctx.stroke();
+
+    // ציור סמנים בpattern: 4 קטנים, 1 גדול, 4 קטנים, 1 גדול
+    ctx.strokeStyle = '#000000';
+    ctx.lineWidth = 2;
     
-    const maxCm = 60; // מקסימום ס"מ
-    const stepWidth = width / maxCm;
+    // סך הכל 10 סמנים (4+1+4+1) פרוסים על אורך הסרט
+    const totalMarks = 10;
+    const stepWidth = width / (totalMarks - 1);
     
-    for (let cm = 0; cm <= maxCm; cm++) {
-      const x = width - (cm * stepWidth); // RTL - מימין לשמאל
-      const markHeight = cm % 10 === 0 ? height * 0.6 : cm % 5 === 0 ? height * 0.4 : height * 0.2;
+    for (let i = 0; i < totalMarks; i++) {
+      const x = i * stepWidth;
+      let markHeight;
+      
+      // Pattern: 4 קטנים, 1 גדול, 4 קטנים, 1 גדול
+      if (i === 4 || i === 9) { // הסמנים הגדולים
+        markHeight = height * 0.8;
+        ctx.lineWidth = 3;
+      } else { // הסמנים הקטנים
+        markHeight = height * 0.4;
+        ctx.lineWidth = 2;
+      }
       
       ctx.beginPath();
-      ctx.moveTo(x, height - markHeight);
-      ctx.lineTo(x, height);
+      ctx.moveTo(x, (height - markHeight) / 2);
+      ctx.lineTo(x, (height + markHeight) / 2);
       ctx.stroke();
-      
-      // תוויות מספרים כל 10 ס"מ
-      if (cm % 10 === 0) {
-        ctx.fillStyle = '#000000';
-        ctx.font = 'bold 10px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText(cm.toString(), x, height - markHeight - 5);
-      }
     }
 
-    // ציור החץ - שחור
-    const arrowX = width - (arrowPosition / 100 * width); // RTL
+    // ציור החץ - שחור פשוט
+    const arrowX = (arrowPosition / 100) * width; // לא RTL כי החץ צריך ללכת מתחילת הסרט
     ctx.fillStyle = '#000000';
+    ctx.strokeStyle = '#000000';
+    ctx.lineWidth = 2;
+    
+    // חץ משולש פשוט
     ctx.beginPath();
-    ctx.moveTo(arrowX, -5);
-    ctx.lineTo(arrowX - 10, -20);
-    ctx.lineTo(arrowX + 10, -20);
+    ctx.moveTo(arrowX, height / 2 - 15);
+    ctx.lineTo(arrowX - 8, height / 2 - 25);
+    ctx.lineTo(arrowX + 8, height / 2 - 25);
     ctx.closePath();
     ctx.fill();
 
     // קו החץ
-    ctx.strokeStyle = '#000000';
-    ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(arrowX, -5);
-    ctx.lineTo(arrowX, height + 5);
+    ctx.moveTo(arrowX, height / 2 - 15);
+    ctx.lineTo(arrowX, height / 2 + 15);
     ctx.stroke();
 
     // תצוגת מדידה נוכחית
-    const currentCm = Math.round((100 - arrowPosition) * maxCm / 100);
+    const currentCm = Math.round((arrowPosition / 100) * 100); // 0-100 ס"מ
     setCurrentMeasurement(currentCm);
 
   }, [arrowPosition]);
