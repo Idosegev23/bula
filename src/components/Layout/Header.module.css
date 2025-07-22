@@ -6,9 +6,9 @@
   left: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   border-bottom: 1px solid #e5e5e5;
-  z-index: 1000;
+  z-index: 997;
   height: 70px;
   transition: all 0.3s ease;
   width: 100%;
@@ -157,12 +157,12 @@
 /* === תפריט נייד === */
 .mobileBackdrop {
   position: fixed;
-  top: 0;
+  top: 70px;
   left: 0;
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 998;
+  z-index: 999;
   animation: fadeIn 0.3s ease;
 }
 
@@ -173,21 +173,21 @@
 
 .mobileNav {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 70px;
+  right: 0;
   width: 280px;
-  height: 100vh;
+  height: max-content;
   background: #ffffff;
-  z-index: 999;
+  z-index: 1000;
   box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
-  animation: slideInLeft 0.3s ease;
+  animation: slideInRight 0.3s ease;
   direction: rtl;
   overflow-y: auto;
 }
 
-@keyframes slideInLeft {
+@keyframes slideInRight {
   from { 
-    transform: translateX(-100%);
+    transform: translateX(100%);
     opacity: 0;
   }
   to { 
