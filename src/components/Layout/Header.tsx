@@ -79,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           ></div>
           <nav className={styles.mobileNav} role="navigation" aria-label="תפריט נייד">
             {/* כפתור סגירה */}
-            <div className={styles.mobileNavHeader}>
+            {/* <div className={styles.mobileNavHeader}>
               <button
                 className={styles.closeButton}
                 onClick={toggleMobileMenu}
@@ -89,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                   <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
-            </div>
+            </div> */}
             
             <ul className={styles.mobileNavList}>
               {navigationItems.map((item) => (
