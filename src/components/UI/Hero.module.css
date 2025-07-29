@@ -163,94 +163,6 @@
   opacity: 1;
 }
 
-/* Enhanced Buttons */
-.heroActions {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 50px;
-  transform: translateY(30px);
-  opacity: 0;
-  transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) 1.2s;
-}
-
-.heroContent.loaded .heroActions {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px 32px;
-  font-size: 1rem;
-  font-weight: 400;
-  text-decoration: none;
-  border: 2px solid transparent;
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-  position: relative;
-  min-width: 160px;
-  font-family: 'Heebo', 'Inter', sans-serif;
-  direction: rtl;
-  cursor: pointer;
-  border-radius: 6px;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-}
-
-.btn span {
-  position: relative;
-  z-index: 2;
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-  z-index: 1;
-}
-
-.btn:hover::before {
-  transform: translateX(100%);
-}
-
-.btnPrimary {
-  background: rgba(255, 255, 255, 0.95);
-  color: #000000;
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.btnPrimary:hover {
-  background: #ffffff;
-  color: #000000;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-}
-
-.btnSecondary {
-  background: rgba(0, 0, 0, 0.3);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.btnSecondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.8);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-}
-
 /* Responsive Design - Above the fold guaranteed */
 @media (max-width: 768px) {
   .hero {
@@ -282,21 +194,6 @@
     font-size: clamp(1.125rem, 4vw, 1.25rem);
   }
   
-  .heroActions {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    margin-top: 40px;
-  }
-  
-  .btn {
-    width: 100%;
-    max-width: 280px;
-    padding: 14px 24px;
-    font-size: 0.95rem;
-    min-width: auto;
-  }
-  
   .cuttingLine.animate {
     width: 100px;
   }
@@ -319,12 +216,6 @@
   .heroSubtitle {
     font-size: 1.125rem;
     margin: 24px auto;
-  }
-  
-  .btn {
-    max-width: 250px;
-    padding: 12px 20px;
-    font-size: 0.9rem;
   }
   
   .cuttingLine.animate {
@@ -350,9 +241,7 @@
   .titleLine2,
   .titleLine3,
   .heroSubtitle,
-  .heroActions,
-  .cuttingLine,
-  .btn {
+  .cuttingLine {
     transition: none;
     animation: none;
   }
@@ -372,10 +261,6 @@
   .cuttingLine.animate {
     width: 150px;
   }
-  
-  .btn:hover {
-    transform: none;
-  }
 }
 
 /* High contrast mode */
@@ -390,15 +275,9 @@
     text-shadow: 1px 1px 2px #000000;
   }
   
-  .btnSecondary {
-    border-width: 3px;
+  .cuttingLine {
+    background: #000000;
   }
-}
-
-/* Focus states for accessibility */
-.btn:focus-visible {
-  outline: 3px solid #ffffff;
-  outline-offset: 3px;
 }
 
 /* Print styles */
@@ -422,9 +301,5 @@
   
   .cuttingLine {
     background: #000000;
-  }
-  
-  .heroActions {
-    display: none;
   }
 }

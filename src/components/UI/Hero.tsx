@@ -1,6 +1,5 @@
 // Hero - Bulla Studio Design & Fabrication
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Hero.module.css';
 
 interface HeroProps {
@@ -52,17 +51,6 @@ export const Hero: React.FC<HeroProps> = ({ className = '' }) => {
           <p className={styles.heroSubtitle}>
             בולה סטודיו מתמחים בליווי כולל לעסקים – מתכנון חוויית הלקוח, דרך עיצוב וייצור, ועד התקנה בשטח.
           </p>
-          
-          {/* CTA Buttons */}
-          <div className={styles.heroActions}>
-            <Link to="/projects" className={`${styles.btn} ${styles.btnPrimary}`}>
-              <span>צפו בעבודות</span>
-            </Link>
-            
-            <Link to="/process" className={`${styles.btn} ${styles.btnSecondary}`}>
-              <span>איך אנחנו עובדים</span>
-            </Link>
-          </div>
         </div>
       </div>
     </section>
