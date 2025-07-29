@@ -75,32 +75,59 @@
   overflow: hidden;
 }
 
-/* Staggered title animation */
-.titleLine1,
-.titleLine2,
-.titleLine3 {
+/* Fixed title line and rotating text */
+.titleLineFixed,
+.titleLineRotating {
   display: block;
   transform: translateY(100px);
   opacity: 0;
   transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.heroContent.loaded .titleLine1 {
+.titleLineFixed {
+  font-family: 'Heebo', 'Inter', sans-serif;
+  font-weight: 200;
+}
+
+.titleLineRotating {
+  font-weight: 400;
+  font-style: normal;
+  color: #f0f0f0;
+  animation: fadeInOut 1s ease-in-out infinite;
+  text-shadow: 0 3px 25px rgba(0, 0, 0, 0.4);
+  font-size: clamp(2.8rem, 9vw, 5.5rem);
+  line-height: 1.1;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.8);
+  }
+}
+
+.heroContent.loaded .titleLineFixed {
   transform: translateY(0);
   opacity: 1;
   transition-delay: 0.2s;
 }
 
-.heroContent.loaded .titleLine2 {
+.heroContent.loaded .titleLineRotating {
   transform: translateY(0);
   opacity: 1;
   transition-delay: 0.4s;
-}
-
-.heroContent.loaded .titleLine3 {
-  transform: translateY(0);
-  opacity: 1;
-  transition-delay: 0.6s;
 }
 
 .heroSubtitle {
@@ -237,9 +264,8 @@
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .heroContent,
-  .titleLine1,
-  .titleLine2,
-  .titleLine3,
+  .titleLineFixed,
+  .titleLineRotating,
   .heroSubtitle,
   .cuttingLine {
     transition: none;
@@ -251,11 +277,14 @@
     opacity: 1;
   }
   
-  .titleLine1,
-  .titleLine2,
-  .titleLine3 {
+  .titleLineFixed,
+  .titleLineRotating {
     transform: none;
     opacity: 1;
+  }
+  
+  .titleLineRotating {
+    animation: none;
   }
   
   .cuttingLine.animate {
