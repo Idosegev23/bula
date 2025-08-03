@@ -13,6 +13,18 @@
   transition: all 0.3s ease;
   width: 100%;
   overflow: hidden;
+  transform: translateY(0);
+}
+
+/* הדר בגלילה - נעלם */
+.header.hidden {
+  transform: translateY(-100%);
+}
+
+/* הדר בגלילה - עם רקע */
+.header.scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .headerContainer {
@@ -26,82 +38,46 @@
 .headerContent {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
   position: relative;
 }
 
-/* === לוגו - מרכז במובייל === */
+/* === לוגו === */
 .logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #000000;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.4s ease;
   z-index: 2;
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .logo:hover {
-  color: #333333;
+  opacity: 0.8;
 }
 
-.logoText {
-  display: block;
-  white-space: nowrap;
+/* SVG לוגו */
+.logoSvg {
+  height: 100%;
+  width: auto;
+  fill: #000000;
+  transition: all 0.4s ease;
 }
 
-/* === כפתור המבורגר - צד שמאל === */
-.mobileMenuButton {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: 32px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  z-index: 10;
-  position: relative;
-  gap: 4px;
+/* לוגו בגלילה - לבן ומוזז שמאלה */
+.logo.logoScrolled {
+  position: absolute;
+  left: 20px;
 }
 
-.hamburgerLine {
-  width: 24px;
-  height: 2px;
-  background: #000000;
-  transition: all 0.3s ease;
-  transform-origin: center;
-  border-radius: 1px;
+.logo.logoScrolled .logoSvg {
+  fill: #ffffff;
 }
 
-/* אנימציה של המבורגר ל-X */
-.mobileMenuButton.open .hamburgerLine:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
 
-.mobileMenuButton.open .hamburgerLine:nth-child(2) {
-  opacity: 0;
-}
 
-.mobileMenuButton.open .hamburgerLine:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
 
-/* === מקום ריק לאיזון === */
-.rightSpacer {
-  width: 32px;
-  height: 32px;
-}
-
-/* === ניווט דסקטופ === */
-.desktopNav {
-  display: none;
-}
 
 @media (min-width: 768px) {
   .headerContainer {
@@ -109,181 +85,31 @@
   }
   
   .logo {
-    position: static;
-    transform: none;
-    font-size: 1.5rem;
+    height: 50px;
   }
   
-  .mobileMenuButton,
-  .rightSpacer {
-    display: none;
+  /* בדסקטופ - לוגו בגלילה זז שמאלה */
+  .logo.logoScrolled {
+    position: absolute;
+    left: 24px;
   }
   
-  .desktopNav {
-    display: block;
-  }
+
 }
 
-.navList {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  direction: rtl;
-}
 
-.navLink {
-  display: inline-block;
-  padding: 8px 16px;
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: #000000;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  border-radius: 4px;
-}
 
-.navLink:hover {
-  background: #f5f5f5;
-  transform: translateY(-1px);
-}
 
-.navLink.active {
-  background: #000000;
-  color: #ffffff;
-}
-
-/* === תפריט נייד === */
-.mobileBackdrop {
-  position: fixed;
-  top: 70px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.mobileNav {
-  position: fixed;
-  top: 70px;
-  right: 0;
-  width: 280px;
-  height: max-content;
-  background: #ffffff;
-  z-index: 1000;
-  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
-  animation: slideInRight 0.3s ease;
-  direction: rtl;
-  overflow-y: auto;
-}
-
-@keyframes slideInRight {
-  from { 
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to { 
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.mobileNavHeader {
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px 16px 16px;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.closeButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-
-.closeButton:hover {
-  background: #f5f5f5;
-}
-
-.closeButton svg {
-  width: 20px;
-  height: 20px;
-  color: #000000;
-}
-
-.mobileNavList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mobileNavItem {
-  margin: 0;
-  border-bottom: 1px solid #f5f5f5;
-}
-
-.mobileNavLink {
-  display: block;
-  padding: 16px 20px;
-  color: #000000;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-  text-align: right;
-}
-
-.mobileNavLink:hover {
-  background: #f8f8f8;
-  padding-right: 24px;
-}
-
-.mobileNavLink.active {
-  background: #000000;
-  color: #ffffff;
-}
 
 /* === תיקוני Overflow למובייל === */
 @media (max-width: 767px) {
-  body {
-    overflow-x: hidden;
-  }
-  
-  .header {
-    width: 100vw;
-    max-width: 100%;
-  }
-  
   .headerContainer {
-    width: 100%;
-    max-width: 100%;
     padding: 0 12px;
   }
   
   .logo {
-    font-size: 1.125rem;
     max-width: 60%;
     text-align: center;
-  }
-  
-  .logoText {
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 }
 
@@ -294,50 +120,21 @@
   }
   
   .logo {
-    font-size: 1rem;
     max-width: 50%;
-  }
-  
-  .mobileNav {
-    width: 100vw;
-  }
-}
-
-/* === הסתרת scroll במובייל === */
-@media (max-width: 767px) {
-  html {
-    overflow-x: hidden;
-  }
-  
-  body {
-    overflow-x: hidden;
-    width: 100%;
-    position: relative;
-  }
-  
-  * {
-    max-width: 100%;
-    box-sizing: border-box;
   }
 }
 
 /* === Focus states === */
-.mobileMenuButton:focus-visible,
-.closeButton:focus-visible,
-.navLink:focus-visible,
-.mobileNavLink:focus-visible {
+.logo:focus-visible {
   outline: 2px solid #0066cc;
   outline-offset: 2px;
 }
 
 /* === Animation for reduced motion === */
 @media (prefers-reduced-motion: reduce) {
-  .mobileNav,
-  .mobileBackdrop,
-  .hamburgerLine,
+  .header,
   .logo,
-  .navLink,
-  .mobileNavLink {
+  .logoSvg {
     transition: none;
     animation: none;
   }
