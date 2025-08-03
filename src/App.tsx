@@ -22,8 +22,6 @@ import { Contact } from './components/Pages/Contact';
 
 // Accessibility
 import { AccessibilityProvider } from './components/Accessibility/AccessibilityProvider';
-import { Testimonials } from './components/UI/Testimonials';
-import { CTASection } from './components/UI/CTASection';
 
 // דף הבית השלם
 const HomePage: React.FC = () => {
@@ -37,12 +35,6 @@ const HomePage: React.FC = () => {
       
       {/* 3. פרויקטים נבחרים */}
       <FeaturedProjects />
-      
-      {/* 4. לקוחות מספרים */}
-      <Testimonials />
-      
-      {/* 5. קריאה לפעולה */}
-      <CTASection />
     </main>
   );
 };
