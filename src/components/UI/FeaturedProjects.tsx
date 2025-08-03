@@ -1,17 +1,8 @@
-// FeaturedProjects - פיד אינסטגרם חי מ-@bulla.studio
+// FeaturedProjects - פיד אינסטגרם אוטומטי מ-@bulla.studio
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './FeaturedProjects.module.css';
-
-// הגדרת טיפוס עבור Instagram API
-declare global {
-  interface Window {
-    instgrm?: {
-      Embeds: {
-        process: () => void;
-      };
-    };
-  }
-}
+import { instagramService } from '../../services/instagramService';
+import type { InstagramPost } from '../../types/instagram';
 
 
 
@@ -21,28 +12,15 @@ interface FeaturedProjectsProps {
 
 export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = '' }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [instagramPosts, setInstagramPosts] = useState<string[]>([]);
+  const [instagramPosts, setInstagramPosts] = useState<InstagramPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // קונפיגורציה פשוטה עבור פוסטי @bulla.studio
-  // כשיש פוסטים אמיתיים, פשוט החליפו את הURLים למטה
+  // קונפיגורציה - אוטומטית מ-environment variables
   const instagramConfig = {
-    username: 'bulla.studio',
-    posts: [
-      // כשתתחילו לפרסם, החליפו את הקישורים האלה בפוסטים האמיתיים:
-      // לדוגמה: 'https://www.instagram.com/p/ABC123DEF456/'
-      null, // פוסט 1 - יוחלף בקישור אמיתי
-      null, // פוסט 2 - יוחלף בקישור אמיתי
-      null, // פוסט 3 - יוחלף בקישור אמיתי
-      null, // פוסט 4 - יוחלף בקישור אמיתי
-      null, // פוסט 5 - יוחלף בקישור אמיתי
-      null, // פוסט 6 - יוחלף בקישור אמיתי
-    ],
-    // דוגמאות לפוסטים (תוכלו להוסיף פוסטים אמיתיים כשיהיו):
-    examplePosts: [
-      // 'https://www.instagram.com/p/ABC123DEF456/', // דוגמה לפוסט נגריה
-      // 'https://www.instagram.com/p/GHI789JKL012/', // דוגמה לפוסט עיצוב
-    ]
+    username: import.meta.env.VITE_INSTAGRAM_USERNAME || 'bulla.studio',
+    postsToShow: parseInt(import.meta.env.VITE_POSTS_TO_SHOW || '6'),
   };
 
   // Intersection Observer
@@ -66,43 +44,41 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = 
     return () => observer.disconnect();
   }, [isVisible]);
 
-  // טעינת פוסטים מאינסטגרם
+  // טעינת פוסטים אוטומטית מאינסטגרם
   useEffect(() => {
-    // בדיקה אם יש פוסטים אמיתיים להציג
-    const realPosts = instagramConfig.posts.filter(post => post !== null);
+    const loadInstagramPosts = async () => {
+      setIsLoading(true);
+      setError(null);
+      
+      try {
+        console.log('🔄 טוען פוסטים מאינסטגרם...');
+        const posts = await instagramService.fetchPosts();
+        setInstagramPosts(posts);
+        console.log(`✅ נטענו ${posts.length} פוסטים בהצלחה`);
+      } catch (err) {
+        console.error('❌ שגיאה בטעינת פוסטים:', err);
+        setError('שגיאה בטעינת פוסטים מאינסטגרם');
+        // טעינת fallback posts
+        const fallbackPosts = await instagramService.fetchPosts();
+        setInstagramPosts(fallbackPosts);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadInstagramPosts();
     
-    if (realPosts.length > 0) {
-      // יש פוסטים אמיתיים - הצג אותם
-      setInstagramPosts(realPosts);
-    } else {
-      // אין פוסטים אמיתיים עדיין - הצג placeholders
-      setInstagramPosts(['placeholder-1', 'placeholder-2', 'placeholder-3', 'placeholder-4', 'placeholder-5', 'placeholder-6']);
-    }
+    // רענון אוטומטי כל 5 דקות
+    const interval = setInterval(loadInstagramPosts, 5 * 60 * 1000);
+    
+    return () => clearInterval(interval);
   }, []);
 
-  // קומפוננטת embed לפוסט אינסטגרם בודד
-  const InstagramEmbed: React.FC<{ postUrl: string; index: number }> = ({ postUrl, index }) => {
+  // קומפוננטת פוסט אינסטגרם
+  const InstagramPostCard: React.FC<{ post: InstagramPost; index: number }> = ({ post, index }) => {
+    const isPlaceholder = post.id.startsWith('placeholder-');
     
-    useEffect(() => {
-      // טעינת Instagram embed script
-      if (!window.instgrm) {
-        const script = document.createElement('script');
-        script.src = '//www.instagram.com/embed.js';
-        script.async = true;
-        document.body.appendChild(script);
-        
-        script.onload = () => {
-          if (window.instgrm) {
-            window.instgrm.Embeds.process();
-          }
-        };
-      } else {
-        window.instgrm.Embeds.process();
-      }
-    }, []);
-
-    // Placeholder עבור פוסטים שעדיין לא הוגדרו
-    if (postUrl.includes('placeholder-') || postUrl === null) {
+    if (isPlaceholder) {
       return (
         <div className={`${styles.instagramPlaceholder} ${isVisible ? styles.cardVisible : ''}`} 
              style={{ animationDelay: `${index * 0.1}s` }}>
@@ -115,8 +91,8 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = 
               </svg>
             </div>
             <h3>@{instagramConfig.username}</h3>
-            <p>פוסט #{index + 1} מהעבודות שלנו</p>
-            <small>נעדכן כשיהיו פוסטים חדשים</small>
+            <p>{isLoading ? 'טוען פוסטים...' : 'בקרוב פוסטים חדשים'}</p>
+            <small>{error ? 'נסה שוב בעוד רגע' : 'מתעדכן אוטומטית'}</small>
           </div>
         </div>
       );
@@ -125,17 +101,37 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = 
     return (
       <div className={`${styles.instagramPost} ${isVisible ? styles.cardVisible : ''}`} 
            style={{ animationDelay: `${index * 0.1}s` }}>
-        <blockquote 
-          className="instagram-media" 
-          data-instgrm-permalink={postUrl}
-          data-instgrm-version="14"
-        >
-          <div style={{ padding: '16px' }}>
-            <a href={postUrl} target="_blank" rel="noopener noreferrer">
-              צפה בפוסט באינסטגרם
-            </a>
+        <a href={post.permalink} target="_blank" rel="noopener noreferrer" className={styles.postLink}>
+          <div className={styles.postImage}>
+            <img 
+              src={post.thumbnail_url || post.media_url} 
+              alt={post.caption.substring(0, 100) + '...'} 
+              loading="lazy"
+            />
+            {post.media_type === 'VIDEO' && (
+              <div className={styles.videoIcon}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            )}
           </div>
-        </blockquote>
+          
+          <div className={styles.postContent}>
+            <div className={styles.postCaption}>
+              {post.caption.substring(0, 120)}{post.caption.length > 120 ? '...' : ''}
+            </div>
+            
+            <div className={styles.postMeta}>
+              <span className={styles.postDate}>
+                {new Date(post.timestamp).toLocaleDateString('he-IL')}
+              </span>
+              <span className={styles.viewOnInstagram}>
+                צפה באינסטגרם ←
+              </span>
+            </div>
+          </div>
+        </a>
       </div>
     );
   };
@@ -154,8 +150,8 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = 
         </div>
         
         <div className={styles.instagramGrid}>
-          {instagramPosts.map((postUrl, index) => (
-            <InstagramEmbed key={index} postUrl={postUrl} index={index} />
+          {instagramPosts.map((post, index) => (
+            <InstagramPostCard key={post.id} post={post} index={index} />
           ))}
         </div>
         
