@@ -12,6 +12,7 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({ className = ''
   const [animationData, setAnimationData] = useState<any>(null);
   const [isFloating, setIsFloating] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
 
   // טעינת אנימציית Lottie
@@ -49,14 +50,15 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({ className = ''
       if (!sectionRef.current) return;
 
       const sectionRect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
       
-      // Check if section is out of view (scrolled past it)
-      const isPastSection = sectionRect.bottom < 0;
+      // Check if we've reached the end of the section (bottom of section is visible or past)
+      const reachedSectionEnd = sectionRect.bottom <= windowHeight * 0.8;
       
-      if (isPastSection && !isFloating) {
+      if (reachedSectionEnd && !isFloating) {
         setIsFloating(true);
         setTimeout(() => setShowFloating(true), 100);
-      } else if (!isPastSection && isFloating) {
+      } else if (!reachedSectionEnd && isFloating) {
         setShowFloating(false);
         setTimeout(() => setIsFloating(false), 300);
       }
@@ -72,6 +74,19 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({ className = ''
       behavior: 'smooth',
       block: 'center'
     });
+  };
+
+  // Carousel navigation
+  const nextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % targetAudiences.length);
+  };
+
+  const prevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + targetAudiences.length) % targetAudiences.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setActiveSlide(index);
   };
 
   const targetAudiences = [
@@ -146,7 +161,88 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({ className = ''
             </p>
           </div>
 
-          {/* הקונטיינרים - אחד ליד השני */}
+          {/* Mobile Carousel Controls */}
+          <div className={styles.mobileCarousel}>
+            {/* Navigation Arrows */}
+            <button 
+              className={`${styles.carouselArrow} ${styles.prevArrow}`}
+              onClick={prevSlide}
+              aria-label="עבר לקרוסלה הקודמת"
+            >
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+
+            {/* Carousel Container */}
+            <div className={styles.carouselContainer}>
+              <div 
+                className={styles.carouselTrack}
+                style={{ transform: `translateX(-${activeSlide * 100}%)` }}
+              >
+                {targetAudiences.map((audience, index) => (
+                  <div 
+                    key={audience.id}
+                    className={`${styles.carouselSlide} ${isVisible ? styles.cardVisible : ''}`}
+                    style={{
+                      backgroundImage: `linear-gradient(
+                        135deg, 
+                        rgba(139, 90, 66, 0.85) 0%, 
+                        rgba(139, 90, 66, 0.75) 50%, 
+                        rgba(139, 90, 66, 0.85) 100%
+                      ), url(${audience.backgroundImage})`,
+                      animationDelay: `${index * 0.2}s`
+                    }}
+                  >
+                    {/* תוכן הכרטיס */}
+                    <div className={styles.cardContent}>
+                      <div className={styles.cardIcon}>
+                        {audience.icon}
+                      </div>
+                      
+                      <h3 className={styles.cardTitle}>{audience.title}</h3>
+                      <p className={styles.cardDescription}>{audience.description}</p>
+                      
+                      {/* כפתור לפרטים נוספים */}
+                      <button className={styles.cardButton}>
+                        <span>לפרטים נוספים</span>
+                        <svg className={styles.buttonArrow} viewBox="0 0 24 24" fill="none">
+                          <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                    </div>
+
+                    {/* overlay למעבר עכבר */}
+                    <div className={styles.cardOverlay}></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <button 
+              className={`${styles.carouselArrow} ${styles.nextArrow}`}
+              onClick={nextSlide}
+              aria-label="עבר לקרוסלה הבאה"
+            >
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+
+            {/* Dots Indicator */}
+            <div className={styles.carouselDots}>
+              {targetAudiences.map((_, index) => (
+                <button
+                  key={index}
+                  className={`${styles.carouselDot} ${index === activeSlide ? styles.activeDot : ''}`}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`עבר לסליידה ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Grid - אחד ליד השני */}
           <div className={styles.audiencesGrid}>
             {targetAudiences.map((audience, index) => (
               <div 
