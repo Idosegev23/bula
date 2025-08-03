@@ -16,15 +16,11 @@
   transform: translateY(0);
 }
 
-/* הדר בגלילה - נעלם */
-.header.hidden {
-  transform: translateY(-100%);
-}
-
-/* הדר בגלילה - עם רקע */
+/* הדר בגלילה - רקע שקוף */
 .header.scrolled {
-  background: rgba(0, 0, 0, 0.95);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .headerContainer {
@@ -38,17 +34,17 @@
 .headerContent {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 100%;
   position: relative;
 }
 
-/* === לוגו === */
+/* === לוגו - צד שמאל === */
 .logo {
   text-decoration: none;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
   z-index: 2;
-  height: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
 }
@@ -62,16 +58,11 @@
   height: 100%;
   width: auto;
   fill: #000000;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
-/* לוגו בגלילה - לבן ומוזז שמאלה */
-.logo.logoScrolled {
-  position: absolute;
-  left: 20px;
-}
-
-.logo.logoScrolled .logoSvg {
+/* לוגו בגלילה - לבן */
+.header.scrolled .logoSvg {
   fill: #ffffff;
 }
 
@@ -79,22 +70,54 @@
 
 
 
+/* === כפתור קשר - צד ימין === */
+.contactButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background: #000000;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 2px solid #000000;
+}
+
+.contactButton:hover {
+  background: transparent;
+  color: #000000;
+  transform: translateY(-1px);
+}
+
+/* כפתור קשר בגלילה */
+.header.scrolled .contactButton {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.header.scrolled .contactButton:hover {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
 @media (min-width: 768px) {
   .headerContainer {
     padding: 0 24px;
   }
   
   .logo {
-    height: 50px;
+    height: 40px;
   }
   
-  /* בדסקטופ - לוגו בגלילה זז שמאלה */
-  .logo.logoScrolled {
-    position: absolute;
-    left: 24px;
+  .contactButton {
+    padding: 10px 20px;
+    font-size: 1rem;
   }
-  
-
 }
 
 
@@ -108,8 +131,12 @@
   }
   
   .logo {
-    max-width: 60%;
-    text-align: center;
+    height: 25px;
+  }
+  
+  .contactButton {
+    padding: 6px 12px;
+    font-size: 0.85rem;
   }
 }
 
@@ -120,12 +147,18 @@
   }
   
   .logo {
-    max-width: 50%;
+    height: 22px;
+  }
+  
+  .contactButton {
+    padding: 4px 8px;
+    font-size: 0.8rem;
   }
 }
 
 /* === Focus states === */
-.logo:focus-visible {
+.logo:focus-visible,
+.contactButton:focus-visible {
   outline: 2px solid #0066cc;
   outline-offset: 2px;
 }
@@ -134,7 +167,8 @@
 @media (prefers-reduced-motion: reduce) {
   .header,
   .logo,
-  .logoSvg {
+  .logoSvg,
+  .contactButton {
     transition: none;
     animation: none;
   }

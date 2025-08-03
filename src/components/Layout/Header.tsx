@@ -9,27 +9,14 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
-  // טיפול בגלילה
+  // טיפול בגלילה - רק עבור שינוי רקע
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // עדכון מצב גלילה
+      // עדכון מצב גלילה לשינוי רקע
       setIsScrolled(currentScrollY > 50);
-      
-      // טיפול בהסתרת/הצגת הדר
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // גלילה מטה - הסתר הדר
-        setIsHeaderVisible(false);
-      } else {
-        // גלילה מעלה או בתחילת הדף - הצג הדר
-        setIsHeaderVisible(true);
-      }
-      
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -37,17 +24,17 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [lastScrollY]);
+  }, []);
 
   return (
     <header 
-      className={`${styles.header} ${className} ${isScrolled ? styles.scrolled : ''} ${!isHeaderVisible ? styles.hidden : ''}`} 
+      className={`${styles.header} ${className} ${isScrolled ? styles.scrolled : ''}`} 
       role="banner"
     >
       <div className={styles.headerContainer}>
         <div className={styles.headerContent}>
-          {/* לוגו */}
-          <Link to="/" className={`${styles.logo} ${isScrolled ? styles.logoScrolled : ''}`} aria-label="בולה סטודיו - דף הבית">
+          {/* לוגו - צד שמאל */}
+          <Link to="/" className={styles.logo} aria-label="בולה סטודיו - דף הבית">
             <svg 
               className={styles.logoSvg}
               viewBox="0 0 1250.76 140.35" 
@@ -66,6 +53,11 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               <rect x="1040.46" y="69.97" width="131.55" height="5.36" transform="translate(1024.79 1178.28) rotate(-89.54)"/>
               <path d="M1250.76,71.68c-.35,44.5-21.98,68.97-60.29,68.66-36.71-.29-57.13-24.31-56.8-66.92.34-43.14,21.69-67.05,60.25-66.75,36.95.29,57.16,23.75,56.84,65.01M1139.26,73.24c-.32,39.9,18,61.75,51.24,62.02,34.81.28,54.56-22.08,54.88-63.09.31-38.54-18.01-59.86-51.76-60.13-34.86-.28-54.05,21.26-54.36,61.2"/>
             </svg>
+          </Link>
+
+          {/* כפתור קשר - צד ימין */}
+          <Link to="/contact" className={styles.contactButton} aria-label="צור קשר">
+            צור קשר
           </Link>
         </div>
       </div>
