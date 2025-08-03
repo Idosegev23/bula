@@ -1,6 +1,6 @@
 // Header - קומפוננטת ראש עמוד מינימלית לBulla Studio
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
 interface HeaderProps {
@@ -8,7 +8,9 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   // טיפול בגלילה - רק עבור שינוי רקע
   useEffect(() => {
@@ -26,6 +28,20 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     };
   }, []);
 
+  // רשימת פריטי התפריט
+  const navigationItems = [
+    { label: 'בית', path: '/' },
+    { label: 'שירותים', path: '/services' },
+    { label: 'פרויקטים', path: '/projects' },
+    { label: 'אדריכלים', path: '/architects' },
+    { label: 'אודות', path: '/about' },
+    { label: 'צור קשר', path: '/contact' },
+  ];
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <header 
       className={`${styles.header} ${className} ${isScrolled ? styles.scrolled : ''}`} 
@@ -33,7 +49,19 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     >
       <div className={styles.headerContainer}>
         <div className={styles.headerContent}>
-          {/* לוגו - צד שמאל */}
+          {/* כפתור תפריט נייד - צד שמאל */}
+          <button
+            className={`${styles.mobileMenuButton} ${isMobileMenuOpen ? styles.open : ''}`}
+            onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? "סגור תפריט ניווט" : "פתח תפריט ניווט"}
+            aria-expanded={isMobileMenuOpen}
+          >
+            <span className={styles.hamburgerLine}></span>
+            <span className={styles.hamburgerLine}></span>
+            <span className={styles.hamburgerLine}></span>
+          </button>
+
+          {/* לוגו - צד ימין */}
           <Link to="/" className={styles.logo} aria-label="בולה סטודיו - דף הבית">
             <svg 
               className={styles.logoSvg}
@@ -55,12 +83,51 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             </svg>
           </Link>
 
-          {/* כפתור קשר - צד ימין */}
-          <Link to="/contact" className={styles.contactButton} aria-label="צור קשר">
-            צור קשר
-          </Link>
+          {/* ניווט דסקטופ */}
+          <nav id="main-navigation" className={styles.desktopNav} role="navigation" aria-label="תפריט ראשי">
+            <ul className={styles.navList} role="menubar">
+              {navigationItems.map((item) => (
+                <li key={item.path} className={styles.navItem} role="none">
+                  <Link
+                    to={item.path}
+                    className={`${styles.navLink} ${location.pathname === item.path ? styles.active : ''}`}
+                    role="menuitem"
+                    aria-current={location.pathname === item.path ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
+
+      {/* תפריט נייד */}
+      {isMobileMenuOpen && (
+        <>
+          <div 
+            className={styles.mobileBackdrop} 
+            onClick={toggleMobileMenu}
+            aria-hidden="true"
+          ></div>
+          <nav className={styles.mobileNav} role="navigation" aria-label="תפריט נייד">
+            <ul className={styles.mobileNavList}>
+              {navigationItems.map((item) => (
+                <li key={item.path} className={styles.mobileNavItem}>
+                  <Link
+                    to={item.path}
+                    className={`${styles.mobileNavLink} ${location.pathname === item.path ? styles.active : ''}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </>
+      )}
     </header>
   );
 }; 
