@@ -24,15 +24,26 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = 
   const [instagramPosts, setInstagramPosts] = useState<string[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // רשימת פוסטים מדגימה (בפרקטיקה, אלה יהיו URLים אמיתיים מ-@bulla.studio)
-  const sampleInstagramPosts = [
-    'https://www.instagram.com/p/[POST_ID_1]/', // יש להחליף ב-ID אמיתי
-    'https://www.instagram.com/p/[POST_ID_2]/', // יש להחליף ב-ID אמיתי  
-    'https://www.instagram.com/p/[POST_ID_3]/', // יש להחליף ב-ID אמיתי
-    'https://www.instagram.com/p/[POST_ID_4]/', // יש להחליף ב-ID אמיתי
-    'https://www.instagram.com/p/[POST_ID_5]/', // יש להחליף ב-ID אמיתי
-    'https://www.instagram.com/p/[POST_ID_6]/'  // יש להחליף ב-ID אמיתי
-  ];
+  // קונפיגורציה פשוטה עבור פוסטי @bulla.studio
+  // כשיש פוסטים אמיתיים, פשוט החליפו את הURLים למטה
+  const instagramConfig = {
+    username: 'bulla.studio',
+    posts: [
+      // כשתתחילו לפרסם, החליפו את הקישורים האלה בפוסטים האמיתיים:
+      // לדוגמה: 'https://www.instagram.com/p/ABC123DEF456/'
+      null, // פוסט 1 - יוחלף בקישור אמיתי
+      null, // פוסט 2 - יוחלף בקישור אמיתי
+      null, // פוסט 3 - יוחלף בקישור אמיתי
+      null, // פוסט 4 - יוחלף בקישור אמיתי
+      null, // פוסט 5 - יוחלף בקישור אמיתי
+      null, // פוסט 6 - יוחלף בקישור אמיתי
+    ],
+    // דוגמאות לפוסטים (תוכלו להוסיף פוסטים אמיתיים כשיהיו):
+    examplePosts: [
+      // 'https://www.instagram.com/p/ABC123DEF456/', // דוגמה לפוסט נגריה
+      // 'https://www.instagram.com/p/GHI789JKL012/', // דוגמה לפוסט עיצוב
+    ]
+  };
 
   // Intersection Observer
   useEffect(() => {
@@ -57,7 +68,16 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = 
 
   // טעינת פוסטים מאינסטגרם
   useEffect(() => {
-    setInstagramPosts(sampleInstagramPosts);
+    // בדיקה אם יש פוסטים אמיתיים להציג
+    const realPosts = instagramConfig.posts.filter(post => post !== null);
+    
+    if (realPosts.length > 0) {
+      // יש פוסטים אמיתיים - הצג אותם
+      setInstagramPosts(realPosts);
+    } else {
+      // אין פוסטים אמיתיים עדיין - הצג placeholders
+      setInstagramPosts(['placeholder-1', 'placeholder-2', 'placeholder-3', 'placeholder-4', 'placeholder-5', 'placeholder-6']);
+    }
   }, []);
 
   // קומפוננטת embed לפוסט אינסטגרם בודד
@@ -82,7 +102,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = 
     }, []);
 
     // Placeholder עבור פוסטים שעדיין לא הוגדרו
-    if (postUrl.includes('[POST_ID_')) {
+    if (postUrl.includes('placeholder-') || postUrl === null) {
       return (
         <div className={`${styles.instagramPlaceholder} ${isVisible ? styles.cardVisible : ''}`} 
              style={{ animationDelay: `${index * 0.1}s` }}>
@@ -94,9 +114,9 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = 
                 <circle cx="18" cy="6" r="1" fill="#333"/>
               </svg>
             </div>
-            <h3>@bulla.studio</h3>
-            <p>פוסט #{index + 1} מאינסטגרם</p>
-            <small>יש להחליף ב-POST ID אמיתי</small>
+            <h3>@{instagramConfig.username}</h3>
+            <p>פוסט #{index + 1} מהעבודות שלנו</p>
+            <small>נעדכן כשיהיו פוסטים חדשים</small>
           </div>
         </div>
       );
@@ -141,12 +161,12 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = 
         
         <div className={styles.sectionFooter}>
           <a 
-            href="https://www.instagram.com/bulla.studio/" 
+            href={`https://www.instagram.com/${instagramConfig.username}/`}
             target="_blank" 
             rel="noopener noreferrer"
             className={styles.viewAllButton}
           >
-            <span>עקבו אחרינו באינסטגרם</span>
+            <span>עקבו אחרינו ב-@{instagramConfig.username}</span>
             <svg className={styles.viewAllArrow} viewBox="0 0 24 24" fill="none">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" strokeWidth="2"/>
               <path d="m12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" stroke="currentColor" strokeWidth="2"/>
