@@ -12,6 +12,7 @@ import { Hero } from './components/UI/Hero';
 import { ComplexitySection } from './components/UI/ComplexitySection';
 import { TargetAudiences } from './components/UI/TargetAudiences';
 import { FeaturedProjects } from './components/UI/FeaturedProjects';
+import { SocialFloat } from './components/UI/SocialFloat';
 
 // Page Components
 import { Services } from './components/Pages/Services';
@@ -89,6 +90,9 @@ const App: React.FC = () => {
             </Routes>
           </main>
           <Footer />
+          
+          {/* כפתורי רשתות חברתיות צפים */}
+          <SocialFloat />
         </div>
       </Router>
     </AccessibilityProvider>

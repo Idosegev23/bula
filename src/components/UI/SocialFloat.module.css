@@ -1,0 +1,381 @@
+/* Social Float Component - Elegant Floating Social Buttons */
+
+:root {
+  /* משתני צבעים להתאמה אישית */
+  --social-float-primary: #000000;
+  --social-float-secondary: #333333;
+  --social-float-background: rgba(255, 255, 255, 0.95);
+  --social-float-border: #000000;
+  --social-float-text: #000000;
+  --social-float-hover-bg: linear-gradient(135deg, #000000 0%, #333333 100%);
+  --social-float-hover-text: #ffffff;
+  --social-float-shadow: rgba(0, 0, 0, 0.15);
+  --social-float-shadow-hover: rgba(0, 0, 0, 0.25);
+}
+
+.socialFloat {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 998;
+  direction: rtl;
+  transition: all 0.3s ease;
+}
+
+/* מיקום ימין (ברירת מחדל) */
+.positionRight {
+  right: 20px;
+}
+
+/* מיקום שמאל */
+.positionLeft {
+  left: 20px;
+}
+
+@media (max-width: 768px) {
+  .socialFloat {
+    top: auto;
+    bottom: 20px;
+    transform: none;
+  }
+  
+  .positionRight {
+    right: 12px;
+  }
+  
+  .positionLeft {
+    left: 12px;
+  }
+}
+
+.socialContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* כפתור עיקרי - עם הדגשה ויזואלית */
+.mainButton {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--social-float-primary) 0%, var(--social-float-secondary) 100%);
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 12px var(--social-float-shadow),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  z-index: 10;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.mainButton::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--social-float-primary), var(--social-float-secondary), var(--social-float-primary));
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mainButton:hover::before {
+  opacity: 1;
+}
+
+.mainButton:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 
+    0 8px 25px var(--social-float-shadow-hover),
+    0 4px 12px var(--social-float-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, var(--social-float-secondary) 0%, var(--social-float-primary) 100%);
+  border-color: #f0f0f0;
+}
+
+.mainButton:active {
+  transform: scale(0.95) rotate(2deg);
+  transition: transform 0.1s ease;
+}
+
+.mainIcon {
+  color: #ffffff;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.mainIcon.rotated {
+  transform: rotate(45deg) scale(1.1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+/* רשימת כפתורי רשתות חברתיות */
+.socialList {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .socialList {
+    bottom: 70px;
+    right: 0;
+  }
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--social-float-background);
+  border: 2px solid var(--social-float-border);
+  border-radius: 50px;
+  text-decoration: none;
+  color: var(--social-float-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 2px 8px var(--social-float-shadow),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  transform: translateX(30px) scale(0.7) rotate(10deg);
+  pointer-events: none;
+  position: relative;
+  overflow: hidden;
+  min-width: 48px;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.socialLink::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+/* אנימציה כשמורחב */
+.socialContainer.expanded .socialLink {
+  opacity: 1;
+  transform: translateX(0) scale(1) rotate(0deg);
+  pointer-events: auto;
+}
+
+/* אפקט hover מתקדם */
+.socialLink:hover {
+  background: var(--social-float-hover-bg);
+  color: var(--social-float-hover-text);
+  transform: translateX(-8px) scale(1.05) rotate(-2deg);
+  box-shadow: 
+    0 6px 20px var(--social-float-shadow-hover),
+    0 2px 8px var(--social-float-shadow);
+  border-color: var(--social-float-secondary);
+}
+
+.socialLink:hover::after {
+  transform: translateX(100%);
+}
+
+.socialLink:active {
+  transform: translateX(-5px) scale(0.98) rotate(-1deg);
+  transition: transform 0.1s ease;
+}
+
+/* אייקון רשת חברתית */
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.socialLink:hover .socialIcon {
+  transform: scale(1.2) rotate(5deg);
+  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.2));
+}
+
+/* תווית רשת חברתית */
+.socialLabel {
+  transition: all 0.3s ease;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 500;
+  display: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* הצגת תוויות במסכים גדולים כשמורחב */
+@media (min-width: 769px) {
+  .socialContainer.expanded .socialLabel {
+    display: block;
+  }
+  
+  .socialContainer.expanded .socialLink {
+    min-width: auto;
+    justify-content: flex-start;
+  }
+}
+
+/* במובייל - רק אייקונים */
+@media (max-width: 768px) {
+  .socialLink {
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    min-width: 48px;
+  }
+  
+  .socialLabel {
+    display: none !important;
+  }
+  
+  .mainButton {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* פעולות מקלדת לנגישות */
+.mainButton:focus-visible,
+.socialLink:focus-visible {
+  outline: 3px solid #0066cc;
+  outline-offset: 3px;
+  border-color: #0066cc;
+}
+
+.mainButton:focus-visible {
+  transform: scale(1.05);
+}
+
+.socialLink:focus-visible {
+  transform: translateX(-5px) scale(1.02);
+  background: #f8f8f8;
+}
+
+/* אנימציה מפוקחת יותר */
+@media (prefers-reduced-motion: reduce) {
+  .mainButton,
+  .socialLink,
+  .mainIcon,
+  .socialIcon,
+  .socialLabel {
+    transition: none;
+    animation: none;
+  }
+  
+  .mainIcon.rotated {
+    transform: none;
+  }
+  
+  .socialContainer.expanded .socialLink {
+    transform: none;
+  }
+  
+  .socialLink:hover {
+    transform: none;
+  }
+  
+  .mainButton:hover {
+    transform: none;
+  }
+}
+
+/* שיפורים לניגודיות */
+@media (prefers-contrast: high) {
+  .mainButton {
+    border-width: 3px;
+    background: #000000;
+  }
+  
+  .socialLink {
+    border-width: 3px;
+    background: #ffffff;
+  }
+  
+  .socialLink:hover {
+    background: #000000;
+    border-color: #ffffff;
+  }
+}
+
+/* אפקטים במסכים גדולים */
+@media (min-width: 1200px) {
+  .socialFloat {
+    right: 30px;
+  }
+  
+  .positionLeft {
+    left: 30px;
+  }
+  
+  .mainButton {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .socialLink {
+    font-size: 0.95rem;
+    padding: 14px 18px;
+  }
+}
+
+/* הסתרה עבור מדפסת */
+@media print {
+  .socialFloat {
+    display: none;
+  }
+}
+
+/* אפקטים מיוחדים לחוויה מתקדמת */
+@media (hover: hover) and (pointer: fine) {
+  .socialFloat:hover .mainButton {
+    box-shadow: 
+      0 0 20px rgba(0, 0, 0, 0.2),
+      0 0 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .socialContainer.expanded .socialLink:nth-child(1) {
+    animation: socialPulse 2s ease-in-out infinite;
+    animation-delay: 0.2s;
+  }
+}
+
+@keyframes socialPulse {
+  0%, 100% { 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  50% { 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+}

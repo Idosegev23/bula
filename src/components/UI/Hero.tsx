@@ -11,21 +11,28 @@ export const Hero: React.FC<HeroProps> = ({ className = '' }) => {
   const heroContentRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  // Array of rotating words with their corresponding fonts
+  // Array of rotating words with vintage handwriting fonts
   const rotatingWords = [
-    { text: 'מעצבים חוויות.', font: 'Playfair Display' },
-    { text: 'מייצרים מציאות.', font: 'Dancing Script' },
+    { text: 'מעצבים חוויות.', font: 'Amatic SC' },
+    { text: 'מייצרים מציאות.', font: 'Kalam' },
     { text: 'ממחישים חלומות.', font: 'Shadows Into Light' },
-    { text: 'יוצרים פתרונות.', font: 'Kalam' },
-    { text: 'בונים מותגים.', font: 'Caveat' },
-    { text: 'מגשימים חזון.', font: 'Amatic SC' },
+    { text: 'יוצרים פתרונות.', font: 'Caveat' },
+    { text: 'בונים מותגים.', font: 'Dancing Script' },
+    { text: 'מגשימים חזון.', font: 'Satisfy' },
     { text: 'מפתחים רעיונות.', font: 'Permanent Marker' },
-    { text: 'משכללים תהליכים.', font: 'Satisfy' },
+    { text: 'משכללים תהליכים.', font: 'Indie Flower' },
     { text: 'מעצבים עתיד.', font: 'Great Vibes' },
-    { text: 'חולמים גדול.', font: 'Dancing Script' },
-    { text: 'בונים יפה.', font: 'Caveat' },
-    { text: 'יוצרים קסם.', font: 'Shadows Into Light' }
+    { text: 'חולמים גדול.', font: 'Architects Daughter' },
+    { text: 'בונים יפה.', font: 'Homemade Apple' },
+    { text: 'יוצרים קסם.', font: 'Covered By Your Grace' },
+    { text: 'מביאים לחיים.', font: 'Patrick Hand' },
+    { text: 'פותחים דרכים.', font: 'Schoolbell' },
+    { text: 'מחברים לבבות.', font: 'Reenie Beanie' },
+    { text: 'מכתבים סיפורים.', font: 'Just Me Again Down Here' }
   ];
 
   useEffect(() => {
@@ -44,16 +51,45 @@ export const Hero: React.FC<HeroProps> = ({ className = '' }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Rotating words effect
+  // Typewriter effect
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWordIndex((prevIndex) => 
-        (prevIndex + 1) % rotatingWords.length
-      );
-    }, 1000); // Change every 1 second
+    if (!isLoaded) return;
 
-    return () => clearInterval(interval);
-  }, [rotatingWords.length]);
+    const currentWord = rotatingWords[currentWordIndex].text;
+    let timer: number;
+
+    if (isDeleting) {
+      // Deleting effect
+      timer = setTimeout(() => {
+        setDisplayedText(prev => prev.slice(0, -1));
+        
+        if (displayedText === '') {
+          setIsDeleting(false);
+          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % rotatingWords.length);
+        }
+      }, 50); // Fast deletion
+    } else if (isTyping) {
+      // Typing effect
+      timer = setTimeout(() => {
+        if (displayedText.length < currentWord.length) {
+          setDisplayedText(currentWord.slice(0, displayedText.length + 1));
+        } else {
+          setIsTyping(false);
+          // Pause before starting to delete
+          setTimeout(() => {
+            setIsDeleting(true);
+          }, 2000); // Show complete text for 2 seconds
+        }
+      }, 80); // Typing speed
+    }
+
+    // Reset typing state when word changes
+    if (displayedText === '' && !isDeleting) {
+      setIsTyping(true);
+    }
+
+    return () => clearTimeout(timer);
+  }, [currentWordIndex, displayedText, isTyping, isDeleting, isLoaded, rotatingWords]);
 
   return (
     <section className={`${styles.hero} ${className}`}>
@@ -69,11 +105,10 @@ export const Hero: React.FC<HeroProps> = ({ className = '' }) => {
           <h1 className={styles.heroTitle}>
             <span className={styles.titleLineFixed}>בונים עסקים.</span>
             <span 
-              className={styles.titleLineRotating} 
-              key={currentWordIndex}
+              className={styles.titleLineTypewriter} 
               style={{ fontFamily: `'${rotatingWords[currentWordIndex].font}', cursive` }}
             >
-              {rotatingWords[currentWordIndex].text}
+              {displayedText}<span className={styles.cursor}>|</span>
             </span>
           </h1>
           
@@ -84,6 +119,36 @@ export const Hero: React.FC<HeroProps> = ({ className = '' }) => {
           <p className={styles.heroSubtitle}>
             בולה סטודיו מתמחים בליווי כולל לעסקים – מתכנון חוויית הלקוח, דרך עיצוב וייצור, ועד התקנה בשטח.
           </p>
+        </div>
+        
+        {/* Scroll Indicator */}
+        <div 
+          className={`${styles.scrollIndicator} ${isLoaded ? styles.loaded : ''}`}
+          onClick={() => {
+            const nextSection = document.querySelector('section:nth-of-type(2)');
+            if (nextSection) {
+              nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="גלול למטה לתוכן נוסף"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              const nextSection = document.querySelector('section:nth-of-type(2)');
+              if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+          }}
+        >
+          <div className={styles.scrollText}>גלול למטה</div>
+          <div className={styles.scrollArrow}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 10L12 15L17 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
         </div>
       </div>
     </section>

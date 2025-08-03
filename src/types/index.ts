@@ -81,4 +81,20 @@ export interface SEOProps {
   image?: string;
   url?: string;
   type?: 'website' | 'article';
+}
+
+// ======= רשתות חברתיות =======
+export interface SocialLink {
+  name: 'facebook' | 'instagram' | 'whatsapp' | 'linkedin' | 'email' | 'twitter' | 'youtube';
+  url: string;
+  icon: React.ReactNode;
+  label: string;
+  isExternal?: boolean;
+}
+
+export interface SocialFloatProps {
+  className?: string;
+  position?: 'left' | 'right';
+  showLabels?: boolean;
+  customLinks?: SocialLink[];
 } 
