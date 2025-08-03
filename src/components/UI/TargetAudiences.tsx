@@ -10,6 +10,8 @@ interface TargetAudiencesProps {
 export const TargetAudiences: React.FC<TargetAudiencesProps> = ({ className = '' }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [animationData, setAnimationData] = useState<any>(null);
+  const [isFloating, setIsFloating] = useState(false);
+  const [showFloating, setShowFloating] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   // טעינת אנימציית Lottie
@@ -20,7 +22,7 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({ className = ''
       .catch(error => console.error('Error loading Lottie animation:', error));
   }, []);
 
-  // Intersection Observer
+  // Intersection Observer for visibility
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -40,6 +42,37 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({ className = ''
 
     return () => observer.disconnect();
   }, [isVisible]);
+
+  // Scroll Observer for floating buttons
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const sectionRect = sectionRef.current.getBoundingClientRect();
+      
+      // Check if section is out of view (scrolled past it)
+      const isPastSection = sectionRect.bottom < 0;
+      
+      if (isPastSection && !isFloating) {
+        setIsFloating(true);
+        setTimeout(() => setShowFloating(true), 100);
+      } else if (!isPastSection && isFloating) {
+        setShowFloating(false);
+        setTimeout(() => setIsFloating(false), 300);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isFloating]);
+
+  // Handle floating button click
+  const scrollToSection = () => {
+    sectionRef.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'center'
+    });
+  };
 
   const targetAudiences = [
     {
@@ -171,6 +204,28 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({ className = ''
             autoplay={true}
             className={styles.lottieAnimation}
           />
+        </div>
+      )}
+
+      {/* Floating Buttons */}
+      {isFloating && (
+        <div className={`${styles.floatingContainer} ${showFloating ? styles.floatingVisible : ''}`}>
+          <div className={styles.floatingButtons}>
+            {targetAudiences.map((audience, index) => (
+              <button
+                key={audience.id}
+                className={`${styles.floatingButton} ${showFloating ? styles.buttonVisible : ''}`}
+                onClick={scrollToSection}
+                style={{ animationDelay: `${index * 0.1}s` }}
+                aria-label={`חזור לסקשן ${audience.title}`}
+              >
+                <div className={styles.floatingIcon}>
+                  {audience.icon}
+                </div>
+                <span className={styles.floatingTitle}>{audience.title}</span>
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </>
