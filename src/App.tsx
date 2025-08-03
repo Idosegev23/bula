@@ -9,7 +9,6 @@ import { Footer } from './components/Layout/Footer';
 
 // UI Components
 import { Hero } from './components/UI/Hero';
-import { ComplexitySection } from './components/UI/ComplexitySection';
 import { TargetAudiences } from './components/UI/TargetAudiences';
 import { FeaturedProjects } from './components/UI/FeaturedProjects';
 import { SocialFloat } from './components/UI/SocialFloat';
@@ -33,19 +32,16 @@ const HomePage: React.FC = () => {
       {/* 1. Hero Section - מכת הפתיחה */}
       <Hero />
       
-      {/* 2. הבנת המורכבות והפתרון */}
-      <ComplexitySection />
-      
-      {/* 3. שלושת הקהלים */}
+      {/* 2. שלושת הקהלים */}
       <TargetAudiences />
       
-      {/* 4. פרויקטים נבחרים */}
+      {/* 3. פרויקטים נבחרים */}
       <FeaturedProjects />
       
-      {/* 5. לקוחות מספרים */}
+      {/* 4. לקוחות מספרים */}
       <Testimonials />
       
-      {/* 6. קריאה לפעולה */}
+      {/* 5. קריאה לפעולה */}
       <CTASection />
     </main>
   );

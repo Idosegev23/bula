@@ -1,17 +1,19 @@
-// FeaturedProjects - סקציית פרויקטים נבחרים עם תמונות רקע
+// FeaturedProjects - פיד אינסטגרם חי מ-@bulla.studio
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './FeaturedProjects.module.css';
 
-interface Project {
-  id: string;
-  title: string;
-  category: string;
-  location: string;
-  description: string;
-  backgroundImage: string;
-  link: string;
+// הגדרת טיפוס עבור Instagram API
+declare global {
+  interface Window {
+    instgrm?: {
+      Embeds: {
+        process: () => void;
+      };
+    };
+  }
 }
+
+
 
 interface FeaturedProjectsProps {
   className?: string;
@@ -19,7 +21,18 @@ interface FeaturedProjectsProps {
 
 export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = '' }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [instagramPosts, setInstagramPosts] = useState<string[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
+
+  // רשימת פוסטים מדגימה (בפרקטיקה, אלה יהיו URLים אמיתיים מ-@bulla.studio)
+  const sampleInstagramPosts = [
+    'https://www.instagram.com/p/[POST_ID_1]/', // יש להחליף ב-ID אמיתי
+    'https://www.instagram.com/p/[POST_ID_2]/', // יש להחליף ב-ID אמיתי  
+    'https://www.instagram.com/p/[POST_ID_3]/', // יש להחליף ב-ID אמיתי
+    'https://www.instagram.com/p/[POST_ID_4]/', // יש להחליף ב-ID אמיתי
+    'https://www.instagram.com/p/[POST_ID_5]/', // יש להחליף ב-ID אמיתי
+    'https://www.instagram.com/p/[POST_ID_6]/'  // יש להחליף ב-ID אמיתי
+  ];
 
   // Intersection Observer
   useEffect(() => {
@@ -42,62 +55,70 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = 
     return () => observer.disconnect();
   }, [isVisible]);
 
-  const projects: Project[] = [
-    {
-      id: 'cafe-green',
-      title: 'קפה גריין',
-      category: 'עיצוב מסחרי',
-      location: 'רמת השרון',
-      description: 'עיצוב מקום מקסים עם אווירה חמה ומזמינה לכל הגילאים',
-      backgroundImage: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-      link: '/projects/cafe-green'
-    },
-    {
-      id: 'ima-office',
-      title: 'משרד IMA',
-      category: 'קשרי אדריכלים',
-      location: 'תל אביב',
-      description: 'משרד מודרני ופונקציונלי עם דגש על יעילות ונוחות עבודה',
-      backgroundImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-      link: '/projects/ima-office'
-    },
-    {
-      id: 'private-home',
-      title: 'בית פרטי עין ורד',
-      category: 'ריהוט בהתאמה',
-      location: 'עין ורד',
-      description: 'ריהוט יוקרתי ומותאם אישית לבית משפחתי מרווח ומפואר',
-      backgroundImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-      link: '/projects/private-home'
-    },
-    {
-      id: 'restaurant-urban',
-      title: 'אורבן בר',
-      category: 'עיצוב מסחרי',
-      location: 'הרצליה',
-      description: 'מסעדה עירונית מודרנית עם אווירה יוקרתית וחמה',
-      backgroundImage: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-      link: '/projects/restaurant-urban'
-    },
-    {
-      id: 'clinic-design',
-      title: 'מרפאת שיניים',
-      category: 'קשרי אדריכלים',
-      location: 'פתח תקווה',
-      description: 'מרפאה מתקדמת עם עיצוב נקי ומרגיע לחוויית טיפול נעימה',
-      backgroundImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-      link: '/projects/clinic-design'
-    },
-    {
-      id: 'villa-caesarea',
-      title: 'וילה בקיסריה',
-      category: 'ריהוט בהתאמה',
-      location: 'קיסריה',
-      description: 'וילה יוקרתית עם ריהוט מותאם לסגנון חיים מפואר ומרגיע',
-      backgroundImage: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-      link: '/projects/villa-caesarea'
+  // טעינת פוסטים מאינסטגרם
+  useEffect(() => {
+    setInstagramPosts(sampleInstagramPosts);
+  }, []);
+
+  // קומפוננטת embed לפוסט אינסטגרם בודד
+  const InstagramEmbed: React.FC<{ postUrl: string; index: number }> = ({ postUrl, index }) => {
+    
+    useEffect(() => {
+      // טעינת Instagram embed script
+      if (!window.instgrm) {
+        const script = document.createElement('script');
+        script.src = '//www.instagram.com/embed.js';
+        script.async = true;
+        document.body.appendChild(script);
+        
+        script.onload = () => {
+          if (window.instgrm) {
+            window.instgrm.Embeds.process();
+          }
+        };
+      } else {
+        window.instgrm.Embeds.process();
+      }
+    }, []);
+
+    // Placeholder עבור פוסטים שעדיין לא הוגדרו
+    if (postUrl.includes('[POST_ID_')) {
+      return (
+        <div className={`${styles.instagramPlaceholder} ${isVisible ? styles.cardVisible : ''}`} 
+             style={{ animationDelay: `${index * 0.1}s` }}>
+          <div className={styles.placeholderContent}>
+            <div className={styles.instagramIcon}>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#333" strokeWidth="2"/>
+                <path d="m12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" stroke="#333" strokeWidth="2"/>
+                <circle cx="18" cy="6" r="1" fill="#333"/>
+              </svg>
+            </div>
+            <h3>@bulla.studio</h3>
+            <p>פוסט #{index + 1} מאינסטגרם</p>
+            <small>יש להחליף ב-POST ID אמיתי</small>
+          </div>
+        </div>
+      );
     }
-  ];
+
+    return (
+      <div className={`${styles.instagramPost} ${isVisible ? styles.cardVisible : ''}`} 
+           style={{ animationDelay: `${index * 0.1}s` }}>
+        <blockquote 
+          className="instagram-media" 
+          data-instgrm-permalink={postUrl}
+          data-instgrm-version="14"
+        >
+          <div style={{ padding: '16px' }}>
+            <a href={postUrl} target="_blank" rel="noopener noreferrer">
+              צפה בפוסט באינסטגרם
+            </a>
+          </div>
+        </blockquote>
+      </div>
+    );
+  };
 
   return (
     <section 
@@ -106,60 +127,32 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ className = 
     >
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>פרויקטים נבחרים</h2>
+          <h2 className={styles.sectionTitle}>העבודות שלנו באינסטגרם</h2>
           <p className={styles.sectionSubtitle}>
-            כמה מהעבודות האחרונות שלנו – מרעיון לביצוע מושלם
+            עקבו אחרי הפרויקטים האחרונים שלנו ב-@bulla.studio
           </p>
         </div>
         
-        <div className={styles.projectsGrid}>
-          {projects.map((project, index) => (
-            <Link 
-              key={project.id} 
-              to={project.link} 
-              className={`${styles.projectCard} ${isVisible ? styles.cardVisible : ''}`}
-              style={{
-                backgroundImage: `linear-gradient(
-                  135deg, 
-                  rgba(0, 0, 0, 0.4) 0%, 
-                  rgba(0, 0, 0, 0.2) 50%, 
-                  rgba(0, 0, 0, 0.6) 100%
-                ), url(${project.backgroundImage})`,
-                animationDelay: `${index * 0.1}s`
-              }}
-            >
-              {/* תוכן הכרטיס */}
-              <div className={styles.projectContent}>
-                <div className={styles.projectMeta}>
-                  <span className={styles.projectCategory}>{project.category}</span>
-                  <span className={styles.projectLocation}>{project.location}</span>
-                </div>
-                
-                <h3 className={styles.projectTitle}>{project.title}</h3>
-                <p className={styles.projectDescription}>{project.description}</p>
-                
-                {/* כפתור לפרטים נוספים */}
-                <div className={styles.projectButton}>
-                  <span>צפה בפרויקט</span>
-                  <svg className={styles.buttonArrow} viewBox="0 0 24 24" fill="none">
-                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-              </div>
-
-              {/* overlay למעבר עכבר */}
-              <div className={styles.projectOverlay}></div>
-            </Link>
+        <div className={styles.instagramGrid}>
+          {instagramPosts.map((postUrl, index) => (
+            <InstagramEmbed key={index} postUrl={postUrl} index={index} />
           ))}
         </div>
         
         <div className={styles.sectionFooter}>
-          <Link to="/projects" className={styles.viewAllButton}>
-            <span>צפו בכל הפרויקטים</span>
+          <a 
+            href="https://www.instagram.com/bulla.studio/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={styles.viewAllButton}
+          >
+            <span>עקבו אחרינו באינסטגרם</span>
             <svg className={styles.viewAllArrow} viewBox="0 0 24 24" fill="none">
-              <path d="M13 17L18 12L13 7M6 12H18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" strokeWidth="2"/>
+              <path d="m12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" stroke="currentColor" strokeWidth="2"/>
+              <circle cx="18" cy="6" r="1" fill="currentColor"/>
             </svg>
-          </Link>
+          </a>
         </div>
       </div>
     </section>

@@ -1,381 +1,268 @@
-/* Social Float Component - Elegant Floating Social Buttons */
+/* Floating Footer with CTA Buttons - Modern Design */
 
 :root {
-  /* משתני צבעים להתאמה אישית */
-  --social-float-primary: #000000;
-  --social-float-secondary: #333333;
-  --social-float-background: rgba(255, 255, 255, 0.95);
-  --social-float-border: #000000;
-  --social-float-text: #000000;
-  --social-float-hover-bg: linear-gradient(135deg, #000000 0%, #333333 100%);
-  --social-float-hover-text: #ffffff;
-  --social-float-shadow: rgba(0, 0, 0, 0.15);
-  --social-float-shadow-hover: rgba(0, 0, 0, 0.25);
+  /* משתני צבעים */
+  --footer-bg: rgba(255, 255, 255, 0.95);
+  --footer-border: rgba(0, 0, 0, 0.1);
+  --footer-shadow: rgba(0, 0, 0, 0.1);
+  --text-primary: #000000;
+  --text-white: #ffffff;
+  --whatsapp-color: #25D366;
+  --instagram-color: #E4405F;
+  --contact-color: #000000;
 }
 
-.socialFloat {
+.floatingFooter {
   position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 998;
-  direction: rtl;
-  transition: all 0.3s ease;
-}
-
-/* מיקום ימין (ברירת מחדל) */
-.positionRight {
-  right: 20px;
-}
-
-/* מיקום שמאל */
-.positionLeft {
-  left: 20px;
-}
-
-@media (max-width: 768px) {
-  .socialFloat {
-    top: auto;
-    bottom: 20px;
-    transform: none;
-  }
-  
-  .positionRight {
-    right: 12px;
-  }
-  
-  .positionLeft {
-    left: 12px;
-  }
-}
-
-.socialContainer {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-/* כפתור עיקרי - עם הדגשה ויזואלית */
-.mainButton {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, var(--social-float-primary) 0%, var(--social-float-secondary) 100%);
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 
-    0 4px 12px var(--social-float-shadow),
-    0 2px 4px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  z-index: 10;
-  position: relative;
-  backdrop-filter: blur(10px);
-}
-
-.mainButton::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, var(--social-float-primary), var(--social-float-secondary), var(--social-float-primary));
-  border-radius: 50%;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.mainButton:hover::before {
-  opacity: 1;
-}
-
-.mainButton:hover {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 
-    0 8px 25px var(--social-float-shadow-hover),
-    0 4px 12px var(--social-float-shadow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  background: linear-gradient(135deg, var(--social-float-secondary) 0%, var(--social-float-primary) 100%);
-  border-color: #f0f0f0;
-}
-
-.mainButton:active {
-  transform: scale(0.95) rotate(2deg);
-  transition: transform 0.1s ease;
-}
-
-.mainIcon {
-  color: #ffffff;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
-}
-
-.mainIcon.rotated {
-  transform: rotate(45deg) scale(1.1);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
-}
-
-/* רשימת כפתורי רשתות חברתיות */
-.socialList {
-  position: absolute;
-  bottom: 70px;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
-  .socialList {
-    bottom: 70px;
-    right: 0;
-  }
-}
-
-.socialLink {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: var(--social-float-background);
-  border: 2px solid var(--social-float-border);
-  border-radius: 50px;
-  text-decoration: none;
-  color: var(--social-float-text);
-  font-size: 0.9rem;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 
-    0 2px 8px var(--social-float-shadow),
-    0 1px 3px rgba(0, 0, 0, 0.05);
-  opacity: 0;
-  transform: translateX(30px) scale(0.7) rotate(10deg);
-  pointer-events: none;
-  position: relative;
-  overflow: hidden;
-  min-width: 48px;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-}
-
-.socialLink::after {
-  content: '';
-  position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-  pointer-events: none;
+  z-index: 999;
+  padding: 0;
+  direction: rtl;
+  animation: slideUpFooter 0.6s ease-out;
 }
 
-/* אנימציה כשמורחב */
-.socialContainer.expanded .socialLink {
-  opacity: 1;
-  transform: translateX(0) scale(1) rotate(0deg);
-  pointer-events: auto;
+@keyframes slideUpFooter {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-/* אפקט hover מתקדם */
-.socialLink:hover {
-  background: var(--social-float-hover-bg);
-  color: var(--social-float-hover-text);
-  transform: translateX(-8px) scale(1.05) rotate(-2deg);
-  box-shadow: 
-    0 6px 20px var(--social-float-shadow-hover),
-    0 2px 8px var(--social-float-shadow);
-  border-color: var(--social-float-secondary);
+.ctaContainer {
+  background: var(--footer-bg);
+  border-top: 1px solid var(--footer-border);
+  box-shadow: 0 -4px 20px var(--footer-shadow);
+  backdrop-filter: blur(10px);
+  padding: 12px 16px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-.socialLink:hover::after {
-  transform: translateX(100%);
+.ctaButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 25px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  min-height: 50px;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  max-width: 140px;
+  justify-content: center;
+  animation: ctaSlideUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.socialLink:active {
-  transform: translateX(-5px) scale(0.98) rotate(-1deg);
+@keyframes ctaSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* כפתור וואטסאפ */
+.ctaButton.whatsapp {
+  background: var(--whatsapp-color);
+  color: var(--text-white);
+}
+
+.ctaButton.whatsapp:hover {
+  background: #1db954;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+/* כפתור אינסטגרם */
+.ctaButton.instagram {
+  background: linear-gradient(45deg, #E4405F, #C13584, #833AB4);
+  color: var(--text-white);
+}
+
+.ctaButton.instagram:hover {
+  background: linear-gradient(45deg, #d63384, #b02a5b, #6f2c91);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(228, 64, 95, 0.3);
+}
+
+/* כפתור צור קשר */
+.ctaButton.contact {
+  background: var(--contact-color);
+  color: var(--text-white);
+}
+
+.ctaButton.contact:hover {
+  background: #333333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* אפקט לחיצה */
+.ctaButton:active {
+  transform: translateY(0);
   transition: transform 0.1s ease;
 }
 
-/* אייקון רשת חברתית */
-.socialIcon {
+/* אייקון */
+.ctaIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  transition: transform 0.2s ease;
 }
 
-.socialLink:hover .socialIcon {
-  transform: scale(1.2) rotate(5deg);
-  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.2));
+.ctaButton:hover .ctaIcon {
+  transform: scale(1.1);
 }
 
-/* תווית רשת חברתית */
-.socialLabel {
-  transition: all 0.3s ease;
-  font-family: 'Heebo', sans-serif;
+/* תווית */
+.ctaLabel {
   font-weight: 500;
-  display: none;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
-/* הצגת תוויות במסכים גדולים כשמורחב */
-@media (min-width: 769px) {
-  .socialContainer.expanded .socialLabel {
-    display: block;
-  }
-  
-  .socialContainer.expanded .socialLink {
-    min-width: auto;
-    justify-content: flex-start;
-  }
-}
-
-/* במובייל - רק אייקונים */
+/* אנימציית גלייד עבור מובייל */
 @media (max-width: 768px) {
-  .socialLink {
-    width: 48px;
-    height: 48px;
-    padding: 12px;
-    min-width: 48px;
+  .ctaContainer {
+    padding: 10px 12px 16px;
+    gap: 8px;
   }
   
-  .socialLabel {
-    display: none !important;
+  .ctaButton {
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    min-height: 44px;
+    max-width: 120px;
+    gap: 6px;
   }
   
-  .mainButton {
-    width: 52px;
-    height: 52px;
+  .ctaIcon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .ctaLabel {
+    font-size: 0.85rem;
   }
 }
 
-/* פעולות מקלדת לנגישות */
-.mainButton:focus-visible,
-.socialLink:focus-visible {
-  outline: 3px solid #0066cc;
-  outline-offset: 3px;
-  border-color: #0066cc;
-}
-
-.mainButton:focus-visible {
-  transform: scale(1.05);
-}
-
-.socialLink:focus-visible {
-  transform: translateX(-5px) scale(1.02);
-  background: #f8f8f8;
-}
-
-/* אנימציה מפוקחת יותר */
-@media (prefers-reduced-motion: reduce) {
-  .mainButton,
-  .socialLink,
-  .mainIcon,
-  .socialIcon,
-  .socialLabel {
-    transition: none;
-    animation: none;
+/* מסכים קטנים מאוד */
+@media (max-width: 480px) {
+  .ctaContainer {
+    padding: 8px 8px 12px;
+    gap: 6px;
   }
   
-  .mainIcon.rotated {
-    transform: none;
+  .ctaButton {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+    min-height: 40px;
+    max-width: 100px;
+    gap: 4px;
   }
   
-  .socialContainer.expanded .socialLink {
-    transform: none;
+  .ctaIcon {
+    width: 16px;
+    height: 16px;
   }
   
-  .socialLink:hover {
-    transform: none;
-  }
-  
-  .mainButton:hover {
-    transform: none;
+  .ctaLabel {
+    font-size: 0.8rem;
   }
 }
 
-/* שיפורים לניגודיות */
-@media (prefers-contrast: high) {
-  .mainButton {
-    border-width: 3px;
-    background: #000000;
-  }
-  
-  .socialLink {
-    border-width: 3px;
-    background: #ffffff;
-  }
-  
-  .socialLink:hover {
-    background: #000000;
-    border-color: #ffffff;
-  }
-}
-
-/* אפקטים במסכים גדולים */
+/* מסכים גדולים */
 @media (min-width: 1200px) {
-  .socialFloat {
-    right: 30px;
+  .ctaContainer {
+    padding: 16px 20px 24px;
+    gap: 16px;
+    max-width: 600px;
   }
   
-  .positionLeft {
-    left: 30px;
+  .ctaButton {
+    padding: 16px 24px;
+    font-size: 1rem;
+    min-height: 56px;
+    max-width: 160px;
+    gap: 10px;
   }
   
-  .mainButton {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .socialLink {
-    font-size: 0.95rem;
-    padding: 14px 18px;
+  .ctaIcon {
+    width: 22px;
+    height: 22px;
   }
 }
 
-/* הסתרה עבור מדפסת */
+/* נגישות */
+.ctaButton:focus-visible {
+  outline: 3px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* אנימציה מפוקחת */
+@media (prefers-reduced-motion: reduce) {
+  .floatingFooter,
+  .ctaButton {
+    animation: none;
+    transition: none;
+  }
+  
+  .ctaButton:hover {
+    transform: none;
+  }
+}
+
+/* ניגודיות גבוהה */
+@media (prefers-contrast: high) {
+  .ctaContainer {
+    background: #ffffff;
+    border-top: 2px solid #000000;
+  }
+  
+  .ctaButton {
+    border: 2px solid currentColor;
+  }
+}
+
+/* הסתרה בהדפסה */
 @media print {
-  .socialFloat {
+  .floatingFooter {
     display: none;
   }
 }
 
-/* אפקטים מיוחדים לחוויה מתקדמת */
-@media (hover: hover) and (pointer: fine) {
-  .socialFloat:hover .mainButton {
-    box-shadow: 
-      0 0 20px rgba(0, 0, 0, 0.2),
-      0 0 40px rgba(0, 0, 0, 0.1);
-  }
-  
-  .socialContainer.expanded .socialLink:nth-child(1) {
-    animation: socialPulse 2s ease-in-out infinite;
-    animation-delay: 0.2s;
-  }
-}
-
-@keyframes socialPulse {
-  0%, 100% { 
+/* אפקט ברירת המחדל למובייל טאץ' */
+@media (hover: none) and (pointer: coarse) {
+  .ctaButton:hover {
+    transform: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
-  50% { 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  
+  .ctaButton:active {
+    transform: scale(0.95);
   }
 }

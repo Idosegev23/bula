@@ -50,165 +50,101 @@
   text-align: center;
 }
 
-/* === גריד הפרויקטים === */
-.projectsGrid {
+/* === גריד האינסטגרם === */
+.instagramGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2.5rem;
-  margin-bottom: 100px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 80px;
 }
 
-/* === כרטיס פרויקט === */
-.projectCard {
+/* === פוסט אינסטגרם === */
+.instagramPost {
   position: relative;
-  min-height: 450px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: #ffffff;
+  border-radius: 12px;
   overflow: hidden;
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
   opacity: 0;
-  transform: translateY(60px) scale(0.9);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.15),
-    0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
 }
 
-.projectCard.cardVisible {
+.instagramPost.cardVisible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
-.projectCard:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 
-    0 30px 80px rgba(0, 0, 0, 0.25),
-    0 12px 32px rgba(0, 0, 0, 0.2);
+.instagramPost:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
-/* === תוכן הכרטיס === */
-.projectContent {
+/* === Placeholder עבור פוסטים שעדיין לא הוגדרו === */
+.instagramPlaceholder {
   position: relative;
-  z-index: 3;
-  height: 100%;
-  padding: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 450px;
-}
-
-.projectMeta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.projectCategory {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.projectLocation {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 300;
-}
-
-.projectTitle {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 600;
-  margin: 0 0 1rem 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  line-height: 1.3;
-  color: white;
-}
-
-.projectDescription {
-  font-size: clamp(1rem, 2.2vw, 1.2rem);
-  font-weight: 300;
-  line-height: 1.6;
-  margin: 0 0 2rem 0;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  color: rgba(255, 255, 255, 0.9);
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-}
-
-/* === כפתור בכרטיס === */
-.projectButton {
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px dashed #dee2e6;
+  border-radius: 12px;
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  text-decoration: none;
-  font-family: inherit;
-  align-self: flex-start;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
 }
 
-.projectCard:hover .projectButton {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+.instagramPlaceholder.cardVisible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.buttonArrow {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.3s ease;
+.placeholderContent {
+  text-align: center;
+  color: #6c757d;
 }
 
-.projectCard:hover .buttonArrow {
-  transform: translateX(-4px);
+.instagramIcon {
+  margin-bottom: 16px;
+  opacity: 0.7;
 }
 
-/* === Overlay למעבר עכבר === */
-.projectOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg, 
-    rgba(0, 0, 0, 0.3) 0%, 
-    rgba(0, 0, 0, 0.1) 50%, 
-    rgba(0, 0, 0, 0.4) 100%
-  );
-  z-index: 2;
-  transition: all 0.3s ease;
+.placeholderContent h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #495057;
 }
 
-.projectCard:hover .projectOverlay {
-  background: linear-gradient(
-    135deg, 
-    rgba(0, 0, 0, 0.4) 0%, 
-    rgba(0, 0, 0, 0.2) 50%, 
-    rgba(0, 0, 0, 0.5) 100%
-  );
+.placeholderContent p {
+  font-size: 1rem;
+  margin: 0 0 4px 0;
 }
+
+.placeholderContent small {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* === סגנונות אינסטגרם נוספים === */
+.instagramPost .instagram-media {
+  margin: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  border: 1px solid #e0e0e0 !important;
+}
+
+.instagramPost blockquote {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #e0e0e0;
+}
+
+/* מוחק סגנונות ישנים - לא רלוונטיים יותר */
 
 /* === כפתור צפה בכל הפרויקטים === */
 .sectionFooter {
@@ -230,20 +166,26 @@
   padding: 16px 32px;
   font-size: 1.1rem;
   font-weight: 500;
-  color: #1a1a1a;
+  color: #ffffff;
   text-decoration: none;
-  border: 2px solid #1a1a1a;
+  border: 2px solid #e1306c;
   border-radius: 50px;
   transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(45deg, #e1306c, #fd1d1d, #f77737, #fcaf45, #ffdc80);
+  background-size: 200% 200%;
+  animation: instagram-gradient 3s ease infinite;
+}
+
+@keyframes instagram-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .viewAllButton:hover {
-  background: #1a1a1a;
-  color: white;
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(225, 48, 108, 0.3);
+  border-color: #ffffff;
 }
 
 .viewAllArrow {
@@ -258,67 +200,58 @@
 
 /* === Responsive === */
 @media (max-width: 1200px) {
-  .projectsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-  }
-  
-  .projectCard {
-    min-height: 400px;
-  }
-  
-  .projectContent {
-    padding: 2rem;
-    min-height: 400px;
+  .instagramGrid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
   }
 }
 
 @media (max-width: 1024px) {
   .projectsSection {
-    padding:  10px 0;
+    padding: 80px 0;
   }
   
   .container {
     padding: 0 24px;
   }
   
-  .projectsGrid {
+  .instagramGrid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
   
   .sectionHeader {
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
 }
 
 @media (max-width: 768px) {
   .projectsSection {
-    padding: 50px 0;
+    padding: 60px 0;
   }
   
   .container {
     padding: 0 20px;
   }
   
-  .projectsGrid {
+  .instagramGrid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
   }
   
-  .projectCard {
-    min-height: 350px;
-  }
-  
-  .projectContent {
-    padding: 1.5rem;
+  .instagramPlaceholder {
     min-height: 350px;
   }
   
   .sectionHeader {
-    margin-bottom: 70px;
+    margin-bottom: 50px;
+  }
+  
+  .viewAllButton {
+    padding: 14px 28px;
+    font-size: 1rem;
   }
 }
 
@@ -331,18 +264,8 @@
     padding: 0 16px;
   }
   
-  .projectCard {
+  .instagramPlaceholder {
     min-height: 300px;
-  }
-  
-  .projectContent {
-    padding: 1.2rem;
-    min-height: 300px;
-  }
-  
-  .projectButton {
-    padding: 10px 20px;
-    font-size: 0.9rem;
   }
   
   .viewAllButton {
@@ -351,7 +274,7 @@
   }
   
   .sectionHeader {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 }
 
