@@ -2,6 +2,8 @@
 // Text-focused minimalistic design following established patterns
 import React from 'react';
 import styles from './Services.module.css';
+import Spinner from '../UI/Spinner';
+
 
 interface ServicesProps {
   className?: string;
@@ -9,6 +11,8 @@ interface ServicesProps {
 
 export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   return (
+    <>
+    <Spinner/>
     <main className={`${styles.servicesPage} ${className}`}>
       {/* Hero Section */}
       <section className={styles.heroSection}>
@@ -133,5 +137,6 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
         </div>
       </section>
     </main>
+    </>
   );
 };

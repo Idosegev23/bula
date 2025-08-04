@@ -1,0 +1,65 @@
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.logo svg {
+  width: 300px;
+  height: auto;
+}
+
+.logo path {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.spinner path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  visibility: hidden;
+}
+
+
+.spinnerWrapper {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.85); /* semi-transparent white */
+  backdrop-filter: blur(6px); /* 💡 this adds the blur! */
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+  opacity: 0.97;
+  pointer-events: all;
+  visibility: visible;
+}
+
+.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.logo {
+  transition: transform 0.4s ease, opacity 0.3s ease;
+  transform: scale(1);
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scaleOut {
+  transform: scale(0);
+  opacity: 0;
+}
