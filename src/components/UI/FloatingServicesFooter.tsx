@@ -67,7 +67,7 @@ const ServiceButton: React.FC<{ service: Service; index: number; onClick: () => 
     const rc = rough.canvas(canvas);
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const radius = Math.min(rect.width, rect.height) * 0.4; // מעגל שתופס 80% מהכפתור
+    const radius = Math.min(rect.width, rect.height) * 0.45; // מעגל שתופס 90% מהכפתור
 
     // צבעים שונים לכל כפתור
     const colors = ['#d32f2f', '#1976d2', '#388e3c']; // אדום, כחול, ירוק
@@ -76,7 +76,7 @@ const ServiceButton: React.FC<{ service: Service; index: number; onClick: () => 
     // ציור מעגל בכתב יד - רק קו, בלי מילוי כלל
     rc.circle(centerX, centerY, radius * 2, {
       stroke: color,
-      strokeWidth: 1.8, // קו דק יותר
+      strokeWidth: 2.2, // קו עב יותר
       roughness: 2.5, // חספוס למראה כתב יד
       bowing: 2.0, // עיוות טבעי
       fill: undefined, // אין מילוי - undefined במקום 'none'
