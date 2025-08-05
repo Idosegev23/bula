@@ -187,106 +187,131 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
       const rc = rough.canvas(canvas);
       const w = canvas.offsetWidth;
       const h = canvas.offsetHeight;
+      
+      // התאמה רספונסיבית לגודל הכרטיס
+      const isMobile = h <= 150; // כרטיס קטן (מובייל)
+      const isTablet = h > 150 && h <= 300; // כרטיס בינוני (טאבלט)
+      
+      // הגדלות דינמיות לפי גודל המסך
+      const margin = isMobile ? 8 : 15; // מרווח מהקצה
+      const strokeWidth = isMobile ? 1.5 : 2; // עובי קו
+      const textSize = isMobile ? 8 : 10; // גודל טקסט
 
-      // הגדרת רדיוסים וצבעי עט לפי כרטיס
-      const radiusConfigs = [
+      // הגדרת רדיוסים רספונסיביים וצבעי עט לפי כרטיס
+      const baseRadiusConfigs = [
         { topLeft: 20, topRight: 8, bottomRight: 25, bottomLeft: 12 },   // כרטיס 1
         { topLeft: 15, topRight: 30, bottomRight: 10, bottomLeft: 22 }, // כרטיס 2  
         { topLeft: 12, topRight: 18, bottomRight: 28, bottomLeft: 6 }    // כרטיס 3
       ];
       
+      // התאמת רדיוסים לגודל המסך
+      const radiusScale = isMobile ? 0.6 : (isTablet ? 0.8 : 1);
+      const baseConfig = baseRadiusConfigs[index] || baseRadiusConfigs[0];
+      const radiusConfig = {
+        topLeft: Math.max(6, Math.round(baseConfig.topLeft * radiusScale)),
+        topRight: Math.max(4, Math.round(baseConfig.topRight * radiusScale)),
+        bottomRight: Math.max(6, Math.round(baseConfig.bottomRight * radiusScale)),
+        bottomLeft: Math.max(4, Math.round(baseConfig.bottomLeft * radiusScale))
+      };
+      
       // צבעי עט לכל כרטיס
       const penColors = ['#d32f2f', '#1976d2', '#388e3c']; // אדום, כחול, ירוק
       const penColor = penColors[index] || '#d32f2f';
       
-      const radiusConfig = radiusConfigs[index] || radiusConfigs[0];
       const { topLeft: topLeftRadius, topRight: topRightRadius, bottomRight: bottomRightRadius, bottomLeft: bottomLeftRadius } = radiusConfig;
 
-      // מסגרת הכרטיס עם רדיוס לא סימטרי (קירוב עם קווים)
-      const cardPath = `M${15 + topLeftRadius},15 
-        L${w - 15 - topRightRadius},15 
-        Q${w - 15},15 ${w - 15},${15 + topRightRadius}
-        L${w - 15},${h - 15 - bottomRightRadius}
-        Q${w - 15},${h - 15} ${w - 15 - bottomRightRadius},${h - 15}
-        L${15 + bottomLeftRadius},${h - 15}
-        Q15,${h - 15} 15,${h - 15 - bottomLeftRadius}
-        L15,${15 + topLeftRadius}
-        Q15,15 ${15 + topLeftRadius},15 Z`;
+      // מסגרת הכרטיס עם רדיוס לא סימטרי (דינמי לפי גודל)
+      const cardPath = `M${margin + topLeftRadius},${margin} 
+        L${w - margin - topRightRadius},${margin} 
+        Q${w - margin},${margin} ${w - margin},${margin + topRightRadius}
+        L${w - margin},${h - margin - bottomRightRadius}
+        Q${w - margin},${h - margin} ${w - margin - bottomRightRadius},${h - margin}
+        L${margin + bottomLeftRadius},${h - margin}
+        Q${margin},${h - margin} ${margin},${h - margin - bottomLeftRadius}
+        L${margin},${margin + topLeftRadius}
+        Q${margin},${margin} ${margin + topLeftRadius},${margin} Z`;
 
       rc.path(cardPath, {
         stroke: '#000000',
-        strokeWidth: 2,
+        strokeWidth: strokeWidth,
         roughness: 1.5,
         fill: '#ffffff',
         fillStyle: 'solid'
       });
 
-      // סימוני זוויות מחוץ לרדיוס - רק לפינות עם רדיוס גדול
+      // סימוני זוויות מחוץ לרדיוס - רק במסכים גדולים ופינות גדולות
+      const minRadiusForAnnotation = isMobile ? 10 : 12;
       
-      // פינה שמאל עליון - אם יש רדיוס גדול
-      if (topLeftRadius >= 15) {
-        const centerX = 15 + topLeftRadius;
-        const centerY = 15 + topLeftRadius;
+      // הגדרת משתנים לאלמנטים הנדסיים (כדי שיהיו זמינים לכל הפינות)
+      const lineExtension = isMobile ? 12 : 20;
+      const arcSize = isMobile ? 18 : 25;
+      const arcOffset = isMobile ? 6 : 10;
+      const textOffset = isMobile ? 18 : 25;
+      
+      // פינה שמאל עליון - אם יש רדיוס גדול ולא במובייל קטן מדי
+      if (!isMobile && topLeftRadius >= minRadiusForAnnotation) {
+        const centerX = margin + topLeftRadius;
+        const centerY = margin + topLeftRadius;
         
-        // קו מהמרכז החוצה לציון הרדיוס
-        rc.line(centerX, centerY, centerX - topLeftRadius - 20, centerY - topLeftRadius - 20, {
+        // קו מהמרכז החוצה לציון הרדיוס (רספונסיבי)
+        rc.line(centerX, centerY, centerX - topLeftRadius - lineExtension, centerY - topLeftRadius - lineExtension, {
           stroke: penColor,
-          strokeWidth: 1.5,
-          strokeLineDash: [4, 4],
+          strokeWidth: strokeWidth * 0.8,
+          strokeLineDash: [3, 3],
           roughness: 1.2
         });
         
-        // קשת הזווית מחוץ לרדיוס
-        rc.arc(centerX - topLeftRadius - 10, centerY - topLeftRadius - 10, 25, 25, 0, Math.PI * 0.5, false, {
+        // קשת הזווית מחוץ לרדיוס (קטנה יותר במובייל)
+        rc.arc(centerX - topLeftRadius - arcOffset, centerY - topLeftRadius - arcOffset, arcSize, arcSize, 0, Math.PI * 0.5, false, {
           stroke: penColor,
-          strokeWidth: 1.2,
+          strokeWidth: strokeWidth * 0.7,
           roughness: 1.3
         });
         
-        // כתב יד לרדיוס
-        ctx.font = '10px serif';
+        // כתב יד לרדיוס (קטן יותר במובייל)
+        ctx.font = `${textSize}px serif`;
         ctx.fillStyle = penColor;
         ctx.save();
-        ctx.translate(centerX - topLeftRadius - 25, centerY - topLeftRadius - 25);
+        ctx.translate(centerX - topLeftRadius - textOffset, centerY - topLeftRadius - textOffset);
         ctx.rotate(-0.1);
         ctx.fillText(`R${topLeftRadius}`, 0, 0);
         ctx.restore();
       }
       
-      // פינה ימין עליון - אם יש רדיוס גדול
-      if (topRightRadius >= 15) {
-        const centerX = w - 15 - topRightRadius;
-        const centerY = 15 + topRightRadius;
+      // פינה ימין עליון - אם יש רדיוס גדול ולא במובייל קטן מדי
+      if (!isMobile && topRightRadius >= minRadiusForAnnotation) {
+        const centerX = w - margin - topRightRadius;
+        const centerY = margin + topRightRadius;
         
-        // קו מהמרכז החוצה
-        rc.line(centerX, centerY, centerX + topRightRadius + 20, centerY - topRightRadius - 20, {
+        // קו מהמרכז החוצה (רספונסיבי)
+        rc.line(centerX, centerY, centerX + topRightRadius + lineExtension, centerY - topRightRadius - lineExtension, {
           stroke: penColor,
-          strokeWidth: 1.5,
-          strokeLineDash: [4, 4],
+          strokeWidth: strokeWidth * 0.8,
+          strokeLineDash: [3, 3],
           roughness: 1.2
         });
         
-        // קשת הזווית
-        rc.arc(centerX + topRightRadius + 10, centerY - topRightRadius - 10, 25, 25, Math.PI * 0.5, Math.PI, false, {
+        // קשת הזווית (רספונסיבי)
+        rc.arc(centerX + topRightRadius + arcOffset, centerY - topRightRadius - arcOffset, arcSize, arcSize, Math.PI * 0.5, Math.PI, false, {
           stroke: penColor,
-          strokeWidth: 1.2,
+          strokeWidth: strokeWidth * 0.7,
           roughness: 1.3
         });
         
-        // כתב יד לרדיוס
-        ctx.font = '10px serif';
+        // כתב יד לרדיוס (רספונסיבי)
+        ctx.font = `${textSize}px serif`;
         ctx.fillStyle = penColor;
         ctx.save();
-        ctx.translate(centerX + topRightRadius + 15, centerY - topRightRadius - 25);
+        ctx.translate(centerX + topRightRadius + (textOffset * 0.6), centerY - topRightRadius - textOffset);
         ctx.rotate(0.1);
         ctx.fillText(`R${topRightRadius}`, 0, 0);
         ctx.restore();
       }
       
-      // פינה ימין תחתון - אם יש רדיוס גדול
-      if (bottomRightRadius >= 15) {
-        const centerX = w - 15 - bottomRightRadius;
-        const centerY = h - 15 - bottomRightRadius;
+      // פינה ימין תחתון - אם יש רדיוס גדול ולא במובייל קטן מדי
+      if (!isMobile && bottomRightRadius >= minRadiusForAnnotation) {
+        const centerX = w - margin - bottomRightRadius;
+        const centerY = h - margin - bottomRightRadius;
         
         // קו מהמרכז החוצה
         rc.line(centerX, centerY, centerX + bottomRightRadius + 20, centerY + bottomRightRadius + 20, {
@@ -343,10 +368,12 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
         ctx.restore();
       }
 
-      // מדידת רוחב בחלק העליון
-      const measureY = 35;
-      const measureStartX = 50;
-      const measureEndX = w - 50;
+      // מדידות וסימונים הנדסיים - רק במסכים גדולים
+      if (!isMobile) {
+        // מדידת רוחב בחלק העליון
+        const measureY = 35;
+        const measureStartX = 50;
+        const measureEndX = w - 50;
       
       // קו המדידה הראשי
       rc.line(measureStartX, measureY, measureEndX, measureY, {
@@ -429,6 +456,7 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
       ctx.font = 'bold 16px monospace';
       ctx.fillStyle = penColor;
       ctx.fillText(`${String(index + 1).padStart(2, '0')}`, 25, h - 25);
+      } // סגירת התנאי !isMobile
     };
 
     const timer = setTimeout(() => {
