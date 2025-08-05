@@ -1,107 +1,101 @@
-/* פוטר צף לשירותים - זכוכית שקופה */
+/* פוטר צף קטן ובולט - במרכז התחתון */
 .floatingFooter {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.15); /* שקוף הרבה יותר */
-  backdrop-filter: blur(20px) saturate(1.2); /* בלור חזק יותר */
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px); /* התחל מתחת למסך */
+  width: auto;
+  max-width: 320px;
+  background: rgba(0, 0, 0, 0.85); /* רקע כהה בולט */
+  backdrop-filter: blur(20px) saturate(1.2);
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 
-    0 -8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4); /* הבלטה פנימית */
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   z-index: 9999;
-  transform: translateY(100%);
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* אנימציה חלקה יותר */
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   opacity: 0;
   pointer-events: none;
-  visibility: hidden; /* מניעת קפיצות */
+  visibility: hidden;
 }
 
 .floatingFooter.visible {
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0); /* מרכז אופקית, מעלה אנכית */
   opacity: 1;
   pointer-events: all;
   visibility: visible;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); /* כניסה איטית יותר */
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 8px 16px 6px;
+  padding: 12px 16px;
   direction: rtl;
 }
 
 .title {
   font-family: 'DanaYad', 'Courier New', monospace;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9); /* טקסט בהיר לזכוכית */
+  color: rgba(255, 255, 255, 0.95);
   text-align: center;
-  margin-bottom: 6px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* צל לקריאות */
+  margin-bottom: 8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .services {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 4px;
 }
 
 .service {
-  background: transparent; /* ללא רקע */
-  border: none; /* ללא גבול */
-  border-radius: 0;
-  padding: 10px 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 8px 12px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-  overflow: visible; /* כדי לראות את המעגל */
+  backdrop-filter: blur(10px);
+  min-width: 80px;
+  user-select: none;
 }
 
 .service:hover {
-  transform: translateY(-1px);
-  /* ללא רקע או צללים - רק הרמה קלה */
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Canvas למעגל כתב יד - שקוף לחלוטין */
-.serviceCanvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  background: transparent !important; /* וידוא שקיפות */
-  background-color: transparent !important;
-  opacity: 1; /* שקיפות מלאה אך נראה */
-}
-
+/* תוכן הכפתור */
 .serviceContent {
-  position: relative;
-  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 
 .serviceTitle {
   font-family: 'DanaYad', 'Courier New', monospace;
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.95); /* טקסט בהיר לזכוכית */
+  color: rgba(255, 255, 255, 0.95);
   line-height: 1.2;
   margin-bottom: 2px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* צל חזק לקריאות */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .serviceSubtitle {
   font-family: 'DanaYad', 'Courier New', monospace;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.75); /* טקסט בהיר יותר */
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.1;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* צל לקריאות */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .closeButton {

@@ -1,5 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
-import rough from 'roughjs';
+import React, { useState, useEffect } from 'react';
 import styles from './FloatingServicesFooter.module.css';
 
 interface Service {
@@ -30,70 +29,18 @@ const services: Service[] = [
   }
 ];
 
-// רכיב כפתור עם מעגל כתב יד
-const ServiceButton: React.FC<{ service: Service; index: number; onClick: () => void }> = ({ 
+// רכיב כפתור פשוט ובולט
+const ServiceButton: React.FC<{ service: Service; onClick: () => void }> = ({ 
   service, 
-  index, 
   onClick 
 }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // התאמה לגודל האלמנט
-    const rect = canvas.getBoundingClientRect();
-    const scale = window.devicePixelRatio || 1;
-    
-    canvas.width = rect.width * scale;
-    canvas.height = rect.height * scale;
-    canvas.style.width = rect.width + 'px';
-    canvas.style.height = rect.height + 'px';
-    
-    ctx.scale(scale, scale);
-
-    // ניקוי מוחלט של כל המסך
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // וידוא שהCanvas שקוף לחלוטין ללא רקע
-    ctx.globalAlpha = 1.0; 
-    ctx.globalCompositeOperation = 'source-over';
-
-    // ציור מעגל כתב יד עם Rough.js
-    const rc = rough.canvas(canvas);
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const radius = Math.min(rect.width, rect.height) * 0.45; // מעגל שתופס 90% מהכפתור
-
-    // צבעים שונים לכל כפתור
-    const colors = ['#d32f2f', '#1976d2', '#388e3c']; // אדום, כחול, ירוק
-    const color = colors[index] || '#d32f2f';
-    
-    // ציור מעגל בכתב יד - רק קו, בלי מילוי כלל
-    rc.circle(centerX, centerY, radius * 2, {
-      stroke: color,
-      strokeWidth: 2.2, // קו עב יותר
-      roughness: 2.5, // חספוס למראה כתב יד
-      bowing: 2.0, // עיוות טבעי
-      fill: undefined, // אין מילוי - undefined במקום 'none'
-      fillWeight: 0, // משקל מילוי אפס
-      disableMultiStroke: false // מאפשר קווים מרובים לטבעיות
-    });
-
-  }, [index]);
-
   return (
-    <div className={styles.service} onClick={onClick}>
-      <canvas ref={canvasRef} className={styles.serviceCanvas} />
+    <button className={styles.service} onClick={onClick}>
       <div className={styles.serviceContent}>
         <div className={styles.serviceTitle}>{service.title}</div>
         <div className={styles.serviceSubtitle}>{service.subtitle}</div>
       </div>
-    </div>
+    </button>
   );
 };
 
@@ -135,12 +82,11 @@ const FloatingServicesFooter: React.FC<FloatingServicesFooterProps> = ({ isVisib
       <div className={styles.container}>
         <div className={styles.title}>השירותים שלנו</div>
         <div className={styles.services}>
-          {services.map((service, index) => (
+          {services.map((service) => (
             <ServiceButton
               key={service.id}
               service={service}
-              index={index}
-                                onClick={handleServiceClick}
+              onClick={handleServiceClick}
             />
           ))}
         </div>
