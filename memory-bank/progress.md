@@ -43,6 +43,7 @@
 - **✅ Rollup Dependencies** - בעיית optional dependencies תוקנה
 - **✅ Floating Footer Redesign** - עיצוב מחדש פשוט ובולט
 - **✅ CSS Container Removal** - הסרת קונטיינר CSS והוספת הצללה לRough.js
+- **✅ Mobile Responsive Design** - כרטיסי שירותים קומפקטיים למובייל
 
 ### קומפוננטים שנבנו:
 - `Hero.tsx` + `Hero.module.css`
