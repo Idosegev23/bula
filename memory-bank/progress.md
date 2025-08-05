@@ -39,7 +39,8 @@
 - **✅ Performance** - 28KB CSS, 241KB JS + GSAP animations
 - **✅ Accessibility** - ARIA labels, semantic HTML, keyboard navigation
 - **✅ Global Spinner** - אנימציית כניסה GSAP בכל הדפים
-- **✅ TypeScript Build** - תואם לVercel deployment ללא שגיאות
+- **✅ TypeScript Build** - תואם לVercel deployment ללא שגיאות  
+- **✅ Rollup Dependencies** - בעיית optional dependencies תוקנה
 
 ### קומפוננטים שנבנו:
 - `Hero.tsx` + `Hero.module.css`

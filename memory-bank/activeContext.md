@@ -1,6 +1,6 @@
 # Active Context - הקשר פעיל
 
-## 🎯 מיקוד נוכחי: שיפור הפוטר הצף - קטן יותר וכפתורים גדולים יותר
+## 🎯 מיקוד נוכחי: תיקון בעיית Rollup Dependency עבור Vercel Build
 
 **סטטוס:** הושלם בהצלחה בתאריך 22.1.25
 
@@ -47,6 +47,14 @@
 - **קווים עבים:** strokeWidth הוגדל ל-2.2 מ-1.8
 - **Responsive מחודש:** פדינג וגדלים מותאמים לכל הרזולוציות
 - **משתמש טוב יותר:** הפוטר קטן פחות מסתיר, כפתורים ברורים יותר
+
+### 🆕 תיקון בעיית Rollup החדש ביותר:
+- **הבעיה:** "Cannot find module @rollup/rollup-linux-x64-gnu" בVercel build
+- **הסיבה:** bug ידוע של npm עם optional dependencies (GitHub issue #4828)
+- **הפתרון:** מחיקת package-lock.json ו-node_modules + npm install מחדש
+- **תוצאה:** package-lock.json חדש עם dependencies מתוקנים
+- **Build עובר:** vite v7.0.6, 79 modules, 419.18 kB JS (gzip: 141.14 kB)
+- **Vercel ready:** commit c06c724 מוכן לdeployment מוצלח
 
 ### 🎨 רכיבי השירותים הטכניים במצב מושלם:
 - **TechnicalServiceCards:** עיצוב הנדסי עם Rough.js
