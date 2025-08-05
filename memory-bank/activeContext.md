@@ -1,6 +1,6 @@
 # Active Context - הקשר פעיל
 
-## 🎯 מיקוד נוכחי: עיצוב מחדש של הפוטר הצף - פשוט ובולט יותר
+## 🎯 מיקוד נוכחי: הסרת קונטיינר CSS והוספת הצללה לציור Rough.js
 
 **סטטוס:** הושלם בהצלחה בתאריך 22.1.25
 
@@ -65,6 +65,15 @@
 - **אינטראקציה:** hover עם הרמה (translateY(-2px)) ו-box-shadow
 - **גדלים:** max-width: 320px, padding מצומצם, flex במקום grid
 - **עיצוב רספונסיבי:** מותאם לכל המסכים עם bottom: 20px קבוע
+
+### 🎨 הסרת קונטיינר CSS והוספת הצללה לציור Rough.js החדש ביותר:
+- **הבעיה המקורית:** כפילות עיצוב - גם CSS border וגם ציור Rough.js של border  
+- **הפתרון:** הסרת קונטיינר CSS והשארת רק ציור Rough.js טהור
+- **הסרת קונטיינר:** ביטול border, box-shadow ו-border-radius של CSS מ-.card
+- **רקע שקוף:** שינוי מ-#ffffff ל-transparent (הRough.js מציירן את הרקע הלבן)
+- **הצללה חכמה:** שינוי מ-box-shadow ל-drop-shadow שעוקב אחרי הציור היד
+- **Hover מודגש:** שכבות drop-shadow מרובות לעומק ותלת-ממד טבעי
+- **עיצוב נקי:** רק ציור Rough.js בלי שכבות CSS מיותרות
 
 ### 🎨 רכיבי השירותים הטכניים במצב מושלם:
 - **TechnicalServiceCards:** עיצוב הנדסי עם Rough.js

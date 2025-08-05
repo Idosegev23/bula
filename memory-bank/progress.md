@@ -42,6 +42,7 @@
 - **✅ TypeScript Build** - תואם לVercel deployment ללא שגיאות  
 - **✅ Rollup Dependencies** - בעיית optional dependencies תוקנה
 - **✅ Floating Footer Redesign** - עיצוב מחדש פשוט ובולט
+- **✅ CSS Container Removal** - הסרת קונטיינר CSS והוספת הצללה לRough.js
 
 ### קומפוננטים שנבנו:
 - `Hero.tsx` + `Hero.module.css`
