@@ -1,6 +1,6 @@
 # Active Context - הקשר פעיל
 
-## 🎯 מיקוד נוכחי: הוספת Spinner עם GSAP לכל הדפים
+## 🎯 מיקוד נוכחי: תיקון שגיאות TypeScript עבור Vercel Build
 
 **סטטוס:** הושלם בהצלחה בתאריך 22.1.25
 
@@ -31,6 +31,13 @@
 - **GSAP Animation:** אנימציית כניסה מתקדמת עם DrawSVGPlugin ו-MotionPathPlugin
 - **Global Coverage:** כל המעברים בין דפים מציגים את הSpinner
 - **Performance:** טעינה מיטבית עם onFinish callback
+
+### 🆕 תיקונים חדשים - TypeScript Build Fixes:
+- **שגיאת NodeJS.Timeout:** הוחלף ב-number עבור browser compatibility
+- **פרמטר serviceId לא בשימוש:** הוסר מ-handleServiceClick ב-FloatingServicesFooter
+- **RefObject import:** שונה לtype-only import ב-useIntersectionObserver
+- **Build בהצלחה:** npm run build עובר ללא שגיאות TypeScript
+- **Vercel ready:** מוכן לdeployment בענן
 
 ### 🎨 רכיבי השירותים הטכניים במצב מושלם:
 - **TechnicalServiceCards:** עיצוב הנדסי עם Rough.js
