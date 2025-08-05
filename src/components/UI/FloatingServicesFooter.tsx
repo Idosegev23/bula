@@ -102,7 +102,7 @@ const FloatingServicesFooter: React.FC<FloatingServicesFooterProps> = ({ isVisib
   const [delayedVisible, setDelayedVisible] = useState(false);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: number;
     
     if (isVisible) {
       // הופעה עם השהיה קטנה
@@ -119,11 +119,11 @@ const FloatingServicesFooter: React.FC<FloatingServicesFooterProps> = ({ isVisib
     };
   }, [isVisible]);
 
-  const handleServiceClick = (serviceId: string) => {
+    const handleServiceClick = () => {
     // גלילה חזרה לסקשן השירותים
     const servicesSection = document.getElementById('technical-services');
     if (servicesSection) {
-      servicesSection.scrollIntoView({ 
+      servicesSection.scrollIntoView({
         behavior: 'smooth',
         block: 'center'
       });
@@ -140,11 +140,11 @@ const FloatingServicesFooter: React.FC<FloatingServicesFooterProps> = ({ isVisib
               key={service.id}
               service={service}
               index={index}
-              onClick={() => handleServiceClick(service.id)}
+                                onClick={handleServiceClick}
             />
           ))}
         </div>
-        <div className={styles.closeButton} onClick={() => handleServiceClick('close')}>
+        <div className={styles.closeButton} onClick={handleServiceClick}>
           ↑ חזרה לשירותים
         </div>
       </div>
