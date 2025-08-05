@@ -32,14 +32,16 @@
 - **✅ CSS Modules** - ארכיטקטורת styles מודולרית
 - **✅ TypeScript** - type safety מלא
 - **✅ Responsive Design** - mobile-first עם breakpoints נכונים
-- **✅ Performance** - 28KB CSS, 241KB JS
+- **✅ Performance** - 28KB CSS, 241KB JS + GSAP animations
 - **✅ Accessibility** - ARIA labels, semantic HTML, keyboard navigation
+- **✅ Global Spinner** - אנימציית כניסה GSAP בכל הדפים
 
 ### קומפוננטים שנבנו:
 - `Hero.tsx` + `Hero.module.css`
 - `TechnicalServiceCards.tsx` + `TechnicalServiceCards.module.css`
 - `FloatingServicesFooter.tsx` + `FloatingServicesFooter.module.css`
 - `InstagramWidget.tsx` + `InstagramWidget.module.css` (החליף את FeaturedProjects)
+- `Spinner.tsx` + `spinner.module.css` (Global GSAP animations)
 - `SocialFloat.tsx` + `SocialFloat.module.css`
 - `ComplexitySection.tsx` + `ComplexitySection.module.css`
 - `Testimonials.tsx` + `Testimonials.module.css`
@@ -50,6 +52,7 @@
 - **Canvas API:** ציור רכיבים אינטראקטיביים
 - **IntersectionObserver:** גילוי נוכחות אלמנטים
 - **LightWidget:** ווידג'ט אינסטגרם חיצוני מתקדם
+- **GSAP:** אנימציות מתקדמות עם DrawSVGPlugin ו-MotionPathPlugin
 - **DanaYadAlefAlefAlef-Normal.otf:** פונט כתב יד עברי
 - **hooks/useIntersectionObserver.ts:** hook מותאם אישית
 

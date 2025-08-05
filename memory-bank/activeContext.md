@@ -1,6 +1,6 @@
 # Active Context - הקשר פעיל
 
-## 🎯 מיקוד נוכחי: החלפת סקשן אינסטגרם בווידג'ט LightWidget
+## 🎯 מיקוד נוכחי: הוספת Spinner עם GSAP לכל הדפים
 
 **סטטוס:** הושלם בהצלחה בתאריך 22.1.25
 
@@ -24,6 +24,13 @@
 - **טעינה מתקדמת:** lazy loading + script management + loading states
 - **עיצוב זהה:** אותו styling כמו FeaturedProjects אבל עם תוכן אמיתי מאינסטגרם
 - **App.tsx מעודכן:** החלפה מלאה של הרכיב בדף הבית
+
+### 🆕 השינוי החדש ביותר - Spinner Global:
+- **הוספת Spinner לApp.tsx:** עכשיו מופיע בכל הדפים כולל דף הבית
+- **הסרה מServices.tsx:** הסרנו את הSpinner המקומי מדף השירותים
+- **GSAP Animation:** אנימציית כניסה מתקדמת עם DrawSVGPlugin ו-MotionPathPlugin
+- **Global Coverage:** כל המעברים בין דפים מציגים את הSpinner
+- **Performance:** טעינה מיטבית עם onFinish callback
 
 ### 🎨 רכיבי השירותים הטכניים במצב מושלם:
 - **TechnicalServiceCards:** עיצוב הנדסי עם Rough.js

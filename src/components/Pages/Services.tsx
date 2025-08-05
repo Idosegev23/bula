@@ -1,7 +1,6 @@
 // Services - Main Services Page
 import React from 'react';
 import styles from './Services.module.css';
-import Spinner from '../UI/Spinner';
 
 
 interface ServicesProps {
@@ -10,8 +9,6 @@ interface ServicesProps {
 
 export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   return (
-    <>
-    <Spinner/>
     <main className={`${styles.servicesPage} ${className}`}>
       {/* Hero Section */}
       <section className={styles.heroSection}>
@@ -136,6 +133,5 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
         </div>
       </section>
     </main>
-    </>
   );
 };

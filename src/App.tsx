@@ -12,6 +12,7 @@ import { Hero } from './components/UI/Hero';
 import { TechnicalServiceCards } from './components/UI/TechnicalServiceCards';
 import { InstagramWidget } from './components/UI/InstagramWidget';
 import { SocialFloat } from './components/UI/SocialFloat';
+import Spinner from './components/UI/Spinner';
 
 // Page Components
 import { Services } from './components/Pages/Services';
@@ -66,6 +67,9 @@ const App: React.FC = () => {
     <AccessibilityProvider>
       <Router>
         <div className="App">
+          {/* Spinner עם GSAP לכל הדפים */}
+          <Spinner />
+          
           <Header />
           <main id="main-content">
             <Routes>
