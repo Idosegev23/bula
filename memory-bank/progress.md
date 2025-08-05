@@ -4,11 +4,19 @@
 
 ### סקציות שהושלמו:
 1. **✅ Hero Section** - מכת פתיחה עם כותרת ענקית ו-2 כפתורי CTA
-2. **✅ ComplexitySection** - הבנת המורכבות והפתרון של בולה 
-3. **✅ TargetAudiences** - 3 קהלי יעד: עיצוב מסחרי, אדריכלים, ריהוט פרטי
-   - **חדש:** תצוגה מוביילית משופרת - 3 פריטים בשורה
-   - **חדש:** כפתורים צפים ל-scroll navigation
-4. **✅ ProcessSteps** - 4 שלבי עבודה: רעיון → תכנון → ייצור → התקנה
+2. **✅ TechnicalServiceCards** - 3 שירותים עם עיצוב הנדסי:
+   - **עיצוב Rough.js:** מדידות זוויות, מדידות רוחב, עיגולי כתב יד
+   - **אלמנטים טכניים:** סימוני 90°, מדידות 24cm, מעגלים בכתב יד
+   - **צבעי עט:** אדום, כחול, ירוק לכל שירות
+   - **פונט DanaYad:** כתב יד על כל הטקסטים
+   - **כפתורים שקופים:** מסגרת כתב יד בלי רקע
+   - **רקע הנדסי:** תמונת SVG דהויה לכל קונטיינר
+3. **✅ FloatingServicesFooter** - פוטר צף זכוכית:
+   - **אפקט זכוכית:** backdrop-filter blur(20px) עם rgba שקוף
+   - **מעגלים בכתב יד:** Rough.js ללא מילוי, רק קווי מתאר
+   - **IntersectionObserver:** הופעה בגלילה מחוץ לסקציה
+   - **השהיה 300ms:** מניעת קפיצות בהופעה
+4. **✅ ComplexitySection** - הבנת המורכבות והפתרון של בולה 
 5. **✅ FeaturedProjects** - 6 פרויקטים נבחרים עם Grid responsive
 6. **✅ Testimonials** - קרוסלת המלצות עם navigation ואינדיקטורים
 7. **✅ CTASection** - קריאה לפעולה עם כפתורי קשר ווואטסאפ
@@ -23,12 +31,20 @@
 
 ### קומפוננטים שנבנו:
 - `Hero.tsx` + `Hero.module.css`
+- `TechnicalServiceCards.tsx` + `TechnicalServiceCards.module.css`
+- `FloatingServicesFooter.tsx` + `FloatingServicesFooter.module.css`
+- `SocialFloat.tsx` + `SocialFloat.module.css`
 - `ComplexitySection.tsx` + `ComplexitySection.module.css`
-- `TargetAudiences.tsx` + `TargetAudiences.module.css`
-- `ProcessSteps.tsx` + `ProcessSteps.module.css`
 - `FeaturedProjects.tsx` + `FeaturedProjects.module.css`
 - `Testimonials.tsx` + `Testimonials.module.css`
 - `CTASection.tsx` + `CTASection.module.css`
+
+### חבילות וטכנולוגיות חדשות:
+- **Rough.js:** ליצירת גרפיקה בכתב יד
+- **Canvas API:** ציור רכיבים אינטראקטיביים
+- **IntersectionObserver:** גילוי נוכחות אלמנטים
+- **DanaYadAlefAlefAlef-Normal.otf:** פונט כתב יד עברי
+- **hooks/useIntersectionObserver.ts:** hook מותאם אישית
 
 ---
 
