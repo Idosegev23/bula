@@ -1,5 +1,4 @@
 // Services - Main Services Page
-// Text-focused minimalistic design following established patterns
 import React from 'react';
 import styles from './Services.module.css';
 import Spinner from '../UI/Spinner';
