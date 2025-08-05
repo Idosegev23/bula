@@ -41,6 +41,7 @@
 - **✅ Global Spinner** - אנימציית כניסה GSAP בכל הדפים
 - **✅ TypeScript Build** - תואם לVercel deployment ללא שגיאות  
 - **✅ Rollup Dependencies** - בעיית optional dependencies תוקנה
+- **✅ Floating Footer Redesign** - עיצוב מחדש פשוט ובולט
 
 ### קומפוננטים שנבנו:
 - `Hero.tsx` + `Hero.module.css`

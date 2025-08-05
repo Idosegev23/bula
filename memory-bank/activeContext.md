@@ -1,6 +1,6 @@
 # Active Context - הקשר פעיל
 
-## 🎯 מיקוד נוכחי: תיקון בעיית Rollup Dependency עבור Vercel Build
+## 🎯 מיקוד נוכחי: עיצוב מחדש של הפוטר הצף - פשוט ובולט יותר
 
 **סטטוס:** הושלם בהצלחה בתאריך 22.1.25
 
@@ -55,6 +55,16 @@
 - **תוצאה:** package-lock.json חדש עם dependencies מתוקנים
 - **Build עובר:** vite v7.0.6, 79 modules, 419.18 kB JS (gzip: 141.14 kB)
 - **Vercel ready:** commit c06c724 מוכן לdeployment מוצלח
+
+### 🎨 עיצוב מחדש של הפוטר הצף החדש ביותר:
+- **הבעיה המקורית:** "מסיבי מדי מסתיר הרבה" + "כפתורים כמעט ולא רואים אותם"
+- **הפתרון:** פוטר קטן במרכז התחתון במקום רחב על כל המסך
+- **עיצוב חדש:** רקע כהה בולט (rgba(0,0,0,0.85)) עם אפקט זכוכית  
+- **כפתורים:** פשוטים עם רקע לבן שקוף ובורדר ברור
+- **הסרת מורכבות:** ביטלנו מעגלי כתב יד (Rough.js) לטובת CSS פשוט
+- **אינטראקציה:** hover עם הרמה (translateY(-2px)) ו-box-shadow
+- **גדלים:** max-width: 320px, padding מצומצם, flex במקום grid
+- **עיצוב רספונסיבי:** מותאם לכל המסכים עם bottom: 20px קבוע
 
 ### 🎨 רכיבי השירותים הטכניים במצב מושלם:
 - **TechnicalServiceCards:** עיצוב הנדסי עם Rough.js
