@@ -17,7 +17,13 @@
    - **IntersectionObserver:** הופעה בגלילה מחוץ לסקציה
    - **השהיה 300ms:** מניעת קפיצות בהופעה
 4. **✅ ComplexitySection** - הבנת המורכבות והפתרון של בולה 
-5. **✅ FeaturedProjects** - 6 פרויקטים נבחרים עם Grid responsive
+5. **✅ InstagramWidget** - ווידג'ט אינסטגרם עם LightWidget:
+   - **טעינה lazy:** IntersectionObserver עם threshold 0.2
+   - **Script management:** ניהול אוטומטי של LightWidget.js
+   - **Loading states:** spinner מותאם ומצבי טעינה ברורים
+   - **Responsive design:** mobile-first עם min-height מותאם
+   - **Error handling:** טיפול בכשלונות טעינה
+   - **Performance:** cleanup אוטומטי וביצועים מיטביים
 6. **✅ Testimonials** - קרוסלת המלצות עם navigation ואינדיקטורים
 7. **✅ CTASection** - קריאה לפעולה עם כפתורי קשר ווואטסאפ
 
@@ -33,9 +39,9 @@
 - `Hero.tsx` + `Hero.module.css`
 - `TechnicalServiceCards.tsx` + `TechnicalServiceCards.module.css`
 - `FloatingServicesFooter.tsx` + `FloatingServicesFooter.module.css`
+- `InstagramWidget.tsx` + `InstagramWidget.module.css` (החליף את FeaturedProjects)
 - `SocialFloat.tsx` + `SocialFloat.module.css`
 - `ComplexitySection.tsx` + `ComplexitySection.module.css`
-- `FeaturedProjects.tsx` + `FeaturedProjects.module.css`
 - `Testimonials.tsx` + `Testimonials.module.css`
 - `CTASection.tsx` + `CTASection.module.css`
 
@@ -43,6 +49,7 @@
 - **Rough.js:** ליצירת גרפיקה בכתב יד
 - **Canvas API:** ציור רכיבים אינטראקטיביים
 - **IntersectionObserver:** גילוי נוכחות אלמנטים
+- **LightWidget:** ווידג'ט אינסטגרם חיצוני מתקדם
 - **DanaYadAlefAlefAlef-Normal.otf:** פונט כתב יד עברי
 - **hooks/useIntersectionObserver.ts:** hook מותאם אישית
 

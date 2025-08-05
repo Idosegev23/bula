@@ -1,8 +1,8 @@
 # Active Context - הקשר פעיל
 
-## 🎯 מיקוד נוכחי: שילוב שינויים מ-git הושלם בהצלחה
+## 🎯 מיקוד נוכחי: החלפת סקשן אינסטגרם בווידג'ט LightWidget
 
-**סטטוס:** מסונכרן ומעודכן בתאריך 22.1.25
+**סטטוס:** הושלם בהצלחה בתאריך 22.1.25
 
 ### ✅ השינויים שנמשכו ושולבו:
 - **Spinner Component:** רכיב טעינה חדש עם GSAP
@@ -17,6 +17,13 @@
 4. ✅ עשיתי commit משולב של כל השינויים
 5. ✅ העליתי לרפו המרוחק בהצלחה (ce63c4c)
 6. ✅ השרת רץ ועובד תקין על localhost:5173
+
+### 🆕 השינוי החדש שהושלם:
+- **החלפת FeaturedProjects ב-InstagramWidget:** הרכיב החדש מטמיע ווידג'ט LightWidget
+- **LightWidget Integration:** ID e8b18f000bb55d7eba116bb01cde9b00 עם סקריפט אוטומטי
+- **טעינה מתקדמת:** lazy loading + script management + loading states
+- **עיצוב זהה:** אותו styling כמו FeaturedProjects אבל עם תוכן אמיתי מאינסטגרם
+- **App.tsx מעודכן:** החלפה מלאה של הרכיב בדף הבית
 
 ### 🎨 רכיבי השירותים הטכניים במצב מושלם:
 - **TechnicalServiceCards:** עיצוב הנדסי עם Rough.js

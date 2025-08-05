@@ -10,7 +10,7 @@ import { Footer } from './components/Layout/Footer';
 // UI Components
 import { Hero } from './components/UI/Hero';
 import { TechnicalServiceCards } from './components/UI/TechnicalServiceCards';
-import { FeaturedProjects } from './components/UI/FeaturedProjects';
+import { InstagramWidget } from './components/UI/InstagramWidget';
 import { SocialFloat } from './components/UI/SocialFloat';
 
 // Page Components
@@ -33,8 +33,8 @@ const HomePage: React.FC = () => {
       {/* 2. שלושת השירותים - עיצוב הנדסי */}
       <TechnicalServiceCards />
       
-      {/* 3. פרויקטים נבחרים */}
-      <FeaturedProjects />
+      {/* 3. ווידג'ט אינסטגרם */}
+      <InstagramWidget />
     </main>
   );
 };
