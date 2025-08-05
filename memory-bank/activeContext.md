@@ -1,6 +1,6 @@
 # Active Context - הקשר פעיל
 
-## 🎯 מיקוד נוכחי: תיקון שגיאות TypeScript עבור Vercel Build
+## 🎯 מיקוד נוכחי: שיפור הפוטר הצף - קטן יותר וכפתורים גדולים יותר
 
 **סטטוס:** הושלם בהצלחה בתאריך 22.1.25
 
@@ -38,6 +38,15 @@
 - **RefObject import:** שונה לtype-only import ב-useIntersectionObserver
 - **Build בהצלחה:** npm run build עובר ללא שגיאות TypeScript
 - **Vercel ready:** מוכן לdeployment בענן
+
+### 🆕 שיפורי הפוטר הצף החדשים ביותר:
+- **z-index גבוה:** הועלה ל-9999 לנראות מושלמת בכל הסקשנים
+- **קיטון גובה:** פדינג נקטן מ-16px ל-8px, רווחים מ-12px ל-6px-8px
+- **כפתורים גדולים:** פונטים הוגדלו ל-1rem/0.8rem מ-0.85rem/0.7rem
+- **מעגלים גדולים:** radius הוגדל ל-90% מגודל הכפתור (מ-80%)
+- **קווים עבים:** strokeWidth הוגדל ל-2.2 מ-1.8
+- **Responsive מחודש:** פדינג וגדלים מותאמים לכל הרזולוציות
+- **משתמש טוב יותר:** הפוטר קטן פחות מסתיר, כפתורים ברורים יותר
 
 ### 🎨 רכיבי השירותים הטכניים במצב מושלם:
 - **TechnicalServiceCards:** עיצוב הנדסי עם Rough.js
