@@ -1,6 +1,9 @@
-// Services - Main Services Page
+// Services - Main Services Page (One Stop Shop Process)
 import React from 'react';
 import styles from './Services.module.css';
+import { BlueprintInteractive } from '../UI/BlueprintInteractive';
+import RoughLogo from '../UI/RoughLogo';
+import HeroBlueprintCanvas from '../UI/HeroBlueprintCanvas';
 
 
 interface ServicesProps {
@@ -14,121 +17,66 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       <section className={styles.heroSection}>
         <div className={styles.container}>
           <div className={styles.heroContent}>
-            <h1 className={styles.heroTitle}>
-              השירותים שלנו
-            </h1>
-            <p className={styles.heroSubtitle}>
-              פתרונות מקצועיים בתחומי העיצוב והייצור
-            </p>
+            <HeroBlueprintCanvas />
+            <div className={styles.heroLogoWrap}>
+              <RoughLogo src="/bulla_logo.svg" className={styles.heroLogo} stroke="#000" strokeWidth={1.9} roughness={3.6} bowing={2.2} repeats={3} />
+            </div>
+            <h1 className={styles.heroTitle}>one stop shop לעסק שלך</h1>
+            <p className={styles.heroSubtitle}>מרעיון לביצוע – הכל במקום אחד, בתהליך מסודר וברור</p>
           </div>
         </div>
       </section>
-
-      {/* Services Grid */}
-      <section className={styles.servicesSection}>
+      {/* Process Section - Dedicated Page */}
+      <section id="commercial" className={styles.commercialSection}>
         <div className={styles.container}>
-          <div className={styles.servicesGrid}>
-            {/* Commercial Design */}
-            <div className={styles.service}>
-              <div className={styles.serviceNumber}>01</div>
-              <h2 className={styles.serviceTitle}>עיצוב מסחרי</h2>
-              <p className={styles.serviceDescription}>
-                ליווי כולל להקמת עסק – תכנון חוויית לקוח, עיצוב מרחבים, 
-                התאמה לרגולציה, ייצור מותאם אישית והתקנה מושלמת
-              </p>
-              <div className={styles.serviceDetails}>
-                <h3 className={styles.detailsTitle}>מה כלול:</h3>
-                <ul className={styles.detailsList}>
-                  <li>ייעוץ ותכנון חוויית לקוח</li>
-                  <li>עיצוב אדריכלי ופנים</li>
-                  <li>התאמה לדרישות רגולציה</li>
-                  <li>ייצור רהיטים ואלמנטים מותאמים</li>
-                  <li>ליווי וביצוע התקנה</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Architect Relations */}
-            <div className={styles.service}>
-              <div className={styles.serviceNumber}>02</div>
-              <h2 className={styles.serviceTitle}>קשרי אדריכלים</h2>
-              <p className={styles.serviceDescription}>
-                שירותים טכניים מתקדמים לאדריכלים ומעצבים – 
-                תכנון טכני, ייצור מדויק ופתרונות יצירתיים לפרויקטים מורכבים
-              </p>
-              <div className={styles.serviceDetails}>
-                <h3 className={styles.detailsTitle}>מה כלול:</h3>
-                <ul className={styles.detailsList}>
-                  <li>ייעוץ טכני ותכנון מפורט</li>
-                  <li>שירותי CAD ותכנון תלת-ממד</li>
-                  <li>ייצור לפי תוכניות ודרישות מיוחדות</li>
-                  <li>ליווי פרויקטים מורכבים</li>
-                  <li>שירותי התקנה מקצועיים</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Private Furniture */}
-            <div className={styles.service}>
-              <div className={styles.serviceNumber}>03</div>
-              <h2 className={styles.serviceTitle}>ריהוט לבתים פרטיים</h2>
-              <p className={styles.serviceDescription}>
-                פתרונות נגרות יוקרתיים בהתאמה אישית – 
-                מטבחים, ארונות, ריהוט מיוחד ופתרונות אחסון מותאמים לבית שלכם
-              </p>
-              <div className={styles.serviceDetails}>
-                <h3 className={styles.detailsTitle}>מה כלול:</h3>
-                <ul className={styles.detailsList}>
-                  <li>ייעוץ ותכנון מותאם אישית</li>
-                  <li>עיצוב מטבחים וארונות</li>
-                  <li>ריהוט מיוחד לפי הזמנה</li>
-                  <li>פתרונות אחסון חכמים</li>
-                  <li>התקנה ואחריות מלאה</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Process Section */}
-          <div className={styles.processSection}>
-            <h2 className={styles.processTitle}>איך אנחנו עובדים</h2>
-            <div className={styles.processFlow}>
-              <div className={styles.processStep}>
-                <span className={styles.processNumber}>01</span>
-                <span className={styles.processText}>פגישת ייעוץ וגיבוש הצרכים</span>
-              </div>
-              <div className={styles.processArrow}>←</div>
-              <div className={styles.processStep}>
-                <span className={styles.processNumber}>02</span>
-                <span className={styles.processText}>תכנון ועיצוב מפורט</span>
-              </div>
-              <div className={styles.processArrow}>←</div>
-              <div className={styles.processStep}>
-                <span className={styles.processNumber}>03</span>
-                <span className={styles.processText}>ייצור ברמה גבוהה</span>
-              </div>
-              <div className={styles.processArrow}>←</div>
-              <div className={styles.processStep}>
-                <span className={styles.processNumber}>04</span>
-                <span className={styles.processText}>התקנה ומסירה</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact CTA */}
-          <div className={styles.ctaSection}>
-            <h2 className={styles.ctaTitle}>מעוניינים להתחיל פרויקט?</h2>
-            <p className={styles.ctaDescription}>
-              צרו קשר לפגישת ייעוץ חינם ונתחיל לתכנן את הפרויקט שלכם
-            </p>
-            <div className={styles.ctaButtons}>
-              <a href="tel:+972-XX-XXX-XXXX" className={styles.ctaButton}>
-                חייגו עכשיו
-              </a>
-              <a href="mailto:info@bullastudio.com" className={styles.ctaButtonSecondary}>
-                שלחו מייל
-              </a>
-            </div>
+          <div className={styles.commercialInner}>
+            <h3 className={styles.commercialTitle}>בניית עסק חדש – שלבים</h3>
+            <BlueprintInteractive
+              steps={[
+                'שלב 1 – סיור שטח',
+                'שלב 2 – מדידות או עבודה לפי תוכנית',
+                'שלב 3 – סקיצות העמדה',
+                'שלב 4 – סקיצות לבניית מותג גרפי',
+                'שלב 5 – אישורים ותכנון ייעודי',
+                'שלב 6 – עיצוב ותכנון והדמיות',
+                'שלב 7 – סט תוכניות עבודה',
+                'שלב 8 – בחירת ספקים וקבלני ביצוע',
+                'שלב 9 – ליווי בתהליך הבנייה',
+                'שלב 10 – עבודות משלימות והתאמות'
+              ]}
+              stepDetails={[
+                `בשלב הזה אנחנו מגיעים למיקום ובוחנים את כל ההיבטים – גישה, סביבה, תנועה של לקוחות, מצב הנכס והאזור.
+אנחנו מתעדים בתמונות ובווידאו, מזהים יתרונות ואתגרים, ומבצעים מדידות בסיסיות.
+המטרה היא להבין את נקודת ההתחלה האמיתית ולהכין בסיס מידע מדויק להמשך.`,
+                `בשלב הזה אנחנו מודדים את כל החלל באמצעים מדויקים, או מאמתים את המידות מול תוכניות קיימות.
+אנחנו מסמנים סטיות, מזהים מגבלות ומעדכנים את השרטוטים בהתאם.
+כך יש לנו "מצב קיים" מדויק שמונע הפתעות בהמשך.`,
+                `בשלב הזה אנחנו מתכננים פריסת חלל ראשונית בהתאם למטרות העסק – תפעול, חוויית לקוח, תדמית.
+אנחנו בודקים חלופות שונות, מסדרים אזורי עבודה, שירות, תצוגה או מכירה, ובוחנים את הזרימה הכללית.
+המטרה היא להגיע לחלופה אופטימלית לפני שנצלול לעיצוב.`,
+                `בשלב הזה אנחנו מפתחים את הזהות הוויזואלית של העסק – לוגו, צבעים, טיפוגרפיה, אייקונים, שפת עיצוב.
+אנחנו יוצרים חומרים שיתמכו בכל הפלטפורמות – דיגיטל, פרינט, שילוט, אריזות או מצגות.
+זה הבסיס להופעה אחידה ומקצועית בכל נקודת מגע עם הלקוח.`,
+                `בשלב הזה אנחנו מטפלים בכל הדרישות החוקיות והמקצועיות – רישוי עסקים, היתרים, תקנים, נגישות ובטיחות.
+אנחנו מתאמים עם הרשויות, יועצים ומנהלי פרויקטים כדי לוודא שכל התהליך מתבצע בהתאם לחוק.
+כך אפשר להתקדם בלי חשש לעיכובים בשלב הביצוע.`,
+                `בשלב הזה אנחנו מפתחים עיצוב מלא שמחבר בין המותג לבין החלל הפיזי.
+אנחנו בוחרים חומרים, צבעים, תאורה, ריהוט ואביזרים, ומפיקים הדמיות תלת־ממד להמחשה מלאה.
+המטרה היא שתדעו בדיוק איך ייראה העסק עוד לפני תחילת הביצוע.`,
+                `בשלב הזה אנחנו מפיקים סט ביצוע מלא – שרטוטים, מידות, מפרטים טכניים, כתב כמויות ותיאומים עם כל בעלי המקצוע.
+כך כולם עובדים לפי אותו מסמך, בלי טעויות ובלי פרשנויות שונות.
+השלב הזה חוסך כסף וזמן בשטח.`,
+                `בשלב הזה אנחנו בוחרים יחד את הספקים והקבלנים שיבצעו את העבודה.
+אנחנו משווים הצעות, בודקים המלצות, מקיימים סיורי קבלנים ומנהלים משא ומתן.
+המטרה – לבחור את הגורמים המקצועיים ביותר במסגרת התקציב.`,
+                `בשלב הזה אנחנו נמצאים בשטח באופן שוטף – מפקחים, בודקים איכות, פותרים בעיות בזמן אמת ומתאמים בין כל בעלי המקצוע.
+אנחנו מנהלים ישיבות, עוקבים אחרי לוחות הזמנים ומוודאים שהכל מתקדם לפי התוכנית.
+כך אתם יכולים להיות רגועים שהפרויקט בידיים טובות.`,
+                `בשלב הזה אנחנו מטפלים בכל העבודות המיוחדות – נגרות, מסגרות, הדפסות, שילוט, פתרונות טכנולוגיים ועוד.
+אנחנו בודקים איכות, מבצעים התקנות, ומתאמים את כל הפרטים הקטנים שמייצרים את הגימור המושלם.
+המטרה – שהעסק ייראה מוכן ומזמין ביום הפתיחה.`
+              ]}
+            />
           </div>
         </div>
       </section>

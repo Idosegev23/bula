@@ -3,6 +3,7 @@ import rough from 'roughjs';
 import styles from './TechnicalServiceCards.module.css';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import FloatingServicesFooter from './FloatingServicesFooter';
+import { Link } from 'react-router-dom';
 
 interface Service {
   id: string;
@@ -582,12 +583,12 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
 
         <div className={styles.buttonWrapper}>
           <canvas ref={buttonCanvasRef} className={styles.buttonCanvas} />
-          <button className={styles.ctaButton}>
+          <Link to={`/services#${service.id}`} className={styles.ctaButton} aria-label={`נווט לעמוד השירותים - ${service.title}`}>
             <span>תוכנית מפורטת</span>
             <svg width="80" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </div>

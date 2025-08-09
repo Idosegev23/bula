@@ -68,7 +68,10 @@ const App: React.FC = () => {
       <Router>
         <div className="App">
           {/* Spinner עם GSAP לכל הדפים */}
-          <Spinner />
+          <Spinner onFinish={() => {
+            // שלח אירוע גלובלי לסיום הספינר כדי שעמודים יוכלו להמתין לפני אנימציות כניסה
+            window.dispatchEvent(new CustomEvent('spinner:finished'));
+          }} />
           
           <Header />
           <main id="main-content">

@@ -1,0 +1,278 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  background: transparent; /* השתמש ברקע העמוד (מחברת מנוקדת) */
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  direction: rtl;
+}
+
+/* רשימת שלבים */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile-first: רשימה מעל, פירוט מתחת */
+  gap: 18px;
+}
+
+@media (min-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr 1fr; /* שמאל: פירוט קבוע, ימין: רשימה */
+    align-items: start;
+    gap: 28px;
+  }
+}
+
+.listCol { min-width: 0; }
+.detailCol { min-width: 0; }
+
+.calloutBlock {
+  margin: 4px 0 12px 0;
+}
+
+.calloutWrap {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.calloutSvg { display: block; }
+
+.calloutInput {
+  position: absolute;
+  inset: 0; /* fill the svg box */
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: clamp(1.25rem, 3.6vw, 1.8rem);
+  padding-top: 18px; /* align roughly to rect center */
+  color: #000;
+}
+
+.stepList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px; /* רווח קבוע, ללא השפעת הפירוט */
+}
+
+.stepRow {
+  display: block; /* כל פריט שורה אחת בלבד */
+}
+
+/* אין גריד פנימי בפריט כדי למנוע שינויי גובה */
+
+.stepRight {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cbBtn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.cbCanvas { display: block; }
+
+.titleHolder {
+  position: relative;
+  outline: none;
+  cursor: pointer;
+}
+
+.stepTitle {
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: clamp(1.35rem, 4.2vw, 1.65rem);
+}
+
+.scribbleCanvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+/* עמודת הפירוט הקבועה */
+.detailCol {
+  background: transparent;
+}
+
+.detailTitle {
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: clamp(1.6rem, 4.2vw, 2rem);
+  margin: 0 0 10px 0;
+}
+
+.detailBody {
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: clamp(1.25rem, 3.2vw, 1.4rem);
+  line-height: 1.95;
+  white-space: pre-line; /* לשבירת שורות מטקסטים מרובי שורות */
+  margin: 0;
+}
+
+/* בוטל כי הפירוט עבר לפאנל צדדי */
+
+/* Desktop tooltip */
+.tooltip {
+  position: absolute;
+  z-index: 3;
+  min-width: 200px;
+  max-width: 260px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #0B4F8A;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 10px 12px;
+  backdrop-filter: blur(6px);
+}
+
+.tooltipTitle {
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.tooltipText {
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: 13px;
+  text-align: right;
+}
+
+/* Mobile bottom sheet */
+.bottomSheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.96);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.12);
+  padding: 10px 14px 16px;
+}
+
+.sheetHandle {
+  width: 40px;
+  height: 4px;
+  background: #c7d4e0;
+  border-radius: 4px;
+  margin: 6px auto 10px;
+}
+
+.sheetContent {
+  text-align: center;
+}
+
+.stepTitle {
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.stepText {
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: 13px;
+}
+
+.stepDetails {
+  margin-top: 8px;
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: 12px;
+  color: #333;
+}
+
+.stepToggleBtn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: 12px;
+  border: 1px solid #000;
+  background: transparent;
+  cursor: pointer;
+}
+
+.tooltipDetails {
+  margin-top: 6px;
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: 12px;
+  color: #333;
+}
+
+.controls {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 16px 0 0;
+}
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.checkItem {
+}
+
+.checkLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkText {
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: 13px;
+}
+
+.detailsBox {
+  border: 1px dashed #000;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.75);
+}
+
+.detailsTitle {
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.detailsBody {
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: 13px;
+}
+
+.detailsPlaceholder {
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: 12px;
+  color: #666;
+}
+
+.instructions {
+  margin: 0 0 10px 0;
+  font-family: 'DanaYad', 'Courier New', monospace;
+  font-size: clamp(1rem, 2.4vw, 1.15rem);
+  color: #222;
+}
+
