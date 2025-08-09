@@ -57,7 +57,7 @@
   .socialFloat {
     right: 15px;
     top: auto;
-    bottom: 100px;
+    bottom: 140px; /* increased from 100px */
     transform: none;
   }
   
@@ -75,8 +75,9 @@
 @media (max-width: 480px) {
   .socialFloat {
     right: 12px;
-    bottom: 90px;
+    bottom: 130px; /* increased from 90px */
   }
+
   
   .floatingButton {
     width: 42px;
