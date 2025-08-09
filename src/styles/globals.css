@@ -32,7 +32,6 @@ body {
   position: relative;
   /* Fix for mobile scrolling */
   min-height: 100vh;
-  padding-top: 70px; /* Header height */
 }
 
 /* === Mobile overflow fixes === */
@@ -48,9 +47,6 @@ body {
     box-sizing: border-box !important;
   }
   
-  body {
-    padding-top: 70px;
-  }
 }
 
 /* === Typography === */

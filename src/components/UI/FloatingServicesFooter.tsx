@@ -38,7 +38,7 @@ const ServiceButton: React.FC<{ service: Service; onClick: () => void }> = ({
     <button className={styles.service} onClick={onClick}>
       <div className={styles.serviceContent}>
         <div className={styles.serviceTitle}>{service.title}</div>
-        <div className={styles.serviceSubtitle}>{service.subtitle}</div>
+        {/* <div className={styles.serviceSubtitle}>{service.subtitle}</div> */}
       </div>
     </button>
   );
@@ -90,9 +90,7 @@ const FloatingServicesFooter: React.FC<FloatingServicesFooterProps> = ({ isVisib
             />
           ))}
         </div>
-        <div className={styles.closeButton} onClick={handleServiceClick}>
-          ↑ חזרה לשירותים
-        </div>
+        <div className={styles.closeButton} onClick={handleServiceClick}>↑ חזרה לשירותים</div>
       </div>
     </div>
   );

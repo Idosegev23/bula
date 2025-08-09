@@ -2,25 +2,20 @@
 
 .header {
   position: fixed;
-  top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
-  /* backdrop-filter: blur(10px); */
-  border-bottom: 1px solid #e5e5e5;
+  background: transparent; /* Transparent on load */
+  border-bottom: 1px solid transparent;
   z-index: 997;
   height: 70px;
   transition: all 0.3s ease;
   width: 100%;
   overflow: hidden;
-  transform: translateY(0);
 }
 
-/* הדר בגלילה - רקע שקוף */
 .header.scrolled {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.95); /* White on scroll */
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .headerContainer {
@@ -39,7 +34,7 @@
   position: relative;
 }
 
-/* === לוגו - צד ימין === */
+/* === Logo === */
 .logo {
   text-decoration: none;
   transition: all 0.3s ease;
@@ -53,19 +48,18 @@
   opacity: 0.8;
 }
 
-/* SVG לוגו - תמיד שחור */
 .logoSvg {
   height: 100%;
   width: auto;
-  fill: #000000;
+  fill: #ffffff; /* White on load */
   transition: all 0.3s ease;
 }
 
+.header.scrolled .logoSvg {
+  fill: #000000; /* Black on scroll */
+}
 
-
-
-
-/* === כפתור המבורגר - צד שמאל === */
+/* === Mobile Menu Button === */
 .mobileMenuButton {
   display: flex;
   flex-direction: column;
@@ -85,13 +79,17 @@
 .hamburgerLine {
   width: 24px;
   height: 2px;
-  background: #000000;
+  background: #ffffff; /* White on load */
   transition: all 0.3s ease;
   transform-origin: center;
   border-radius: 1px;
 }
 
-/* אנימציה של המבורגר ל-X */
+.header.scrolled .hamburgerLine {
+  background: #000000; /* Black on scroll */
+}
+
+/* Hamburger Animation */
 .mobileMenuButton.open .hamburgerLine:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
 }
@@ -104,12 +102,7 @@
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* המבורגר בגלילה - לבן */
-.header.scrolled .hamburgerLine {
-  background: #ffffff;
-}
-
-/* === ניווט דסקטופ === */
+/* === Desktop Navigation === */
 .desktopNav {
   display: none;
 }
@@ -124,65 +117,70 @@
 }
 
 .navLink {
-  display: inline-block;
-  padding: 8px 16px;
+  position: relative;
+  display: inline;
+  padding: 6px 0;
   font-size: 0.95rem;
   font-weight: 400;
-  color: #000000;
+  color: #ffffff; /* White on load */
   text-decoration: none;
-  transition: all 0.2s ease;
-  border-radius: 4px;
+  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+  line-height: 1.2; /* Keep consistent height to avoid jump */
 }
 
+/* Hover underline + highlight */
 .navLink:hover {
-  background: #f5f5f5;
-  transform: translateY(-1px);
+  transform: scale(1.05); /* Slightly bigger text */
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.5); /* Glow effect */
 }
 
-/* ניווט בגלילה - לבן */
-.header.scrolled .navLink {
+/* Animated underline */
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover underline animation */
+.navLink:hover::after {
+  transform: scaleX(1);
+  transform-origin: rigt;
+}
+
+/* Active link underline always visible */
+.navLink.active::after {
+  transform: scaleX(1);
+  transform-origin: right;
+}
+
+/* Transparent header state (home before scroll) */
+.header:not(.scrolled) .navLink {
   color: #ffffff;
+}
+
+.header:not(.scrolled) .navLink:hover {
+  color: #ffffff; /* Stay white on hover */
+}
+
+/* Scrolled state (white background) */
+.header.scrolled .navLink {
+  color: #000000;
 }
 
 .header.scrolled .navLink:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-}
-
-.navLink.active {
-  background: #000000;
-  color: #ffffff;
-}
-
-/* ניווט פעיל בגלילה */
-.header.scrolled .navLink.active {
-  background: #ffffff;
-  color: #000000;
-}
-
-@media (min-width: 768px) {
-  .headerContainer {
-    padding: 0 24px;
-  }
-  
-  .logo {
-    height: 40px;
-  }
-  
-  .mobileMenuButton {
-    display: none;
-  }
-  
-  .desktopNav {
-    display: block;
-  }
+  background: #f5f5f5;
 }
 
 
 
-
-
-/* === תפריט נייד === */
+/* === Mobile Navigation === */
 .mobileBackdrop {
   position: fixed;
   top: 70px;
@@ -214,11 +212,11 @@
 }
 
 @keyframes slideInRight {
-  from { 
+  from {
     transform: translateX(100%);
     opacity: 0;
   }
-  to { 
+  to {
     transform: translateX(0);
     opacity: 1;
   }
@@ -256,33 +254,50 @@
   color: #ffffff;
 }
 
-/* === תיקוני Overflow למובייל === */
+/* === Responsive Fixes === */
+@media (min-width: 768px) {
+  .headerContainer {
+    padding: 0 24px;
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .mobileMenuButton {
+    display: none;
+  }
+
+  .desktopNav {
+    display: block;
+  }
+}
+
 @media (max-width: 767px) {
   .headerContainer {
     padding: 0 12px;
   }
-  
+
   .logo {
     height: 25px;
   }
 }
 
-/* === במסכים קטנים מאוד === */
 @media (max-width: 320px) {
   .headerContainer {
     padding: 0 8px;
   }
-  
+
   .logo {
     height: 22px;
   }
-  
+
   .mobileNav {
     width: 100vw;
   }
 }
 
-/* === Focus states === */
+/* === Focus States === */
 .logo:focus-visible,
 .mobileMenuButton:focus-visible,
 .navLink:focus-visible,
@@ -291,7 +306,7 @@
   outline-offset: 2px;
 }
 
-/* === Animation for reduced motion === */
+/* === Reduced Motion === */
 @media (prefers-reduced-motion: reduce) {
   .header,
   .logo,

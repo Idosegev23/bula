@@ -8,6 +8,8 @@
     linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
     url('https://images.unsplash.com/photo-1685602729238-546902858232?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
   position: relative;
+  top: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -334,18 +336,17 @@
 
 /* Scroll Indicator Styles */
 .scrollIndicator {
-  position: absolute;
-  bottom: 24px;
+  position: relative;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
   opacity: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   cursor: pointer;
   transition: all 0.6s ease-out;
-  z-index: 4;
+  z-index: 3;
   color: rgba(255, 255, 255, 0.8);
   direction: rtl;
   padding: 8px;
@@ -363,21 +364,6 @@
   transition: all 0.3s ease-out;
 }
 
-.scrollIndicator:focus {
-  outline: 2px solid rgba(255, 255, 255, 0.5);
-  outline-offset: 4px;
-  border-radius: 8px;
-}
-
-.scrollText {
-  font-size: 0.8rem;
-  font-weight: 300;
-  letter-spacing: 0.3px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  margin-bottom: 2px;
-  font-family: 'Heebo', 'Inter', sans-serif;
-  opacity: 0.9;
-}
 
 .scrollArrow {
   animation: gentleFloat 3s ease-in-out infinite;

@@ -14,19 +14,22 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
   // טיפול בגלילה - רק עבור שינוי רקע
   useEffect(() => {
+    if (location.pathname !== '/') {
+      setIsScrolled(true); // Force white background and black text on other pages
+      return;
+    }
+  
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      // עדכון מצב גלילה לשינוי רקע
       setIsScrolled(currentScrollY > 50);
     };
-
+  
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+    handleScroll(); // Trigger once on load
+  
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
+  
 
   // רשימת פריטי התפריט
   const navigationItems = [
