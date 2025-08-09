@@ -198,8 +198,8 @@
 .buttonCanvas {
   position: absolute;
   top: -15px;
-  left: -22px;
-  width: calc(100% + 60px);
+  left: 30px;
+  width: calc(100% + 10px);
   height: calc(100% + 30px);
   z-index: 1;
   pointer-events: none;
@@ -453,7 +453,7 @@ button.ctaButton:link {
 
   .buttonCanvas {
     top: -8px; /* התאמה לגודל הקטן יותר */
-    left: -8px;
+    left: 40px;
     width: calc(100% + 16px);
     height: calc(100% + 16px);
   }

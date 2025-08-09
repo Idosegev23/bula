@@ -439,18 +439,19 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
         });
         ctx.fillStyle = penColor;
         ctx.fillText('SECTION B-B', w - 80, h - 10);
-      } else {
-        // כרטיס שלישי - הערה
-        rc.rectangle(w - 80, h - 50, 60, 20, {
-          stroke: penColor,
-          strokeWidth: 1,
-          roughness: 1.5
-        });
-        ctx.font = '7px monospace';
-        ctx.fillStyle = penColor;
-        ctx.fillText('SEE DWG', w - 75, h - 35);
-        ctx.fillText('NO. 001', w - 70, h - 25);
-      }
+      } 
+      // else {
+      //   // כרטיס שלישי - הערה
+      //   rc.rectangle(w - 80, h - 50, 60, 20, {
+      //     stroke: penColor,
+      //     strokeWidth: 1,
+      //     roughness: 1.5
+      //   });
+      //   ctx.font = '7px monospace';
+      //   ctx.fillStyle = penColor;
+      //   ctx.fillText('SEE DWG', w - 75, h - 35);
+      //   ctx.fillText('NO. 001', w - 70, h - 25);
+      // }
 
       // מספור הכרטיס
       ctx.font = 'bold 16px monospace';
@@ -583,7 +584,7 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
           <canvas ref={buttonCanvasRef} className={styles.buttonCanvas} />
           <button className={styles.ctaButton}>
             <span>תוכנית מפורטת</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <svg width="80" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
