@@ -9,6 +9,9 @@
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
   z-index: 9999;
+
+  /* Add padding-bottom to avoid iPhone home indicator overlap */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Inner container */
@@ -16,7 +19,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 40px; /* Equal padding left & right */
+
+  /* Increase left/right padding and add safe area */
+  padding-left: calc(24px + env(safe-area-inset-left));
+  padding-right: calc(24px + env(safe-area-inset-right));
+
+  gap: 40px;
   direction: rtl;
 }
 
@@ -106,7 +114,10 @@
 /* Mobile adjustments */
 @media (max-width: 767px) {
   .container {
-    padding-inline: 40px; /* Same small padding left/right */
+    padding-left: calc(10px + env(safe-area-inset-left));
+    padding-right: calc(10px + env(safe-area-inset-right));
+    gap: 6px;
+    padding-bottom: calc(4px + env(safe-area-inset-bottom));
   }
 
   .closeButton {
@@ -116,7 +127,7 @@
   }
 
   .services {
-    gap: 8px;
+    gap: 4px;
   }
 
   .service {
