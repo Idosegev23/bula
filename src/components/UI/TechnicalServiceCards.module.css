@@ -452,10 +452,10 @@ button.ctaButton:link {
   }
 
   .buttonCanvas {
-    top: -8px; /* התאמה לגודל הקטן יותר */
+    top: -15px; /* התאמה לגודל הקטן יותר */
     left: 40px;
     width: calc(100% + 16px);
-    height: calc(100% + 16px);
+    height: calc(100% + 30px);
   }
 }
 
