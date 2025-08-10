@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import rough from 'roughjs';
 import styles from './ServiceCards.module.css';
 
@@ -20,11 +21,11 @@ export const ServiceCards: React.FC<ServiceCardsProps> = ({ className = '' }) =>
 
   const services: Service[] = [
     {
-      id: 'commercial',
-      title: 'עיצוב מסחרי',
-      subtitle: 'לבעלי עסקים',
-      description: 'ליווי כולל להקמת עסק – תכנון, עיצוב, ייצור והתקנה',
-      icon: '🏢',
+      id: 'one-stop-shop',
+      title: 'one stop shop לעסק שלך',
+      subtitle: 'ליווי מקצה לקצה',
+      description: 'מהרעיון ועד פתיחת העסק – תהליך מלא ומדויק',
+      icon: '🧭',
       color: '#FF6B35'
     },
     {
@@ -353,12 +354,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
           <p className={styles.cardDescription}>{service.description}</p>
         </div>
 
-        <button 
+        <Link
+          to={service.id === 'one-stop-shop' ? '/services/one-stop-shop#hero' : `/services#${service.id}`}
           className={styles.ctaButton}
           style={{ '--card-color': service.color } as React.CSSProperties}
         >
           קרא עוד
-        </button>
+        </Link>
       </div>
     </div>
   );

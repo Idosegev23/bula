@@ -1,48 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './FloatingServicesFooter.module.css';
 
-interface Service {
-  id: string;
-  title: string;
-  subtitle: string;
-}
+interface Service { id: string; title: string; href: string }
 
 interface FloatingServicesFooterProps {
   isVisible: boolean;
 }
 
 const services: Service[] = [
-  {
-    id: 'design',
-    title: 'עיצוב אדריכלי',
-    subtitle: 'תכנון ועיצוב'
-  },
-  {
-    id: 'planning',
-    title: 'ליווי וביצוע',
-    subtitle: 'ניהול פרויקט'
-  },
-  {
-    id: 'execution',
-    title: 'יעוץ וליווי',
-    subtitle: 'ייעוץ מקצועי'
-  }
+  { id: 'one-stop-shop', title: 'one stop shop לעסק שלך', href: '/services/one-stop-shop#hero' },
+  { id: 'architects', title: 'קשרי אדריכלים', href: '/services#architects' },
+  { id: 'private', title: 'רהיטים פרטיים', href: '/services#private' },
 ];
 
 // רכיב כפתור פשוט ובולט
-const ServiceButton: React.FC<{ service: Service; onClick: () => void }> = ({ 
-  service, 
-  onClick 
-}) => {
-  return (
-    <button className={styles.service} onClick={onClick}>
-      <div className={styles.serviceContent}>
-        <div className={styles.serviceTitle}>{service.title}</div>
-        {/* <div className={styles.serviceSubtitle}>{service.subtitle}</div> */}
-      </div>
-    </button>
-  );
-};
+const ServiceButton: React.FC<{ service: Service; onClick: () => void }> = ({ service, onClick }) => (
+  <Link className={styles.service} to={service.href} onClick={onClick} aria-label={`נווט אל ${service.title}`}>
+    <div className={styles.serviceContent}>
+      <div className={styles.serviceTitle}>{service.title}</div>
+    </div>
+  </Link>
+);
 
 const FloatingServicesFooter: React.FC<FloatingServicesFooterProps> = ({ isVisible }) => {
   // השהיה קלה למניעת קפיצות

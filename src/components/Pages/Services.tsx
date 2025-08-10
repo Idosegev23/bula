@@ -1,5 +1,6 @@
 // Services - Main Services Page (One Stop Shop Process)
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from './Services.module.css';
 import { BlueprintInteractive } from '../UI/BlueprintInteractive';
 import RoughLogo from '../UI/RoughLogo';
@@ -11,10 +12,21 @@ interface ServicesProps {
 }
 
 export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }, [location.hash]);
   return (
     <main className={`${styles.servicesPage} ${className}`}>
       {/* Hero Section */}
-      <section className={styles.heroSection}>
+      <section id="hero" className={styles.heroSection}>
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <HeroBlueprintCanvas />

@@ -16,6 +16,7 @@ import Spinner from './components/UI/Spinner';
 
 // Page Components
 import { Services } from './components/Pages/Services';
+import { ServicesIndex } from './components/Pages/ServicesIndex';
 import { Projects } from './components/Pages/Projects';
 import { Architects } from './components/Pages/Architects';
 import { About } from './components/Pages/About';
@@ -41,9 +42,8 @@ const HomePage: React.FC = () => {
 };
 
 // דפים
-const ServicesPage: React.FC = () => {
-  return <Services />;
-};
+const ServicesPage: React.FC = () => <Services />;
+const ServicesIndexPage: React.FC = () => <ServicesIndex />;
 
 const ProjectsPage: React.FC = () => {
   return <Projects />;
@@ -77,7 +77,8 @@ const App: React.FC = () => {
           <main id="main-content">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/services" element={<ServicesIndexPage />} />
+              <Route path="/services/one-stop-shop" element={<ServicesPage />} />
               <Route path="/projects" element={<ProjectsPage />} />
               <Route path="/architects" element={<ArchitectsPage />} />
               <Route path="/about" element={<AboutPage />} />

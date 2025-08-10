@@ -28,10 +28,10 @@ export const TechnicalServiceCards: React.FC<TechnicalServiceCardsProps> = ({ cl
 
   const services: Service[] = [
     {
-      id: 'commercial',
-      title: 'עיצוב מסחרי',
-      subtitle: 'לבעלי עסקים',
-      description: 'תכנון ועיצוב חללים מסחריים'
+      id: 'one-stop-shop',
+      title: 'one stop shop לעסק שלך',
+      subtitle: 'ליווי מקצה לקצה',
+      description: 'מהרעיון ועד פתיחת העסק – תהליך מלא ומדויק'
     },
     {
       id: 'architects', 
@@ -583,7 +583,7 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
 
         <div className={styles.buttonWrapper}>
           <canvas ref={buttonCanvasRef} className={styles.buttonCanvas} />
-          <Link to={`/services#${service.id}`} className={styles.ctaButton} aria-label={`נווט לעמוד השירותים - ${service.title}`}>
+          <Link to={service.id === 'one-stop-shop' ? '/services/one-stop-shop#hero' : `/services#${service.id}`} className={styles.ctaButton} aria-label={`נווט לעמוד השירותים - ${service.title}`}>
             <span>תוכנית מפורטת</span>
             <svg width="80" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
