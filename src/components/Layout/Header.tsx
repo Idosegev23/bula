@@ -19,6 +19,9 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
       return;
     }
   
+    // בדף הבית - התחל שקוף
+    setIsScrolled(false);
+  
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 50);
@@ -45,9 +48,63 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // דחיפת התוכן למטה כאשר התפריט פתוח
+  useEffect(() => {
+    const header = document.querySelector('header');
+    const appElement = document.querySelector('.App');
+    
+    const updateHeaderHeight = () => {
+      if (header && isMobileMenuOpen && appElement) {
+        const actualHeight = header.offsetHeight;
+        // עדכון המרחק הדינמי
+        document.documentElement.style.setProperty('--menu-push-distance', `${actualHeight}px`);
+        // הוספת class לApp
+        appElement.classList.add('menu-open');
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      // עדכן מיד ואז כל 50ms (20fps) - איטי יותר לאנימציה חלקה
+      updateHeaderHeight();
+      const interval = setInterval(updateHeaderHeight, 50);
+      
+      // עצור את האינטרבל אחרי 1000ms (כשהאנימציה מסתיימת)
+      setTimeout(() => {
+        clearInterval(interval);
+        updateHeaderHeight(); // עדכון אחרון
+      }, 1000);
+      
+      return () => clearInterval(interval);
+    } else {
+      // חזרה למצב רגיל - איפוס מוחלט
+      if (appElement) {
+        appElement.classList.remove('menu-open');
+      }
+      
+      // איפוס מוחלט של כל המשתנים
+      document.documentElement.style.setProperty('--menu-push-distance', '0px');
+      
+      // ביטול מפורש של כל margin-top שעלול להיות
+      const mainContent = document.querySelector('#main-content') as HTMLElement;
+      if (mainContent) {
+        mainContent.style.marginTop = '0px';
+        mainContent.style.transform = '';
+      }
+      
+      // אם אנחנו בדף הבית ולא גללנו - חזרה לשקיפות
+      if (location.pathname === '/' && window.scrollY <= 50) {
+        setIsScrolled(false);
+      }
+    }
+  }, [isMobileMenuOpen]);
+
+
+
+
+
   return (
     <header 
-      className={`${styles.header} ${className} ${isScrolled ? styles.scrolled : ''}`} 
+      className={`${styles.header} ${className} ${isScrolled ? styles.scrolled : ''} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`} 
       role="banner"
     >
       <div className={styles.headerContainer}>
@@ -75,7 +132,7 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               <path d="M103.18,92.59c-.21,26.18-22.42,37.43-63.8,37.1-9.41-.07-26.69-.71-39.38-1.32l1.59-38.12L1.02,0l51.58.15c28.21.22,45.38,11.56,45.21,32.88-.11,13.73-7.82,24.11-20.83,29.6,17.75,4.46,26.32,13.95,26.19,29.96M70.4,90.8c.07-8.39-5.72-12.77-17.37-15.39l-22.12.35-.34,11.7.36,19.05c5.32.57,10.68.84,14.21.87,15.76.13,25.17-5.12,25.26-16.56M39.97,22.91l-7.88-.06-.74,30.24,18.53.67c9.69-2.2,14.53-6.77,14.61-16.67.08-10.67-6.23-14.04-24.52-14.18"/>
               <path d="M238.37,86.8c0,29.23-20.43,45.31-56.51,45.02-35.31-.28-54.48-16.67-53.22-45.9l.41-20.07-.24-64.84,31.99.25-2.17,80.34c-.37,16.5,7.7,24.2,24.71,24.34,17.01.14,25.46-7.44,25.32-23.94l-.62-80.36,32.25.26-1.53,65.33-.4,19.56Z"/>
               <polygon points="347.24 131.13 271.8 130.53 273.61 92.41 272.82 2.16 305.36 2.42 302.87 89.61 303.25 104.58 347.7 104.93 349.48 107.27 347.24 131.13"/>
-              <polygon points="445.81 131.91 370.36 131.31 372.18 93.2 371.38 2.94 403.9 3.2 401.43 90.39 401.81 105.36 446.28 105.71 448.01 108.05 445.81 131.91"/>
+              <polygon points="445.81 131.91 370.36 131.31 372.18 93.20 371.38 2.94 403.9 3.2 401.43 90.39 401.81 105.36 446.28 105.71 448.01 108.05 445.81 131.91"/>
               <path d="M547.16,132.72l-3.41-18.59-2.23-7.38-25.91-.48-22.85.32-1.82,5.36-3.96,20.29-31.27-.25L501.69,3.98l37.84.3,39.89,128.69-32.27-.26ZM520.74,33.35l-2.02-.02-17.39,48.96,16.48.38,17.05-.12-14.11-49.21Z"/>
               <path d="M693.71,8.57l-1.1,4.8-1.63.26c-8.82-4.38-18.16-6.02-25.15-6.08-21.99-.17-34.15,14.73-34.25,27.82-.25,31.36,66.25,27.35,65.95,65.66-.15,18.49-17.15,34.42-41.53,34.23-11.02-.09-24.1-3.39-33.72-9.89l.34-5.11,1.31-.24c9.34,6.75,21.91,10.07,32.11,10.15,22.24.18,36.01-14.45,36.12-28.94.27-33.46-66.21-28.9-65.92-66.43.14-17.93,16.33-32.51,40.17-32.32,6.99.06,16.85,1.43,27.29,6.09"/>
               <polygon points="818.03 9.55 795.75 9.1 775.44 8.94 774.43 135.4 769.07 135.36 770.07 8.9 750.23 8.74 727.21 8.83 726.41 7.77 727.25 3.47 818.33 4.19 818.85 5.28 818.03 9.55"/>

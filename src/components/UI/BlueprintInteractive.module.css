@@ -11,7 +11,7 @@
 /* רשימת שלבים */
 .layout {
   display: grid;
-  grid-template-columns: 1fr; /* mobile-first: רשימה מעל, פירוט מתחת */
+  grid-template-columns: 1fr; /* mobile-first: פירוט מתחת לכל שלב */
   gap: 18px;
 }
 
@@ -24,7 +24,21 @@
 }
 
 .listCol { min-width: 0; }
-.detailCol { min-width: 0; }
+.detailCol { 
+  min-width: 0; 
+  display: none; /* מסתיר במובייל */
+}
+
+@media (min-width: 980px) {
+  .detailCol {
+    display: block; /* מציג במסכים גדולים */
+  }
+  
+  /* מסתיר פירוט מתחת לשלבים במסכים גדולים */
+  .stepDetail {
+    display: none;
+  }
+}
 
 .calloutBlock {
   margin: 4px 0 12px 0;
@@ -64,6 +78,95 @@
 
 .stepRow {
   display: block; /* כל פריט שורה אחת בלבד */
+  transition: all 0.3s ease;
+}
+
+/* אפקט למעבר שלב שהושלם */
+.stepRow.justCompleted {
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 8px;
+  animation: completionPulse 0.6s ease-out;
+}
+
+@keyframes completionPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); background: rgba(76, 175, 80, 0.2); }
+  100% { transform: scale(1); background: rgba(76, 175, 80, 0.1); }
+}
+
+/* שלב נעול */
+.stepRow.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.stepRow.disabled .stepTitle {
+  color: #999;
+}
+
+/* הודעת התקדמות */
+.progressMessage {
+  background: linear-gradient(90deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.05));
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 8px 0 16px 0;
+  font-family: 'MiriWin', 'Courier New', monospace;
+  font-size: 1rem;
+  color: #2e7d32;
+  text-align: center;
+  animation: fadeInScale 0.4s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* פירוט מתחת לשלב במובייל */
+.stepDetail {
+  display: block;
+  margin: 8px 0 16px 40px; /* הזחה מימין לסידור RTL */
+  animation: slideInFromTop 0.3s ease-out;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detailContent {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.stepDetail .detailTitle {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-family: 'MiriWin', 'Courier New', monospace;
+}
+
+.stepDetail .detailBody {
+  margin: 0;
+  line-height: 1.6;
+  color: #555;
+  font-family: 'MiriWin', 'Courier New', monospace;
+  font-size: 0.95rem;
 }
 
 /* אין גריד פנימי בפריט כדי למנוע שינויי גובה */

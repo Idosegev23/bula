@@ -18,8 +18,8 @@ const useDpr = (): number => {
   return dpr;
 };
 
-const StepRow: React.FC<{ title: string; completed: boolean; onToggle: () => void; onSelect: () => void }>
-  = ({ title, completed, onToggle, onSelect }) => {
+const StepRow: React.FC<{ title: string; completed: boolean; canInteract: boolean; onToggle: () => void; onSelect: () => void }>
+  = ({ title, completed, canInteract, onToggle, onSelect }) => {
   const titleRef = useRef<HTMLDivElement | null>(null);
   const cbRef = useRef<HTMLCanvasElement | null>(null);
   const scribbleRef = useRef<HTMLCanvasElement | null>(null);
@@ -68,24 +68,30 @@ const StepRow: React.FC<{ title: string; completed: boolean; onToggle: () => voi
   }, [completed, dpr]);
 
   return (
-    <li className={styles.stepRow}>
+    <li className={`${styles.stepRow} ${!canInteract ? styles.disabled : ''}`}>
       <div className={styles.stepRight}>
-        <button type="button" className={styles.cbBtn} aria-label="סמן שלב" onClick={onToggle}>
+        <button 
+          type="button" 
+          className={styles.cbBtn} 
+          aria-label="סמן שלב" 
+          onClick={canInteract ? onToggle : undefined}
+          disabled={!canInteract}
+        >
           <canvas ref={cbRef} className={styles.cbCanvas} />
         </button>
         <div
           className={styles.titleHolder}
           ref={titleRef}
           role="button"
-          tabIndex={0}
-          onClick={onSelect}
-          onKeyDown={(e) => {
+          tabIndex={canInteract ? 0 : -1}
+          onClick={canInteract ? onSelect : undefined}
+          onKeyDown={canInteract ? (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
               onSelect();
             }
-          }}
-          aria-label={`הצג פירוט עבור ${title}`}
+          } : undefined}
+          aria-label={canInteract ? `הצג פירוט עבור ${title}` : `שלב נעול - השלם קודם את השלבים הקודמים`}
         >
           <span className={styles.stepTitle}>{title}</span>
           <canvas ref={scribbleRef} className={styles.scribbleCanvas} />
@@ -104,8 +110,15 @@ export const BlueprintInteractive: React.FC<BlueprintInteractiveProps> = ({ step
     setCompleted(steps.map(() => false));
   }, [steps.length]);
 
-  // ברירת מחדל: הצג פירוט לשלב הראשון הלא־מושלם, ניתן לעבור ידנית ע"י בחירה
-  const firstIncompleteIndex = completed.findIndex((c) => !c);
+  // לוגיקה חדשה: רק שלבים שכל השלבים הקודמים שלהם הושלמו זמינים
+  const getCanInteract = (index: number) => {
+    if (index === 0) return true; // השלב הראשון תמיד זמין
+    // כל השלבים הקודמים חייבים להיות מושלמים
+    return completed.slice(0, index).every(c => c);
+  };
+
+  // ברירת מחדל: הצג פירוט לשלב הראשון הלא־מושלם, רק אם הוא זמין
+  const firstIncompleteIndex = completed.findIndex((c, i) => !c && getCanInteract(i));
   const activeDetailIndex = selectedIndex !== null ? selectedIndex : firstIncompleteIndex;
 
   return (
@@ -128,22 +141,52 @@ export const BlueprintInteractive: React.FC<BlueprintInteractiveProps> = ({ step
             </div>
           </div>
           <p className={styles.instructions}>
-            לחיצה על שם השלב תציג כאן פירוט. לחיצה על התיבה תסמן שהשלב הושלם.
+            לחיצה על שם השלב תציג פירוט. לחיצה על התיבה תסמן שהשלב הושלם. השלבים נפתחים בהדרגה לפי סיום השלב הקודם.
           </p>
+          {/* הודעת התקדמות */}
+          {firstIncompleteIndex > 0 && (
+            <div className={styles.progressMessage}>
+              ✅ השלמת {firstIncompleteIndex} שלבים! המשך לשלב הבא.
+            </div>
+          )}
           <ul className={styles.stepList}>
-            {steps.map((t, i) => (
-              <StepRow
-                key={i}
-                title={t}
-                completed={!!completed[i]}
-                onToggle={() => setCompleted(prev => {
-                  const next = [...prev];
-                  next[i] = !next[i];
-                  return next;
-                })}
-                onSelect={() => setSelectedIndex(i)}
-              />
-            ))}
+            {steps.map((t, i) => {
+              const canInteract = getCanInteract(i);
+              const showDetailHere = activeDetailIndex === i && stepDetails[i];
+              return (
+                <React.Fragment key={i}>
+                  <StepRow
+                    title={t}
+                    completed={!!completed[i]}
+                    canInteract={canInteract}
+                    onToggle={() => {
+                      setCompleted(prev => {
+                        const next = [...prev];
+                        next[i] = !next[i];
+                        return next;
+                      });
+                      
+                      // אם מסמנים שלב כמושלם, עבור אוטומטית לשלב הבא
+                      if (!completed[i] && i < steps.length - 1) {
+                        setTimeout(() => {
+                          setSelectedIndex(i + 1);
+                        }, 300); // השהיה קצרה לאנימציה
+                      }
+                    }}
+                    onSelect={() => setSelectedIndex(i)}
+                  />
+                  {/* פירוט מתחת לשלב במובייל */}
+                  {showDetailHere && (
+                    <li className={styles.stepDetail}>
+                      <div className={styles.detailContent}>
+                        <h4 className={styles.detailTitle}>{t}</h4>
+                        <p className={styles.detailBody}>{stepDetails[i]}</p>
+                      </div>
+                    </li>
+                  )}
+                </React.Fragment>
+              );
+            })}
           </ul>
         </div>
         <aside className={styles.detailCol} aria-live="polite">

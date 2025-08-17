@@ -28,7 +28,7 @@ import { AccessibilityProvider } from './components/Accessibility/AccessibilityP
 // דף הבית השלם
 const HomePage: React.FC = () => {
   return (
-    <main>
+    <>
       {/* 1. Hero Section - מכת הפתיחה */}
       <Hero />
       
@@ -37,7 +37,7 @@ const HomePage: React.FC = () => {
       
       {/* 3. ווידג'ט אינסטגרם */}
       <InstagramWidget />
-    </main>
+    </>
   );
 };
 

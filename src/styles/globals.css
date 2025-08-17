@@ -18,6 +18,11 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --header-height: 70px; /* גובה ברירת מחדל */
+  --menu-push-distance: 0px; /* מרחק דחיפה ברירת מחדל */
+}
+
 body {
   font-family: 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   font-size: var(--text-body);
@@ -32,6 +37,8 @@ body {
   position: relative;
   /* Fix for mobile scrolling */
   min-height: 100vh;
+  margin: 0; /* וידוא שאין margin */
+  margin-top: 0 !important; /* ביטול מפורש של margin-top */
 }
 
 /* === Mobile overflow fixes === */

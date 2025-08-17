@@ -13,15 +13,27 @@
 .technicalCards {
   position: relative;
   padding: 80px 0 100px 0;
-  background: #fafafa;
+  background-color: #ffffff;
   direction: rtl;
   overflow: hidden;
   
-  /* רקע שנראה כמו נייר שרטוט */
-  background-image: 
-    linear-gradient(to right, #e8e8e8 1px, transparent 1px),
-    linear-gradient(to bottom, #e8e8e8 1px, transparent 1px);
+  /* רקע מחברת – נקודות ויזואליות (mobile-first) */
+  background-image: radial-gradient(#bfc8d0 1.2px, transparent 1.2px);
   background-size: 20px 20px;
+  background-position: 0 0;
+}
+
+/* התאמות רספונסיביות לרקע הנקודות */
+@media (min-width: 768px) {
+  .technicalCards {
+    background-size: 25px 25px; /* נקודות גדולות יותר במסכים גדולים */
+  }
+}
+
+@media (min-width: 1200px) {
+  .technicalCards {
+    background-size: 30px 30px; /* נקודות הכי גדולות במסכים רחבים */
+  }
 }
 
 .backgroundCanvas {

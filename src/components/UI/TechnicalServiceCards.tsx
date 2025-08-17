@@ -67,24 +67,8 @@ export const TechnicalServiceCards: React.FC<TechnicalServiceCardsProps> = ({ cl
       
       const rc = rough.canvas(canvas);
       const canvasWidth = canvas.offsetWidth;
-      const canvasHeight = canvas.offsetHeight;
 
-      // רשת רקע דקה כמו בתוכניות הנדסה
-      const gridSize = 20;
-      for (let x = 0; x <= canvasWidth; x += gridSize) {
-        rc.line(x, 0, x, canvasHeight, {
-          stroke: '#e8e8e8',
-          strokeWidth: 0.5,
-          roughness: 0.5
-        });
-      }
-      for (let y = 0; y <= canvasHeight; y += gridSize) {
-        rc.line(0, y, canvasWidth, y, {
-          stroke: '#e8e8e8',
-          strokeWidth: 0.5,
-          roughness: 0.5
-        });
-      }
+      // הוסר ציור רשת המשבצות - נשתמש רק ברקע הנקודות
 
       // קווי ציון וכותרות הנדסיות
       rc.line(50, 50, canvasWidth - 50, 50, {

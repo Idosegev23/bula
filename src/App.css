@@ -7,8 +7,25 @@
   flex-direction: column;
   background: var(--color-white);
   color: var(--color-black);
+  margin: 0;
+  padding: 0;
 }
 
 #main-content {
   flex: 1;
+  margin: 0;
+  margin-top: 0 !important; /* איפוס מפורש */
+  padding: 0;
+  position: relative;
+  transition: margin-top 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* כאשר התפריט פתוח - דחיפת התוכן למטה */
+.App.menu-open #main-content {
+  margin-top: var(--menu-push-distance, 0px) !important;
+}
+
+/* כשהתפריט סגור - חזרה למצב רגיל */
+.App:not(.menu-open) #main-content {
+  margin-top: 0 !important;
 }
