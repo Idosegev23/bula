@@ -108,7 +108,7 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({ className = ''
     },
     {
       id: 'architects',
-      title: 'קשרי אדריכלים',
+      title: 'אדריכלים AND MORE',
       description: 'שירותים טכניים מתקדמים וייצור מקצועי לאדריכלים ומעצבים עם דיוק מושלם',
       backgroundImage: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
       icon: (

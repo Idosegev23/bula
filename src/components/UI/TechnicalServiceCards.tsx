@@ -35,7 +35,7 @@ export const TechnicalServiceCards: React.FC<TechnicalServiceCardsProps> = ({ cl
     },
     {
       id: 'architects', 
-      title: 'קשרי אדריכלים',
+      title: 'אדריכלים AND MORE',
       subtitle: 'לאדריכלים',
       description: 'שירותים טכניים וייצור מקצועי'
     },
@@ -164,312 +164,123 @@ interface TechnicalCardProps {
 }
 
 const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
-  const cardCanvasRef = useRef<HTMLCanvasElement>(null);
   const buttonCanvasRef = useRef<HTMLCanvasElement>(null);
+  const arrowCanvasRef = useRef<HTMLCanvasElement>(null);
+  const measurementCanvasRef = useRef<HTMLCanvasElement>(null);
+  const radiusCanvasRef = useRef<HTMLCanvasElement>(null);
+  const widthMeasurementCanvasRef = useRef<HTMLCanvasElement>(null);
 
+  // useEffect למדידה אנכית - רק בכרטיס הראשון
   useEffect(() => {
-    const canvas = cardCanvasRef.current;
+    if (index !== 0) return; // רק בכרטיס הראשון
+    
+    const canvas = measurementCanvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const updateCanvasSize = () => {
+    const updateMeasurementCanvas = () => {
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * window.devicePixelRatio;
       canvas.height = rect.height * window.devicePixelRatio;
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-      drawTechnicalElements();
+      drawMeasurement();
     };
 
-    const drawTechnicalElements = () => {
+    const drawMeasurement = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       const rc = rough.canvas(canvas);
       const w = canvas.offsetWidth;
       const h = canvas.offsetHeight;
-      
-      // התאמה רספונסיבית לגודל הכרטיס
-      const isMobile = h <= 150; // כרטיס קטן (מובייל)
-      const isTablet = h > 150 && h <= 300; // כרטיס בינוני (טאבלט)
-      
-      // הגדלות דינמיות לפי גודל המסך
-      const margin = isMobile ? 8 : 15; // מרווח מהקצה
-      const strokeWidth = isMobile ? 1.5 : 2; // עובי קו
-      const textSize = isMobile ? 8 : 10; // גודל טקסט
 
-      // הגדרת רדיוסים רספונסיביים וצבעי עט לפי כרטיס
-      const baseRadiusConfigs = [
-        { topLeft: 20, topRight: 8, bottomRight: 25, bottomLeft: 12 },   // כרטיס 1
-        { topLeft: 15, topRight: 30, bottomRight: 10, bottomLeft: 22 }, // כרטיס 2  
-        { topLeft: 12, topRight: 18, bottomRight: 28, bottomLeft: 6 }    // כרטיס 3
-      ];
+      // התאמה לגדלי מסך שונים - בודק גם רוחב מסך
+      const screenWidth = window.innerWidth;
+      const isMobile = screenWidth < 768;
       
-      // התאמת רדיוסים לגודל המסך
-      const radiusScale = isMobile ? 0.6 : (isTablet ? 0.8 : 1);
-      const baseConfig = baseRadiusConfigs[index] || baseRadiusConfigs[0];
-      const radiusConfig = {
-        topLeft: Math.max(6, Math.round(baseConfig.topLeft * radiusScale)),
-        topRight: Math.max(4, Math.round(baseConfig.topRight * radiusScale)),
-        bottomRight: Math.max(6, Math.round(baseConfig.bottomRight * radiusScale)),
-        bottomLeft: Math.max(4, Math.round(baseConfig.bottomLeft * radiusScale))
-      };
-      
-      // צבעי עט לכל כרטיס
-      const penColors = ['#d32f2f', '#1976d2', '#388e3c']; // אדום, כחול, ירוק
-      const penColor = penColors[index] || '#d32f2f';
-      
-      const { topLeft: topLeftRadius, topRight: topRightRadius, bottomRight: bottomRightRadius, bottomLeft: bottomLeftRadius } = radiusConfig;
+      // הציור רק אם יש מספיק מקום
+      if (isMobile && screenWidth < 500) return; // לא מציג במסכים קטנים מדי
+      if (w < 250 || h < 150) return;
 
-      // מסגרת הכרטיס עם רדיוס לא סימטרי (דינמי לפי גודל)
-      const cardPath = `M${margin + topLeftRadius},${margin} 
-        L${w - margin - topRightRadius},${margin} 
-        Q${w - margin},${margin} ${w - margin},${margin + topRightRadius}
-        L${w - margin},${h - margin - bottomRightRadius}
-        Q${w - margin},${h - margin} ${w - margin - bottomRightRadius},${h - margin}
-        L${margin + bottomLeftRadius},${h - margin}
-        Q${margin},${h - margin} ${margin},${h - margin - bottomLeftRadius}
-        L${margin},${margin + topLeftRadius}
-        Q${margin},${margin} ${margin + topLeftRadius},${margin} Z`;
+      // פס מדידה אנכי - התאמה למובייל
+      const measureX = isMobile ? w - 40 : w - 70; // קרוב יותר במובייל
+      const measureStartY = isMobile ? 8 : 12;
+      const measureEndY = h - (isMobile ? 5 : 8);
 
-      rc.path(cardPath, {
+      // גדלים דינמיים למובייל
+      const strokeWidth = isMobile ? 2.5 : 3;
+      const lineTerminationLength = isMobile ? 6 : 8;
+      const arrowSize = isMobile ? 3.5 : 4;
+      const fontSize = isMobile ? '16px' : '24px'; // פונט גדול יותר במובייל
+      const textOffset = isMobile ? 25 : 35;
+
+      // קו המדידה הראשי
+      rc.line(measureX, measureStartY, measureX, measureEndY, {
         stroke: '#000000',
         strokeWidth: strokeWidth,
-        roughness: 1.5,
-        fill: '#ffffff',
-        fillStyle: 'solid'
+        roughness: isMobile ? 2 : 3,
+        bowing: isMobile ? 1.5 : 2.5
       });
 
-      // סימוני זוויות מחוץ לרדיוס - רק במסכים גדולים ופינות גדולות
-      const minRadiusForAnnotation = isMobile ? 10 : 12;
-      
-      // הגדרת משתנים לאלמנטים הנדסיים (כדי שיהיו זמינים לכל הפינות)
-      const lineExtension = isMobile ? 12 : 20;
-      const arcSize = isMobile ? 18 : 25;
-      const arcOffset = isMobile ? 6 : 10;
-      const textOffset = isMobile ? 18 : 25;
-      
-      // פינה שמאל עליון - אם יש רדיוס גדול ולא במובייל קטן מדי
-      if (!isMobile && topLeftRadius >= minRadiusForAnnotation) {
-        const centerX = margin + topLeftRadius;
-        const centerY = margin + topLeftRadius;
-        
-        // קו מהמרכז החוצה לציון הרדיוס (רספונסיבי)
-        rc.line(centerX, centerY, centerX - topLeftRadius - lineExtension, centerY - topLeftRadius - lineExtension, {
-          stroke: penColor,
-          strokeWidth: strokeWidth * 0.8,
-          strokeLineDash: [3, 3],
-          roughness: 1.2
-        });
-        
-        // קשת הזווית מחוץ לרדיוס (קטנה יותר במובייל)
-        rc.arc(centerX - topLeftRadius - arcOffset, centerY - topLeftRadius - arcOffset, arcSize, arcSize, 0, Math.PI * 0.5, false, {
-          stroke: penColor,
-          strokeWidth: strokeWidth * 0.7,
-          roughness: 1.3
-        });
-        
-        // כתב יד לרדיוס (קטן יותר במובייל)
-        ctx.font = `${textSize}px serif`;
-        ctx.fillStyle = penColor;
-        ctx.save();
-        ctx.translate(centerX - topLeftRadius - textOffset, centerY - topLeftRadius - textOffset);
-        ctx.rotate(-0.1);
-        ctx.fillText(`R${topLeftRadius}`, 0, 0);
-        ctx.restore();
-      }
-      
-      // פינה ימין עליון - אם יש רדיוס גדול ולא במובייל קטן מדי
-      if (!isMobile && topRightRadius >= minRadiusForAnnotation) {
-        const centerX = w - margin - topRightRadius;
-        const centerY = margin + topRightRadius;
-        
-        // קו מהמרכז החוצה (רספונסיבי)
-        rc.line(centerX, centerY, centerX + topRightRadius + lineExtension, centerY - topRightRadius - lineExtension, {
-          stroke: penColor,
-          strokeWidth: strokeWidth * 0.8,
-          strokeLineDash: [3, 3],
-          roughness: 1.2
-        });
-        
-        // קשת הזווית (רספונסיבי)
-        rc.arc(centerX + topRightRadius + arcOffset, centerY - topRightRadius - arcOffset, arcSize, arcSize, Math.PI * 0.5, Math.PI, false, {
-          stroke: penColor,
-          strokeWidth: strokeWidth * 0.7,
-          roughness: 1.3
-        });
-        
-        // כתב יד לרדיוס (רספונסיבי)
-        ctx.font = `${textSize}px serif`;
-        ctx.fillStyle = penColor;
-        ctx.save();
-        ctx.translate(centerX + topRightRadius + (textOffset * 0.6), centerY - topRightRadius - textOffset);
-        ctx.rotate(0.1);
-        ctx.fillText(`R${topRightRadius}`, 0, 0);
-        ctx.restore();
-      }
-      
-      // פינה ימין תחתון - אם יש רדיוס גדול ולא במובייל קטן מדי
-      if (!isMobile && bottomRightRadius >= minRadiusForAnnotation) {
-        const centerX = w - margin - bottomRightRadius;
-        const centerY = h - margin - bottomRightRadius;
-        
-        // קו מהמרכז החוצה
-        rc.line(centerX, centerY, centerX + bottomRightRadius + 20, centerY + bottomRightRadius + 20, {
-          stroke: penColor,
-          strokeWidth: 1.5,
-          strokeLineDash: [4, 4],
-          roughness: 1.2
-        });
-        
-        // קשת הזווית
-        rc.arc(centerX + bottomRightRadius + 10, centerY + bottomRightRadius + 10, 25, 25, Math.PI, Math.PI * 1.5, false, {
-          stroke: penColor,
-          strokeWidth: 1.2,
-          roughness: 1.3
-        });
-        
-        // כתב יד לרדיוס
-        ctx.font = '10px serif';
-        ctx.fillStyle = penColor;
-        ctx.save();
-        ctx.translate(centerX + bottomRightRadius + 15, centerY + bottomRightRadius + 25);
-        ctx.rotate(-0.1);
-        ctx.fillText(`R${bottomRightRadius}`, 0, 0);
-        ctx.restore();
-      }
-      
-      // פינה שמאל תחתון - אם יש רדיוס גדול
-      if (bottomLeftRadius >= 15) {
-        const centerX = 15 + bottomLeftRadius;
-        const centerY = h - 15 - bottomLeftRadius;
-        
-        // קו מהמרכז החוצה
-        rc.line(centerX, centerY, centerX - bottomLeftRadius - 20, centerY + bottomLeftRadius + 20, {
-          stroke: penColor,
-          strokeWidth: 1.5,
-          strokeLineDash: [4, 4],
-          roughness: 1.2
-        });
-        
-        // קשת הזווית
-        rc.arc(centerX - bottomLeftRadius - 10, centerY + bottomLeftRadius + 10, 25, 25, Math.PI * 1.5, Math.PI * 2, false, {
-          stroke: penColor,
-          strokeWidth: 1.2,
-          roughness: 1.3
-        });
-        
-        // כתב יד לרדיוס
-        ctx.font = '10px serif';
-        ctx.fillStyle = penColor;
-        ctx.save();
-        ctx.translate(centerX - bottomLeftRadius - 25, centerY + bottomLeftRadius + 15);
-        ctx.rotate(0.1);
-        ctx.fillText(`R${bottomLeftRadius}`, 0, 0);
-        ctx.restore();
-      }
-
-      // מדידות וסימונים הנדסיים - רק במסכים גדולים
-      if (!isMobile) {
-        // מדידת רוחב בחלק העליון
-        const measureY = 35;
-        const measureStartX = 50;
-        const measureEndX = w - 50;
-      
-      // קו המדידה הראשי
-      rc.line(measureStartX, measureY, measureEndX, measureY, {
-        stroke: penColor,
-        strokeWidth: 1,
-        roughness: 1.2
+      // קווי התחמה עליון ותחתון
+      rc.line(measureX - lineTerminationLength, measureStartY, measureX + lineTerminationLength, measureStartY, {
+        stroke: '#000000',
+        strokeWidth: strokeWidth,
+        roughness: 1.3
+      });
+      rc.line(measureX - lineTerminationLength, measureEndY, measureX + lineTerminationLength, measureEndY, {
+        stroke: '#000000',
+        strokeWidth: strokeWidth,
+        roughness: 1.3
       });
 
-      // קווי התחמה
-      rc.line(measureStartX, measureY - 5, measureStartX, measureY + 5, {
-        stroke: penColor,
-        strokeWidth: 1,
-        roughness: 1
-      });
-      rc.line(measureEndX, measureY - 5, measureEndX, measureY + 5, {
-        stroke: penColor,
-        strokeWidth: 1,
-        roughness: 1
-      });
-
-      // חיצים
-      rc.polygon([[measureStartX + 8, measureY - 3], [measureStartX + 8, measureY + 3], [measureStartX + 2, measureY]], {
-        stroke: penColor,
-        fill: penColor,
+      // חיצים עליון ותחתון - קטנים יותר במובייל
+      rc.polygon([
+        [measureX - arrowSize, measureStartY + (isMobile ? 8 : 12)], 
+        [measureX + arrowSize, measureStartY + (isMobile ? 8 : 12)], 
+        [measureX, measureStartY + 3]
+      ], {
+        stroke: '#000000',
+        fill: '#000000',
         fillStyle: 'solid',
-        roughness: 1
+        strokeWidth: strokeWidth - 1,
+        roughness: 1.1
       });
-      rc.polygon([[measureEndX - 8, measureY - 3], [measureEndX - 8, measureY + 3], [measureEndX - 2, measureY]], {
-        stroke: penColor,
-        fill: penColor,
+      rc.polygon([
+        [measureX - arrowSize, measureEndY - (isMobile ? 8 : 12)], 
+        [measureX + arrowSize, measureEndY - (isMobile ? 8 : 12)], 
+        [measureX, measureEndY - 3]
+      ], {
+        stroke: '#000000',
+        fill: '#000000',
         fillStyle: 'solid',
-        roughness: 1
+        strokeWidth: strokeWidth - 1,
+        roughness: 1.1
       });
 
-      // כתב יד למידה
-      const measurements = ['24cm', '18cm', '32cm'];
-      ctx.font = '12px serif';
-      ctx.fillStyle = penColor;
+      // טקסט - קטן יותר במובייל
+      ctx.font = `bold ${fontSize} MiriWin, serif`;
+      ctx.fillStyle = '#000000';
+      ctx.textAlign = 'center';
       ctx.save();
-      ctx.translate((measureStartX + measureEndX) / 2, measureY - 10);
-      ctx.rotate(-0.05); // סיבוב קל לכתב יד
-      ctx.fillText(measurements[index], -15, 0);
+      ctx.translate(measureX + textOffset, (measureStartY + measureEndY) / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText(isMobile ? '8ס״מ' : '10 ס״מ', 0, 0);
       ctx.restore();
-
-      // קווי עזר ושרטוטי פרטים נוספים
-      if (index === 0) {
-        // כרטיס ראשון - פרטי חיבור
-        rc.circle(w - 40, h - 40, 15, {
-          stroke: penColor,
-          strokeWidth: 1,
-          roughness: 1.5
-        });
-        ctx.font = '8px monospace';
-        ctx.fillStyle = penColor;
-        ctx.fillText('DETAIL A', w - 70, h - 20);
-      } else if (index === 1) {
-        // כרטיס שני - חתך
-        rc.line(w - 60, h - 50, w - 20, h - 20, {
-          stroke: penColor,
-          strokeWidth: 1.5,
-          strokeLineDash: [5, 5],
-          roughness: 1.2
-        });
-        ctx.fillStyle = penColor;
-        ctx.fillText('SECTION B-B', w - 80, h - 10);
-      } 
-      // else {
-      //   // כרטיס שלישי - הערה
-      //   rc.rectangle(w - 80, h - 50, 60, 20, {
-      //     stroke: penColor,
-      //     strokeWidth: 1,
-      //     roughness: 1.5
-      //   });
-      //   ctx.font = '7px monospace';
-      //   ctx.fillStyle = penColor;
-      //   ctx.fillText('SEE DWG', w - 75, h - 35);
-      //   ctx.fillText('NO. 001', w - 70, h - 25);
-      // }
-
-      // מספור הכרטיס
-      ctx.font = 'bold 16px monospace';
-      ctx.fillStyle = penColor;
-      ctx.fillText(`${String(index + 1).padStart(2, '0')}`, 25, h - 25);
-      } // סגירת התנאי !isMobile
     };
 
+    // ביצוע מיידי ועם השהיה
+    updateMeasurementCanvas();
     const timer = setTimeout(() => {
-      updateCanvasSize();
-    }, index * 300);
+      updateMeasurementCanvas();
+    }, 1000); // השהיה לוודא שהכל נטען
 
-    window.addEventListener('resize', updateCanvasSize);
+    window.addEventListener('resize', updateMeasurementCanvas);
 
     return () => {
       clearTimeout(timer);
-      window.removeEventListener('resize', updateCanvasSize);
+      window.removeEventListener('resize', updateMeasurementCanvas);
     };
   }, [index]);
 
@@ -491,68 +302,20 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
 
     const drawButtonElements = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // וידוא שהcanvas שקוף לחלוטין
-      ctx.globalCompositeOperation = 'source-over';
       
       const rc = rough.canvas(canvas);
       const w = canvas.offsetWidth;
       const h = canvas.offsetHeight;
 
-      // מרכז הכפתור
-      const centerX = w / 2;
-      const centerY = h / 2;
-
-      // קבלת אותו הצבע כמו הכרטיס
-      const penColors = ['#d32f2f', '#1976d2', '#388e3c']; // אדום, כחול, ירוק
-      const penColor = penColors[index] || '#d32f2f';
-
-      // גודל המסגרת (mobile-first: מתחיל קטן יותר)
-      const buttonWidth = w * 0.7;
-      const buttonHeight = h * 0.45;
-      
-      // קואורדינטות הפינות
-      const left = centerX - buttonWidth / 2;
-      const right = centerX + buttonWidth / 2;
-      const top = centerY - buttonHeight / 2;
-      const bottom = centerY + buttonHeight / 2;
-
-      // כרטיס 2 יהיה לא סגור (חסר הקו התחתון)
-      if (index === 1) {
-        // מסגרת לא סגורה - קווים נפרדים דקים
-        // קו עליון
-        rc.line(left, top, right, top, {
-          stroke: penColor, strokeWidth: 1.5, roughness: 2.5, bowing: 1.5
-        });
-        // קו ימני
-        rc.line(right, top, right, bottom - 5, {
-          stroke: penColor, strokeWidth: 1.5, roughness: 2.5, bowing: 1.5
-        });
-        // קו שמאלי
-        rc.line(left, top, left, bottom - 5, {
-          stroke: penColor, strokeWidth: 1.5, roughness: 2.5, bowing: 1.5
-        });
-        // הקו התחתון חסר - זה מה שעושה אותו פתוח
-      } else {
-        // מסגרת סגורה - קווים נפרדים דקים
-        // קו עליון
-        rc.line(left, top, right, top, {
-          stroke: penColor, strokeWidth: 1.5, roughness: 2.5, bowing: 1.5
-        });
-        // קו ימני
-        rc.line(right, top, right, bottom, {
-          stroke: penColor, strokeWidth: 1.5, roughness: 2.5, bowing: 1.5
-        });
-        // קו תחתון
-        rc.line(right, bottom, left, bottom, {
-          stroke: penColor, strokeWidth: 1.5, roughness: 2.5, bowing: 1.5
-        });
-        // קו שמאלי
-        rc.line(left, bottom, left, top, {
-          stroke: penColor, strokeWidth: 1.5, roughness: 2.5, bowing: 1.5
-        });
-      }
-
-
+      // מסגרת פשוטה עם rough.js
+      const margin = 5;
+      rc.rectangle(margin, margin, w - margin * 2, h - margin * 2, {
+        stroke: '#333333',
+        strokeWidth: 1.5,
+        roughness: 1.8,
+        bowing: 0.5,
+        fill: 'transparent'
+      });
     };
 
     const timer = setTimeout(() => {
@@ -567,6 +330,287 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
     };
   }, [index]);
 
+  // useEffect לציור חץ Rough.js
+  useEffect(() => {
+    const canvas = arrowCanvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const updateArrowCanvas = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      drawArrow();
+    };
+
+    const drawArrow = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const rc = rough.canvas(canvas);
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+
+      // חץ גדול בRough.js
+      const centerX = w / 2;
+      const centerY = h / 2;
+      const arrowSize = 10;
+
+      // ציור חץ שמאלה - משולש עם קו
+      // ראש החץ (מצביע שמאלה)
+      rc.polygon([
+        [centerX - arrowSize, centerY],
+        [centerX - 2, centerY - 6],
+        [centerX - 2, centerY + 6]
+      ], {
+        stroke: '#000000',
+        fill: '#000000',
+        fillStyle: 'solid',
+        strokeWidth: 2,
+        roughness: 2,
+        bowing: 1
+      });
+
+      // גוף החץ
+      rc.line(centerX - 2, centerY, centerX + arrowSize, centerY, {
+        stroke: '#000000',
+        strokeWidth: 3,
+        roughness: 2,
+        bowing: 0.5
+      });
+    };
+
+    updateArrowCanvas();
+    const timer = setTimeout(() => {
+      updateArrowCanvas();
+    }, 1200); // אחרי הכפתור
+
+    window.addEventListener('resize', updateArrowCanvas);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', updateArrowCanvas);
+    };
+  }, [index]);
+
+  // useEffect לסימון רדיוס - רק בכרטיס השני
+  useEffect(() => {
+    if (index !== 1) return; // רק בכרטיס השני
+    
+    const canvas = radiusCanvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const updateRadiusCanvas = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      drawRadiusAnnotation();
+    };
+
+    const drawRadiusAnnotation = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const rc = rough.canvas(canvas);
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+
+      // התאמה לגדלי מסך שונים - בודק גם רוחב מסך
+      const screenWidth = window.innerWidth;
+      const isMobile = screenWidth < 768;
+      
+      // הציור רק אם יש מספיק מקום
+      if (isMobile && screenWidth < 500) return; // לא מציג במסכים קטנים מדי
+      if (w < 250 || h < 150) return;
+
+      // נקודת מרכז הפינה השמאלית התחתונה - יחסי לקונטיינר
+      const borderRadius = 32;
+      const cornerX = borderRadius;
+      const cornerY = h - borderRadius;
+      
+      // גדלים דינמיים למובייל
+      const strokeWidth = isMobile ? 2 : 2.5;
+      const dashLength = isMobile ? 3 : 4;
+      const lineLength = isMobile ? 15 : 20;
+      const verticalOffset = isMobile ? 40 : 65;
+      const arrowLength = isMobile ? 35 : 50;
+      const fontSize = isMobile ? '14px' : '16px'; // פונט גדול יותר במובייל
+      
+      // קו מקווקו מהפינה למרכז הרדיוס - קצר יותר במובייל
+      const lineEndX = cornerX + lineLength;
+      const lineEndY = cornerY - verticalOffset;
+      rc.line(cornerX, cornerY, lineEndX, lineEndY, {
+        stroke: '#000000',
+        strokeWidth: strokeWidth,
+        roughness: isMobile ? 1.5 : 2,
+        strokeLineDash: [dashLength, dashLength],
+        bowing: 0.5
+      });
+
+      // חץ עם מידה - מתחיל מסוף הקו המקווקו
+      const arrowStartX = lineEndX + (isMobile ? 5 : 10);
+      const arrowStartY = lineEndY;
+
+      // קו הבסיס של החץ - קצר יותר במובייל
+      rc.line(arrowStartX, arrowStartY, arrowStartX + arrowLength, arrowStartY, {
+        stroke: '#000000',
+        strokeWidth: strokeWidth,
+        roughness: 1.5,
+        bowing: 0.3
+      });
+
+      // ראש החץ - קטן יותר במובייל
+      const arrowHeadSize = isMobile ? 3 : 5;
+      rc.polygon([
+        [arrowStartX + arrowLength + 2, arrowStartY],
+        [arrowStartX + arrowLength - arrowHeadSize, arrowStartY - arrowHeadSize],
+        [arrowStartX + arrowLength - arrowHeadSize, arrowStartY + arrowHeadSize]
+      ], {
+        stroke: '#000000',
+        fill: '#000000',
+        fillStyle: 'solid',
+        strokeWidth: strokeWidth - 0.5,
+        roughness: 1.2
+      });
+
+      // טקסט המידה - קטן יותר במובייל
+      ctx.font = `bold ${fontSize} MiriWin, serif`;
+      ctx.fillStyle = '#000000';
+      ctx.textAlign = 'left';
+      const radiusText = isMobile ? 'R=3ס״מ' : 'R=32px';
+      ctx.fillText(radiusText, arrowStartX + arrowLength + (isMobile ? 5 : 8), arrowStartY + 5);
+    };
+
+    updateRadiusCanvas();
+    const timer = setTimeout(() => {
+      updateRadiusCanvas();
+    }, 1500); // אחרי שהכל נטען
+
+    window.addEventListener('resize', updateRadiusCanvas);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', updateRadiusCanvas);
+    };
+  }, [index]);
+
+  // useEffect למדידת רוחב - רק בכרטיס השלישי
+  useEffect(() => {
+    if (index !== 2) return; // רק בכרטיס השלישי
+    
+    const canvas = widthMeasurementCanvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const updateWidthMeasurementCanvas = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      drawWidthMeasurement();
+    };
+
+    const drawWidthMeasurement = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const rc = rough.canvas(canvas);
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+
+      // התאמה לגדלי מסך שונים - בודק גם רוחב מסך
+      const screenWidth = window.innerWidth;
+      const isMobile = screenWidth < 768;
+      
+      // הציור רק אם יש מספיק מקום
+      if (isMobile && screenWidth < 500) return; // לא מציג במסכים קטנים מדי
+      if (w < 250 || h < 150) return;
+
+      // פס מדידה אופקי - התאמה למובייל
+      const measureY = 40;
+      const marginSide = isMobile ? 8 : 12;
+      const measureStartX = marginSide;
+      const measureEndX = w - marginSide;
+
+      // גדלים דינמיים למובייל
+      const strokeWidth = isMobile ? 2.5 : 3;
+      const lineTerminationLength = isMobile ? 6 : 8;
+      const arrowDistance = isMobile ? 10 : 12;
+      const arrowSize = isMobile ? 3.5 : 4;
+      const fontSize = isMobile ? '16px' : '24px'; // פונט גדול יותר במובייל
+
+      // קו המדידה הראשי
+      rc.line(measureStartX, measureY, measureEndX, measureY, {
+        stroke: '#000000',
+        strokeWidth: strokeWidth,
+        roughness: isMobile ? 2 : 3,
+        bowing: isMobile ? 1.5 : 2.5
+      });
+
+      // קווי התחמה שמאלי וימני
+      rc.line(measureStartX, measureY - lineTerminationLength, measureStartX, measureY + lineTerminationLength, {
+        stroke: '#000000',
+        strokeWidth: strokeWidth,
+        roughness: 1.3
+      });
+      rc.line(measureEndX, measureY - lineTerminationLength, measureEndX, measureY + lineTerminationLength, {
+        stroke: '#000000',
+        strokeWidth: strokeWidth,
+        roughness: 1.3
+      });
+
+      // חיצים שמאלי וימני - קטנים יותר במובייל
+      rc.polygon([
+        [measureStartX + arrowDistance, measureY - arrowSize], 
+        [measureStartX + arrowDistance, measureY + arrowSize], 
+        [measureStartX + 3, measureY]
+      ], {
+        stroke: '#000000',
+        fill: '#000000',
+        fillStyle: 'solid',
+        strokeWidth: strokeWidth - 1,
+        roughness: 1.1
+      });
+      rc.polygon([
+        [measureEndX - arrowDistance, measureY - arrowSize], 
+        [measureEndX - arrowDistance, measureY + arrowSize], 
+        [measureEndX - 3, measureY]
+      ], {
+        stroke: '#000000',
+        fill: '#000000',
+        fillStyle: 'solid',
+        strokeWidth: strokeWidth - 1,
+        roughness: 1.1
+      });
+
+      // טקסט - קטן יותר במובייל
+      ctx.font = `bold ${fontSize} MiriWin, serif`;
+      ctx.fillStyle = '#000000';
+      ctx.textAlign = 'center';
+      const widthText = isMobile ? '6ס״מ' : '8 ס״מ';
+      ctx.fillText(widthText, (measureStartX + measureEndX) / 2, measureY - 10);
+    };
+
+    // ביצוע מיידי ועם השהיה
+    updateWidthMeasurementCanvas();
+    const timer = setTimeout(() => {
+      updateWidthMeasurementCanvas();
+    }, 1000);
+
+    window.addEventListener('resize', updateWidthMeasurementCanvas);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', updateWidthMeasurementCanvas);
+    };
+  }, [index]);
+
   return (
     <div 
       className={styles.card}
@@ -574,7 +618,14 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
         animationDelay: `${index * 200}ms`
       }}
     >
-      <canvas ref={cardCanvasRef} className={styles.cardCanvas} />
+      {/* Canvas למדידה - רק בכרטיס הראשון */}
+      {index === 0 && <canvas ref={measurementCanvasRef} className={styles.measurementCanvas} />}
+      
+      {/* Canvas לסימון רדיוס - רק בכרטיס השני */}
+      {index === 1 && <canvas ref={radiusCanvasRef} className={styles.radiusCanvas} />}
+      
+      {/* Canvas למדידת רוחב - רק בכרטיס השלישי */}
+      {index === 2 && <canvas ref={widthMeasurementCanvasRef} className={styles.widthMeasurementCanvas} />}
       
       <div className={styles.cardContent}>
         <h3 className={styles.cardTitle}>{service.title}</h3>
@@ -582,13 +633,12 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
         <p className={styles.cardDescription}>{service.description}</p>
 
         <div className={styles.buttonWrapper}>
+          <div className={styles.buttonMarkerBg}></div>
           <canvas ref={buttonCanvasRef} className={styles.buttonCanvas} />
           <Link to={service.id === 'one-stop-shop' ? '/services/one-stop-shop#hero' : `/services#${service.id}`} className={styles.ctaButton} aria-label={`נווט לעמוד השירותים - ${service.title}`}>
-            <span>תוכנית מפורטת</span>
-            <svg width="80" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            <span>בואו נתחיל</span>
           </Link>
+          <canvas ref={arrowCanvasRef} className={styles.roughArrowCanvas} />
         </div>
       </div>
     </div>

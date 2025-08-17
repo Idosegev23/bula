@@ -2,8 +2,10 @@
 
 /* Import handwriting font */
 @font-face {
-  font-family: 'DanaYad';
-  src: url('/DanaYadAlefAlefAlef-Normal.otf') format('opentype');
+  font-family: 'MiriWin';
+  src: url('/miriwin-webfont copy.woff2') format('woff2'),
+       url('/miriwin-webfont copy.woff') format('woff'),
+       url('/miriwin-webfont copy.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -52,7 +54,7 @@
   font-weight: 600;
   color: #000000;
   margin: 0 0 12px 0;
-  font-family: 'DanaYad', 'Courier New', monospace; /* שונה לכתב יד */
+  font-family: 'MiriWin', 'Courier New', monospace; /* שונה לכתב יד */
   letter-spacing: 0.02em; /* התאמה לכתב יד */
   text-transform: none; /* הסרת uppercase לכתב יד טבעי */
   opacity: 0;
@@ -63,7 +65,7 @@
   font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   color: #333333;
   margin: 0;
-  font-family: 'DanaYad', 'Courier New', monospace; /* שונה לכתב יד */
+  font-family: 'MiriWin', 'Courier New', monospace; /* שונה לכתב יד */
   font-weight: 400;
   opacity: 0;
   animation: slideInFromTop 0.8s ease-out 0.4s forwards;
@@ -90,29 +92,18 @@
   padding: 40px 20px; /* פדינג רגיל */
 }
 
-/* Individual Card - רק ציור Rough.js בלי קונטיינר CSS */
+/* Individual Card - קונטיינר אחיד עם רקע לבן */
 .card {
   position: relative;
-  background: transparent; /* ללא רקע - הRough.js יצייר אותו */
-  /* תמונה דהויה ברקע - סגנון הנדסי */
-  background-image: 
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><g fill="none" stroke="%23000000" stroke-width="0.3" opacity="0.08"><path d="M20,20 L180,20 M20,50 L180,50 M20,80 L180,80 M20,110 L180,110 M20,140 L180,140 M20,170 L180,170"/><path d="M20,20 L20,180 M50,20 L50,180 M80,20 L80,180 M110,20 L110,180 M140,20 L140,180 M170,20 L170,180"/><circle cx="40" cy="40" r="3" fill="%23000000" opacity="0.05"/><circle cx="100" cy="80" r="2" fill="%23000000" opacity="0.05"/><circle cx="160" cy="130" r="3" fill="%23000000" opacity="0.05"/><path d="M30,30 L50,50 M90,70 L110,90 M150,120 L170,140" stroke-width="0.5"/><text x="160" y="30" font-family="monospace" font-size="8" fill="%23000000" opacity="0.06">DWG</text></g></svg>');
-  background-size: 300px 300px;
-  background-position: center;
-  background-repeat: repeat;
-  border: none; /* אין border CSS - רק ציור Rough.js */
-  box-shadow: none; /* אין box-shadow CSS */
-  /* הצללה שתתמוך בציור היד */
-  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.15)) 
-          drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+  background: transparent; /* רקע שקוף */
+  border: 2px solid #000000; /* מסגרת עדינה */
+  border-radius: 50px; /* רדיוס גדול יותר */
+  box-shadow: none; /* בלי הצללה */
   opacity: 0;
   transform: translateY(30px);
   animation: cardSlideIn 0.8s ease-out forwards;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  height: 320px; /* Mobile-first: גובה קטן יותר */
-  
-  /* מדבקה הנדסית */
-  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 380px; /* גובה מוגדל */
 }
 
 /* רדיוסים מתוגדרים בציור Rough.js בלבד */
@@ -126,26 +117,109 @@
 
 .card:hover {
   transform: translateY(-8px);
-  /* הצללה מודגשת יותר בהover - תתמוך בציור היד */
-  filter: drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.25)) 
-          drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.15))
-          drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-.cardCanvas {
+/* Canvas למדידה אנכית - רק בכרטיס הראשון */
+.measurementCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% + 60px); /* רחב יותר כדי לכסות את החלק שיוצא */
+  height: 100%;
+  z-index: 10; /* גבוה יותר מהתוכן */
+  pointer-events: none;
+  overflow: visible; /* מאפשר לקו לצאת מחוץ לגבולות */
+}
+
+/* Canvas לסימון רדיוס - בתוך הקונטיינר */
+.radiusCanvas {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 1000;
   pointer-events: none;
+  overflow: visible;
+}
+
+/* Canvas למדידת רוחב - מחוץ לקונטיינר מלמעלה */
+.widthMeasurementCanvas {
+  position: absolute;
+  top: -40px; /* מעל הקונטיינר */
+  left: 0;
+  width: 100%;
+  height: calc(100% + 80px); /* גבוה יותר כדי לכסות את הטקסט והקו */
+  z-index: 1000;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* התאמות למובייל */
+@media (max-width: 768px) {
+  .measurementCanvas {
+    right: -60px; /* יותר רחוק מהקונטיינר */
+    width: calc(100% + 100px); /* יותר רחב */
+  }
+  
+  .radiusCanvas {
+    z-index: 1500;
+    left: -40px; /* יותר רחוק משמאל */
+    bottom: -40px; /* יותר רחוק מלמטה */
+  }
+  
+  .widthMeasurementCanvas {
+    top: -50px; /* יותר רחוק מלמעלה */
+    height: calc(100% + 100px);
+    z-index: 1500;
+  }
+  
+  /* כפתור ממורכז במובייל */
+  .buttonWrapper {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 50% !important;
+    margin-right: 70px !important; /* 20px מהצד הימני */
+  }
+  
+  .ctaButton {
+    margin: 0 auto !important;
+    align-self: center !important;
+    padding-right: 50px !important; /* טקסט יותר ימינה */
+  }
+  
+  /* חץ ממורכז במובייל */
+  .roughArrowCanvas {
+    right: 50px !important; /* יותר ימינה */
+  }
+  
+  /* תוכן ממורכז במובייל */
+  .cardContent {
+    text-align: center !important;
+    padding: 15px 10px 15px !important; /* יותר רווח אנכי */
+  }
+  
+  .cardTitle,
+  .cardDescription {
+    text-align: center !important;
+  }
+}
+
+/* התאמות למסכים קטנים - הסתרת ציורים */
+@media (max-width: 500px) {
+  .measurementCanvas,
+  .radiusCanvas,
+  .widthMeasurementCanvas {
+    display: none; /* מסתיר לגמרי במסכים קטנים */
+  }
 }
 
 .cardContent {
   position: relative;
-  z-index: 2;
-  padding: 30px 20px 20px;
+  z-index: 1; /* נמוך יותר מהציורים */
+  padding: 10px 20px 10px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -156,33 +230,36 @@
 
 
 .cardTitle {
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #000000;
   margin: 0 0 8px 0;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   text-transform: none;
   letter-spacing: 0.02em;
   border-bottom: 1px solid #000000;
   padding-bottom: 8px;
+  text-align: center;
 }
 
 .cardSubtitle {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #666666;
   margin: 0 0 15px 0;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-weight: 400;
+  text-align: center;
   text-transform: none;
   letter-spacing: 0.02em;
 }
 
 .cardDescription {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #333333;
   margin: 0 0 25px 0;
   line-height: 1.5;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
+  text-align: center;
 }
 
 .buttonWrapper {
@@ -192,18 +269,110 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent !important; /* וידוא שה-wrapper שקוף */
+}
+
+/* רקע מרקר ידני מאחורי הכפתור */
+.buttonMarkerBg {
+  position: absolute;
+  top: -12px;
+  left: -20px;
+  right: -20px;
+  bottom: -12px;
+  z-index: -1; /* ממש מאחורי הכפתור */
+  opacity: 0.45; /* יותר בולט */
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* כפתור ראשון - מריחה רחבה */
+.card:nth-child(1) .buttonMarkerBg::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  right: -5px;
+  bottom: 1px;
+  background: rgba(176, 196, 222, 0.6);
+  transform: rotate(-1.5deg) skew(-11deg, 9deg);
+  border-radius: 12px 25px 15px 20px;
+  filter: blur(0.1px);
+}
+
+.card:nth-child(1) .buttonMarkerBg::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -2px;
+  right: 8px;
+  bottom: 3px;
+  background: rgba(119, 136, 153, 0.4);
+  transform: rotate(1deg) skew(5deg, -8deg);
+  border-radius: 20px 15px 25px 12px;
+  filter: blur(0.1px);
+}
+
+/* כפתור שני - מריחה אלכסונית */
+.card:nth-child(2) .buttonMarkerBg::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 8px;
+  right: -10px;
+  bottom: 4px;
+  background: rgba(70, 130, 180, 0.5);
+  transform: rotate(-3deg) skew(-15deg, 3deg);
+  border-radius: 8px 30px 12px 25px;
+  filter: blur(0.2px);
+}
+
+.card:nth-child(2) .buttonMarkerBg::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: -5px;
+  right: 5px;
+  bottom: -1px;
+  background: rgba(176, 196, 222, 0.3);
+  transform: rotate(2.5deg) skew(8deg, -12deg);
+  border-radius: 25px 12px 30px 8px;
+  filter: blur(0.1px);
+}
+
+/* כפתור שלישי - מריחה רכה ונעימה */
+.card:nth-child(3) .buttonMarkerBg::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  right: -3px;
+  bottom: 0px;
+  background: rgba(176, 196, 222, 0.5);
+  transform: rotate(-0.5deg) skew(-8deg, 4deg);
+  border-radius: 15px 20px 18px 22px;
+  filter: blur(0.1px);
+}
+
+.card:nth-child(3) .buttonMarkerBg::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -1px;
+  right: 4px;
+  bottom: 2px;
+  background: rgba(119, 136, 153, 0.4);
+  transform: rotate(1.5deg) skew(6deg, -5deg);
+  border-radius: 22px 16px 24px 14px;
+  filter: blur(0.1px);
 }
 
 .buttonCanvas {
   position: absolute;
-  top: -15px;
-  left: 30px;
+  top: -5px;
+  left: -5px;
   width: calc(100% + 10px);
-  height: calc(100% + 30px);
-  z-index: 1;
+  height: calc(100% + 10px);
+  z-index: 2;
   pointer-events: none;
-  background: transparent !important; /* וידוא שה-canvas שקוף */
 }
 
 /* כפתור שקוף לגמרי - איפוס מוחלט */
@@ -214,31 +383,20 @@ button.ctaButton,
 }
 
 .ctaButton {
-  background: rgba(0,0,0,0) !important; /* רקע שקוף מוחלט */
-  background-color: rgba(0,0,0,0) !important; /* צבע רקע שקוף מוחלט */
-  background-image: none !important; /* ללא תמונת רקע */
-  background-attachment: unset !important;
-  background-clip: unset !important;
-  background-origin: unset !important;
-  background-position: unset !important;
-  background-repeat: unset !important;
-  background-size: unset !important;
-  color: #000000 !important; /* טקסט שחור */
-  border: 0 !important; /* ללא גבול */
-  border-style: none !important;
-  border-width: 0 !important;
-  border-color: transparent !important;
-  border-radius: 0 !important; /* ללא רדיוס */
-  padding: 8px 12px !important; /* Mobile-first: פדינג קטן יותר */
+  background: transparent !important;
+  color: #000000 !important;
+  border: none !important;
+  padding: 12px 16px !important;
   margin: 0 !important;
-  font-size: 0.9rem !important; /* Mobile-first: פונט קטן יותר */
-  font-weight: 600 !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
   cursor: pointer !important;
-  font-family: 'DanaYad', 'Courier New', monospace !important;
+  font-family: 'MiriWin', 'Courier New', monospace !important;
   position: relative !important;
-  z-index: 2 !important;
-  min-width: 110px !important; /* Mobile-first: רוחב קטן יותר */
-  max-width: 150px !important;
+  z-index: 1 !important; /* מעל המרקר */
+  min-width: 160px !important;
+  max-width: 200px !important;
+  white-space: nowrap !important;
   text-transform: none !important;
   letter-spacing: 0.02em !important;
   box-shadow: none !important;
@@ -247,11 +405,31 @@ button.ctaButton,
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  opacity: 1 !important;
-  filter: none !important;
-  transform: none !important;
-  transition: transform 0.3s ease !important;
+  text-align: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+  flex-wrap: nowrap !important;
 }
+
+.ctaButton span {
+  display: inline-block !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.roughArrowCanvas {
+  position: absolute !important;
+  top: 50% !important;
+  left: 20px !important;
+  transform: translateY(-50%) !important;
+  width: 30px !important;
+  height: 24px !important;
+  pointer-events: none !important;
+  z-index: 5 !important;
+}
+
+/* סגנונות חץ טקסט הוסרו - משתמשים רק בRough.js */
 
 
 
@@ -292,13 +470,10 @@ button.ctaButton:link {
   transform: translateY(0) !important;
 }
 
-.ctaButton svg {
-  margin-right: 8px;
-  transition: transform 0.3s ease;
-}
+/* סגנונות SVG הוסרו - משתמשים בחץ טקסט */
 
-.ctaButton:hover svg {
-  transform: translateX(-3px);
+.ctaButton:hover .roughArrowCanvas {
+  transform: translateY(-50%) translateX(3px);
 }
 
 /* Tablet and larger screens */
@@ -319,19 +494,19 @@ button.ctaButton:link {
   }
   
   .card {
-    height: 380px;
+    height: 420px;
   }
   
   .cardContent {
-    padding: 70px 30px 30px;
+    padding: 20px 30px 30px;
   }
   
   .cardTitle {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   
   .cardDescription {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .header {
@@ -342,8 +517,8 @@ button.ctaButton:link {
   .ctaButton {
     padding: 10px 16px !important;
     font-size: 1rem !important;
-    min-width: 130px !important;
-    max-width: 170px !important;
+    min-width: 160px !important;
+    max-width: 200px !important;
   }
 }
 
@@ -361,27 +536,27 @@ button.ctaButton:link {
   }
   
   .card {
-    height: 400px;
+    height: 450px;
   }
   
   .cardContent {
-    padding: 80px 35px 35px;
+    padding: 25px 35px 35px;
   }
   
   .cardTitle {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   
   .cardDescription {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   
   /* כפתורים בדסקטופ */
   .ctaButton {
     padding: 12px 20px !important;
     font-size: 1.1rem !important;
-    min-width: 140px !important;
-    max-width: 180px !important;
+    min-width: 170px !important;
+    max-width: 210px !important;
   }
 }
 
@@ -406,7 +581,7 @@ button.ctaButton:link {
   }
 
   .card {
-    height: 120px; /* גובה קטן הרבה יותר - כמו כפתור */
+    height: 140px; /* גובה מוגדל קצת גם במובייל */
     /* הצללה עדינה יותר למובייל */
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.12)) 
             drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.08));
@@ -419,7 +594,7 @@ button.ctaButton:link {
   }
 
   .cardContent {
-    padding: 12px 16px 8px; /* פדינג מצומצם */
+    padding: 10px 16px 10px; /* פדינג מצומצם */
     justify-content: center; /* מרכז הכל */
   }
 
@@ -447,8 +622,8 @@ button.ctaButton:link {
   .ctaButton {
     padding: 6px 10px !important; /* כפתור קטן יותר */
     font-size: 0.8rem !important;
-    min-width: 90px !important;
-    max-width: 120px !important;
+    min-width: 120px !important;
+    max-width: 150px !important;
   }
 
   .buttonCanvas {
@@ -468,11 +643,11 @@ button.ctaButton:link {
   }
 
   .card {
-    height: 280px; /* גודל בינוני */
+    height: 320px; /* גודל מוגדל בינוני */
   }
 
   .cardContent {
-    padding: 20px 16px 16px;
+    padding: 12px 16px 16px;
   }
 
   .cardTitle {
@@ -495,7 +670,7 @@ button.ctaButton:link {
   }
 
   .card {
-    height: 320px; /* גודל מלא */
+    height: 380px; /* גודל מוגדל מלא */
   }
 }
 
@@ -508,7 +683,7 @@ button.ctaButton:link {
   
   .card {
     border: 2px solid #000000;
-    background: #ffffff;
+    background: transparent;
     break-inside: avoid;
     box-shadow: none;
   }

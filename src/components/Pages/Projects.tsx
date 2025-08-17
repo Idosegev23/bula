@@ -34,7 +34,7 @@ export const Projects: React.FC<ProjectsProps> = ({ className = '' }) => {
     {
       id: 'ima-office',
       title: 'משרד IMA',
-      category: 'קשרי אדריכלים',
+  category: 'אדריכלים AND MORE',
       location: 'תל אביב',
       year: 2024,
       description: 'שיתוף פעולה עם אדריכלים במרחב משרדי מודרני עם פתרונות נגרות מותאמים',
@@ -61,7 +61,7 @@ export const Projects: React.FC<ProjectsProps> = ({ className = '' }) => {
     {
       id: 'clinic-design',
       title: 'מרפאת שיניים',
-      category: 'קשרי אדריכלים',
+  category: 'אדריכלים AND MORE',
       location: 'פתח תקווה',
       year: 2023,
       description: 'פרויקט מורכב עם דרישות טכניות מיוחדות ועיצוב פונקציונלי',
@@ -97,7 +97,7 @@ export const Projects: React.FC<ProjectsProps> = ({ className = '' }) => {
     {
       id: 'boutique-hotel',
       title: 'מלון בוטיק',
-      category: 'קשרי אדריכלים',
+  category: 'אדריכלים AND MORE',
       location: 'יפו',
       year: 2022,
       description: 'שיתוף עם אדריכלים בפרויקט מלון בוטיק עם דגש על זהות ייחודית',
@@ -108,7 +108,7 @@ export const Projects: React.FC<ProjectsProps> = ({ className = '' }) => {
   const categories = [
     { id: 'all', name: 'כל הפרויקטים' },
     { id: 'עיצוב מסחרי', name: 'עיצוב מסחרי' },
-    { id: 'קשרי אדריכלים', name: 'קשרי אדריכלים' },
+  { id: 'אדריכלים AND MORE', name: 'אדריכלים AND MORE' },
     { id: 'ריהוט בהתאמה', name: 'ריהוט בהתאמה' }
   ];
 

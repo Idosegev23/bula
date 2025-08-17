@@ -31,7 +31,7 @@
 
 /* Title text */
 .title {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 1rem; /* increased */
   font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
@@ -73,21 +73,21 @@
 }
 
 .serviceTitle {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 1rem; /* bigger font */
   color: rgba(255, 255, 255, 0.95);
 }
 
 
 .serviceSubtitle {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 0.75rem; /* bigger */
   color: rgba(255, 255, 255, 0.85);
 }
 
 /* Close button becomes just an icon link */
 .closeButton {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 1rem; /* bigger */
   color: rgba(255, 255, 255, 0.85);
   cursor: pointer;

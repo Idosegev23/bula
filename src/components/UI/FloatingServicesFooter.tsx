@@ -28,9 +28,9 @@ const servicesData: Service[] = [
   },
   {
     id: 'architects',
-    href: '/services#architects',
-    titleDesktop: 'קשרי אדריכלים',
-    titleMobile: 'קשרי אדריכלים',
+    href: '/services/architects#hero',
+    titleDesktop: 'אדריכלים AND MORE',
+    titleMobile: 'אדריכלים AND MORE',
   },
   {
     id: 'private',

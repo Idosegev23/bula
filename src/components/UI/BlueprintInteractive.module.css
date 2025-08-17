@@ -47,7 +47,7 @@
   border: none;
   outline: none;
   text-align: center;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: clamp(1.25rem, 3.6vw, 1.8rem);
   padding-top: 18px; /* align roughly to rect center */
   color: #000;
@@ -91,7 +91,7 @@
 }
 
 .stepTitle {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: clamp(1.35rem, 4.2vw, 1.65rem);
 }
 
@@ -108,13 +108,13 @@
 }
 
 .detailTitle {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: clamp(1.6rem, 4.2vw, 2rem);
   margin: 0 0 10px 0;
 }
 
 .detailBody {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: clamp(1.25rem, 3.2vw, 1.4rem);
   line-height: 1.95;
   white-space: pre-line; /* לשבירת שורות מטקסטים מרובי שורות */
@@ -138,14 +138,14 @@
 }
 
 .tooltipTitle {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-weight: 600;
   font-size: 14px;
   margin-bottom: 4px;
 }
 
 .tooltipText {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 13px;
   text-align: right;
 }
@@ -177,20 +177,20 @@
 }
 
 .stepTitle {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-weight: 600;
   font-size: 14px;
   margin-bottom: 6px;
 }
 
 .stepText {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 13px;
 }
 
 .stepDetails {
   margin-top: 8px;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 12px;
   color: #333;
 }
@@ -198,7 +198,7 @@
 .stepToggleBtn {
   margin-top: 10px;
   padding: 8px 12px;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 12px;
   border: 1px solid #000;
   background: transparent;
@@ -207,7 +207,7 @@
 
 .tooltipDetails {
   margin-top: 6px;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 12px;
   color: #333;
 }
@@ -241,7 +241,7 @@
 }
 
 .checkText {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 13px;
 }
 
@@ -253,25 +253,25 @@
 }
 
 .detailsTitle {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-weight: 600;
   margin-bottom: 6px;
 }
 
 .detailsBody {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 13px;
 }
 
 .detailsPlaceholder {
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: 12px;
   color: #666;
 }
 
 .instructions {
   margin: 0 0 10px 0;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: clamp(1rem, 2.4vw, 1.15rem);
   color: #222;
 }

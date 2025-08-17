@@ -14,8 +14,10 @@
 
 /* Handwriting font for headings in this page as well */
 @font-face {
-  font-family: 'DanaYad';
-  src: url('/DanaYadAlefAlefAlef-Normal.otf') format('opentype');
+  font-family: 'MiriWin';
+  src: url('/miriwin-webfont copy.woff2') format('woff2'),
+       url('/miriwin-webfont copy.woff') format('woff'),
+       url('/miriwin-webfont copy.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -49,7 +51,7 @@
 .commercialTitle {
   position: relative;
   z-index: 2;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: clamp(2.1rem, 6vw, 2.8rem);
   font-weight: 700;
   margin: 0 0 24px 0;
@@ -73,7 +75,7 @@
   border: 1px dashed #000;
   padding: 12px 16px;
   border-radius: 8px;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
   font-size: clamp(0.95rem, 3.5vw, 1.05rem);
 }
 
@@ -99,7 +101,7 @@
   border: 1px dashed #000;
   padding: 10px 14px;
   border-radius: 8px;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
 }
 
 .container {
@@ -129,7 +131,7 @@
   margin: 0 auto 24px;
   letter-spacing: -0.02em;
   text-align: center;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
 }
 
 .heroSubtitle {
@@ -139,7 +141,7 @@
   margin: 0 auto;
   line-height: 1.45;
   text-align: center;
-  font-family: 'DanaYad', 'Courier New', monospace;
+  font-family: 'MiriWin', 'Courier New', monospace;
 }
 
 /* הוסרו כותרות ככתב-יד, חוזר לטקסט רגיל */

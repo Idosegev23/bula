@@ -49,9 +49,7 @@ const ProjectsPage: React.FC = () => {
   return <Projects />;
 };
 
-const ArchitectsPage: React.FC = () => {
-  return <Architects />;
-};
+const ArchitectsPage: React.FC = () => <Architects />;
 
 const AboutPage: React.FC = () => {
   return <About />;
@@ -80,7 +78,7 @@ const App: React.FC = () => {
               <Route path="/services" element={<ServicesIndexPage />} />
               <Route path="/services/one-stop-shop" element={<ServicesPage />} />
               <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/architects" element={<ArchitectsPage />} />
+              <Route path="/services/architects" element={<ArchitectsPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
             </Routes>

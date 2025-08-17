@@ -2,7 +2,9 @@
 // Text-focused minimalistic design following established patterns
 import React from 'react';
 import { Link } from 'react-router-dom';
+import HeroBlueprintCanvas from '../UI/HeroBlueprintCanvas';
 import styles from './Architects.module.css';
+import SectionBlueprintBar from '../UI/SectionBlueprintBar';
 
 interface ArchitectsProps {
   className?: string;
@@ -84,14 +86,13 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
   return (
     <main className={`${styles.architectsPage} ${className}`}>
       {/* Hero Section */}
-      <section className={styles.heroSection}>
+      <section id="hero" className={styles.heroSection}>
         <div className={styles.container}>
           <div className={styles.heroContent}>
-            <h1 className={styles.heroTitle}>
-              הביצוע מתחיל כאן
-            </h1>
+            <HeroBlueprintCanvas />
+            <h1 className={styles.heroTitle}>אדריכלים AND MORE</h1>
             <p className={styles.heroSubtitle}>
-              שותפות אמיתית עם אדריכלים – משרטוטים לסדנה, מתכנון למציאות
+              שרטוטים, פרטים וייצור – נקי וברור
             </p>
           </div>
         </div>
@@ -102,6 +103,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>השירותים שלנו</h2>
+            <SectionBlueprintBar />
           </div>
           
           <div className={styles.servicesGrid}>
@@ -118,11 +120,12 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Benefits Section replaced as technical examples */}
       <section className={styles.benefitsSection}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>למה לבחור בנו</h2>
+            <h2 className={styles.sectionTitle}>דוגמאות טכניות</h2>
+            <SectionBlueprintBar />
           </div>
           
           <div className={styles.benefitsGrid}>
@@ -140,10 +143,8 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
       <section className={styles.projectsSection}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>פרויקטים עם אדריכלים</h2>
-            <p className={styles.sectionSubtitle}>
-              דוגמאות לעבודות שביצענו בשיתוף עם צוותי תכנון מובילים
-            </p>
+            <h2 className={styles.sectionTitle}>פרויקטים נבחרים</h2>
+            <SectionBlueprintBar />
           </div>
           
           <div className={styles.projectsGrid}>

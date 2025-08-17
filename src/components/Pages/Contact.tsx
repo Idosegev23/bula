@@ -85,8 +85,8 @@ export const Contact: React.FC<ContactProps> = ({ className = '' }) => {
 
   const projectTypes = [
     { value: '', label: 'בחרו סוג פרויקט' },
-    { value: 'commercial', label: 'עיצוב מסחרי' },
-    { value: 'architects', label: 'שיתוף עם אדריכלים' },
+    { value: 'commercial', label: 'one stop shop לעסק שלך' },
+    { value: 'architects', label: 'אדריכלים AND MORE' },
     { value: 'private', label: 'ריהוט לבית פרטי' },
     { value: 'consultation', label: 'ייעוץ כללי' },
     { value: 'other', label: 'אחר' }

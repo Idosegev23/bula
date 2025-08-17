@@ -4,7 +4,7 @@ import rough from 'roughjs';
 type Props = {
   text: string;
   className?: string;
-  fontUrl?: string; // default DanaYad
+  fontUrl?: string; // default MiriWin
   sizePx?: number;  // logical font size baseline
   stroke?: string;
   strokeWidth?: number;
@@ -19,7 +19,7 @@ type Props = {
 const RoughHandwriteText: React.FC<Props> = ({
   text,
   className = '',
-  fontUrl = '/DanaYadAlefAlefAlef-Normal.otf',
+  fontUrl = '/miriwin-webfont copy.ttf',
   sizePx = 36,
   stroke = '#000',
   strokeWidth = 1.2,
@@ -76,7 +76,7 @@ const RoughHandwriteText: React.FC<Props> = ({
         if (!ctx) return;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         ctx.clearRect(0, 0, width, height);
-        ctx.font = `${sizePx}px DanaYad, 'Courier New', monospace`;
+        ctx.font = `${sizePx}px MiriWin, 'Courier New', monospace`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillStyle = stroke;

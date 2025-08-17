@@ -30,7 +30,7 @@ export const ServiceCards: React.FC<ServiceCardsProps> = ({ className = '' }) =>
     },
     {
       id: 'architects',
-      title: 'קשרי אדריכלים',
+      title: 'אדריכלים AND MORE',
       subtitle: 'לאדריכלים ומעצבים',
       description: 'שירותים טכניים מתקדמים ופתרונות יצירתיים מורכבים',
       icon: '📐',
@@ -355,7 +355,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
         </div>
 
         <Link
-          to={service.id === 'one-stop-shop' ? '/services/one-stop-shop#hero' : `/services#${service.id}`}
+          to={
+            service.id === 'one-stop-shop'
+              ? '/services/one-stop-shop#hero'
+              : service.id === 'architects'
+              ? '/services/architects#hero'
+              : `/services#${service.id}`
+          }
           className={styles.ctaButton}
           style={{ '--card-color': service.color } as React.CSSProperties}
         >
