@@ -192,19 +192,20 @@
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    width: 50% !important;
-    margin-right: 70px !important; /* 20px מהצד הימני */
+    width: 100% !important;  /* full width */
+    margin: 0 auto !important; /* remove side offsets */
   }
   
   .ctaButton {
+    padding: 6px 10px !important; /* symmetric padding */
+    min-width: 120px !important;
+    max-width: 150px !important;
     margin: 0 auto !important;
-    align-self: center !important;
-    padding-right: 50px !important; /* טקסט יותר ימינה */
   }
   
   /* חץ ממורכז במובייל */
   .roughArrowCanvas {
-    right: 50px !important; /* יותר ימינה */
+    right: 220px !important; /* יותר ימינה */
   }
   
   /* תוכן ממורכז במובייל */
@@ -287,8 +288,8 @@
 .buttonMarkerBg {
   position: absolute;
   top: -12px;
-  left: -20px;
-  right: -20px;
+  left: 0 !important;
+  right: 0 !important;
   bottom: -12px;
   z-index: -1; /* ממש מאחורי הכפתור */
   opacity: 0.45; /* יותר בולט */
@@ -380,8 +381,8 @@
 .buttonCanvas {
   position: absolute;
   top: -5px;
-  left: -5px;
-  width: calc(100% + 10px);
+  left: 0 !important;
+  width: 100% !important;
   height: calc(100% + 10px);
   z-index: 2;
   pointer-events: none;
@@ -426,6 +427,7 @@ button.ctaButton,
 .ctaButton span {
   display: inline-block !important;
   line-height: 1 !important;
+  text-align: center !important;
   margin: 0 !important;
   padding: 0 !important;
 }

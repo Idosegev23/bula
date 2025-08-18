@@ -36,67 +36,54 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
   // רשימת פריטי התפריט
   const navigationItems = [
-    { label: 'בית', path: '/' },
-    { label: 'שירותים', path: '/services' },
+    { label: 'ליווי עסקי מלא', path: 'services/one-stop-shop' },
+    { label: 'ליווי אדריכלי מתקדם', path: '/services/architects' },
+    { label: 'ללקוחות פרטיים', path: 'services' },
     { label: 'פרויקטים', path: '/projects' },
-    { label: 'אדריכלים', path: '/architects' },
     { label: 'אודות', path: '/about' },
     { label: 'צור קשר', path: '/contact' },
   ];
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsMobileMenuOpen((prev) => {
+      const newState = !prev;
+      if (!newState) {
+        if (location.pathname === '/' && window.scrollY <= 50) {
+          setIsScrolled(false); // חזרה לשקיפות רק אם בראש דף הבית
+        } else {
+          setIsScrolled(true); // דפים אחרים תמיד נשארים עם רקע
+        }
+      }
+      return newState;
+    });
   };
 
-  // דחיפת התוכן למטה כאשר התפריט פתוח
+
+  
   useEffect(() => {
     const header = document.querySelector('header');
     const appElement = document.querySelector('.App');
-    
+  
     const updateHeaderHeight = () => {
       if (header && isMobileMenuOpen && appElement) {
         const actualHeight = header.offsetHeight;
-        // עדכון המרחק הדינמי
-        document.documentElement.style.setProperty('--menu-push-distance', `${actualHeight}px`);
-        // הוספת class לApp
+        // Force refresh
+        document.documentElement.style.removeProperty('--menu-push-distance');
+        requestAnimationFrame(() => {
+          document.documentElement.style.setProperty('--menu-push-distance', `${actualHeight}px`);
+        });
         appElement.classList.add('menu-open');
+      } else {
+        document.documentElement.style.setProperty('--menu-push-distance', '0px');
+        if (appElement) appElement.classList.remove('menu-open');
       }
     };
-
-    if (isMobileMenuOpen) {
-      // עדכן מיד ואז כל 50ms (20fps) - איטי יותר לאנימציה חלקה
-      updateHeaderHeight();
-      const interval = setInterval(updateHeaderHeight, 50);
-      
-      // עצור את האינטרבל אחרי 1000ms (כשהאנימציה מסתיימת)
-      setTimeout(() => {
-        clearInterval(interval);
-        updateHeaderHeight(); // עדכון אחרון
-      }, 1000);
-      
-      return () => clearInterval(interval);
-    } else {
-      // חזרה למצב רגיל - איפוס מוחלט
-      if (appElement) {
-        appElement.classList.remove('menu-open');
-      }
-      
-      // איפוס מוחלט של כל המשתנים
-      document.documentElement.style.setProperty('--menu-push-distance', '0px');
-      
-      // ביטול מפורש של כל margin-top שעלול להיות
-      const mainContent = document.querySelector('#main-content') as HTMLElement;
-      if (mainContent) {
-        mainContent.style.marginTop = '0px';
-        mainContent.style.transform = '';
-      }
-      
-      // אם אנחנו בדף הבית ולא גללנו - חזרה לשקיפות
-      if (location.pathname === '/' && window.scrollY <= 50) {
-        setIsScrolled(false);
-      }
-    }
+  
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+    return () => window.removeEventListener('resize', updateHeaderHeight);
   }, [isMobileMenuOpen]);
+
 
 
 

@@ -1,37 +1,49 @@
-/* Header Styles - Mobile-First Responsive Design */
 
+/* Base Header */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: transparent; /* שקוף בתחילת הדף */
+  width: 100%;
+  height: 70px;
+  background: transparent;          /* transparent at top */
   border-bottom: 1px solid transparent;
   z-index: 1000;
-  height: 70px;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); /* אנימציה חלקה יותר */
-  width: 100%;
-  margin: 0; /* אין מרווחים */
+  margin: 0;
+
+  /* only animate the bits we need to avoid jank */
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-/* כאשר גוללים - רקע לבן */
+/* White when scrolled */
 .header.scrolled {
   background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  backdrop-filter: saturate(180%) blur(6px);
 }
 
-/* כאשר התפריט פתוח - ההדר מתרחב ורקע לבן */
+/* When mobile menu is open:
+   - switch to STICKY so the header participates in layout
+   - the mobileNav expands below and pushes page content down naturally
+*/
 .header.mobileMenuOpen {
-  height: auto; /* גובה דינמי בהתאם לתוכן */
+  height: auto;
   min-height: 70px;
-  background: rgba(255, 255, 255, 1); /* רקע לבן מלא כשהתפריט פתוח */
+  background: #ffffff;
   border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
+/* Layout containers */
 .headerContainer {
   width: 100%;
-  padding: 0 16px;
   max-width: 1200px;
+  padding: 0 16px;
   margin: 0 auto;
 }
 
@@ -39,83 +51,89 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px; /* גובה קבוע */
+  height: 70px; /* fixed bar height */
   position: relative;
 }
 
-/* === Logo === */
-.logo {
-  text-decoration: none;
-  transition: all 0.3s ease;
-  z-index: 2;
-  height: 30px;
-  display: flex;
-  align-items: center;
+/* Desktop - swap sides */
+@media (min-width: 768px) {
+  .headerContent {
+    flex-direction: row-reverse; /* swap children order */
+  }
 }
 
-.logo:hover {
-  opacity: 0.8;
+/* ===== Logo ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  z-index: 2;
 }
+
+.logo:hover { opacity: 0.85; }
 
 .logoSvg {
   height: 100%;
   width: auto;
-  fill: #ffffff; /* לבן במצב שקוף */
-  transition: all 0.3s ease;
+  fill: #ffffff; /* white when transparent */
+  transition: fill 0.25s ease;
 }
 
-/* לוגו שחור כשגוללים או תפריט פתוח */
+/* black logo once scrolled or menu open */
 .header.scrolled .logoSvg,
 .header.mobileMenuOpen .logoSvg {
   fill: #000000;
 }
 
-/* === Mobile Menu Button === */
+/* ===== Mobile Menu Button (Hamburger) ===== */
 .mobileMenuButton {
   display: flex;
+  gap: 4px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 32px;
-  height: 32px;
+
+  width: 40px;
+  height: 40px;
+
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 4px;
-  z-index: 10;
+
   position: relative;
-  gap: 4px;
+  z-index: 10;
 }
 
 .hamburgerLine {
   width: 24px;
   height: 2px;
-  background: #ffffff; /* לבן במצב שקוף */
-  transition: all 0.3s ease;
-  transform-origin: center;
+  background: #ffffff; /* white on transparent */
   border-radius: 1px;
+  transition: transform 0.25s ease, opacity 0.2s ease, background 0.25s ease;
+  transform-origin: center;
 }
 
-/* כפתור המבורגר שחור כשגוללים או תפריט פתוח */
+/* black bars when scrolled or menu open */
 .header.scrolled .hamburgerLine,
 .header.mobileMenuOpen .hamburgerLine {
   background: #000000;
 }
 
-/* Hamburger Animation */
+/* Hamburger "X" animation */
 .mobileMenuButton.open .hamburgerLine:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
+  transform: rotate(45deg) translate(5px, 6px);
 }
-
 .mobileMenuButton.open .hamburgerLine:nth-child(2) {
   opacity: 0;
 }
-
 .mobileMenuButton.open .hamburgerLine:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+  transform: rotate(-45deg) translate(5px, -6px);
 }
 
-/* === Desktop Navigation === */
+/* ===== Desktop Navigation ===== */
 .desktopNav {
   display: none;
 }
@@ -126,7 +144,12 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  direction: rtl;
+  direction: rtl; /* keep RTL */
+}
+
+.navItem { /* for completeness if you map li */
+  margin: 0;
+  padding: 0;
 }
 
 .navLink {
@@ -135,205 +158,159 @@
   padding: 6px 0;
   font-size: 0.95rem;
   font-weight: 400;
-  color: #ffffff; /* לבן במצב שקוף */
+  color: #ffffff; /* white on transparent */
   text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
-  line-height: 1.2; /* Keep consistent height to avoid jump */
+  line-height: 1.2;
+  transition: color 0.25s ease, transform 0.2s ease;
 }
 
-/* ניווט שחור כשגוללים או תפריט פתוח */
+/* black links when scrolled/menu open */
 .header.scrolled .navLink,
 .header.mobileMenuOpen .navLink {
   color: #000000;
 }
 
-/* Hover underline + highlight */
-.navLink:hover {
-  transform: scale(1.05); /* Slightly bigger text */
-}
-
-/* Hover רקע רק כשההדר לבן */
-.header.scrolled .navLink:hover,
-.header.mobileMenuOpen .navLink:hover {
-  background: #f5f5f5;
-}
-
-/* Hover glow כשההדר שקוף */
 .header:not(.scrolled):not(.mobileMenuOpen) .navLink:hover {
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.7); /* subtle glow */
 }
 
-/* Animated underline */
+/* subtle scale on hover */
+.navLink:hover { transform: translateY(-1px); }
+
+/* underline animation */
 .navLink::after {
   content: "";
   position: absolute;
-  bottom: 4px;
+  bottom: 0px;
   left: 0;
   width: 100%;
   height: 1px;
   background-color: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover underline animation */
-.navLink:hover::after {
-  transform: scaleX(1);
-  transform-origin: right;
-}
-
-/* Active link underline always visible */
+.navLink:hover::after,
 .navLink.active::after {
   transform: scaleX(1);
   transform-origin: right;
 }
 
+/* ===== Mobile Navigation ===== */
 
-
-/* === Mobile Navigation === */
+/* Backdrop kept but unused (we push content), left here in case you want it later */
 .mobileBackdrop {
-  /* לא נחוץ - ההדר עצמו הוא התפריט */
   display: none;
 }
 
+/* The menu lives inside header and expands below the bar.
+   We use max-height for smooth open/close without JS measuring.
+*/
 .mobileNav {
-  position: relative; /* שינוי ל-relative כדי שיהיה חלק מההדר */
-  top: 0;
-  left: 0;
-  right: 0;
   width: 100%;
   direction: rtl;
-  transform: scaleY(0);
-  transform-origin: top;
+
   overflow: hidden;
-  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  max-height: 0;               /* collapsed by default */
+  opacity: 0;                  /* fade in/out */
   pointer-events: none;
+
+  transition:
+    max-height 0.31s ease,
+    opacity 0.25s ease;
 }
 
-/* כאשר התפריט פתוח */
+/* Opened state: allow big enough height (content dictates final height) */
 .header.mobileMenuOpen .mobileNav {
-  transform: scaleY(1);
+  max-height: 80vh;            /* large cap; adjust if needed */
+  opacity: 1;
   pointer-events: auto;
 }
 
-
-
 .mobileNavList {
   list-style: none;
-  margin: 20px 0;
+  margin: 12px 0 8px;
   padding: 0;
 }
 
 .mobileNavItem {
   margin: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  transform: translateY(30px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transform: translateY(8px);
   opacity: 0;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-/* אנימציה מדורגת של פריטי התפריט - פתיחה */
+/* Staggered reveal on open */
 .header.mobileMenuOpen .mobileNavItem {
   transform: translateY(0);
   opacity: 1;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
+.header.mobileMenuOpen .mobileNavItem:nth-child(1) { transition-delay: 0.05s; }
+.header.mobileMenuOpen .mobileNavItem:nth-child(2) { transition-delay: 0.10s; }
+.header.mobileMenuOpen .mobileNavItem:nth-child(3) { transition-delay: 0.15s; }
+.header.mobileMenuOpen .mobileNavItem:nth-child(4) { transition-delay: 0.20s; }
+.header.mobileMenuOpen .mobileNavItem:nth-child(5) { transition-delay: 0.25s; }
+.header.mobileMenuOpen .mobileNavItem:nth-child(6) { transition-delay: 0.30s; }
 
-/* עיכובים לפתיחה - מהראשון לאחרון */
-.header.mobileMenuOpen .mobileNavItem:nth-child(1) { transition-delay: 0.2s; }
-.header.mobileMenuOpen .mobileNavItem:nth-child(2) { transition-delay: 0.3s; }
-.header.mobileMenuOpen .mobileNavItem:nth-child(3) { transition-delay: 0.4s; }
-.header.mobileMenuOpen .mobileNavItem:nth-child(4) { transition-delay: 0.5s; }
-.header.mobileMenuOpen .mobileNavItem:nth-child(5) { transition-delay: 0.6s; }
-.header.mobileMenuOpen .mobileNavItem:nth-child(6) { transition-delay: 0.7s; }
-
-/* עיכובים לסגירה - מהאחרון לראשון */
-.header:not(.mobileMenuOpen) .mobileNavItem:nth-child(1) { transition-delay: 0.25s; }
-.header:not(.mobileMenuOpen) .mobileNavItem:nth-child(2) { transition-delay: 0.2s; }
-.header:not(.mobileMenuOpen) .mobileNavItem:nth-child(3) { transition-delay: 0.15s; }
-.header:not(.mobileMenuOpen) .mobileNavItem:nth-child(4) { transition-delay: 0.1s; }
-.header:not(.mobileMenuOpen) .mobileNavItem:nth-child(5) { transition-delay: 0.05s; }
-.header:not(.mobileMenuOpen) .mobileNavItem:nth-child(6) { transition-delay: 0s; }
-
-.mobileNavItem:last-child {
-  border-bottom: none;
-}
+.mobileNavItem:last-child { border-bottom: none; }
 
 .mobileNavLink {
   display: block;
-  padding: 20px 24px;
-  color: #000000; /* שחור על רקע לבן */
+  padding: 16px 20px;
+  color: #000000;
   text-decoration: none;
   font-weight: 400;
-  font-size: 1.1rem;
-  transition: all 0.2s ease;
+  font-size: 1.05rem;
   text-align: right;
+  transition: background-color 0.2s ease, padding-right 0.2s ease;
 }
 
 .mobileNavLink:hover {
   background: rgba(0, 0, 0, 0.05);
-  padding-right: 28px;
+  padding-right: 26px;
 }
 
 .mobileNavLink.active {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.08);
   font-weight: 500;
 }
 
-/* === Responsive Fixes === */
+/* ===== Responsive ===== */
 @media (min-width: 768px) {
-  .headerContainer {
-    padding: 0 24px;
-  }
+  .headerContainer { padding: 0 24px; }
 
-  .logo {
-    height: 40px;
-  }
+  .logo { height: 40px; }
 
-  .mobileMenuButton {
-    display: none;
-  }
+  .mobileMenuButton { display: none; }
 
-  .desktopNav {
-    display: block;
-  }
+  .desktopNav { display: block; }
 }
 
 @media (max-width: 767px) {
-  .headerContainer {
-    padding: 0 12px;
-  }
-
-  .logo {
-    height: 25px;
-  }
+  .headerContainer { padding: 0 12px; }
+  .logo { height: 28px; }
 }
 
 @media (max-width: 320px) {
-  .headerContainer {
-    padding: 0 8px;
-  }
-
-  .logo {
-    height: 22px;
-  }
-
-  .mobileNav {
-    width: 100vw;
-  }
+  .headerContainer { padding: 0 8px; }
+  .logo { height: 24px; }
+  .mobileNav { width: 100vw; }
 }
 
-/* === Focus States === */
+/* ===== Focus States (Accessibility) ===== */
 .logo:focus-visible,
 .mobileMenuButton:focus-visible,
 .navLink:focus-visible,
 .mobileNavLink:focus-visible {
   outline: 2px solid #0066cc;
   outline-offset: 2px;
+  border-radius: 4px;
 }
 
-/* === Reduced Motion === */
+/* ===== Reduced Motion ===== */
 @media (prefers-reduced-motion: reduce) {
   .header,
   .logo,
@@ -342,8 +319,9 @@
   .navLink,
   .mobileNavLink,
   .mobileNav,
-  .mobileBackdrop {
-    transition: none;
-    animation: none;
+  .mobileBackdrop,
+  .mobileNavItem {
+    transition: none !important;
+    animation: none !important;
   }
 }

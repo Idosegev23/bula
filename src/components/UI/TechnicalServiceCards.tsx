@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import rough from 'roughjs';
 import styles from './TechnicalServiceCards.module.css';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-import FloatingServicesFooter from './FloatingServicesFooter';
+// import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+// import FloatingServicesFooter from './FloatingServicesFooter';
 import { Link } from 'react-router-dom';
 
 interface Service {
@@ -21,29 +21,29 @@ export const TechnicalServiceCards: React.FC<TechnicalServiceCardsProps> = ({ cl
   const sectionRef = useRef<HTMLDivElement | null>(null);
   
   // זיהוי אם הסקשן נראה על המסך (עם השהיה לאנימציה חלקה)
-  const isSectionVisible = useIntersectionObserver(sectionRef, {
-    threshold: 0.4, // יותר מדויק - 40% צריך להיות נראה
-    rootMargin: '-80px 0px -80px 0px' // מרווח גדול יותר
-  });
+  // const isSectionVisible = useIntersectionObserver(sectionRef, {
+  //   threshold: 0.4, // יותר מדויק - 40% צריך להיות נראה
+  //   rootMargin: '-80px 0px -80px 0px' // מרווח גדול יותר
+  // });
 
   const services: Service[] = [
     {
       id: 'one-stop-shop',
-      title: 'one stop shop לעסק שלך',
-      subtitle: 'ליווי מקצה לקצה',
-      description: 'מהרעיון ועד פתיחת העסק – תהליך מלא ומדויק'
+      title: 'חנות כוללת לעסק שלך',
+      subtitle: 'ליווי עסקי מלא',
+      description: 'מהתכנון הראשוני ועד הפעלת העסק – פתרון מקצועי מקצה לקצה'
     },
     {
       id: 'architects', 
-      title: 'אדריכלים AND MORE',
-      subtitle: 'לאדריכלים',
-      description: 'שירותים טכניים וייצור מקצועי'
+      title: 'פרויקטים לאדריכלים',
+      subtitle: 'ליווי אדריכלי מתקדם',
+      description: 'שירותים טכניים, ייצור מדויק ותמיכה מקצועית לעיצוב ולבנייה'
     },
     {
       id: 'private',
-      title: 'רהיטים פרטיים', 
+      title: 'רהיטים בהתאמה אישית', 
       subtitle: 'ללקוחות פרטיים',
-      description: 'ייצור רהיטים מותאמים אישית'
+      description: 'ייצור רהיטים בעבודת יד, מותאמים בדיוק לצרכים והעיצוב שלך'
     }
   ];
 
@@ -137,7 +137,7 @@ export const TechnicalServiceCards: React.FC<TechnicalServiceCardsProps> = ({ cl
       </section>
       
       {/* פוטר צף - מופיע רק כשלא רואים את הסקשן */}
-      <FloatingServicesFooter isVisible={!isSectionVisible} />
+      {/* <FloatingServicesFooter isVisible={!isSectionVisible} /> */}
     </>
   );
 };

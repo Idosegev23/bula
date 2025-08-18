@@ -2,6 +2,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import { ScrollToTop } from './components/UI/ScrollToTop';
+// import FloatingServicesFooter from './components/UI/FloatingServicesFooter';
+
 
 // Layout Components
 import { Header } from './components/Layout/Header';
@@ -11,7 +14,7 @@ import { Footer } from './components/Layout/Footer';
 import { Hero } from './components/UI/Hero';
 import { TechnicalServiceCards } from './components/UI/TechnicalServiceCards';
 import { InstagramWidget } from './components/UI/InstagramWidget';
-import { SocialFloat } from './components/UI/SocialFloat';
+// import { SocialFloat } from './components/UI/SocialFloat';
 import Spinner from './components/UI/Spinner';
 
 // Page Components
@@ -23,7 +26,7 @@ import { About } from './components/Pages/About';
 import { Contact } from './components/Pages/Contact';
 
 // Accessibility
-import { AccessibilityProvider } from './components/Accessibility/AccessibilityProvider';
+// import { AccessibilityProvider } from './components/Accessibility/AccessibilityProvider';
 
 // דף הבית השלם
 const HomePage: React.FC = () => {
@@ -62,8 +65,9 @@ const ContactPage: React.FC = () => {
 // קומפוננטת האפליקציה הראשית
 const App: React.FC = () => {
   return (
-    <AccessibilityProvider>
+    // <AccessibilityProvider>
       <Router>
+      <ScrollToTop />
         <div className="App">
           {/* Spinner עם GSAP לכל הדפים */}
           <Spinner onFinish={() => {
@@ -86,10 +90,11 @@ const App: React.FC = () => {
           <Footer />
           
           {/* כפתורי רשתות חברתיות צפים */}
-          <SocialFloat />
+          {/* <SocialFloat /> */}
+          {/* <FloatingServicesFooter /> */}
         </div>
       </Router>
-    </AccessibilityProvider>
+    // </AccessibilityProvider>
   );
 };
 

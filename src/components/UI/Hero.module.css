@@ -98,8 +98,11 @@
   text-shadow: 0 3px 25px rgba(0, 0, 0, 0.4);
   font-size: clamp(2.8rem, 9vw, 5.5rem);
   line-height: 1.1;
-  min-height: 1.2em; /* Prevent layout jump during typing */
+  min-height: 1.3em; /* Prevent layout jump during typing */
   position: relative;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
 }
 
 /* Typewriter cursor */
@@ -224,6 +227,11 @@
   
   .cuttingLine.animate {
     width: 100px;
+  }
+
+  .titleLineTypewriter {
+    font-size: clamp(2rem, 7vw, 2.8rem);
+    min-width: 16ch;
   }
 }
 

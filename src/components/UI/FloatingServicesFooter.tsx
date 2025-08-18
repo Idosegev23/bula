@@ -23,14 +23,14 @@ const servicesData: Service[] = [
   {
     id: 'one-stop-shop',
     href: '/services/one-stop-shop#hero',
-    titleDesktop: 'one stop shop לעסק שלך',
+    titleDesktop: 'OSS לעסקים',
     titleMobile: 'OSS לעסקים',
   },
   {
     id: 'architects',
     href: '/services/architects#hero',
-    titleDesktop: 'אדריכלים AND MORE',
-    titleMobile: 'אדריכלים AND MORE',
+    titleDesktop: 'אדריכלים',
+    titleMobile: 'אדריכלים',
   },
   {
     id: 'private',
