@@ -101,12 +101,8 @@ export const TechnicalServiceCards: React.FC<TechnicalServiceCardsProps> = ({ cl
       ctx.fillText('N', northX - 3, northY + 15);
     };
 
+    // ציור ראשוני בלבד - ללא event listeners לresize
     updateCanvasSize();
-    window.addEventListener('resize', updateCanvasSize);
-
-    return () => {
-      window.removeEventListener('resize', updateCanvasSize);
-    };
   }, []);
 
   return (
@@ -254,18 +250,8 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
       ctx.restore();
     };
 
-    // ביצוע מיידי ועם השהיה
+    // ציור ראשוני בלבד - ללא event listeners לresize
     updateMeasurementCanvas();
-    const timer = setTimeout(() => {
-      updateMeasurementCanvas();
-    }, 1000); // השהיה לוודא שהכל נטען
-
-    window.addEventListener('resize', updateMeasurementCanvas);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('resize', updateMeasurementCanvas);
-    };
   }, [index]);
 
   // useEffect נפרד לכפתור עם עיגולי ציור יד
@@ -302,16 +288,8 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
       });
     };
 
-    const timer = setTimeout(() => {
-      updateButtonCanvasSize();
-    }, index * 300 + 600); // מעט אחרי הכרטיס
-
-    window.addEventListener('resize', updateButtonCanvasSize);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('resize', updateButtonCanvasSize);
-    };
+    // ציור ראשוני בלבד - ללא event listeners לresize
+    updateButtonCanvasSize();
   }, [index]);
 
   // useEffect לציור חץ Rough.js
@@ -366,17 +344,8 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
       });
     };
 
+    // ציור ראשוני בלבד - ללא event listeners לresize
     updateArrowCanvas();
-    const timer = setTimeout(() => {
-      updateArrowCanvas();
-    }, 1200); // אחרי הכפתור
-
-    window.addEventListener('resize', updateArrowCanvas);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('resize', updateArrowCanvas);
-    };
   }, [index]);
 
   // useEffect לסימון רדיוס - רק בכרטיס השני
@@ -470,17 +439,8 @@ const TechnicalCard: React.FC<TechnicalCardProps> = ({ service, index }) => {
       ctx.fillText(radiusText, arrowStartX + arrowLength + (isMobile ? 5 : 8), arrowStartY + 5);
     };
 
+    // ציור ראשוני בלבד - ללא event listeners לresize
     updateRadiusCanvas();
-    const timer = setTimeout(() => {
-      updateRadiusCanvas();
-    }, 1500); // אחרי שהכל נטען
-
-    window.addEventListener('resize', updateRadiusCanvas);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('resize', updateRadiusCanvas);
-    };
   }, [index]);
 
   // useEffect למדידת רוחב - רק בכרטיס השלישי
