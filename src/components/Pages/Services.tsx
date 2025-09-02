@@ -144,7 +144,9 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       <section id="hero" className={styles.heroSection}>
         <div className={styles.container}>
           <div className={styles.heroContent}>
-
+            <div className={styles.logoContainer}>
+              <img src="/dirty_logo.svg" alt="בניית עסק" className={styles.heroLogo} />
+            </div>
             <h1 className={styles.heroTitle}>
               <div>ONE STOP SHOP</div>
               <div className={styles.boldText}>לעסק שלך</div>

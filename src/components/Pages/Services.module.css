@@ -47,7 +47,7 @@
   z-index: 2;
   font-family: 'Rubik', sans-serif;
   font-size: clamp(2.1rem, 6vw, 2.8rem);
-  font-weight: 700;
+  font-weight: 400;
   margin: 0 0 32px 0;
   color: #000;
 }
@@ -115,6 +115,24 @@
   margin: 0 auto;
   position: relative; /* לשכבת הקנבס המדידה */
   padding: 0 24px 40px 24px;
+}
+
+.logoContainer {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroLogo {
+  max-width: 150px;
+  height: auto;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.heroLogo:hover {
+  opacity: 1;
 }
 
 .heroTitle {
@@ -356,7 +374,7 @@
 
 .heroSubtitle {
   font-size: clamp(1.5rem, 3.8vw, 2.1rem);
-  font-weight: 400;
+  font-weight: 700;
   color: #444;
   margin: 0 auto;
   line-height: 1.45;
