@@ -61,7 +61,19 @@ export const SmartGallery: React.FC<SmartGalleryProps> = ({
       'interior': 'עיצוב פנים',
       'architecture': 'אדריכלות',
       'renovation': 'שיפוץ',
-      'new-construction': 'בנייה חדשה'
+      'new-construction': 'בנייה חדשה',
+      // קטגוריות לקוחות פרטיים
+      'kitchens': 'מטבחים',
+      'carpentry': 'נגרות לבית',
+      'walls': 'קירות',
+      'furniture': 'רהיטים',
+      'closets': 'ארונות',
+      // קטגוריות לקוחות עסקיים
+      'food-service': 'מזון והסעדה',
+      'bakeries': 'מאפיות',
+      'coffee-shops': 'בתי קפה',
+      'restaurants': 'מסעדות',
+      'bars': 'ברים ופאבים'
     };
     
     return translations[category] || category;

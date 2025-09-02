@@ -16,7 +16,7 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
       alt: 'משרד מודרני עם עיצוב מתקדם',
       title: 'משרד מודרני',
       category: 'office',
-      categories: ['commercial', 'office', 'renovation']
+      categories: ['commercial', 'office']
     },
     {
       id: '2',
@@ -24,15 +24,15 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
       alt: 'חנות מסחרית מעוצבת',
       title: 'חנות מסחרית',
       category: 'retail',
-      categories: ['commercial', 'retail', 'renovation']
+      categories: ['commercial', 'retail']
     },
     {
       id: '3',
       src: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop',
       alt: 'מסעדה אלגנטית',
-      title: 'מסעדה אלגנטית',
-      category: 'restaurant',
-      categories: ['commercial', 'restaurant', 'hospitality']
+      title: 'מסעדה יוקרתית',
+      category: 'restaurants',
+      categories: ['commercial', 'food-service', 'restaurants']
     },
     {
       id: '4',
@@ -40,15 +40,15 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
       alt: 'מרפאה מודרנית',
       title: 'מרפאה מודרנית',
       category: 'healthcare',
-      categories: ['commercial', 'healthcare', 'renovation']
+      categories: ['commercial', 'healthcare']
     },
     {
       id: '5',
       src: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&h=400&fit=crop',
       alt: 'בית קפה מעוצב',
       title: 'בית קפה מעוצב',
-      category: 'restaurant',
-      categories: ['commercial', 'restaurant', 'hospitality']
+      category: 'coffee-shops',
+      categories: ['commercial', 'food-service', 'coffee-shops']
     },
     {
       id: '6',
@@ -56,7 +56,7 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
       alt: 'אולם אירועים יוקרתי',
       title: 'אולם אירועים',
       category: 'hospitality',
-      categories: ['commercial', 'hospitality', 'new-construction']
+      categories: ['commercial', 'hospitality']
     },
     {
       id: '7',
@@ -64,7 +64,7 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
       alt: 'בניין משרדים מודרני',
       title: 'בניין משרדים',
       category: 'office',
-      categories: ['commercial', 'office', 'new-construction']
+      categories: ['commercial', 'office']
     },
     {
       id: '8',
@@ -72,15 +72,31 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
       alt: 'חלל עבודה משותף',
       title: 'חלל עבודה משותף',
       category: 'office',
-      categories: ['commercial', 'office', 'renovation']
+      categories: ['commercial', 'office']
     },
     {
       id: '9',
+      src: 'https://images.unsplash.com/photo-1567521464027-f41150d05a54?w=600&h=400&fit=crop',
+      alt: 'מאפייה מעוצבת',
+      title: 'מאפייה בוטיק',
+      category: 'bakeries',
+      categories: ['commercial', 'food-service', 'bakeries']
+    },
+    {
+      id: '10',
+      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop',
+      alt: 'בר מעוצב',
+      title: 'בר מעוצב',
+      category: 'bars',
+      categories: ['commercial', 'food-service', 'bars']
+    },
+    {
+      id: '11',
       src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop',
       alt: 'מתחם תעשייתי',
       title: 'מתחם תעשייתי',
       category: 'industrial',
-      categories: ['commercial', 'industrial', 'new-construction']
+      categories: ['commercial', 'industrial']
     }
   ];
 
@@ -155,7 +171,10 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
       {/* Gallery Section */}
       <section className={styles.gallerySection}>
         <div className={styles.container}>
-          <h2 className={styles.galleryTitle}>פרויקטים שביצענו</h2>
+          <h2 className={styles.galleryTitle}>
+            פרויקטים שביצענו
+            <span className={styles.backgroundText}>BUSINESS</span>
+          </h2>
           <SmartGallery 
             items={galleryItems}
             columns={3}

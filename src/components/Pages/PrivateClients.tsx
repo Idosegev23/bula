@@ -12,67 +12,83 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
   const galleryItems: GalleryItem[] = [
     {
       id: '1',
-      src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop',
-      alt: 'סלון מודרני עם עיצוב נקי',
-      title: 'סלון מודרני',
-      category: 'interior',
-      categories: ['residential', 'interior', 'renovation']
+      src: 'https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=600&h=400&fit=crop',
+      alt: 'מטבח מודרני עם אי מרכזי',
+      title: 'מטבח מודרני',
+      category: 'kitchens',
+      categories: ['kitchens', 'residential']
     },
     {
       id: '2',
-      src: 'https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=600&h=400&fit=crop',
-      alt: 'מטבח עיצוב עם אי מרכזי',
-      title: 'מטבח עיצוב',
-      category: 'interior',
-      categories: ['residential', 'interior', 'renovation']
+      src: 'https://images.unsplash.com/photo-1560440021-33f9b867899d?w=600&h=400&fit=crop',
+      alt: 'מטבח קלאסי עם עץ',
+      title: 'מטבח קלאסי',
+      category: 'kitchens',
+      categories: ['kitchens', 'residential']
     },
     {
       id: '3',
-      src: 'https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=600&h=400&fit=crop',
-      alt: 'חדר שינה מעוצב בסגנון מינימליסטי',
-      title: 'חדר שינה מינימליסטי',
-      category: 'interior',
-      categories: ['residential', 'interior']
+      src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&h=400&fit=crop',
+      alt: 'ארון בגדים מעוצב',
+      title: 'ארון בגדים',
+      category: 'closets',
+      categories: ['closets', 'residential', 'carpentry']
     },
     {
       id: '4',
-      src: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=400&fit=crop',
-      alt: 'פינת אוכל אלגנטית',
-      title: 'פינת אוכל אלגנטית',
-      category: 'interior',
-      categories: ['residential', 'interior']
+      src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop',
+      alt: 'ספרייה מעוצבת מעץ',
+      title: 'ספרייה מעוצבת',
+      category: 'furniture',
+      categories: ['furniture', 'residential', 'carpentry']
     },
     {
       id: '5',
-      src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop',
-      alt: 'חדר רחצה מודרני',
-      title: 'חדר רחצה מודרני',
-      category: 'interior',
-      categories: ['residential', 'interior', 'renovation']
+      src: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=400&fit=crop',
+      alt: 'פינת אוכל עם שולחן עץ',
+      title: 'פינת אוכל עץ',
+      category: 'furniture',
+      categories: ['furniture', 'residential', 'carpentry']
     },
     {
       id: '6',
-      src: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&h=400&fit=crop',
-      alt: 'חלל מגורים פתוח',
-      title: 'חלל מגורים פתוח',
-      category: 'architecture',
-      categories: ['residential', 'architecture', 'new-construction']
+      src: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&h=400&fit=crop',
+      alt: 'קיר עץ מעוצב',
+      title: 'קיר עץ מעוצב',
+      category: 'walls',
+      categories: ['walls', 'residential', 'carpentry']
     },
     {
       id: '7',
-      src: 'https://images.unsplash.com/photo-1560184897-ae75f418493e?w=600&h=400&fit=crop',
-      alt: 'בית פרטי עיצוב חוץ',
-      title: 'בית פרטי מעוצב',
-      category: 'architecture',
-      categories: ['residential', 'architecture', 'new-construction']
+      src: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&h=400&fit=crop',
+      alt: 'קיר אבן טבעית',
+      title: 'קיר אבן טבעית',
+      category: 'walls',
+      categories: ['walls', 'residential']
     },
     {
       id: '8',
-      src: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop',
-      alt: 'גינה ומרפסת מעוצבות',
-      title: 'גינה ומרפסת',
-      category: 'architecture',
-      categories: ['residential', 'architecture']
+      src: 'https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=600&h=400&fit=crop',
+      alt: 'חדר שינה עם ארון נגרות',
+      title: 'חדר שינה מעוצב',
+      category: 'carpentry',
+      categories: ['carpentry', 'residential', 'closets']
+    },
+    {
+      id: '9',
+      src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop',
+      alt: 'ארון אמבטיה מעוצב',
+      title: 'ארון אמבטיה',
+      category: 'closets',
+      categories: ['closets', 'residential', 'carpentry']
+    },
+    {
+      id: '10',
+      src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop',
+      alt: 'ספסל עץ מעוצב',
+      title: 'ספסל עץ מעוצב',
+      category: 'furniture',
+      categories: ['furniture', 'residential', 'carpentry']
     }
   ];
 
@@ -136,7 +152,10 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
       {/* Gallery Section */}
       <section className={styles.gallerySection}>
         <div className={styles.container}>
-          <h2 className={styles.galleryTitle}>מהפרויקטים שלנו</h2>
+          <h2 className={styles.galleryTitle}>
+            מהפרויקטים שלנו
+            <span className={styles.backgroundText}>DESIGN</span>
+          </h2>
           <SmartGallery 
             items={galleryItems}
             columns={3}
