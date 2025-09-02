@@ -159,18 +159,7 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       if (!ctx) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Logo background only
-      const logoX = canvas.width / 2 - 60;
-      const logoY = canvas.height / 2 - 60;
-      ctx.globalAlpha = 0.02;
-      
-      // Simple logo representation
-      ctx.strokeStyle = '#28939f';
-      ctx.lineWidth = 1;
-      ctx.strokeRect(logoX, logoY, 120, 120);
-      
-      ctx.globalAlpha = 1;
+      // No background elements
     };
 
     updateCanvasSize();
@@ -199,18 +188,7 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       if (!ctx) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Logo background only
-      const logoX = canvas.width / 2 - 80;
-      const logoY = canvas.height / 2 - 80;
-      ctx.globalAlpha = 0.015;
-      
-      // Create logo using basic canvas drawing
-      ctx.strokeStyle = '#28939f';
-      ctx.lineWidth = 1;
-      ctx.strokeRect(logoX, logoY, 160, 160);
-      
-      ctx.globalAlpha = 1;
+      // No background elements
     };
 
     updateCanvasSize();
