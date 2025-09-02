@@ -66,10 +66,11 @@ const stepDetailsGroups = [
 
 export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   const location = useLocation();
+  // מצב פתיחה לכל קבוצת שלבים ראשית
+  const [openGroups, setOpenGroups] = useState<boolean[]>(() => Array(stepGroups.length).fill(false));
   // חישוב מספר השלבים הכולל
   const totalSteps = stepGroups.reduce((total, group) => total + group.steps.length, 0);
   const [completed, setCompleted] = useState<boolean[]>(() => Array(totalSteps).fill(false));
-  const [openSteps, setOpenSteps] = useState<boolean[]>(() => Array(totalSteps).fill(false));
 
   useEffect(() => {
     if (location.hash) {
@@ -114,48 +115,58 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
                 
                 return (
                   <div key={groupIndex} className={styles.stepGroup}>
-                    <h3 className={styles.groupTitle}>{group.title}</h3>
-                    {group.steps.map((step, subIndex) => {
-                      const currentIndex = stepIndex + subIndex;
-                      return (
-                        <div key={currentIndex} className={styles.stepBlock}>
-                          <div 
-                            className={styles.stepCard}
-                            onClick={() => {
-                              setOpenSteps(prev => {
-                                const next = [...prev];
-                                next[currentIndex] = !next[currentIndex];
-                                return next;
-                              });
-                            }}
-                          >
-                            <div className={styles.stepHeader}>
-                              <div 
-                                className={styles.stepCheckbox}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setCompleted(prev => {
-                                    const next = [...prev];
-                                    next[currentIndex] = !next[currentIndex];
-                                    return next;
-                                  });
-                                }}
-                              >
-                                {completed[currentIndex] ? '✓' : '○'}
-                              </div>
-                              <h4 className={styles.stepTitle}>
-                                {step}
-                              </h4>
-                            </div>
-                            {openSteps[currentIndex] && (
-                              <div className={styles.stepDetail}>
-                                <p className={styles.stepDescription}>{stepDetailsGroups[groupIndex][subIndex]}</p>
-                              </div>
-                            )}
-                          </div>
+                    {/* קוביית השלב הראשי */}
+                    <div 
+                      className={`${styles.mainStepBlock} ${groupIndex % 2 === 0 ? styles.leftSide : styles.rightSide}`}
+                      onClick={() => {
+                        setOpenGroups(prev => {
+                          const next = [...prev];
+                          next[groupIndex] = !next[groupIndex];
+                          return next;
+                        });
+                      }}
+                    >
+                      <div className={styles.mainStepCard}>
+                        <h3 className={styles.mainStepTitle}>{group.title}</h3>
+                        <div className={styles.expandIcon}>
+                          {openGroups[groupIndex] ? '▲' : '▼'}
                         </div>
-                      );
-                    })}
+                      </div>
+                    </div>
+
+                    {/* שלבי המשנה שנפתחים מתחת */}
+                    {openGroups[groupIndex] && (
+                      <div className={styles.subStepsContainer}>
+                        {group.steps.map((step, subIndex) => {
+                          const currentIndex = stepIndex + subIndex;
+                          return (
+                            <div key={currentIndex} className={styles.subStepBlock}>
+                              <div className={styles.subStepCard}>
+                                <div className={styles.stepHeader}>
+                                  <div 
+                                    className={styles.stepCheckbox}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setCompleted(prev => {
+                                        const next = [...prev];
+                                        next[currentIndex] = !next[currentIndex];
+                                        return next;
+                                      });
+                                    }}
+                                  >
+                                    {completed[currentIndex] ? '✓' : '○'}
+                                  </div>
+                                  <h4 className={styles.subStepTitle}>{step}</h4>
+                                </div>
+                                <div className={styles.stepDetail}>
+                                  <p className={styles.stepDescription}>{stepDetailsGroups[groupIndex][subIndex]}</p>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 );
               })}
