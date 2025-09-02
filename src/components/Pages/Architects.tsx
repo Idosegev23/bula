@@ -213,17 +213,33 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
       <section className={styles.ctaSection}>
         <div className={styles.container}>
           <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>בואו נתחיל לעבוד יחד</h2>
-            <p className={styles.ctaDescription}>
-              מזמינים אדריכלים ומעצבים לשיתוף פעולה מקצועי ואמין
-            </p>
-            <div className={styles.ctaButtons}>
-              <a href="tel:+972-XX-XXX-XXXX" className={styles.ctaButton}>
-                התקשרו עכשיו
-              </a>
-              <a href="mailto:architects@bullastudio.com" className={styles.ctaButtonSecondary}>
-                שלחו מייל
-              </a>
+            {/* Gallery Preview */}
+            <div className={styles.galleryPreview}>
+              <h3 className={styles.galleryTitle}>פרויקטים שביצענו</h3>
+              <div className={styles.galleryGrid}>
+                <div className={styles.galleryItem}>
+                  <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=400&fit=crop&crop=center" alt="פרויקט אדריכלי מסחרי" className={styles.galleryImage} />
+                </div>
+                <div className={styles.galleryItem}>
+                  <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center" alt="פרויקט עיצוב פנים" className={styles.galleryImage} />
+                </div>
+                <div className={styles.galleryItem}>
+                  <img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&h=400&fit=crop&crop=center" alt="פרויקט נגרות מותאמת" className={styles.galleryImage} />
+                </div>
+                <div className={styles.galleryItem}>
+                  <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=400&fit=crop&crop=center" alt="פרויקט קונסטרוקציה" className={styles.galleryImage} />
+                </div>
+              </div>
+              <button className={styles.galleryViewMore}>
+                צפייה בכל הפרויקטים →
+              </button>
+            </div>
+            
+            <p className={styles.ctaSubtitle}>בואו נתחיל לעבוד יחד על הפרויקט הבא</p>
+            <div className={styles.ctaButtonContainer}>
+              <button className={styles.ctaButtonPrimary}>
+                קבלת הצעת מחיר
+              </button>
             </div>
           </div>
         </div>

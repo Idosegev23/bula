@@ -179,24 +179,26 @@
   content: '→';
   position: absolute;
   bottom: 15px;
-  right: 20px;
-  width: 30px;
-  height: 30px;
-  background: rgba(40, 147, 159, 0.1);
-  border: 1px solid #28939f;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  color: #28939f;
+  font-size: 12px;
+  color: #333;
   transition: all 0.3s ease;
 }
 
 .serviceCard:hover::after {
-  background: #28939f;
-  color: white;
-  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #000;
+  transform: translateX(-50%) scale(1.05);
 }
 
 /* Benefits Section */
@@ -257,24 +259,26 @@
   content: '→';
   position: absolute;
   bottom: 15px;
-  right: 20px;
-  width: 30px;
-  height: 30px;
-  background: rgba(40, 147, 159, 0.1);
-  border: 1px solid #28939f;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  color: #28939f;
+  font-size: 12px;
+  color: #333;
   transition: all 0.3s ease;
 }
 
 .benefitCard:hover::after {
-  background: #28939f;
-  color: white;
-  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #000;
+  transform: translateX(-50%) scale(1.05);
 }
 
 /* Projects Section */
@@ -385,67 +389,113 @@
   margin: 0 auto;
 }
 
-.ctaTitle {
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  font-weight: 300;
-  color: #000000;
-  margin: 0 0 24px 0;
-  letter-spacing: -0.01em;
+/* Gallery Preview */
+.galleryPreview {
+  margin-bottom: 3rem;
 }
 
-.ctaDescription {
-  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-  font-weight: 300;
-  color: #666666;
-  margin: 0 0 40px 0;
-  line-height: 1.5;
+.galleryTitle {
+  font-family: 'Rubik', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
-.ctaButtons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.ctaButton,
-.ctaButtonSecondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px 32px;
-  font-size: 1rem;
-  font-weight: 400;
-  text-decoration: none;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
-  min-width: 160px;
-  font-family: inherit;
+.galleryItem {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
   cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid #e0e0e0;
+  background: #f5f5f5;
 }
 
-.ctaButton {
-  background: #000000;
-  color: #ffffff;
-  border-color: #000000;
+.galleryItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #28939f;
 }
 
-.ctaButton:hover {
-  background: #333333;
-  border-color: #333333;
-  transform: translateY(-1px);
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.ctaButtonSecondary {
+.galleryItem:hover .galleryImage {
+  transform: scale(1.05);
+}
+
+.galleryViewMore {
+  font-family: 'Rubik', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 2px solid #28939f;
   background: transparent;
-  color: #000000;
-  border-color: #000000;
+  color: #28939f;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.ctaButtonSecondary:hover {
-  background: #000000;
-  color: #ffffff;
-  transform: translateY(-1px);
+.galleryViewMore:hover {
+  background: #28939f;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.ctaSubtitle {
+  font-family: 'Rubik', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.ctaButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.ctaButtonPrimary {
+  font-family: 'Rubik', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.2rem);
+  font-weight: 600;
+  padding: 16px 40px;
+  border-radius: 50px;
+  border: none;
+  background: #28939f;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 200px;
+}
+
+.ctaButtonPrimary:hover {
+  background: #1f7580;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(40, 147, 159, 0.3);
 }
 
 /* Responsive Design */
