@@ -193,7 +193,6 @@
 }
 
 .stepNumber {
-  font-family: 'Rubik', sans-serif;
   font-size: clamp(2rem, 3vw, 2.5rem);
   font-weight: 100;
   color: #000000;
@@ -233,7 +232,6 @@
 }
 
 .stepTitle {
-  font-family: 'Rubik', sans-serif;
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 400;
   color: #000000;
