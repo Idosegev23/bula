@@ -1,7 +1,6 @@
 // Architects - קשרי אדריכלים Page
 // Text-focused minimalistic design following established patterns
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Architects.module.css';
 
 interface ArchitectsProps {
@@ -61,26 +60,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
     }
   ];
 
-  const architectProjects = [
-    {
-      id: 'ima-office',
-      title: 'משרד IMA',
-      location: 'תל אביב',
-      description: 'שיתוף פעולה במרחב משרדי מודרני עם פתרונות נגרות מותאמים'
-    },
-    {
-      id: 'clinic-design',
-      title: 'מרפאת שיניים',
-      location: 'פתח תקווה',
-      description: 'פרויקט מורכב עם דרישות טכניות מיוחדות ועיצוב פונקציונלי'
-    },
-    {
-      id: 'boutique-hotel',
-      title: 'מלון בוטיק',
-      location: 'יפו',
-      description: 'שיתוף עם אדריכלים בפרויקט מלון בוטיק עם זהות ייחודית'
-    }
-  ];
+
 
   // Hero Canvas Effect - Logo watermark only
   useEffect(() => {
@@ -176,35 +156,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
         </div>
       </section>
 
-      {/* Projects Gallery */}
-      <section className={styles.projectsSection}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>פרויקטים נבחרים</h2>
-          </div>
-          
-          <div className={styles.projectsGrid}>
-            {architectProjects.map((project) => (
-              <div key={project.id} className={styles.projectCard}>
-                <div className={styles.projectContent}>
-                  <h3 className={styles.projectTitle}>{project.title}</h3>
-                  <p className={styles.projectLocation}>{project.location}</p>
-                  <p className={styles.projectDescription}>{project.description}</p>
-                  <Link to={`/projects/${project.id}`} className={styles.projectLink}>
-                    פרטים נוספים
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className={styles.projectsFooter}>
-            <Link to="/projects" className={styles.viewAllButton}>
-              צפו בכל הפרויקטים
-            </Link>
-          </div>
-        </div>
-      </section>
+
 
       {/* CTA Section */}
       <section className={styles.ctaSection}>
