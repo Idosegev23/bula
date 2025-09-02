@@ -18,7 +18,7 @@
 /* Commercial Detailed Section (Anchor target) */
 .commercialSection {
   position: relative;
-  padding: 120px 0 40px 0; /* Mobile-first */
+  padding: 60px 0 40px 0; /* Mobile-first - קטן יותר */
   background: transparent; /* שלא יכסה את הרקע המנוקד */
   scroll-margin-top: 100px; /* להימנע מכיסוי ע"י Header קבוע */
 }
@@ -27,6 +27,7 @@
   position: relative;
   max-width: 900px;
   margin: 0 auto;
+  padding: 0 24px;
 }
 
 .commercialCanvas {
@@ -47,7 +48,7 @@
   font-family: 'Rubik', sans-serif;
   font-size: clamp(2.1rem, 6vw, 2.8rem);
   font-weight: 700;
-  margin: 0 0 12px 0;
+  margin: 0 0 32px 0;
   color: #000;
 }
 
@@ -113,7 +114,7 @@
   max-width: 900px;
   margin: 0 auto;
   position: relative; /* לשכבת הקנבס המדידה */
-  padding-bottom: 40px;
+  padding: 0 24px 40px 24px;
 }
 
 .heroTitle {
@@ -178,10 +179,29 @@
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 4px 0;
+  position: relative;
+}
+
+.stepTitle::after {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  background: #28939f;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .stepTitle:hover {
   color: #28939f;
+}
+
+.stepTitle:hover::after {
+  opacity: 1;
 }
 
 .stepDetail {
@@ -521,6 +541,14 @@
   .container {
     padding: 0 24px;
   }
+  
+  .commercialInner {
+    padding: 0 20px;
+  }
+  
+  .heroContent {
+    padding: 0 20px 40px 20px;
+  }
   .servicesPage {
     background-size: 28px 28px; /* צפוף מעט יותר בטאבלט */
   }
@@ -546,6 +574,14 @@
 @media (max-width: 768px) {
   .container {
     padding: 0 20px;
+  }
+  
+  .commercialInner {
+    padding: 0 16px;
+  }
+  
+  .heroContent {
+    padding: 0 16px 40px 16px;
   }
   .servicesPage {
     background-size: 26px 26px; /* צפוף יותר במובייל */
@@ -607,6 +643,14 @@
 @media (max-width: 480px) {
   .container {
     padding: 0 16px;
+  }
+  
+  .commercialInner {
+    padding: 0 12px;
+  }
+  
+  .heroContent {
+    padding: 0 12px 40px 12px;
   }
   .servicesPage {
     background-size: 24px 24px; /* הכי צפוף במסכים קטנים */
