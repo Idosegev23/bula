@@ -231,7 +231,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
                 </div>
               </div>
               <button className={styles.galleryViewMore}>
-                צפייה בכל הפרויקטים →
+                צפייה בכל הפרויקטים
               </button>
             </div>
             

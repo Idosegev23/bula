@@ -442,9 +442,9 @@
 
 .galleryViewMore {
   font-family: 'Rubik', sans-serif;
-  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.2rem);
   font-weight: 500;
-  padding: 12px 24px;
+  padding: 16px 40px;
   border-radius: 8px;
   border: 1px solid #000000;
   background: transparent;
@@ -453,6 +453,7 @@
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
+  min-width: 200px;
 }
 
 .galleryViewMore:hover {
