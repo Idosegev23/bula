@@ -158,6 +158,7 @@
   padding: 6px 0;
   font-size: 0.95rem;
   font-weight: 400;
+  font-family: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: #ffffff; /* white on transparent */
   text-decoration: none;
   line-height: 1.2;
@@ -264,6 +265,7 @@
   text-decoration: none;
   font-weight: 400;
   font-size: 1.05rem;
+  font-family: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   text-align: right;
   transition: background-color 0.2s ease, padding-right 0.2s ease;
 }
