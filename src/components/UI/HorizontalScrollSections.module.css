@@ -10,7 +10,7 @@
   position: fixed;
   inset: 0;
   background-repeat: no-repeat;
-  background-size: auto 100%; /* fit height, keep 16:9 aspect */
+  background-size: auto 110%; /* fit height, keep 16:9 aspect */
   background-position: 0% center; /* animated 0% -> 100% */
   z-index: 0;
   pointer-events: none;
@@ -41,7 +41,7 @@
 }
 
 .subtitle {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-size: clamp(1.7rem, 5vw, 3rem);
   font-weight: 300;
   margin: 0;
   text-shadow: 0 2px 14px rgba(0,0,0,0.45);
@@ -57,13 +57,14 @@
 
 .headline {
   font-size: clamp(2rem, 6vw, 4rem);
-  font-weight: 300;
+  font-weight: 600;
   margin: 0 0 12px 0;
   text-shadow: 0 2px 14px rgba(0,0,0,0.45);
+  color: #ffffff;
 }
 
 .text {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.25rem);
   font-weight: 300;
   margin: 0;
   opacity: 0.95;

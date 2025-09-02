@@ -480,6 +480,10 @@
   .textSection {
     padding: 16px;
   }
+
+  .commercialSection {
+    padding: 0px 0;
+  }
 }
 
 .heroSubtitle {

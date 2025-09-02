@@ -92,7 +92,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
             href="https://wa.me/972549739577?text=שלום,%20אני%20מעוניין%20להתחיל%20פרויקט"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.ctaPrimary}
+            className={styles.serviceCard}
           >
             קבלת הצעת מחיר
           </a>

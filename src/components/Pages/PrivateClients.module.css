@@ -299,6 +299,10 @@
   }
   
   .heroContent {
-    padding: 40px 24px 20px 24px;
+    padding: 0px 24px 20px 24px;
+  }
+
+  .contentSection {
+    padding: 0px 0;
   }
 }
