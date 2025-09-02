@@ -1,7 +1,6 @@
 // Services - Main Services Page (One Stop Shop Process)
 import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import rough from 'roughjs';
 import styles from './Services.module.css';
 
 interface ServicesProps {
@@ -160,50 +159,18 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       if (!ctx) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const rc = rough.canvas(canvas);
 
-      // Logo background
+      // Logo background only
       const logoX = canvas.width / 2 - 60;
       const logoY = canvas.height / 2 - 60;
       ctx.globalAlpha = 0.02;
       
-      // Simple logo representation with rough lines
-      rc.rectangle(logoX, logoY, 120, 120, { 
-        stroke: '#28939f', 
-        strokeWidth: 1, 
-        roughness: 2.5,
-        fill: 'transparent'
-      });
+      // Simple logo representation
+      ctx.strokeStyle = '#28939f';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(logoX, logoY, 120, 120);
       
       ctx.globalAlpha = 1;
-
-      // Decorative elements
-      for (let i = 0; i < 8; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const size = 20 + Math.random() * 40;
-        
-        rc.circle(x, y, size, {
-          stroke: '#28939f',
-          strokeWidth: 0.5,
-          roughness: 2 + Math.random(),
-          fill: 'transparent'
-        });
-      }
-
-      // Random lines
-      for (let i = 0; i < 5; i++) {
-        const x1 = Math.random() * canvas.width;
-        const y1 = Math.random() * canvas.height;
-        const x2 = x1 + (Math.random() - 0.5) * 200;
-        const y2 = y1 + (Math.random() - 0.5) * 200;
-        
-        rc.line(x1, y1, x2, y2, {
-          stroke: '#28939f',
-          strokeWidth: 0.3,
-          roughness: 1.5 + Math.random()
-        });
-      }
     };
 
     updateCanvasSize();
@@ -232,60 +199,16 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       if (!ctx) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const rc = rough.canvas(canvas);
 
-      // Coffee stain
-      const coffeeX = canvas.width * 0.8;
-      const coffeeY = canvas.height * 0.3;
-      ctx.globalAlpha = 0.03;
-      rc.circle(coffeeX, coffeeY, 80, {
-        stroke: '#8B4513',
-        strokeWidth: 2,
-        roughness: 3,
-        fill: '#8B4513',
-        fillStyle: 'solid'
-      });
-      ctx.globalAlpha = 1;
-
-      // Decorative elements like CTA section
-      for (let i = 0; i < 12; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const size = 15 + Math.random() * 35;
-        
-        rc.circle(x, y, size, {
-          stroke: '#28939f',
-          strokeWidth: 0.4,
-          roughness: 2 + Math.random(),
-          fill: 'transparent'
-        });
-      }
-
-      // Random lines
-      for (let i = 0; i < 8; i++) {
-        const x1 = Math.random() * canvas.width;
-        const y1 = Math.random() * canvas.height;
-        const x2 = x1 + (Math.random() - 0.5) * 180;
-        const y2 = y1 + (Math.random() - 0.5) * 180;
-        
-        rc.line(x1, y1, x2, y2, {
-          stroke: '#28939f',
-          strokeWidth: 0.25,
-          roughness: 1.8 + Math.random()
-        });
-      }
-
-      // Logo background (same as CTA)
+      // Logo background only
       const logoX = canvas.width / 2 - 80;
       const logoY = canvas.height / 2 - 80;
       ctx.globalAlpha = 0.015;
       
-      rc.rectangle(logoX, logoY, 160, 160, { 
-        stroke: '#28939f', 
-        strokeWidth: 1, 
-        roughness: 2.8,
-        fill: 'transparent'
-      });
+      // Create logo using basic canvas drawing
+      ctx.strokeStyle = '#28939f';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(logoX, logoY, 160, 160);
       
       ctx.globalAlpha = 1;
     };
