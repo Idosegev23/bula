@@ -106,10 +106,12 @@
 
 /* Hero Section */
 .heroSection {
-  padding: 170px 0 120px 0;
+  padding: 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  min-height: 80vh;
+  margin-top: 120px;
 }
 
 .heroCanvas {
@@ -126,7 +128,7 @@
   max-width: 900px;
   margin: 0 auto;
   position: relative;
-  padding: 100px 24px 40px 24px;
+  padding: 60px 24px 60px 24px;
   z-index: 2;
 }
 
