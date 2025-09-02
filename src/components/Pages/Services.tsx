@@ -249,8 +249,11 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
                   onClick={() => setSelectedStep(index)}
                 >
                   <div className={styles.stepHeader}>
-                    <span className={styles.stepToggle}>▼</span>
+                    <div className={styles.stepNumber}>
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
                     <h4 className={styles.stepTitle}>{stepTitle}</h4>
+                    <div className={styles.stepToggle}>→</div>
                   </div>
                 </div>
               ))}

@@ -187,11 +187,31 @@
 }
 
 .stepHeader {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   padding: 25px 20px;
   text-align: center;
+  position: relative;
+}
+
+.stepNumber {
+  font-family: 'Rubik', sans-serif;
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 100;
+  color: #000000;
+  margin-bottom: 15px;
+  line-height: 1;
+  position: relative;
+  display: inline-block;
+}
+
+.stepNumber::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 1px;
+  background: #000000;
 }
 
 .stepToggle {
@@ -214,14 +234,13 @@
 
 .stepTitle {
   font-family: 'Rubik', sans-serif;
-  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 400;
   color: #000000;
-  margin: 0 0 20px 0;
+  margin: 15px 0 12px 0;
   letter-spacing: -0.01em;
-  line-height: 1.3;
+  line-height: 1.2;
   text-align: center;
-  flex: 1;
 }
 
 .stepBlock:hover .stepToggle {
