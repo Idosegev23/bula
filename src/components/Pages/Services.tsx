@@ -1,6 +1,7 @@
 // Services - Main Services Page (One Stop Shop Process)
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import rough from 'roughjs';
 import styles from './Services.module.css';
 
 interface ServicesProps {
@@ -12,6 +13,7 @@ interface ServicesProps {
 export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   const location = useLocation();
   const [selectedStep, setSelectedStep] = useState<number | null>(null);
+  const ctaCanvasRef = useRef<HTMLCanvasElement>(null);
 
   const steps = [
     'שלב 1 – סיור שטח',
@@ -138,6 +140,78 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       }
     }
   }, [location.hash]);
+
+  // CTA Canvas Effect
+  useEffect(() => {
+    const canvas = ctaCanvasRef.current;
+    if (!canvas) return;
+
+    const updateCanvasSize = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      drawCtaElements();
+    };
+
+    const drawCtaElements = () => {
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const rc = rough.canvas(canvas);
+
+      // Logo background
+      const logoX = canvas.width / 2 - 60;
+      const logoY = canvas.height / 2 - 60;
+      ctx.globalAlpha = 0.02;
+      
+      // Simple logo representation with rough lines
+      rc.rectangle(logoX, logoY, 120, 120, { 
+        stroke: '#28939f', 
+        strokeWidth: 1, 
+        roughness: 2.5,
+        fill: 'transparent'
+      });
+      
+      ctx.globalAlpha = 1;
+
+      // Decorative elements
+      for (let i = 0; i < 8; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const size = 20 + Math.random() * 40;
+        
+        rc.circle(x, y, size, {
+          stroke: '#28939f',
+          strokeWidth: 0.5,
+          roughness: 2 + Math.random(),
+          fill: 'transparent'
+        });
+      }
+
+      // Random lines
+      for (let i = 0; i < 5; i++) {
+        const x1 = Math.random() * canvas.width;
+        const y1 = Math.random() * canvas.height;
+        const x2 = x1 + (Math.random() - 0.5) * 200;
+        const y2 = y1 + (Math.random() - 0.5) * 200;
+        
+        rc.line(x1, y1, x2, y2, {
+          stroke: '#28939f',
+          strokeWidth: 0.3,
+          roughness: 1.5 + Math.random()
+        });
+      }
+    };
+
+    updateCanvasSize();
+    window.addEventListener('resize', updateCanvasSize);
+
+    return () => {
+      window.removeEventListener('resize', updateCanvasSize);
+    };
+  }, []);
   return (
     <main className={`${styles.servicesPage} ${className}`}>
       {/* Hero Section */}
@@ -231,16 +305,36 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
 
       {/* CTA Section */}
       <section className={styles.ctaSection}>
+        <canvas ref={ctaCanvasRef} className={styles.ctaCanvas}></canvas>
         <div className={styles.container}>
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>מוכנים להתחיל?</h2>
             <p className={styles.ctaSubtitle}>בואו נתחיל לבנות את העסק שלכם יחד</p>
-            <div className={styles.ctaButtons}>
+            <div className={styles.ctaButtonContainer}>
               <button className={styles.ctaButtonPrimary}>
                 קבלת הצעת מחיר
               </button>
-              <button className={styles.ctaButtonSecondary}>
-                צפייה בגלריה
+            </div>
+            
+            {/* Gallery Preview */}
+            <div className={styles.galleryPreview}>
+              <h3 className={styles.galleryTitle}>עבודות שביצענו</h3>
+              <div className={styles.galleryGrid}>
+                <div className={styles.galleryItem}>
+                  <div className={styles.galleryPlaceholder}>פרויקט 1</div>
+                </div>
+                <div className={styles.galleryItem}>
+                  <div className={styles.galleryPlaceholder}>פרויקט 2</div>
+                </div>
+                <div className={styles.galleryItem}>
+                  <div className={styles.galleryPlaceholder}>פרויקט 3</div>
+                </div>
+                <div className={styles.galleryItem}>
+                  <div className={styles.galleryPlaceholder}>פרויקט 4</div>
+                </div>
+              </div>
+              <button className={styles.galleryViewMore}>
+                צפייה בכל העבודות →
               </button>
             </div>
           </div>
