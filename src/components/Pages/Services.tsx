@@ -14,7 +14,6 @@ interface ServicesProps {
 
 export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   const location = useLocation();
-  const [completed, setCompleted] = useState<boolean[]>(() => Array(10).fill(false));
   const [selectedStep, setSelectedStep] = useState<number | null>(null);
 
   const steps = [
