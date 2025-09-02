@@ -8,8 +8,8 @@
   min-height: 100vh;
   background-color: #ffffff;
   /* רקע מחברת – נקודות ויזואליות (mobile-first) */
-  background-image: radial-gradient(#bfc8d0 1.2px, transparent 1.2px);
-  background-size: 20px 20px;
+  background-image: radial-gradient(#d0d7dd 0.8px, transparent 0.8px);
+  background-size: 30px 30px;
   background-position: 0 0;
   direction: rtl;
   font-family: 'Rubik', 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -125,6 +125,70 @@
   letter-spacing: -0.02em;
   text-align: center;
   font-family: 'Rubik', sans-serif;
+}
+
+.boldText {
+  font-weight: 700;
+}
+
+/* Steps Container */
+.stepsContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.stepBlock {
+  margin-bottom: 24px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 20px;
+}
+
+.stepBlock:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.stepHeader:hover {
+  opacity: 0.8;
+}
+
+.stepCheckbox {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2e7d32;
+  min-width: 24px;
+  text-align: center;
+}
+
+.stepTitle {
+  font-family: 'Rubik', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+  flex: 1;
+}
+
+.stepDetail {
+  margin-right: 36px; /* הזחה מימין (RTL) */
+}
+
+.stepDescription {
+  font-family: 'Rubik', sans-serif;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  line-height: 1.6;
+  color: #444;
+  margin: 0;
+  white-space: pre-line;
 }
 
 .heroSubtitle {
@@ -437,7 +501,7 @@
     padding: 0 24px;
   }
   .servicesPage {
-    background-size: 18px 18px; /* צפוף מעט יותר בטאבלט */
+    background-size: 28px 28px; /* צפוף מעט יותר בטאבלט */
   }
   
   .heroSection {
@@ -463,7 +527,7 @@
     padding: 0 20px;
   }
   .servicesPage {
-    background-size: 16px 16px; /* צפוף יותר במובייל */
+    background-size: 26px 26px; /* צפוף יותר במובייל */
   }
   
   .heroSection {
@@ -524,7 +588,7 @@
     padding: 0 16px;
   }
   .servicesPage {
-    background-size: 14px 14px; /* הכי צפוף במסכים קטנים */
+    background-size: 24px 24px; /* הכי צפוף במסכים קטנים */
   }
   
   .heroSection {

@@ -131,9 +131,7 @@ export const BlueprintInteractive: React.FC<BlueprintInteractiveProps> = ({ step
     <div className={`${styles.wrapper} ${className || ''}`}>
       <div className={styles.layout}>
         <div className={styles.listCol}>
-          <p className={styles.instructions}>
-            לחיצה על שם השלב תציג פירוט. לחיצה על התיבה תסמן שהשלב הושלם. ניתן לבחור כל שלב בכל עת.
-          </p>
+
           {/* הודעת התקדמות */}
           {completed.filter(Boolean).length > 0 && (
             <div className={styles.progressMessage}>
@@ -166,44 +164,6 @@ export const BlueprintInteractive: React.FC<BlueprintInteractiveProps> = ({ step
                   {showDetailHere && (
                     <li className={styles.stepDetail}>
                       <div className={styles.detailContent}>
-                        <div className={styles.mobileNavigationControls}>
-                          <button 
-                            className={styles.mobileNavButton}
-                            onClick={() => {
-                              const prevIndex = i > 0 ? i - 1 : steps.length - 1;
-                              setSelectedIndex(prevIndex);
-                            }}
-                            aria-label="שלב קודם"
-                          >
-                            ← קודם
-                          </button>
-                          
-                          <button 
-                            className={styles.mobileCompleteButton}
-                            onClick={() => {
-                              setCompleted(prev => {
-                                const next = [...prev];
-                                next[i] = !next[i];
-                                return next;
-                              });
-                            }}
-                            aria-label={completed[i] ? "בטל סימון שלב" : "סמן שלב כמושלם"}
-                          >
-                            {completed[i] ? '✓ מושלם' : '○ סמן'}
-                          </button>
-                          
-                          <button 
-                            className={styles.mobileNavButton}
-                            onClick={() => {
-                              const nextIndex = i < steps.length - 1 ? i + 1 : 0;
-                              setSelectedIndex(nextIndex);
-                            }}
-                            aria-label="שלב הבא"
-                          >
-                            הבא →
-                          </button>
-                        </div>
-                        
                         <h4 className={styles.detailTitle}>{t}</h4>
                         <p className={styles.detailBody}>{stepDetails[i]}</p>
                       </div>
@@ -217,49 +177,6 @@ export const BlueprintInteractive: React.FC<BlueprintInteractiveProps> = ({ step
         <aside className={styles.detailCol} aria-live="polite">
           {activeDetailIndex !== -1 && stepDetails[activeDetailIndex] && (
             <>
-              <div className={styles.navigationControls}>
-                <button 
-                  className={styles.navButton}
-                  onClick={() => {
-                    const prevIndex = activeDetailIndex > 0 ? activeDetailIndex - 1 : steps.length - 1;
-                    setSelectedIndex(prevIndex);
-                  }}
-                  aria-label="שלב קודם"
-                >
-                  <span className={styles.navArrow}>←</span>
-                  שלב קודם
-                </button>
-                
-                <button 
-                  className={styles.completeButton}
-                  onClick={() => {
-                    setCompleted(prev => {
-                      const next = [...prev];
-                      next[activeDetailIndex] = !next[activeDetailIndex];
-                      return next;
-                    });
-                  }}
-                  aria-label={completed[activeDetailIndex] ? "בטל סימון שלב" : "סמן שלב כמושלם"}
-                >
-                  <span className={styles.checkIcon}>
-                    {completed[activeDetailIndex] ? '✓' : '○'}
-                  </span>
-                  {completed[activeDetailIndex] ? 'בטל סימון' : 'סמן כמושלם'}
-                </button>
-                
-                <button 
-                  className={styles.navButton}
-                  onClick={() => {
-                    const nextIndex = activeDetailIndex < steps.length - 1 ? activeDetailIndex + 1 : 0;
-                    setSelectedIndex(nextIndex);
-                  }}
-                  aria-label="שלב הבא"
-                >
-                  שלב הבא
-                  <span className={styles.navArrow}>→</span>
-                </button>
-              </div>
-              
               <h4 className={styles.detailTitle}>{steps[activeDetailIndex]}</h4>
               <p className={styles.detailBody}>{stepDetails[activeDetailIndex]}</p>
             </>
