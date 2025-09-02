@@ -446,9 +446,9 @@
   font-weight: 500;
   padding: 12px 24px;
   border-radius: 8px;
-  border: 2px solid #28939f;
+  border: 1px solid #000000;
   background: transparent;
-  color: #28939f;
+  color: #000000;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -456,7 +456,7 @@
 }
 
 .galleryViewMore:hover {
-  background: #28939f;
+  background: #000000;
   color: white;
   transform: translateY(-2px);
 }
@@ -479,12 +479,12 @@
 .ctaButtonPrimary {
   font-family: 'Rubik', sans-serif;
   font-size: clamp(1.1rem, 2.5vw, 1.2rem);
-  font-weight: 600;
+  font-weight: 500;
   padding: 16px 40px;
-  border-radius: 50px;
-  border: none;
-  background: #28939f;
-  color: white;
+  border-radius: 8px;
+  border: 1px solid #000000;
+  background: transparent;
+  color: #000000;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -493,9 +493,9 @@
 }
 
 .ctaButtonPrimary:hover {
-  background: #1f7580;
+  background: #000000;
+  color: white;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(40, 147, 159, 0.3);
 }
 
 /* Responsive Design */
