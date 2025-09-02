@@ -146,37 +146,27 @@
   margin-bottom: 0;
 }
 
-.stepButton {
-  width: 100%;
-  background: #ffffff;
-  border: 2px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 16px 20px;
+.stepHeader {
   display: flex;
   align-items: center;
-  gap: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: right;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  gap: 12px;
 }
 
-.stepButton:hover {
-  border-color: #28939f;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fcfd 100%);
-  box-shadow: 0 6px 20px rgba(40, 147, 159, 0.15);
-  transform: translateY(-2px);
-}
-
-.stepIcon {
-  font-size: 20px;
+.stepToggle {
+  font-size: 12px;
+  color: #28939f;
   min-width: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 4px;
+  border-radius: 4px;
   opacity: 0.7;
-  transition: all 0.3s ease;
 }
 
-.stepButton:hover .stepIcon {
+.stepToggle:hover {
   opacity: 1;
+  background: rgba(40, 147, 159, 0.1);
   transform: scale(1.1);
 }
 
@@ -187,26 +177,12 @@
   color: #000;
   margin: 0;
   flex: 1;
-  transition: color 0.3s ease;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 4px 0;
 }
 
-.stepButton:hover .stepTitle {
-  color: #28939f;
-}
-
-.viewMore {
-  font-family: 'Rubik', sans-serif;
-  font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-  color: #666;
-  opacity: 0;
-  transform: translateX(10px);
-  transition: all 0.3s ease;
-  font-weight: 400;
-}
-
-.stepButton:hover .viewMore {
-  opacity: 1;
-  transform: translateX(0);
+.stepTitle:hover {
   color: #28939f;
 }
 

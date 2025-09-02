@@ -163,19 +163,25 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       <section id="commercial" className={styles.commercialSection}>
         <div className={styles.container}>
           <div className={styles.commercialInner}>
-            <h3 className={styles.commercialTitle}>בניית עסק חדש – שלבים</h3>
+            <h3 className={styles.commercialTitle}>שלבים לבניית עסק חדש</h3>
             
             <div className={styles.stepsContainer}>
               {steps.map((step, index) => (
                 <div key={index} className={styles.stepBlock}>
-                  <button 
-                    className={styles.stepButton}
-                    onClick={() => setSelectedStep(index)}
-                  >
-                    <span className={styles.stepIcon}>🔍</span>
-                    <h4 className={styles.stepTitle}>{step}</h4>
-                    <span className={styles.viewMore}>לחץ לפירוט</span>
-                  </button>
+                  <div className={styles.stepHeader}>
+                    <div 
+                      className={styles.stepToggle}
+                      onClick={() => setSelectedStep(index)}
+                    >
+                      ▼
+                    </div>
+                    <h4 
+                      className={styles.stepTitle}
+                      onClick={() => setSelectedStep(index)}
+                    >
+                      {step}
+                    </h4>
+                  </div>
                 </div>
               ))}
             </div>
