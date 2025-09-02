@@ -434,7 +434,7 @@
 }
 
 .ctaButtonContainer {
-  margin-bottom: 3rem;
+  margin-top: 2rem;
 }
 
 .ctaButtonPrimary {
@@ -460,7 +460,7 @@
 
 /* Gallery Preview */
 .galleryPreview {
-  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .galleryTitle {
@@ -487,25 +487,25 @@
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 2px dashed #28939f;
-  background: rgba(40, 147, 159, 0.05);
+  border: 2px solid #e0e0e0;
+  background: #f5f5f5;
 }
 
 .galleryItem:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(40, 147, 159, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #28939f;
 }
 
-.galleryPlaceholder {
+.galleryImage {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Rubik', sans-serif;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  color: #28939f;
-  font-weight: 500;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.galleryItem:hover .galleryImage {
+  transform: scale(1.05);
 }
 
 .galleryViewMore {
