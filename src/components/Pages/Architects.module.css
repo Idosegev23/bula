@@ -45,6 +45,7 @@
 }
 
 .heroTitle {
+  font-family: 'Rubik', sans-serif;
   font-size: clamp(3rem, 8vw, 4.5rem);
   font-weight: 200;
   line-height: 1.1;
@@ -69,6 +70,7 @@
 }
 
 .heroSubtitle {
+  font-family: 'Rubik', sans-serif;
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   font-weight: 300;
   color: #666666;
@@ -87,6 +89,7 @@
 }
 
 .sectionTitle {
+  font-family: 'Rubik', sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 300;
   color: #000000;
@@ -157,6 +160,7 @@
 }
 
 .serviceTitle {
+  font-family: 'Rubik', sans-serif;
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 400;
   color: #000000;
@@ -167,6 +171,7 @@
 }
 
 .serviceDescription {
+  font-family: 'Rubik', sans-serif;
   font-size: clamp(1rem, 2vw, 1.125rem);
   font-weight: 300;
   color: #333333;
@@ -234,6 +239,7 @@
 }
 
 .benefitTitle {
+  font-family: 'Rubik', sans-serif;
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 400;
   color: #000000;
@@ -244,6 +250,7 @@
 }
 
 .benefitDescription {
+  font-family: 'Rubik', sans-serif;
   font-size: clamp(1.125rem, 2.5vw, 1.375rem);
   font-weight: 300;
   color: #333333;
@@ -745,6 +752,7 @@
 }
 
 .modalTitle {
+  font-family: 'Rubik', sans-serif;
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 400;
   color: #000;
@@ -753,6 +761,7 @@
 }
 
 .modalDescription {
+  font-family: 'Rubik', sans-serif;
   font-size: 1.1rem;
   line-height: 1.6;
   color: #333;

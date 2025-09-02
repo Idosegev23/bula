@@ -12,20 +12,49 @@ interface ServicesProps {
 export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   const location = useLocation();
   const [selectedStep, setSelectedStep] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const ctaCanvasRef = useRef<HTMLCanvasElement>(null);
   const heroCanvasRef = useRef<HTMLCanvasElement>(null);
 
-  const steps = [
-    'שלב 1 – סיור שטח',
-    'שלב 2 – מדידות או עבודה לפי תוכנית',
-    'שלב 3 – סקיצות העמדה',
-    'שלב 4 – סקיצות לבניית מותג גרפי',
-    'שלב 5 – אישורים ותכנון ייעודי',
-    'שלב 6 – עיצוב ותכנון והדמיות',
-    'שלב 7 – סט תוכניות עבודה',
-    'שלב 8 – בחירת ספקים וקבלני ביצוע',
-    'שלב 9 – ליווי בתהליך הבנייה',
-    'שלב 10 – עבודות משלימות והתאמות'
+  const categories = [
+    {
+      id: 'planning',
+      title: 'תכנון ומחקר',
+      description: 'שלבי התכנון הראשוניים והמחקר למיזם',
+      steps: [
+        'סיור שטח',
+        'מדידות או עבודה לפי תוכנית',
+        'סקיצות העמדה'
+      ]
+    },
+    {
+      id: 'design',
+      title: 'עיצוב ומיתוג',
+      description: 'פיתוח זהות ועיצוב החלל',
+      steps: [
+        'סקיצות לבניית מותג גרפי',
+        'אישורים ותכנון ייעודי',
+        'עיצוב ותכנון והדמיות'
+      ]
+    },
+    {
+      id: 'implementation',
+      title: 'ביצוע והתקנה',
+      description: 'מימוש הפרויקט והתקנות',
+      steps: [
+        'סט תוכניות עבודה',
+        'בחירת ספקים וקבלני ביצוע',
+        'ליווי בתהליך הבנייה'
+      ]
+    },
+    {
+      id: 'finishing',
+      title: 'גימור והשלמות',
+      description: 'עבודות אחרונות והכנה לפתיחה',
+      steps: [
+        'עבודות משלימות והתאמות'
+      ]
+    }
   ];
 
   const stepDetails = [
@@ -235,29 +264,51 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
           </div>
         </div>
       </section>
-      {/* Process Section - Dedicated Page */}
+      {/* Process Section - Categories with Accordion */}
       <section id="commercial" className={styles.commercialSection}>
         <div className={styles.container}>
           <div className={styles.commercialInner}>
             <h3 className={styles.commercialTitle}>שלבים לבניית עסק חדש</h3>
             
-            <div className={styles.stepsContainer}>
-              {steps.map((step, index) => (
-                <div key={index} className={styles.stepBlock}>
-                  <div className={styles.stepHeader}>
-                    <div 
-                      className={styles.stepToggle}
-                      onClick={() => setSelectedStep(index)}
-                    >
-                      ▼
+            <div className={styles.categoriesGrid}>
+              {categories.map((category, categoryIndex) => (
+                <div key={category.id} className={styles.categoryCard}>
+                  <div 
+                    className={styles.categoryHeader}
+                    onClick={() => setSelectedCategory(selectedCategory === categoryIndex ? null : categoryIndex)}
+                  >
+                    <div className={styles.categoryNumber}>
+                      {String(categoryIndex + 1).padStart(2, '0')}
                     </div>
-                    <h4 
-                      className={styles.stepTitle}
-                      onClick={() => setSelectedStep(index)}
-                    >
-                      {step}
-                    </h4>
+                    <h4 className={styles.categoryTitle}>{category.title}</h4>
+                    <p className={styles.categoryDescription}>{category.description}</p>
+                    <div className={styles.categoryArrow}>
+                      {selectedCategory === categoryIndex ? '▲' : '▼'}
+                    </div>
                   </div>
+                  
+                  {selectedCategory === categoryIndex && (
+                    <div className={styles.categorySteps}>
+                      {category.steps.map((step, stepIndex) => (
+                        <div 
+                          key={stepIndex} 
+                          className={styles.stepItem}
+                          onClick={() => {
+                            // מחשבים את האינדקס הגלובלי של השלב
+                            let globalIndex = 0;
+                            for (let i = 0; i < categoryIndex; i++) {
+                              globalIndex += categories[i].steps.length;
+                            }
+                            globalIndex += stepIndex;
+                            setSelectedStep(globalIndex);
+                          }}
+                        >
+                          <span className={styles.stepNumber}>{stepIndex + 1}</span>
+                          <span className={styles.stepName}>{step}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
