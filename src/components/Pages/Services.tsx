@@ -12,49 +12,20 @@ interface ServicesProps {
 export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   const location = useLocation();
   const [selectedStep, setSelectedStep] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const ctaCanvasRef = useRef<HTMLCanvasElement>(null);
   const heroCanvasRef = useRef<HTMLCanvasElement>(null);
 
-  const categories = [
-    {
-      id: 'planning',
-      title: 'תכנון ומחקר',
-      description: 'שלבי התכנון הראשוניים והמחקר למיזם',
-      steps: [
-        'סיור שטח',
-        'מדידות או עבודה לפי תוכנית',
-        'סקיצות העמדה'
-      ]
-    },
-    {
-      id: 'design',
-      title: 'עיצוב ומיתוג',
-      description: 'פיתוח זהות ועיצוב החלל',
-      steps: [
-        'סקיצות לבניית מותג גרפי',
-        'אישורים ותכנון ייעודי',
-        'עיצוב ותכנון והדמיות'
-      ]
-    },
-    {
-      id: 'implementation',
-      title: 'ביצוע והתקנה',
-      description: 'מימוש הפרויקט והתקנות',
-      steps: [
-        'סט תוכניות עבודה',
-        'בחירת ספקים וקבלני ביצוע',
-        'ליווי בתהליך הבנייה'
-      ]
-    },
-    {
-      id: 'finishing',
-      title: 'גימור והשלמות',
-      description: 'עבודות אחרונות והכנה לפתיחה',
-      steps: [
-        'עבודות משלימות והתאמות'
-      ]
-    }
+  const stepTitles = [
+    'סיור שטח',
+    'מדידות או עבודה לפי תוכנית',
+    'סקיצות העמדה',
+    'סקיצות לבניית מותג גרפי',
+    'אישורים ותכנון ייעודי',
+    'עיצוב ותכנון והדמיות',
+    'סט תוכניות עבודה',
+    'בחירת ספקים וקבלני ביצוע',
+    'ליווי בתהליך הבנייה',
+    'עבודות משלימות והתאמות'
   ];
 
   const stepDetails = [
@@ -270,45 +241,17 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
           <div className={styles.commercialInner}>
             <h3 className={styles.commercialTitle}>שלבים לבניית עסק חדש</h3>
             
-            <div className={styles.categoriesGrid}>
-              {categories.map((category, categoryIndex) => (
-                <div key={category.id} className={styles.categoryCard}>
-                  <div 
-                    className={styles.categoryHeader}
-                    onClick={() => setSelectedCategory(selectedCategory === categoryIndex ? null : categoryIndex)}
-                  >
-                    <div className={styles.categoryNumber}>
-                      {String(categoryIndex + 1).padStart(2, '0')}
-                    </div>
-                    <h4 className={styles.categoryTitle}>{category.title}</h4>
-                    <p className={styles.categoryDescription}>{category.description}</p>
-                    <div className={styles.categoryArrow}>
-                      {selectedCategory === categoryIndex ? '▲' : '▼'}
-                    </div>
+            <div className={styles.stepsContainer}>
+              {stepTitles.map((stepTitle, index) => (
+                <div 
+                  key={index} 
+                  className={styles.stepBlock}
+                  onClick={() => setSelectedStep(index)}
+                >
+                  <div className={styles.stepHeader}>
+                    <span className={styles.stepToggle}>▼</span>
+                    <h4 className={styles.stepTitle}>{stepTitle}</h4>
                   </div>
-                  
-                  {selectedCategory === categoryIndex && (
-                    <div className={styles.categorySteps}>
-                      {category.steps.map((step, stepIndex) => (
-                        <div 
-                          key={stepIndex} 
-                          className={styles.stepItem}
-                          onClick={() => {
-                            // מחשבים את האינדקס הגלובלי של השלב
-                            let globalIndex = 0;
-                            for (let i = 0; i < categoryIndex; i++) {
-                              globalIndex += categories[i].steps.length;
-                            }
-                            globalIndex += stepIndex;
-                            setSelectedStep(globalIndex);
-                          }}
-                        >
-                          <span className={styles.stepNumber}>{stepIndex + 1}</span>
-                          <span className={styles.stepName}>{step}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
