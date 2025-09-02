@@ -142,7 +142,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.03;
+  opacity: 0.1;
   z-index: -1;
   pointer-events: none;
 }
@@ -158,6 +158,11 @@
   letter-spacing: -0.02em;
   text-align: center;
   font-family: 'Rubik', sans-serif;
+}
+
+.roughTitleText {
+  margin-bottom: 16px;
+  display: block;
 }
 
 .boldText {
