@@ -228,6 +228,24 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <section className={styles.ctaSection}>
+        <div className={styles.container}>
+          <div className={styles.ctaContent}>
+            <h2 className={styles.ctaTitle}>מוכנים להתחיל?</h2>
+            <p className={styles.ctaSubtitle}>בואו נתחיל לבנות את העסק שלכם יחד</p>
+            <div className={styles.ctaButtons}>
+              <button className={styles.ctaButtonPrimary}>
+                קבלת הצעת מחיר
+              </button>
+              <button className={styles.ctaButtonSecondary}>
+                צפייה בגלריה
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
