@@ -136,137 +136,27 @@
 .stepsContainer {
   max-width: 800px;
   margin: 0 auto;
-  position: relative;
 }
 
-/* Timeline Central Line */
-.stepsContainer::before {
-  content: '';
-  position: absolute;
-  right: 50%;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, #28939f, #e0e0e0);
-  z-index: 1;
+.stepBlock {
+  margin-bottom: 24px;
 }
 
-.stepGroup {
-  margin-bottom: 80px;
-  position: relative;
-}
-
-.stepGroup:last-child {
+.stepBlock:last-child {
   margin-bottom: 0;
-}
-
-/* Main Step Block (קוביית השלב הראשי) */
-.mainStepBlock {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-  cursor: pointer;
-}
-
-.leftSide {
-  justify-content: flex-end;
-  padding-left: 60px;
-}
-
-.rightSide {
-  justify-content: flex-start;
-  padding-right: 60px;
-}
-
-/* Timeline Dot for Main Steps */
-.mainStepBlock::before {
-  content: '';
-  position: absolute;
-  right: calc(50% - 12px);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  background: #28939f;
-  border: 4px solid #ffffff;
-  border-radius: 50%;
-  z-index: 2;
-  box-shadow: 0 3px 12px rgba(40, 147, 159, 0.4);
-}
-
-.mainStepCard {
-  background: #28939f;
-  color: white;
-  padding: 20px 25px;
-  border-radius: 8px;
-  box-shadow: 0 6px 20px rgba(40, 147, 159, 0.3);
-  transition: all 0.3s ease;
-  max-width: 300px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.mainStepCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(40, 147, 159, 0.4);
-  background: #239aa8;
-}
-
-.mainStepTitle {
-  font-family: 'Rubik', sans-serif;
-  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
-  font-weight: 600;
-  margin: 0;
-  color: white;
-}
-
-.expandIcon {
-  font-size: 14px;
-  font-weight: bold;
-  transition: transform 0.3s ease;
-}
-
-/* Sub Steps Container */
-.subStepsContainer {
-  margin: 20px 0 40px 0;
-  animation: slideDown 0.4s ease-out;
-}
-
-.subStepBlock {
-  margin-bottom: 20px;
-}
-
-.subStepCard {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 0 auto;
-  max-width: 600px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.2s ease;
-}
-
-.subStepCard:hover {
-  border-color: #28939f;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .stepHeader {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
 }
 
 .stepCheckbox {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #2e7d32;
-  min-width: 22px;
+  min-width: 24px;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -278,59 +168,205 @@
   background: rgba(46, 125, 50, 0.1);
 }
 
-.subStepTitle {
+.stepTitle {
   font-family: 'Rubik', sans-serif;
-  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
   font-weight: 500;
-  color: #333;
+  color: #000;
   margin: 0;
   flex: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 4px 0;
+  position: relative;
 }
 
-.stepDetail {
-  border-top: 1px solid #f0f0f0;
-  padding-top: 12px;
+.stepTitle::after {
+  content: '▼';
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: #28939f;
+  opacity: 0.6;
+  transition: all 0.2s ease;
 }
 
-.stepDescription {
-  font-family: 'Rubik', sans-serif;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  line-height: 1.6;
-  color: #555;
-  margin: 0;
+.stepTitle:hover {
+  color: #28939f;
 }
 
-@keyframes slideDown {
+.stepTitle:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Modal Popup */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalContent {
+  background: white;
+  border-radius: 16px;
+  max-width: 900px;
+  max-height: 90vh;
+  width: 100%;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
   from {
     opacity: 0;
-    max-height: 0;
-    transform: translateY(-10px);
+    transform: translateY(50px);
   }
   to {
     opacity: 1;
-    max-height: 1000px;
     transform: translateY(0);
   }
 }
 
-/* Mobile Timeline */
+.closeButton {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+.modalHeader {
+  padding: 20px 60px 0 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.modalTitle {
+  font-family: 'Rubik', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 600;
+  color: #28939f;
+  margin: 0 0 20px 0;
+  text-align: right;
+}
+
+.modalBody {
+  padding: 0;
+}
+
+.mediaSection {
+  margin-bottom: 20px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+.galleryItem {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.galleryItem:hover {
+  transform: scale(1.02);
+}
+
+.galleryItem img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.videoContainer {
+  padding: 20px;
+}
+
+.video {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.textSection {
+  padding: 0 20px 20px 20px;
+}
+
+.modalDescription {
+  font-family: 'Rubik', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.1rem);
+  line-height: 1.7;
+  color: #444;
+  margin: 0;
+  text-align: right;
+  white-space: pre-line;
+}
+
+/* Mobile Modal */
 @media (max-width: 768px) {
-  .stepsContainer::before {
-    right: 20px;
+  .modalOverlay {
+    padding: 10px;
   }
   
-  .mainStepBlock::before {
-    right: 12px;
+  .modalContent {
+    max-height: 95vh;
   }
   
-  .leftSide,
-  .rightSide {
-    justify-content: flex-start;
-    padding: 0 0 0 50px;
+  .modalHeader {
+    padding: 16px 50px 0 16px;
   }
   
-  .mainStepCard {
-    max-width: calc(100% - 50px);
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .galleryItem img {
+    height: 180px;
+  }
+  
+  .videoContainer,
+  .textSection {
+    padding: 16px;
   }
 }
 
