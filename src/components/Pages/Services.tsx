@@ -2,9 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './Services.module.css';
-import RoughLogo from '../UI/RoughLogo';
-import HeroBlueprintCanvas from '../UI/HeroBlueprintCanvas';
-
 
 interface ServicesProps {
   className?: string;
@@ -147,10 +144,7 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       <section id="hero" className={styles.heroSection}>
         <div className={styles.container}>
           <div className={styles.heroContent}>
-            <HeroBlueprintCanvas />
-            <div className={styles.heroLogoWrap}>
-              <RoughLogo src="/bulla_logo.svg" className={styles.heroLogo} stroke="#000" strokeWidth={1.9} roughness={3.6} bowing={2.2} repeats={3} />
-            </div>
+
             <h1 className={styles.heroTitle}>
               <div>ONE STOP SHOP</div>
               <div className={styles.boldText}>לעסק שלך</div>
