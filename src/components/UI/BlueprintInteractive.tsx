@@ -37,7 +37,6 @@ const StepRow: React.FC<{ title: string; completed: boolean; canInteract: boolea
     if (!ctx) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, size, size);
-    const rc = rough.canvas(canvas);
     // Regular rectangle instead of rough
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 1.2;
@@ -120,7 +119,7 @@ export const BlueprintInteractive: React.FC<BlueprintInteractiveProps> = ({ step
   }, [steps.length]);
 
   // לוגיקה חדשה: כל השלבים זמינים תמיד (ללא סדר ספציפי)
-  const getCanInteract = (index: number) => {
+  const getCanInteract = () => {
     return true; // כל השלבים תמיד זמינים
   };
 
@@ -143,7 +142,7 @@ export const BlueprintInteractive: React.FC<BlueprintInteractiveProps> = ({ step
           )}
           <ul className={styles.stepList}>
             {steps.map((t, i) => {
-              const canInteract = getCanInteract(i);
+              const canInteract = getCanInteract();
               const showDetailHere = activeDetailIndex === i && stepDetails[i];
               return (
                 <React.Fragment key={i}>

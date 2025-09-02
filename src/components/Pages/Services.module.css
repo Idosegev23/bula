@@ -1,3 +1,6 @@
+/* Using Rubik font instead of handwriting fonts */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+
 /* Services Page - Minimalistic Text-focused Design */
 /* Following established design language from other components */
 
@@ -11,9 +14,6 @@
   direction: rtl;
   font-family: 'Rubik', 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
-
-/* Using Rubik font instead of handwriting fonts */
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
 
 /* Commercial Detailed Section (Anchor target) */
 .commercialSection {
