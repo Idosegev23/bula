@@ -36,12 +36,11 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
   // רשימת פריטי התפריט
   const navigationItems = [
-    { label: 'ליווי עסקי מלא', path: 'services/one-stop-shop' },
-    { label: 'ליווי אדריכלי מתקדם', path: '/services/architects' },
-    { label: 'ללקוחות פרטיים', path: 'services' },
-    { label: 'פרויקטים', path: '/projects' },
-    { label: 'אודות', path: '/about' },
-    { label: 'צור קשר', path: '/contact' },
+    { label: 'ליווי עסקי', path: '/services' },
+    { label: 'אדריכלים', path: '/architects' },
+    { label: 'לקוחות פרטיים', path: '/private-clients' },
+    { label: 'לקוחות עסקיים', path: '/business-clients' },
+    { label: 'אודות', path: '/about' }
   ];
 
   const toggleMobileMenu = () => {

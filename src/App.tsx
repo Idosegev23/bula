@@ -19,11 +19,13 @@ import Spinner from './components/UI/Spinner';
 
 // Page Components
 import { Services } from './components/Pages/Services';
-import { ServicesIndex } from './components/Pages/ServicesIndex';
+
 import { Projects } from './components/Pages/Projects';
 import { Architects } from './components/Pages/Architects';
 import { About } from './components/Pages/About';
-import { Contact } from './components/Pages/Contact';
+
+import { PrivateClients } from './components/Pages/PrivateClients';
+import { BusinessClients } from './components/Pages/BusinessClients';
 
 // Accessibility
 // import { AccessibilityProvider } from './components/Accessibility/AccessibilityProvider';
@@ -46,8 +48,6 @@ const HomePage: React.FC = () => {
 
 // דפים
 const ServicesPage: React.FC = () => <Services />;
-const ServicesIndexPage: React.FC = () => <ServicesIndex />;
-
 const ProjectsPage: React.FC = () => {
   return <Projects />;
 };
@@ -58,8 +58,12 @@ const AboutPage: React.FC = () => {
   return <About />;
 };
 
-const ContactPage: React.FC = () => {
-  return <Contact />;
+const PrivateClientsPage: React.FC = () => {
+  return <PrivateClients />;
+};
+
+const BusinessClientsPage: React.FC = () => {
+  return <BusinessClients />;
 };
 
 // קומפוננטת האפליקציה הראשית
@@ -79,12 +83,12 @@ const App: React.FC = () => {
           <main id="main-content">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/services" element={<ServicesIndexPage />} />
-              <Route path="/services/one-stop-shop" element={<ServicesPage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/services/architects" element={<ArchitectsPage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/architects" element={<ArchitectsPage />} />
+              <Route path="/private-clients" element={<PrivateClientsPage />} />
+              <Route path="/business-clients" element={<BusinessClientsPage />} />
               <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/projects" element={<ProjectsPage />} />
             </Routes>
           </main>
           <Footer />

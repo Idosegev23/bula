@@ -1,224 +1,136 @@
-// About - מי אנחנו Page
-// Text-focused minimalistic design following established patterns
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './About.module.css';
 
-interface AboutProps {
+export interface AboutProps {
   className?: string;
 }
 
 export const About: React.FC<AboutProps> = ({ className = '' }) => {
-  const teamMembers = [
-    {
-      id: 'founder',
-      name: 'יואב כהן',
-      role: 'מייסד וראש הסדנה',
-      description: 'נגר מנוסה עם ראייה עיצובית ייחודית',
-      image: '/images/team/yoav.jpg'
-    },
-    {
-      id: 'designer',
-      name: 'מיכל לוי',
-      role: 'מעצבת פנים',
-      description: 'מתמחה בעיצוב מרחבים מסחריים ופרטיים',
-      image: '/images/team/michal.jpg'
-    },
-    {
-      id: 'manager',
-      name: 'דני אברהם',
-      role: 'מנהל פרויקטים',
-      description: 'אחראי על ליווי הפרויקטים מהתכנון לביצוע',
-      image: '/images/team/danny.jpg'
-    },
-    {
-      id: 'craftsman',
-      name: 'אמיר דוד',
-      role: 'מומחה נגרות',
-      description: 'בעל ניסיון רב בעבודות נגרות מורכבות',
-      image: '/images/team/amir.jpg'
-    }
-  ];
-
-  const testimonials = [
-    {
-      id: 'client1',
-      text: 'הצוות של בולה הפך חלום לממשות. מקצועיות, יצירתיות ודקדקנות ברמה הגבוהה ביותר.',
-      author: 'שרה כהן',
-      role: 'בעלת קפה גריין'
-    },
-    {
-      id: 'architect1',
-      text: 'שותפות אמיתית עם הבנה עמוקה של השפה האדריכלית. התוצאה עלתה על הציפיות.',
-      author: 'אדר׳ מיכאל רוזן',
-      role: 'אדריכל מוביל'
-    },
-    {
-      id: 'client2',
-      text: 'מהשלב הראשון ועד למסירה - ליווי מקצועי ואמין. ממליצה בחום!',
-      author: 'רונית אברהם',
-      role: 'לקוחה פרטית'
-    }
-  ];
-
-  const stats = [
-    {
-      id: 'projects',
-      number: '50+',
-      label: 'פרויקטים הושלמו'
-    },
-    {
-      id: 'clients',
-      number: '35+',
-      label: 'לקוחות מרוצים'
-    },
-    {
-      id: 'experience',
-      number: '5',
-      label: 'שנות ניסיון'
-    },
-    {
-      id: 'satisfaction',
-      number: '100%',
-      label: 'שביעות רצון'
-    }
-  ];
-
-  const videos = [
-    {
-      id: 'workshop',
-      title: 'הצצה לסדנה',
-      description: 'איך אנחנו עובדים יום יום',
-      thumbnail: '/images/videos/workshop-thumb.jpg'
-    },
-    {
-      id: 'installation',
-      title: 'התקנה בשטח',
-      description: 'מהסדנה ללקוח',
-      thumbnail: '/images/videos/installation-thumb.jpg'
-    },
-    {
-      id: 'design-process',
-      title: 'תהליך התכנון',
-      description: 'מרעיון לביצוע',
-      thumbnail: '/images/videos/design-thumb.jpg'
-    }
-  ];
-
   return (
     <main className={`${styles.aboutPage} ${className}`}>
       {/* Hero Section */}
       <section className={styles.heroSection}>
-        <div className={styles.heroMedia}>
-          <div className={styles.heroImagePlaceholder}>
-            <span className={styles.heroMediaText}>
-              וידאו/תמונה - הצצה חיה לעבודה היומיומית
-            </span>
-          </div>
-        </div>
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              אנחנו בולה – עיצוב שהוא עשייה
+              <div>אודות</div>
+              <div>בולה סטודיו</div>
             </h1>
-            <p className={styles.heroDescription}>
-              אנחנו מאמינים שעיצוב טוב הוא כזה שמתחיל ברעיון ומסתיים במוצר מושלם. 
-              כל פרויקט הוא סיפור ייחודי שאנחנו מספרים יחד עם הלקוח, 
-              מהשלב הראשון של החלום ועד לרגע המרגש של המסירה.
+            <p className={styles.heroSubtitle}>
+              יוצרים מרחבים שמספרים סיפור
             </p>
           </div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className={styles.teamSection}>
+      {/* Story Section */}
+      <section className={styles.storySection}>
         <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>הצוות שלנו</h2>
-            <p className={styles.sectionSubtitle}>
-              אנשי מקצוע מנוסים עם תשוקה לעיצוב ויצירה
-            </p>
-          </div>
-          
-          <div className={styles.teamGrid}>
-            {teamMembers.map((member) => (
-              <div key={member.id} className={styles.teamMember}>
-                <div className={styles.memberImagePlaceholder}>
-                  <span className={styles.memberImageText}>תמונת {member.name}</span>
-                </div>
-                <div className={styles.memberInfo}>
-                  <h3 className={styles.memberName}>{member.name}</h3>
-                  <p className={styles.memberRole}>{member.role}</p>
-                  <p className={styles.memberDescription}>{member.description}</p>
-                </div>
+          <div className={styles.contentGrid}>
+            <div className={styles.textContent}>
+              <h2 className={styles.sectionTitle}>הסיפור שלנו</h2>
+              <p className={styles.description}>
+                בולה סטודיו נוסד מתוך אהבה עמוקה לעיצוב ויצירה. אנחנו מאמינים שכל מרחב יכול 
+                לספר סיפור, ושכל פרויקט הוא הזדמנות ליצור משהו מיוחד ובלתי נשכח.
+              </p>
+              
+              <p className={styles.description}>
+                עם שנים של ניסיון בתכנון ועיצוב מרחבים, אנחנו מביאים גישה ייחודית שמשלבת 
+                מקצועיות גבוהה עם חשיבה יצירתית. כל פרויקט מתחיל בהקשבה - להבין את החזון, 
+                את הצרכים, ואת הסיפור שרוצים לספר.
+              </p>
+
+              <p className={styles.description}>
+                המטרה שלנו היא לא רק ליצור מרחבים יפים, אלא מרחבים שעובדים. מרחבים שמשפרים 
+                את איכות החיים, מגבירים פרודוקטיביות, ויוצרים חוויות בלתי נשכחות.
+              </p>
+            </div>
+            
+            <div className={styles.imageContent}>
+              <div className={styles.mainImage}>
+                <img 
+                  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop" 
+                  alt="הצוות שלנו בעבודה"
+                  className={styles.contentImage}
+                />
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Video Gallery */}
-      <section className={styles.videoSection}>
+      {/* Values Section */}
+      <section className={styles.valuesSection}>
         <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>בולה בפעולה</h2>
-            <p className={styles.sectionSubtitle}>
-              גלריית סרטונים מהשטח - צפו איך אנחנו עובדים
-            </p>
-          </div>
-          
-          <div className={styles.videoGrid}>
-            {videos.map((video) => (
-              <div key={video.id} className={styles.videoCard}>
-                <div className={styles.videoThumbnail}>
-                  <div className={styles.videoPlayButton}>▶</div>
-                  <span className={styles.videoPlaceholderText}>{video.title}</span>
-                </div>
-                <div className={styles.videoInfo}>
-                  <h3 className={styles.videoTitle}>{video.title}</h3>
-                  <p className={styles.videoDescription}>{video.description}</p>
-                </div>
-              </div>
-            ))}
+          <h2 className={styles.sectionTitle}>הערכים שלנו</h2>
+          <div className={styles.valuesGrid}>
+            <div className={styles.valueCard}>
+              <h3 className={styles.valueTitle}>מקצועיות</h3>
+              <p className={styles.valueDescription}>
+                אנחנו מביאים ידע מקצועי עמיק, ניסיון רב, ומחויבות לאיכות הגבוהה ביותר בכל פרויקט.
+              </p>
+            </div>
+            
+            <div className={styles.valueCard}>
+              <h3 className={styles.valueTitle}>יצירתיות</h3>
+              <p className={styles.valueDescription}>
+                כל פרויקט הוא הזדמנות ליצור משהו ייחודי ומיוחד, שמשקף את האישיות והצרכים של הלקוח.
+              </p>
+            </div>
+            
+            <div className={styles.valueCard}>
+              <h3 className={styles.valueTitle}>שירות אישי</h3>
+              <p className={styles.valueDescription}>
+                אנחנו מאמינים בליווי צמוד ואישי, בהקשבה אמיתית, ובהתאמה מלאה לצרכים הייחודיים של כל לקוח.
+              </p>
+            </div>
+            
+            <div className={styles.valueCard}>
+              <h3 className={styles.valueTitle}>קיימות</h3>
+              <p className={styles.valueDescription}>
+                אנחנו שואפים לעיצוב אחראי, עם דגש על חומרים איכותיים, עמידים וידידותיים לסביבה.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className={styles.testimonialsSection}>
+      {/* Process Section */}
+      <section className={styles.processSection}>
         <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>מה אומרים עלינו</h2>
-          </div>
-          
-          <div className={styles.testimonialsGrid}>
-            {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className={styles.testimonialCard}>
-                <p className={styles.testimonialText}>"{testimonial.text}"</p>
-                <div className={styles.testimonialAuthor}>
-                  <p className={styles.authorName}>{testimonial.author}</p>
-                  <p className={styles.authorRole}>{testimonial.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className={styles.statsSection}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>בולה במספרים</h2>
-          </div>
-          
-          <div className={styles.statsGrid}>
-            {stats.map((stat) => (
-              <div key={stat.id} className={styles.statCard}>
-                <div className={styles.statNumber}>{stat.number}</div>
-                <div className={styles.statLabel}>{stat.label}</div>
-              </div>
-            ))}
+          <h2 className={styles.sectionTitle}>התהליך שלנו</h2>
+          <div className={styles.processGrid}>
+            <div className={styles.processStep}>
+              <div className={styles.stepNumber}>01</div>
+              <h3 className={styles.stepTitle}>הקשבה וחקירה</h3>
+              <p className={styles.stepDescription}>
+                אנחנו מתחילים בהכרת הלקוח, הבנת הצרכים, החזון והסגנון האישי.
+              </p>
+            </div>
+            
+            <div className={styles.processStep}>
+              <div className={styles.stepNumber}>02</div>
+              <h3 className={styles.stepTitle}>תכנון ועיצוב</h3>
+              <p className={styles.stepDescription}>
+                פיתוח קונספט עיצובי, תוכניות מפורטות והדמיות תלת-ממדיות.
+              </p>
+            </div>
+            
+            <div className={styles.processStep}>
+              <div className={styles.stepNumber}>03</div>
+              <h3 className={styles.stepTitle}>ביצוע וליווי</h3>
+              <p className={styles.stepDescription}>
+                ניהול הפרויקט, תיאום עם קבלנים ופיקוח על איכות הביצוע.
+              </p>
+            </div>
+            
+            <div className={styles.processStep}>
+              <div className={styles.stepNumber}>04</div>
+              <h3 className={styles.stepTitle}>מסירה והשלמה</h3>
+              <p className={styles.stepDescription}>
+                סיום הפרויקט, מסירת המרחב המוגמר וליווי לאחר המסירה.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -227,18 +139,11 @@ export const About: React.FC<AboutProps> = ({ className = '' }) => {
       <section className={styles.ctaSection}>
         <div className={styles.container}>
           <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>רוצים לעבוד איתנו?</h2>
-            <p className={styles.ctaDescription}>
-              בואו נכיר ונתחיל לתכנן יחד את הפרויקט הבא שלכם
-            </p>
-            <div className={styles.ctaButtons}>
-              <Link to="/contact" className={styles.ctaButton}>
-                בואו נכיר
-              </Link>
-              <Link to="/projects" className={styles.ctaButtonSecondary}>
-                צפו בעבודות שלנו
-              </Link>
-            </div>
+            <h2 className={styles.ctaTitle}>מוכנים להתחיל?</h2>
+            <p className={styles.ctaSubtitle}>בואו ניצור יחד את המרחב המושלם שלכם</p>
+            <button className={styles.ctaButton}>
+              בואו נתחיל לתכנן
+            </button>
           </div>
         </div>
       </section>
