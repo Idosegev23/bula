@@ -241,6 +241,7 @@
 }
 
 .ctaButton {
+  display: inline-block;
   font-size: clamp(1.1rem, 2.5vw, 1.2rem);
   font-weight: 400;
   color: #000000;
@@ -251,6 +252,8 @@
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 200px;
+  text-decoration: none;
+  text-align: center;
 }
 
 .ctaButton:hover {

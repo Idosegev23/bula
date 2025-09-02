@@ -237,9 +237,14 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
             
             <p className={styles.ctaSubtitle}>בואו נתחיל לעבוד יחד על הפרויקט הבא</p>
             <div className={styles.ctaButtonContainer}>
-              <button className={styles.ctaButtonPrimary}>
+              <a 
+                href="https://wa.me/972549739577?text=שלום,%20אני%20מעוניין%20לקבל%20הצעת%20מחיר%20לליווי%20אדריכלי"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.ctaButtonPrimary}
+              >
                 קבלת הצעת מחיר
-              </button>
+              </a>
             </div>
           </div>
         </div>

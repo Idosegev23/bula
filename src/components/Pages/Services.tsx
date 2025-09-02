@@ -318,11 +318,16 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
             </div>
             
             <p className={styles.ctaSubtitle}>בואו נתחיל לבנות את העסק שלכם יחד</p>
-            <div className={styles.ctaButtonContainer}>
-              <button className={styles.ctaButtonPrimary}>
-                קבלת הצעת מחיר
-              </button>
-            </div>
+                                    <div className={styles.ctaButtonContainer}>
+                          <a 
+                            href="https://wa.me/972549739577?text=שלום,%20אני%20מעוניין%20לקבל%20הצעת%20מחיר%20לליווי%20עסקי%20מלא"
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className={styles.ctaButtonPrimary}
+                          >
+                            קבלת הצעת מחיר
+                          </a>
+                        </div>
           </div>
         </div>
       </section>

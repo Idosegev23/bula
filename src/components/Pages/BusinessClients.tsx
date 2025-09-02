@@ -190,9 +190,14 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>מוכנים להצליח?</h2>
             <p className={styles.ctaSubtitle}>בואו ניצור יחד את המרחב המושלם לעסק שלכם</p>
-            <button className={styles.ctaButton}>
+            <a 
+              href="https://wa.me/972549739577?text=שלום,%20אני%20מעוניין%20לקבל%20הצעת%20מחיר%20לפרויקט%20עסקי"
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.ctaButton}
+            >
               קבלת הצעת מחיר
-            </button>
+            </a>
           </div>
         </div>
       </section>

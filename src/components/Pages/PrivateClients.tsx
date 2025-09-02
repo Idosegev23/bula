@@ -171,9 +171,14 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>מוכנים להתחיל?</h2>
             <p className={styles.ctaSubtitle}>בואו נתחיל לתכנן את הבית של החלומות שלכם</p>
-            <button className={styles.ctaButton}>
+            <a 
+              href="https://wa.me/972549739577?text=שלום,%20אני%20מעוניין%20לקבל%20הצעת%20מחיר%20לפרויקט%20בית%20פרטי"
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.ctaButton}
+            >
               קבלת הצעת מחיר
-            </button>
+            </a>
           </div>
         </div>
       </section>

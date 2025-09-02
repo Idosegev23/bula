@@ -141,9 +141,14 @@ export const About: React.FC<AboutProps> = ({ className = '' }) => {
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>מוכנים להתחיל?</h2>
             <p className={styles.ctaSubtitle}>בואו ניצור יחד את המרחב המושלם שלכם</p>
-            <button className={styles.ctaButton}>
+            <a 
+              href="https://wa.me/972549739577?text=שלום,%20אני%20מעוניין%20להתחיל%20פרויקט%20חדש"
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.ctaButton}
+            >
               בואו נתחיל לתכנן
-            </button>
+            </a>
           </div>
         </div>
       </section>
