@@ -18,7 +18,7 @@
 /* Commercial Detailed Section (Anchor target) */
 .commercialSection {
   position: relative;
-  padding: 60px 0 40px 0; /* Mobile-first - קטן יותר */
+  padding: 20px 0 40px 0; /* Mobile-first - קטן יותר */
   background: transparent; /* שלא יכסה את הרקע המנוקד */
   scroll-margin-top: 100px; /* להימנע מכיסוי ע"י Header קבוע */
 }
@@ -48,7 +48,7 @@
 
   font-size: clamp(2.1rem, 6vw, 2.8rem);
   font-weight: 400;
-  margin: 0 0 32px 0;
+  margin: 0 0 20px 0;
   color: #000;
 }
 
@@ -141,7 +141,7 @@
   font-weight: 200;
   line-height: 1.1;
   color: #000000;
-  margin: 0 0 24px 0;
+  margin: 0;
   letter-spacing: -0.02em;
   text-align: center;
   position: relative;
