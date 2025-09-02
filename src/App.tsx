@@ -1,6 +1,6 @@
 // App.tsx - Bulla Studio
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import { ScrollToTop } from './components/UI/ScrollToTop';
 // import FloatingServicesFooter from './components/UI/FloatingServicesFooter';
@@ -11,9 +11,7 @@ import { Header } from './components/Layout/Header';
 import { Footer } from './components/Layout/Footer';
 
 // UI Components
-import { Hero } from './components/UI/Hero';
-import { TechnicalServiceCards } from './components/UI/TechnicalServiceCards';
-import { InstagramWidget } from './components/UI/InstagramWidget';
+import { HorizontalScrollSections } from './components/UI/HorizontalScrollSections';
 // import { SocialFloat } from './components/UI/SocialFloat';
 import Spinner from './components/UI/Spinner';
 
@@ -34,14 +32,43 @@ import { BusinessClients } from './components/Pages/BusinessClients';
 const HomePage: React.FC = () => {
   return (
     <>
-      {/* 1. Hero Section - מכת הפתיחה */}
-      <Hero />
-      
-      {/* 2. שלושת השירותים - עיצוב הנדסי */}
-      <TechnicalServiceCards />
-      
-      {/* 3. ווידג'ט אינסטגרם */}
-      <InstagramWidget />
+      {/* תמונה רחבה לאורך 3 סקשנים והרקע נע אופקית עם הגלילה */}
+      <HorizontalScrollSections imageUrl="/homepage.png" />
+    </>
+  );
+};
+
+// תוכן האפליקציה הפנימי עם תנאי לפוטר
+const AppContent: React.FC = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  return (
+    <>
+      <ScrollToTop />
+      <div className="App">
+        {/* Spinner עם GSAP לכל הדפים */}
+        <Spinner onFinish={() => {
+          window.dispatchEvent(new CustomEvent('spinner:finished'));
+        }} />
+
+        <Header />
+        <main id="main-content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/architects" element={<ArchitectsPage />} />
+            <Route path="/private-clients" element={<PrivateClientsPage />} />
+            <Route path="/business-clients" element={<BusinessClientsPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+          </Routes>
+        </main>
+        {!isHome && <Footer />}
+        {/* כפתורי רשתות חברתיות צפים */}
+        {/* <SocialFloat /> */}
+        {/* <FloatingServicesFooter /> */}
+      </div>
     </>
   );
 };
@@ -71,32 +98,7 @@ const App: React.FC = () => {
   return (
     // <AccessibilityProvider>
       <Router>
-      <ScrollToTop />
-        <div className="App">
-          {/* Spinner עם GSAP לכל הדפים */}
-          <Spinner onFinish={() => {
-            // שלח אירוע גלובלי לסיום הספינר כדי שעמודים יוכלו להמתין לפני אנימציות כניסה
-            window.dispatchEvent(new CustomEvent('spinner:finished'));
-          }} />
-          
-          <Header />
-          <main id="main-content">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/architects" element={<ArchitectsPage />} />
-              <Route path="/private-clients" element={<PrivateClientsPage />} />
-              <Route path="/business-clients" element={<BusinessClientsPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-            </Routes>
-          </main>
-          <Footer />
-          
-          {/* כפתורי רשתות חברתיות צפים */}
-          {/* <SocialFloat /> */}
-          {/* <FloatingServicesFooter /> */}
-        </div>
+        <AppContent />
       </Router>
     // </AccessibilityProvider>
   );

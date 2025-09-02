@@ -1,0 +1,160 @@
+/* Horizontal scroll across 3 sections */
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 300vh; /* 3 sections, each full viewport height */
+}
+
+/* Fixed background across the 3 sections */
+.bg {
+  position: fixed;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: auto 100%; /* fit height, keep 16:9 aspect */
+  background-position: 0% center; /* animated 0% -> 100% */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1000px;
+  padding: 0 32px;
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Heebo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px 0;
+}
+
+.subtitle {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 300;
+  margin: 0;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.45);
+}
+
+.logo {
+  width: min(360px, 60vw);
+  height: auto;
+  filter: brightness(0) invert(1);
+  margin: 0 auto 18px auto;
+  display: block;
+}
+
+.headline {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 300;
+  margin: 0 0 12px 0;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.45);
+}
+
+.text {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 300;
+  margin: 0;
+  opacity: 0.95;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.extra {
+  margin-top: 16px;
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  font-weight: 300;
+  opacity: 0.95;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px 24px;
+}
+
+.featureList li {
+  position: relative;
+  padding-right: 18px;
+  text-align: right;
+}
+
+.featureList li::before {
+  content: '•';
+  position: absolute;
+  right: 0;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+/* שירותים כסקשן שני: כפתורים/כרטיסים */
+.serviceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px 20px;
+  margin-top: 16px;
+}
+
+.serviceCard {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  padding: 0 20px;
+  border: 1px solid rgba(255,255,255,0.8);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+}
+
+.serviceCard:hover {
+  background: rgba(255,255,255,0.16);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+/* CTA בסיסי לסקשן שלישי */
+.ctaPrimary {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 36px;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  background: transparent;
+  transition: all 0.25s ease;
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+}
+
+.ctaPrimary:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .bg { background-position: 50% center !important; }
+}
+
+
