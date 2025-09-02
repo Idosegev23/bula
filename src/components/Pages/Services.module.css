@@ -186,7 +186,7 @@
 }
 
 .stepHeader {
-  padding: 25px 20px;
+  padding: 20px 15px;
   text-align: center;
   position: relative;
 }
@@ -195,7 +195,7 @@
   font-size: clamp(2rem, 3vw, 2.5rem);
   font-weight: 100;
   color: #000000;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   line-height: 1;
   position: relative;
   display: inline-block;
@@ -214,7 +214,7 @@
 
 .stepToggle {
   position: absolute;
-  bottom: 15px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   width: 28px;
@@ -234,7 +234,7 @@
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 400;
   color: #000000;
-  margin: 15px 0 12px 0;
+  margin: 12px 0 12px 0;
   letter-spacing: -0.01em;
   line-height: 1.2;
   text-align: center;
