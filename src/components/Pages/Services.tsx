@@ -169,26 +169,14 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
             <div className={styles.stepsContainer}>
               {steps.map((step, index) => (
                 <div key={index} className={styles.stepBlock}>
-                  <div className={styles.stepHeader}>
-                    <div 
-                      className={styles.stepCheckbox}
-                      onClick={() => {
-                        setCompleted(prev => {
-                          const next = [...prev];
-                          next[index] = !next[index];
-                          return next;
-                        });
-                      }}
-                    >
-                      {completed[index] ? '✓' : '○'}
-                    </div>
-                    <h4 
-                      className={styles.stepTitle}
-                      onClick={() => setSelectedStep(index)}
-                    >
-                      {step}
-                    </h4>
-                  </div>
+                  <button 
+                    className={styles.stepButton}
+                    onClick={() => setSelectedStep(index)}
+                  >
+                    <span className={styles.stepIcon}>🔍</span>
+                    <h4 className={styles.stepTitle}>{step}</h4>
+                    <span className={styles.viewMore}>לחץ לפירוט</span>
+                  </button>
                 </div>
               ))}
             </div>
