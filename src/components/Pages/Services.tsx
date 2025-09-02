@@ -14,6 +14,7 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   const location = useLocation();
   const [selectedStep, setSelectedStep] = useState<number | null>(null);
   const ctaCanvasRef = useRef<HTMLCanvasElement>(null);
+  const heroCanvasRef = useRef<HTMLCanvasElement>(null);
 
   const steps = [
     'שלב 1 – סיור שטח',
@@ -212,10 +213,95 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       window.removeEventListener('resize', updateCanvasSize);
     };
   }, []);
+
+  // Hero Canvas Effect
+  useEffect(() => {
+    const canvas = heroCanvasRef.current;
+    if (!canvas) return;
+
+    const updateCanvasSize = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      drawHeroElements();
+    };
+
+    const drawHeroElements = () => {
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const rc = rough.canvas(canvas);
+
+      // Coffee stain
+      const coffeeX = canvas.width * 0.8;
+      const coffeeY = canvas.height * 0.3;
+      ctx.globalAlpha = 0.03;
+      rc.circle(coffeeX, coffeeY, 80, {
+        stroke: '#8B4513',
+        strokeWidth: 2,
+        roughness: 3,
+        fill: '#8B4513',
+        fillStyle: 'solid'
+      });
+      ctx.globalAlpha = 1;
+
+      // Decorative elements like CTA section
+      for (let i = 0; i < 12; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const size = 15 + Math.random() * 35;
+        
+        rc.circle(x, y, size, {
+          stroke: '#28939f',
+          strokeWidth: 0.4,
+          roughness: 2 + Math.random(),
+          fill: 'transparent'
+        });
+      }
+
+      // Random lines
+      for (let i = 0; i < 8; i++) {
+        const x1 = Math.random() * canvas.width;
+        const y1 = Math.random() * canvas.height;
+        const x2 = x1 + (Math.random() - 0.5) * 180;
+        const y2 = y1 + (Math.random() - 0.5) * 180;
+        
+        rc.line(x1, y1, x2, y2, {
+          stroke: '#28939f',
+          strokeWidth: 0.25,
+          roughness: 1.8 + Math.random()
+        });
+      }
+
+      // Logo background (same as CTA)
+      const logoX = canvas.width / 2 - 80;
+      const logoY = canvas.height / 2 - 80;
+      ctx.globalAlpha = 0.015;
+      
+      rc.rectangle(logoX, logoY, 160, 160, { 
+        stroke: '#28939f', 
+        strokeWidth: 1, 
+        roughness: 2.8,
+        fill: 'transparent'
+      });
+      
+      ctx.globalAlpha = 1;
+    };
+
+    updateCanvasSize();
+    window.addEventListener('resize', updateCanvasSize);
+
+    return () => {
+      window.removeEventListener('resize', updateCanvasSize);
+    };
+  }, []);
   return (
     <main className={`${styles.servicesPage} ${className}`}>
       {/* Hero Section */}
       <section id="hero" className={styles.heroSection}>
+        <canvas ref={heroCanvasRef} className={styles.heroCanvas}></canvas>
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
@@ -308,7 +394,6 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
         <canvas ref={ctaCanvasRef} className={styles.ctaCanvas}></canvas>
         <div className={styles.container}>
           <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>מוכנים להתחיל?</h2>
             <p className={styles.ctaSubtitle}>בואו נתחיל לבנות את העסק שלכם יחד</p>
             <div className={styles.ctaButtonContainer}>
               <button className={styles.ctaButtonPrimary}>
