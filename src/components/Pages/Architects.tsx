@@ -109,7 +109,10 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
         <canvas ref={heroCanvasRef} className={styles.heroCanvas}></canvas>
         <div className={styles.container}>
           <div className={styles.heroContent}>
-            <h1 className={styles.heroTitle}>אדריכלים AND MORE</h1>
+            <h1 className={styles.heroTitle}>
+              <div className={styles.mainTitle}>אדריכלים</div>
+              <div className={styles.overlayTitle}>& MORE</div>
+            </h1>
             <p className={styles.heroSubtitle}>
               שרטוטים, פרטים וייצור – נקי וברור
             </p>
