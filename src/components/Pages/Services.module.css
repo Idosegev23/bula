@@ -152,13 +152,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  cursor: pointer;
   margin-bottom: 12px;
-  transition: all 0.2s ease;
-}
-
-.stepHeader:hover {
-  opacity: 0.8;
 }
 
 .stepCheckbox {
@@ -167,6 +161,14 @@
   color: #2e7d32;
   min-width: 24px;
   text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.stepCheckbox:hover {
+  background: rgba(46, 125, 50, 0.1);
 }
 
 .stepTitle {
@@ -176,10 +178,32 @@
   color: #000;
   margin: 0;
   flex: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 4px 0;
+}
+
+.stepTitle:hover {
+  color: #28939f;
 }
 
 .stepDetail {
   margin-right: 36px; /* הזחה מימין (RTL) */
+  animation: slideDown 0.3s ease-out;
+  overflow: hidden;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 200px;
+    transform: translateY(0);
+  }
 }
 
 .stepDescription {

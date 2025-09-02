@@ -13,6 +13,7 @@ interface ServicesProps {
 export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   const location = useLocation();
   const [completed, setCompleted] = useState<boolean[]>(() => Array(10).fill(false));
+  const [openSteps, setOpenSteps] = useState<boolean[]>(() => Array(10).fill(false));
 
   const steps = [
     'שלב 1 – סיור שטח',
@@ -80,7 +81,8 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
               <RoughLogo src="/bulla_logo.svg" className={styles.heroLogo} stroke="#000" strokeWidth={1.9} roughness={3.6} bowing={2.2} repeats={3} />
             </div>
             <h1 className={styles.heroTitle}>
-              ONE STOP SHOP <span className={styles.boldText}>לעסק שלך</span>
+              <div>ONE STOP SHOP</div>
+              <div className={styles.boldText}>לעסק שלך</div>
             </h1>
             <p className={styles.heroSubtitle}>מרעיון לביצוע – הכל במקום אחד, בתהליך מסודר וברור</p>
           </div>
@@ -95,24 +97,37 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
             <div className={styles.stepsContainer}>
               {steps.map((step, index) => (
                 <div key={index} className={styles.stepBlock}>
-                  <div 
-                    className={styles.stepHeader}
-                    onClick={() => {
-                      setCompleted(prev => {
-                        const next = [...prev];
-                        next[index] = !next[index];
-                        return next;
-                      });
-                    }}
-                  >
-                    <div className={styles.stepCheckbox}>
+                  <div className={styles.stepHeader}>
+                    <div 
+                      className={styles.stepCheckbox}
+                      onClick={() => {
+                        setCompleted(prev => {
+                          const next = [...prev];
+                          next[index] = !next[index];
+                          return next;
+                        });
+                      }}
+                    >
                       {completed[index] ? '✓' : '○'}
                     </div>
-                    <h4 className={styles.stepTitle}>{step}</h4>
+                    <h4 
+                      className={styles.stepTitle}
+                      onClick={() => {
+                        setOpenSteps(prev => {
+                          const next = [...prev];
+                          next[index] = !next[index];
+                          return next;
+                        });
+                      }}
+                    >
+                      {step}
+                    </h4>
                   </div>
-                  <div className={styles.stepDetail}>
-                    <p className={styles.stepDescription}>{stepDetails[index]}</p>
-                  </div>
+                  {openSteps[index] && (
+                    <div className={styles.stepDetail}>
+                      <p className={styles.stepDescription}>{stepDetails[index]}</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
