@@ -41,6 +41,7 @@
   letter-spacing: -0.02em;
   text-align: center;
   position: relative;
+  z-index: 1;
 }
 
 .heroSubtitle {
@@ -53,6 +54,21 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+
+.backgroundText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.1em;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.08);
+  z-index: 0;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* Story Section */

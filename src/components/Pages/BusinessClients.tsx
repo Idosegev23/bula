@@ -109,6 +109,7 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
             <h1 className={styles.heroTitle}>
               <div>לקוחות</div>
               <div>עסקיים</div>
+              <span className={styles.backgroundText}>BUSINESS</span>
             </h1>
             <p className={styles.heroSubtitle}>
               פתרונות מקצועיים לעסק המצליח שלכם
@@ -171,10 +172,7 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
       {/* Gallery Section */}
       <section className={styles.gallerySection}>
         <div className={styles.container}>
-          <h2 className={styles.galleryTitle}>
-            פרויקטים שביצענו
-            <span className={styles.backgroundText}>BUSINESS</span>
-          </h2>
+          <h2 className={styles.galleryTitle}>פרויקטים שביצענו</h2>
           <SmartGallery 
             items={galleryItems}
             columns={3}

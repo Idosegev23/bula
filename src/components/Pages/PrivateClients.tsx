@@ -101,6 +101,7 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
             <h1 className={styles.heroTitle}>
               <div>לקוחות</div>
               <div>פרטיים</div>
+              <span className={styles.backgroundText}>DESIGN</span>
             </h1>
             <p className={styles.heroSubtitle}>
               פתרונות מותאמים אישית לבית שלכם
@@ -152,10 +153,7 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
       {/* Gallery Section */}
       <section className={styles.gallerySection}>
         <div className={styles.container}>
-          <h2 className={styles.galleryTitle}>
-            מהפרויקטים שלנו
-            <span className={styles.backgroundText}>DESIGN</span>
-          </h2>
+          <h2 className={styles.galleryTitle}>מהפרויקטים שלנו</h2>
           <SmartGallery 
             items={galleryItems}
             columns={3}
