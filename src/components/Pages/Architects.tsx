@@ -1,16 +1,15 @@
 // Architects - קשרי אדריכלים Page
 // Text-focused minimalistic design following established patterns
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import HeroBlueprintCanvas from '../UI/HeroBlueprintCanvas';
 import styles from './Architects.module.css';
-import SectionBlueprintBar from '../UI/SectionBlueprintBar';
 
 interface ArchitectsProps {
   className?: string;
 }
 
 export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
+  const heroCanvasRef = useRef<HTMLCanvasElement>(null);
   const services = [
     {
       id: 'product-engineering',
@@ -83,13 +82,53 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
     }
   ];
 
+  // Hero Canvas Effect - Logo watermark only
+  useEffect(() => {
+    const canvas = heroCanvasRef.current;
+    if (!canvas) return;
+
+    const updateCanvasSize = () => {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      drawHeroElements();
+    };
+
+    const drawHeroElements = () => {
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Logo background only
+      const logoX = canvas.width / 2 - 80;
+      const logoY = canvas.height / 2 - 80;
+      ctx.globalAlpha = 0.015;
+      
+      // Create logo using basic canvas drawing
+      ctx.strokeStyle = '#28939f';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(logoX, logoY, 160, 160);
+      
+      ctx.globalAlpha = 1;
+    };
+
+    updateCanvasSize();
+    window.addEventListener('resize', updateCanvasSize);
+
+    return () => {
+      window.removeEventListener('resize', updateCanvasSize);
+    };
+  }, []);
+
   return (
     <main className={`${styles.architectsPage} ${className}`}>
       {/* Hero Section */}
       <section id="hero" className={styles.heroSection}>
+        <canvas ref={heroCanvasRef} className={styles.heroCanvas}></canvas>
         <div className={styles.container}>
           <div className={styles.heroContent}>
-            <HeroBlueprintCanvas />
             <h1 className={styles.heroTitle}>אדריכלים AND MORE</h1>
             <p className={styles.heroSubtitle}>
               שרטוטים, פרטים וייצור – נקי וברור
@@ -103,7 +142,6 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>השירותים שלנו</h2>
-            <SectionBlueprintBar />
           </div>
           
           <div className={styles.servicesGrid}>
@@ -125,7 +163,6 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>דוגמאות טכניות</h2>
-            <SectionBlueprintBar />
           </div>
           
           <div className={styles.benefitsGrid}>
@@ -144,7 +181,6 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>פרויקטים נבחרים</h2>
-            <SectionBlueprintBar />
           </div>
           
           <div className={styles.projectsGrid}>

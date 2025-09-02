@@ -3,13 +3,13 @@
 
 .architectsPage {
   min-height: 100vh;
-  background: #ffffff;
-  /* רקע מחברת מנוקדת */
-  background-image: radial-gradient(#bfc8d0 1.2px, transparent 1.2px);
-  background-size: 20px 20px;
+  background-color: #ffffff;
+  /* רקע מחברת – נקודות ויזואליות (mobile-first) */
+  background-image: radial-gradient(#d0d7dd 0.8px, transparent 0.8px);
+  background-size: 30px 30px;
   background-position: 0 0;
   direction: rtl;
-  font-family: 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Rubik', 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .container {
@@ -20,13 +20,28 @@
 
 /* Hero Section */
 .heroSection {
-  padding: 160px 0 120px 0;
+  padding: 170px 0 120px 0;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .heroContent {
   max-width: 900px;
   margin: 0 auto;
+  position: relative;
+  padding: 0 24px 40px 24px;
+  z-index: 2;
 }
 
 .heroTitle {
@@ -136,7 +151,7 @@
 /* Benefits Section */
 .benefitsSection {
   padding: 80px 0 140px 0;
-  background: rgba(0, 0, 0, 0.02);
+  background: transparent;
 }
 
 .benefitsGrid {
@@ -271,7 +286,7 @@
 /* CTA Section */
 .ctaSection {
   padding: 80px 0 140px 0;
-  background: rgba(0, 0, 0, 0.02);
+  background: transparent;
 }
 
 .ctaContent {
