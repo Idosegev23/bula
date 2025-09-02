@@ -210,6 +210,9 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
               <div className={styles.shopBackground}>SHOP</div>
               <div>לעסק שלך</div>
             </h1>
+            <p className={styles.heroSubtitle}>
+              מרעיון לביצוע – הכל במקום אחד
+            </p>
           </div>
         </div>
       </section>

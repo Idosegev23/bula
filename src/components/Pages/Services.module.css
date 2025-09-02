@@ -45,11 +45,12 @@
 .commercialTitle {
   position: relative;
   z-index: 2;
-
-  font-size: clamp(2.1rem, 6vw, 2.8rem);
-  font-weight: 400;
-  margin: 0 0 20px 0;
-  color: #000;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  color: #000000;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.01em;
+  text-align: center;
 }
 
 .timeline {
@@ -415,13 +416,15 @@
 }
 
 .heroSubtitle {
-  font-size: clamp(1.5rem, 3.8vw, 2.1rem);
-  font-weight: 700;
-  color: #444;
-  margin: 0 auto;
-  line-height: 1.45;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 300;
+  color: #666666;
+  margin: 0;
+  line-height: 1.4;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
-
 }
 
 /* הוסרו כותרות ככתב-יד, חוזר לטקסט רגיל */
