@@ -1,7 +1,6 @@
 // Services - Main Services Page (One Stop Shop Process)
 import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { RoughText } from '../UI/RoughText';
 import styles from './Services.module.css';
 
 interface ServicesProps {
@@ -229,13 +228,7 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              <RoughText 
-                text="ONE STOP SHOP" 
-                fontSize={55}
-                color="#28939f"
-                roughness={2}
-                className={styles.roughTitleText}
-              />
+              <div>ONE STOP SHOP</div>
               <div className={styles.boldText}>לעסק שלך</div>
             </h1>
             <p className={styles.heroSubtitle}>מרעיון לביצוע – הכל במקום אחד, בתהליך מסודר וברור</p>
