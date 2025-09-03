@@ -41,7 +41,7 @@
 }
 
 .subtitle {
-  font-size: clamp(1.7rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 5vw, 3rem);
   font-weight: 300;
   margin: 0;
   text-shadow: 0 2px 14px rgba(0,0,0,0.45);
