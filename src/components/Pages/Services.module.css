@@ -29,7 +29,7 @@
   overflow: hidden;
 }
 
-.heroCanvas {
+.heroCanvas {  
   position: absolute;
   top: 0;
   left: 0;

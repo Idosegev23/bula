@@ -10,10 +10,12 @@
   position: fixed;
   inset: 0;
   background-repeat: no-repeat;
-  background-size: auto 110%; /* fit height, keep 16:9 aspect */
-  background-position: 0% center; /* animated 0% -> 100% */
+  background-size: cover; /* מכסה את כל המסך */
+  background-position: 0% 0%; /* מתחיל מצד שמאל למעלה, אנימציה אלכסונית */
   z-index: 0;
   pointer-events: none;
+  transform-origin: center center; /* נקודת מוצא לזום */
+  transition: transform 0.1s ease-out; /* אנימציה חלקה לזום */
 }
 
 .section {
@@ -155,7 +157,11 @@
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .bg { background-position: 50% center !important; }
+  .bg { 
+    background-position: 50% 25% !important;
+    transform: scale(1) !important;
+    transition: none !important;
+  }
 }
 
 

@@ -32,8 +32,8 @@ import { BusinessClients } from './components/Pages/BusinessClients';
 const HomePage: React.FC = () => {
   return (
     <>
-      {/* תמונה רחבה לאורך 3 סקשנים והרקע נע אופקית עם הגלילה */}
-      <HorizontalScrollSections imageUrl="/homepage.png" />
+      {/* תמונה רחבה לאורך 3 סקשנים והרקע נע אלכסונית עם הגלילה */}
+      <HorizontalScrollSections imageUrl="/homep.png" />
     </>
   );
 };
