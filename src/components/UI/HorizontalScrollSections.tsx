@@ -12,6 +12,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
+  const scrollTimeoutRef = useRef<number | null>(null);
+  const lastScrollTimeRef = useRef<number>(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,33 +33,53 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       const raw = (pageY - start) / Math.max(1, (end - start));
       const progress = Math.min(1, Math.max(0, raw));
 
-      // אפקטים שונים לכל סקשן:
-      // סקשן 1 (0-33%): התחלה משמאל למעלה, תנועה אלכסונית עדינה
-      // סקשן 2 (33-66%): תנועה אלכסונית מהירה יותר
-      // סקשן 3 (66-100%): זום פנימה ותנועה אלכסונית
+
+      // אפקטים מותאמים לנקודות המגנט המדויקות:
+      // סקשן 1 (0-33%): עד נקודת המגנט הראשונה
+      // סקשן 2 מגנט: 63.3% progress = Background 60.8% X, 61.3% Y, Zoom 1.30x
+      // סקשן 3 מגנט: 100% progress = Background 100% X, 80% Y, Zoom 1.70x
       
       let posX, posY, scale = 1;
       
-      if (progress <= 0.33) {
-        // סקשן 1: תנועה עדינה מהצד השמאלי העליון
-        const sectionProgress = progress / 0.33;
-        posX = sectionProgress * 30; // 0% -> 30%
-        posY = sectionProgress * 15; // 0% -> 15%
-      } else if (progress <= 0.66) {
-        // סקשן 2: תנועה אלכסונית מהירה יותר
-        const sectionProgress = (progress - 0.33) / 0.33;
-        posX = 30 + (sectionProgress * 40); // 30% -> 70%
-        posY = 15 + (sectionProgress * 25); // 15% -> 40%
+      if (progress <= 0.633) {
+        // סקשן 1 + חלק מסקשן 2: עד נקודת המגנט של סקשן 2
+        const sectionProgress = progress / 0.633;
+        posX = sectionProgress * 60.8; // 0% -> 60.8% (נקודת המגנט)
+        posY = 15 + (sectionProgress * 46.3); // 15% -> 61.3% (נקודת המגנט)
+        scale = 1.2 + (sectionProgress * 0.1); // 1.2 -> 1.3 (נקודת המגנט)
       } else {
-        // סקשן 3: זום פנימה ותנועה אלכסונית להשלמה
-        const sectionProgress = (progress - 0.66) / 0.34;
-        posX = 70 + (sectionProgress * 30); // 70% -> 100%
-        posY = 40 + (sectionProgress * 20); // 40% -> 60%
-        scale = 1 + (sectionProgress * 0.2); // זום עדין
+        // סקשן 3: ממגנט סקשן 2 למגנט סקשן 3
+        const sectionProgress = (progress - 0.633) / (1.0 - 0.633);
+        posX = 60.8 + (sectionProgress * 39.2); // 60.8% -> 100%
+        posY = 61.3 + (sectionProgress * 18.7); // 61.3% -> 80%
+        scale = 1.3 + (sectionProgress * 0.4); // 1.3 -> 1.7
       }
       
       bg.style.backgroundPosition = `${posX}% ${posY}%`;
       bg.style.transform = `scale(${scale})`;
+
+
+      // 🧲 MAGNETIC SCROLL - מגנט JavaScript חכם
+      lastScrollTimeRef.current = Date.now();
+      
+      // מוחק טיימר קודם אם קיים
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      // מחכה 150ms אחרי עצירת גלילה ואז קופץ לסקשן הקרוב
+      scrollTimeoutRef.current = window.setTimeout(() => {
+        const targetProgress = progress < 0.3165 ? 0 : progress < 0.8165 ? 0.633 : 1.0;
+        const targetScrollY = start + (targetProgress * (end - start));
+        
+        console.log(`🧲 MAGNETIC SNAP to progress: ${(targetProgress * 100).toFixed(1)}%`);
+        console.log(`🧲 Scrolling to Y: ${targetScrollY.toFixed(0)}px`);
+        
+        window.scrollTo({
+          top: targetScrollY,
+          behavior: 'smooth'
+        });
+      }, 150);
     };
 
     const handleResize = () => {
@@ -71,6 +93,10 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
+      // ניקוי הטיימר המגנטי
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -84,9 +110,9 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         aria-hidden="true"
       />
 
-      {/* Section 1 - Hero minimal - רק התמונה */}
-      <section className={styles.section}>
-      </section>
+            {/* Section 1 - Hero minimal - רק התמונה */}
+            <section className={styles.section}>
+            </section>
 
       {/* Section 2 - Empty */}
       <section className={styles.section}>
