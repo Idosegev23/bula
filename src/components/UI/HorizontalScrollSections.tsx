@@ -15,23 +15,35 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   const scrollTimeoutRef = useRef<number | null>(null);
   const lastScrollTimeRef = useRef<number>(0);
 
+  // פונקציה לגלילה לסקשן הבא
+  const scrollToNext = () => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const currentScroll = wrapper.scrollLeft;
+    const sectionWidth = wrapper.clientWidth;
+    
+    const currentSection = Math.round(currentScroll / sectionWidth);
+    const nextSection = Math.min(currentSection + 1, 2); // מקסימום 3 סקשנים (0,1,2)
+    
+    const targetScroll = nextSection * sectionWidth;
+    
+    wrapper.scrollTo({
+      left: targetScroll,
+      behavior: 'smooth'
+    });
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const wrapper = wrapperRef.current;
       const bg = bgRef.current;
       if (!wrapper || !bg) return;
 
-      const wrapperRect = wrapper.getBoundingClientRect();
-      const pageY = window.scrollY || window.pageYOffset;
-      const wrapperTop = wrapperRect.top + pageY;
-      const wrapperHeight = wrapper.offsetHeight; // צפוי להיות ~300vh
-      const viewportH = window.innerHeight;
-
-      // התחלת תנועה כשאנחנו מגיעים לתחילת ה-wrapper עד סיומו
-      const start = wrapperTop;
-      const end = wrapperTop + wrapperHeight - viewportH;
-      const raw = (pageY - start) / Math.max(1, (end - start));
-      const progress = Math.min(1, Math.max(0, raw));
+      // חישוב התקדמות על בסיס גלילה אופקית
+      const scrollLeft = wrapper.scrollLeft;
+      const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+      const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollLeft / maxScroll)) : 0;
 
 
       // אפקטים מותאמים לנקודות המגנט המדויקות:
@@ -59,7 +71,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       bg.style.transform = `scale(${scale})`;
 
 
-      // 🧲 MAGNETIC SCROLL - מגנט JavaScript חכם
+      // 🧲 HORIZONTAL MAGNETIC SCROLL - מגנט אופקי
       lastScrollTimeRef.current = Date.now();
       
       // מוחק טיימר קודם אם קיים
@@ -70,13 +82,10 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       // מחכה 150ms אחרי עצירת גלילה ואז קופץ לסקשן הקרוב
       scrollTimeoutRef.current = window.setTimeout(() => {
         const targetProgress = progress < 0.3165 ? 0 : progress < 0.8165 ? 0.633 : 1.0;
-        const targetScrollY = start + (targetProgress * (end - start));
+        const targetScrollLeft = targetProgress * maxScroll;
         
-        console.log(`🧲 MAGNETIC SNAP to progress: ${(targetProgress * 100).toFixed(1)}%`);
-        console.log(`🧲 Scrolling to Y: ${targetScrollY.toFixed(0)}px`);
-        
-        window.scrollTo({
-          top: targetScrollY,
+        wrapper.scrollTo({
+          left: targetScrollLeft,
           behavior: 'smooth'
         });
       }, 150);
@@ -86,12 +95,18 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       handleScroll();
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Event listeners לגלילה אופקית
+    const wrapper = wrapperRef.current;
+    if (wrapper) {
+      wrapper.addEventListener('scroll', handleScroll, { passive: true });
+    }
     window.addEventListener('resize', handleResize);
     handleScroll();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      if (wrapper) {
+        wrapper.removeEventListener('scroll', handleScroll);
+      }
       window.removeEventListener('resize', handleResize);
       // ניקוי הטיימר המגנטי
       if (scrollTimeoutRef.current) {
@@ -101,27 +116,39 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   }, []);
 
   return (
-    <div ref={wrapperRef} className={`${styles.wrapper} ${className}`}>
-      {/* Fixed background that moves horizontally */}
-      <div
-        ref={bgRef}
-        className={styles.bg}
-        style={{ backgroundImage: `url('${imageUrl}')` }}
-        aria-hidden="true"
-      />
+    <>
+      <div ref={wrapperRef} className={`${styles.wrapper} ${className}`}>
+        {/* Fixed background that moves horizontally */}
+        <div
+          ref={bgRef}
+          className={styles.bg}
+          style={{ backgroundImage: `url('${imageUrl}')` }}
+          aria-hidden="true"
+        />
 
-            {/* Section 1 - Hero minimal - רק התמונה */}
-            <section className={styles.section}>
-            </section>
+        {/* Section 1 - Hero minimal - רק התמונה */}
+        <section className={styles.section}>
+        </section>
 
-      {/* Section 2 - Empty */}
-      <section className={styles.section}>
-      </section>
+        {/* Section 2 - Empty */}
+        <section className={styles.section}>
+        </section>
 
-      {/* Section 3 - Empty */}
-      <section className={styles.section}>
-      </section>
-    </div>
+        {/* Section 3 - Empty */}
+        <section className={styles.section}>
+        </section>
+      </div>
+      
+      {/* חץ ניווט אופקי */}
+      <button 
+        className={styles.navigationArrow}
+        onClick={scrollToNext}
+        aria-label="עבור לסקשן הבא"
+        title="לחץ לעבור לסקשן הבא"
+      >
+        <div className={styles.arrowIcon}></div>
+      </button>
+    </>
   );
 };
 
