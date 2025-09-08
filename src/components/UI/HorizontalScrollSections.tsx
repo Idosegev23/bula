@@ -15,21 +15,18 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   const scrollTimeoutRef = useRef<number | null>(null);
   const lastScrollTimeRef = useRef<number>(0);
 
-  // פונקציה לגלילה לסקשן הבא
+  // פונקציה לגלילה לסקשן הבא (אנכית)
   const scrollToNext = () => {
-    const wrapper = wrapperRef.current;
-    if (!wrapper) return;
-
-    const currentScroll = wrapper.scrollLeft;
-    const sectionWidth = wrapper.clientWidth;
+    const currentScrollY = window.scrollY || window.pageYOffset;
+    const viewportHeight = window.innerHeight;
     
-    const currentSection = Math.round(currentScroll / sectionWidth);
+    const currentSection = Math.floor(currentScrollY / viewportHeight);
     const nextSection = Math.min(currentSection + 1, 2); // מקסימום 3 סקשנים (0,1,2)
     
-    const targetScroll = nextSection * sectionWidth;
+    const targetScrollY = nextSection * viewportHeight;
     
-    wrapper.scrollTo({
-      left: targetScroll,
+    window.scrollTo({
+      top: targetScrollY,
       behavior: 'smooth'
     });
   };
@@ -40,10 +37,18 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       const bg = bgRef.current;
       if (!wrapper || !bg) return;
 
-      // חישוב התקדמות על בסיס גלילה אופקית
-      const scrollLeft = wrapper.scrollLeft;
-      const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
-      const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollLeft / maxScroll)) : 0;
+      // חזרה לגלילה אנכית למובייל
+      const wrapperRect = wrapper.getBoundingClientRect();
+      const pageY = window.scrollY || window.pageYOffset;
+      const wrapperTop = wrapperRect.top + pageY;
+      const wrapperHeight = wrapper.offsetHeight; // צפוי להיות ~300vh
+      const viewportH = window.innerHeight;
+
+      // התחלת תנועה כשאנחנו מגיעים לתחילת ה-wrapper עד סיומו
+      const start = wrapperTop;
+      const end = wrapperTop + wrapperHeight - viewportH;
+      const raw = (pageY - start) / Math.max(1, (end - start));
+      const progress = Math.min(1, Math.max(0, raw));
 
 
       // אפקטים מותאמים לנקודות המגנט המדויקות:
@@ -71,25 +76,37 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       bg.style.transform = `scale(${scale})`;
 
 
-      // במובייל נשתמש ב-CSS scroll snap במקום JavaScript
+      // 🧲 MAGNETIC SCROLL - מגנט JavaScript חכם
+      lastScrollTimeRef.current = Date.now();
+      
+      // מוחק טיימר קודם אם קיים
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      // מחכה 150ms אחרי עצירת גלילה ואז קופץ לסקשן הקרוב
+      scrollTimeoutRef.current = window.setTimeout(() => {
+        const targetProgress = progress < 0.3165 ? 0 : progress < 0.8165 ? 0.633 : 1.0;
+        const targetScrollY = start + (targetProgress * (end - start));
+        
+        window.scrollTo({
+          top: targetScrollY,
+          behavior: 'smooth'
+        });
+      }, 150);
     };
 
     const handleResize = () => {
       handleScroll();
     };
 
-    // Event listeners לגלילה אופקית
-    const wrapper = wrapperRef.current;
-    if (wrapper) {
-      wrapper.addEventListener('scroll', handleScroll, { passive: true });
-    }
+    // Event listeners לגלילה אנכית רגילה
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleResize);
     handleScroll();
 
     return () => {
-      if (wrapper) {
-        wrapper.removeEventListener('scroll', handleScroll);
-      }
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
       // ניקוי הטיימר המגנטי
       if (scrollTimeoutRef.current) {
@@ -113,8 +130,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         <section className={styles.section}>
           {/* הוראה לגלילה במובייל */}
           <div className={styles.swipeHint}>
-            <span>החלק ימינה לעוד תוכן</span>
-            <div className={styles.swipeArrow}>→</div>
+            <span>גלול למטה לעוד תוכן</span>
+            <div className={styles.swipeArrow}>↓</div>
           </div>
         </section>
 
