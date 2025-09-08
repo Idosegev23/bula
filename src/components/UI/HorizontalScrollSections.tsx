@@ -71,24 +71,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       bg.style.transform = `scale(${scale})`;
 
 
-      // 🧲 HORIZONTAL MAGNETIC SCROLL - מגנט אופקי
-      lastScrollTimeRef.current = Date.now();
-      
-      // מוחק טיימר קודם אם קיים
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-      
-      // מחכה 150ms אחרי עצירת גלילה ואז קופץ לסקשן הקרוב
-      scrollTimeoutRef.current = window.setTimeout(() => {
-        const targetProgress = progress < 0.3165 ? 0 : progress < 0.8165 ? 0.633 : 1.0;
-        const targetScrollLeft = targetProgress * maxScroll;
-        
-        wrapper.scrollTo({
-          left: targetScrollLeft,
-          behavior: 'smooth'
-        });
-      }, 150);
+      // במובייל נשתמש ב-CSS scroll snap במקום JavaScript
     };
 
     const handleResize = () => {
@@ -128,6 +111,11 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
 
         {/* Section 1 - Hero minimal - רק התמונה */}
         <section className={styles.section}>
+          {/* הוראה לגלילה במובייל */}
+          <div className={styles.swipeHint}>
+            <span>החלק ימינה לעוד תוכן</span>
+            <div className={styles.swipeArrow}>→</div>
+          </div>
         </section>
 
         {/* Section 2 - Empty */}

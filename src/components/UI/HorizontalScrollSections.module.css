@@ -7,6 +7,9 @@
   overflow-y: hidden; /* מונע גלילה אנכית */
   display: flex; /* פריסה אופקית של הסקשנים */
   scroll-behavior: smooth;
+  /* תמיכה במובייל */
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
 }
 
 /* Fixed background across the 3 sections */
@@ -31,6 +34,7 @@
   justify-content: center;
   position: relative;
   z-index: 1;
+  scroll-snap-align: start; /* מגנט לתחילת הסקשן */
 }
 
 .container {
@@ -236,8 +240,52 @@
   border-bottom: 6px solid transparent;
 }
 
+/* הוראת גלילה למובייל */
+.swipeHint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  z-index: 10;
+  animation: fadeInOut 3s infinite;
+}
+
+.swipeArrow {
+  font-size: 16px;
+  animation: slideRight 2s infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes slideRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
 /* עיצוב מיוחד למובייל */
 @media (max-width: 768px) {
+  .wrapper {
+    /* שיפורים לגלילה במובייל */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* מסתיר scrollbar בפיירפוקס */
+    -ms-overflow-style: none; /* מסתיר scrollbar ב-IE */
+  }
+  
+  .wrapper::-webkit-scrollbar {
+    display: none; /* מסתיר scrollbar בכרום/ספארי */
+  }
+  
   .mobileClickableArea {
     border-radius: 8px;
   }
