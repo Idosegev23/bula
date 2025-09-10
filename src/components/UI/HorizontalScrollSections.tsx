@@ -14,6 +14,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   const bgRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState<number>(0);
   const activeSectionRef = useRef<number>(0);
+  const rafIdRef = useRef<number | null>(null);
+  const latestProgressRef = useRef<number>(0);
 
   // פונקציה לגלילה לסקשן הבא (אנכית)
   const scrollToNext = () => {
@@ -72,36 +74,32 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       const progress = Math.min(1, Math.max(0, raw));
 
 
-      // אפקטים מותאמים לנקודות המגנט המדויקות:
-      // סקשן 1 (0-33%): עד נקודת המגנט הראשונה
-      // סקשן 2 מגנט: 63.3% progress = Background 60.8% X, 61.3% Y, Zoom 1.30x
-      // סקשן 3 מגנט: 100% progress = Background 100% X, 80% Y, Zoom 1.70x
-      
-      let posX, posY, scale = 1;
-      
-      if (progress <= 0.633) {
-        // סקשן 1 + חלק מסקשן 2: עד נקודת המגנט של סקשן 2
-        const sectionProgress = progress / 0.633;
-        posX = sectionProgress * 60.8; // 0% -> 60.8% (נקודת המגנט)
-        posY = 15 + (sectionProgress * 46.3); // 15% -> 61.3% (נקודת המגנט)
-        scale = 1.2 + (sectionProgress * 0.1); // 1.2 -> 1.3 (נקודת המגנט)
-      } else {
-        // סקשן 3: ממגנט סקשן 2 למגנט סקשן 3
-        const sectionProgress = (progress - 0.633) / (1.0 - 0.633);
-        posX = 60.8 + (sectionProgress * 39.2); // 60.8% -> 100%
-        posY = 61.3 + (sectionProgress * 18.7); // 61.3% -> 80%
-        scale = 1.3 + (sectionProgress * 0.4); // 1.3 -> 1.7
-      }
-      
-      bg.style.backgroundPosition = `${posX}% ${posY}%`;
-      bg.style.transform = `scale(${scale})`;
+      // עדכון רק דרך requestAnimationFrame כדי להבטיח חלקות
+      latestProgressRef.current = progress;
+      if (rafIdRef.current == null) {
+        rafIdRef.current = window.requestAnimationFrame(() => {
+          rafIdRef.current = null;
+          const p = latestProgressRef.current;
+          // חשב מחדש נקודות לפי p כדי למנוע סטייה
+          let x, y;
+          if (p <= 0.633) {
+            const sp = p / 0.633;
+            x = sp * 60.8;
+            y = 15 + (sp * 46.3);
+          } else {
+            const sp = (p - 0.633) / (1.0 - 0.633);
+            x = 60.8 + (sp * 39.2);
+            y = 61.3 + (sp * 18.7);
+          }
+          bg.style.backgroundPosition = `${x}% ${y}%`;
 
-
-      // עדכון סקשן פעיל לאינדיקטור הנקודות (ללא מגנוט)
-      const currentActive = progress < 0.3165 ? 0 : progress < 0.8165 ? 1 : 2;
-      if (currentActive !== activeSectionRef.current) {
-        activeSectionRef.current = currentActive;
-        setActiveSection(currentActive);
+          // עדכון סקשן פעיל (ללא רינדור מיותר)
+          const currentActive = p < 0.3165 ? 0 : p < 0.8165 ? 1 : 2;
+          if (currentActive !== activeSectionRef.current) {
+            activeSectionRef.current = currentActive;
+            setActiveSection(currentActive);
+          }
+        });
       }
     };
 
@@ -117,6 +115,9 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
+      if (rafIdRef.current != null) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
     };
   }, []);
 

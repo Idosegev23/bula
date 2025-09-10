@@ -16,7 +16,7 @@
   z-index: 0;
   pointer-events: none;
   transform-origin: center center; /* נקודת מוצא לזום */
-  transition: transform 0.1s ease-out; /* אנימציה חלקה לזום */
+  transition: none; /* ביטול טרנזישן כדי למנוע קפיצות */
 }
 
 .section {
