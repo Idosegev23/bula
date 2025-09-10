@@ -16,6 +16,8 @@ html {
   overflow-x: hidden;
   width: 100%;
   scroll-behavior: smooth;
+  /* תמיכה בגלילה אופקית */
+  height: 100%;
 }
 
 :root {
@@ -37,8 +39,11 @@ body {
   position: relative;
   /* Fix for mobile scrolling */
   min-height: 100vh;
+  height: 100%;
   margin: 0; /* וידוא שאין margin */
   margin-top: 0 !important; /* ביטול מפורש של margin-top */
+  /* תמיכה בגלילה אופקית */
+  overflow-y: hidden; /* מניעת גלילה אנכית ברמה הגלובלית */
 }
 
 /* === Mobile overflow fixes === */
