@@ -12,7 +12,7 @@
   inset: 0;
   background-repeat: no-repeat;
   background-size: cover; /* מכסה את כל המסך */
-  background-position: 50% 50%; /* מרכז קבוע - ללא תנועה */
+  background-position: 0% 50%; /* התחלה משמאל */
   z-index: 0;
   pointer-events: none;
   transform-origin: center center; /* נקודת מוצא לזום */
