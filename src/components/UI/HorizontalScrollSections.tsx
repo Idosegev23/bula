@@ -14,8 +14,6 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   const bgRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState<number>(0);
   const activeSectionRef = useRef<number>(0);
-  const rafIdRef = useRef<number | null>(null);
-  const latestProgressRef = useRef<number>(0);
 
   // פונקציה לגלילה לסקשן הבא (אנכית)
   const scrollToNext = () => {
@@ -74,33 +72,11 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       const progress = Math.min(1, Math.max(0, raw));
 
 
-      // עדכון רק דרך requestAnimationFrame כדי להבטיח חלקות
-      latestProgressRef.current = progress;
-      if (rafIdRef.current == null) {
-        rafIdRef.current = window.requestAnimationFrame(() => {
-          rafIdRef.current = null;
-          const p = latestProgressRef.current;
-          // חשב מחדש נקודות לפי p כדי למנוע סטייה
-          let x, y;
-          if (p <= 0.633) {
-            const sp = p / 0.633;
-            x = sp * 60.8;
-            y = 15 + (sp * 46.3);
-          } else {
-            const sp = (p - 0.633) / (1.0 - 0.633);
-            x = 60.8 + (sp * 39.2);
-            y = 61.3 + (sp * 18.7);
-          }
-          bg.style.backgroundPosition = `${x}% ${y}%`;
-          bg.style.transform = 'none'; // ביטול זום לחלוטין
-
-          // עדכון סקשן פעיל (ללא רינדור מיותר)
-          const currentActive = p < 0.3165 ? 0 : p < 0.8165 ? 1 : 2;
-          if (currentActive !== activeSectionRef.current) {
-            activeSectionRef.current = currentActive;
-            setActiveSection(currentActive);
-          }
-        });
+      // עדכון רק סקשן פעיל - ללא תנועת רקע כלל
+      const currentActive = progress < 0.3165 ? 0 : progress < 0.8165 ? 1 : 2;
+      if (currentActive !== activeSectionRef.current) {
+        activeSectionRef.current = currentActive;
+        setActiveSection(currentActive);
       }
     };
 
@@ -116,9 +92,6 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
-      if (rafIdRef.current != null) {
-        cancelAnimationFrame(rafIdRef.current);
-      }
     };
   }, []);
 
