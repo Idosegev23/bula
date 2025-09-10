@@ -10,9 +10,10 @@
 .bg {
   position: fixed;
   inset: 0;
-  background-repeat: no-repeat;
-  background-size: cover; /* מכסה את כל המסך */
-  background-position: 0% 15%; /* מתחיל מצד שמאל יותר למטה מההדר, אנימציה אלכסונית */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* איכות מירבית עם cover */
+  object-position: 50% 50%;
   z-index: 0;
   pointer-events: none;
   transform-origin: center center; /* נקודת מוצא לזום */
@@ -332,7 +333,6 @@
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .bg { 
-    background-position: 50% 25% !important;
     transform: scale(1) !important;
     transition: none !important;
   }
