@@ -12,9 +12,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
-  const scrollTimeoutRef = useRef<number | null>(null);
-  const lastScrollTimeRef = useRef<number>(0);
   const [activeSection, setActiveSection] = useState<number>(0);
+  const activeSectionRef = useRef<number>(0);
 
   // פונקציה לגלילה לסקשן הבא (אנכית)
   const scrollToNext = () => {
@@ -98,28 +97,10 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       bg.style.transform = `scale(${scale})`;
 
 
-      // 🧲 MAGNETIC SCROLL - מגנט JavaScript חכם
-      lastScrollTimeRef.current = Date.now();
-      
-      // מוחק טיימר קודם אם קיים
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-      
-      // מחכה 150ms אחרי עצירת גלילה ואז קופץ לסקשן הקרוב
-      scrollTimeoutRef.current = window.setTimeout(() => {
-        const targetProgress = progress < 0.3165 ? 0 : progress < 0.8165 ? 0.633 : 1.0;
-        const targetScrollY = start + (targetProgress * (end - start));
-        
-        window.scrollTo({
-          top: targetScrollY,
-          behavior: 'smooth'
-        });
-      }, 150);
-
-      // עדכון סקשן פעיל לאינדיקטור הנקודות
+      // עדכון סקשן פעיל לאינדיקטור הנקודות (ללא מגנוט)
       const currentActive = progress < 0.3165 ? 0 : progress < 0.8165 ? 1 : 2;
-      if (currentActive !== activeSection) {
+      if (currentActive !== activeSectionRef.current) {
+        activeSectionRef.current = currentActive;
         setActiveSection(currentActive);
       }
     };
@@ -136,12 +117,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
-      // ניקוי הטיימר המגנטי
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
     };
-  }, [activeSection]);
+  }, []);
 
   return (
     <>
