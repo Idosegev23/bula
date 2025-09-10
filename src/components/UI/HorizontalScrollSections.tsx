@@ -92,6 +92,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
             y = 61.3 + (sp * 18.7);
           }
           bg.style.backgroundPosition = `${x}% ${y}%`;
+          bg.style.transform = 'none'; // ביטול זום לחלוטין
 
           // עדכון סקשן פעיל (ללא רינדור מיותר)
           const currentActive = p < 0.3165 ? 0 : p < 0.8165 ? 1 : 2;
