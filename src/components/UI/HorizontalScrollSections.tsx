@@ -21,6 +21,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   const lastPanXRef = useRef<number | null>(null);
   const lastPanYRef = useRef<number | null>(null);
 
+  const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+
   // פונקציה לגלילה לסקשן הבא (אנכית)
   const scrollToNext = () => {
     const currentScrollY = window.scrollY || window.pageYOffset;
@@ -69,8 +71,12 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         const x = e.touches[0].clientX;
         const y = e.touches[0].clientY;
         if (lastPanXRef.current != null && lastPanYRef.current != null) {
-          setTranslateX(prev => prev + (x - lastPanXRef.current!));
-          setTranslateY(prev => prev + (y - lastPanYRef.current!));
+          const dx = x - lastPanXRef.current!;
+          const dy = y - lastPanYRef.current!;
+          const maxX = (window.innerWidth * (scale - 1)) / 2;
+          const maxY = (window.innerHeight * (scale - 1)) / 2;
+          setTranslateX(prev => clamp(prev + dx, -maxX, maxX));
+          setTranslateY(prev => clamp(prev + dy, -maxY, maxY));
         }
         lastPanXRef.current = x;
         lastPanYRef.current = y;
