@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './HorizontalScrollSections.module.css';
 
 export interface HorizontalScrollSectionsProps {
@@ -14,6 +14,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   const bgRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<number | null>(null);
   const lastScrollTimeRef = useRef<number>(0);
+  const [activeSection, setActiveSection] = useState<number>(0);
 
   // פונקציה לגלילה לסקשן הבא (אנכית)
   const scrollToNext = () => {
@@ -29,6 +30,27 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       top: targetScrollY,
       behavior: 'smooth'
     });
+  };
+
+  // גלילה ישירה לסקשן לפי אינדקס (0, 1, 2)
+  const scrollToSection = (index: number) => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const pageY = window.scrollY || window.pageYOffset;
+    const wrapperTop = wrapperRect.top + pageY;
+    const wrapperHeight = wrapper.offsetHeight;
+    const viewportH = window.innerHeight;
+
+    const start = wrapperTop;
+    const end = wrapperTop + wrapperHeight - viewportH;
+    const anchors = [0, 0.633, 1.0];
+    const clamped = Math.max(0, Math.min(2, index));
+    const targetProgress = anchors[clamped];
+    const targetY = start + (targetProgress * (end - start));
+
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -94,6 +116,12 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
           behavior: 'smooth'
         });
       }, 150);
+
+      // עדכון סקשן פעיל לאינדיקטור הנקודות
+      const currentActive = progress < 0.3165 ? 0 : progress < 0.8165 ? 1 : 2;
+      if (currentActive !== activeSection) {
+        setActiveSection(currentActive);
+      }
     };
 
     const handleResize = () => {
@@ -113,7 +141,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         clearTimeout(scrollTimeoutRef.current);
       }
     };
-  }, []);
+  }, [activeSection]);
 
   return (
     <>
@@ -153,6 +181,20 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
       >
         <div className={styles.arrowIcon}></div>
       </button>
+
+      {/* אינדיקטור נקודות ניווט לסקשנים */}
+      <nav className={styles.dotsNav} aria-label="ניווט סקשנים">
+        {[0, 1, 2].map((i) => (
+          <button
+            key={i}
+            type="button"
+            className={`${styles.dot} ${activeSection === i ? styles.dotActive : ''}`}
+            onClick={() => scrollToSection(i)}
+            aria-label={`עבור לסקשן ${i + 1}`}
+            aria-current={activeSection === i ? 'true' : undefined}
+          />
+        ))}
+      </nav>
     </>
   );
 };
