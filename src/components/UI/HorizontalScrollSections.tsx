@@ -11,17 +11,9 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   imageUrl = '/homep.png',
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLImageElement>(null);
-  const [activeSection] = useState<number>(0);
-  const [scale, setScale] = useState<number>(1);
-  const [translateX, setTranslateX] = useState<number>(0);
-  const [translateY, setTranslateY] = useState<number>(0);
-  const pinchStartDistanceRef = useRef<number>(0);
-  const pinchStartScaleRef = useRef<number>(1);
-  const lastPanXRef = useRef<number | null>(null);
-  const lastPanYRef = useRef<number | null>(null);
-
-  const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+  const bgRef = useRef<HTMLDivElement>(null);
+  const [activeSection, setActiveSection] = useState<number>(0);
+  const activeSectionRef = useRef<number>(0);
 
   // פונקציה לגלילה לסקשן הבא (אנכית)
   const scrollToNext = () => {
@@ -39,88 +31,103 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
     });
   };
 
-  // במובייל - ניווט חופשי: השארנו פונקציה ריקה כדי לשמור על ה-API
-  const scrollToSection = (index: number) => { return index; };
+  // גלילה ישירה לסקשן לפי אינדקס (0, 1, 2)
+  const scrollToSection = (index: number) => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
 
-  // מחוות מגע: pinch-to-zoom + pan (כאשר מוגדל)
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const pageY = window.scrollY || window.pageYOffset;
+    const wrapperTop = wrapperRect.top + pageY;
+    const wrapperHeight = wrapper.offsetHeight;
+    const viewportH = window.innerHeight;
+
+    const start = wrapperTop;
+    const end = wrapperTop + wrapperHeight - viewportH;
+    const anchors = [0, 0.633, 1.0];
+    const clamped = Math.max(0, Math.min(2, index));
+    const targetProgress = anchors[clamped];
+    const targetY = start + (targetProgress * (end - start));
+
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+  };
+
   useEffect(() => {
-    const bg = bgRef.current;
-    if (!bg) return;
+    const handleScroll = () => {
+      const wrapper = wrapperRef.current;
+      const bg = bgRef.current;
+      if (!wrapper || !bg) return;
 
-    const getDistance = (a: Touch, b: Touch) => Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+      // חזרה לגלילה אנכית למובייל
+      const wrapperRect = wrapper.getBoundingClientRect();
+      const pageY = window.scrollY || window.pageYOffset;
+      const wrapperTop = wrapperRect.top + pageY;
+      const wrapperHeight = wrapper.offsetHeight; // צפוי להיות ~300vh
+      const viewportH = window.innerHeight;
 
-    const onStart = (e: TouchEvent) => {
-      if (e.touches.length === 2) {
-        pinchStartDistanceRef.current = getDistance(e.touches[0], e.touches[1]);
-        pinchStartScaleRef.current = scale;
-      } else if (e.touches.length === 1 && scale > 1) {
-        lastPanXRef.current = e.touches[0].clientX;
-        lastPanYRef.current = e.touches[0].clientY;
+      // התחלת תנועה כשאנחנו מגיעים לתחילת ה-wrapper עד סיומו
+      const start = wrapperTop;
+      const end = wrapperTop + wrapperHeight - viewportH;
+      const raw = (pageY - start) / Math.max(1, (end - start));
+      const progress = Math.min(1, Math.max(0, raw));
+
+
+      // אפקטים מותאמים לנקודות המגנט המדויקות:
+      // סקשן 1 (0-33%): עד נקודת המגנט הראשונה
+      // סקשן 2 מגנט: 63.3% progress = Background 60.8% X, 61.3% Y, Zoom 1.30x
+      // סקשן 3 מגנט: 100% progress = Background 100% X, 80% Y, Zoom 1.70x
+      
+      let posX, posY, scale = 1;
+      
+      if (progress <= 0.633) {
+        // סקשן 1 + חלק מסקשן 2: עד נקודת המגנט של סקשן 2
+        const sectionProgress = progress / 0.633;
+        posX = sectionProgress * 60.8; // 0% -> 60.8% (נקודת המגנט)
+        posY = 15 + (sectionProgress * 46.3); // 15% -> 61.3% (נקודת המגנט)
+        scale = 1.2 + (sectionProgress * 0.1); // 1.2 -> 1.3 (נקודת המגנט)
+      } else {
+        // סקשן 3: ממגנט סקשן 2 למגנט סקשן 3
+        const sectionProgress = (progress - 0.633) / (1.0 - 0.633);
+        posX = 60.8 + (sectionProgress * 39.2); // 60.8% -> 100%
+        posY = 61.3 + (sectionProgress * 18.7); // 61.3% -> 80%
+        scale = 1.3 + (sectionProgress * 0.4); // 1.3 -> 1.7
+      }
+      
+      bg.style.backgroundPosition = `${posX}% ${posY}%`;
+      bg.style.transform = `scale(${scale})`;
+
+
+      // עדכון סקשן פעיל לאינדיקטור הנקודות (ללא מגנוט)
+      const currentActive = progress < 0.3165 ? 0 : progress < 0.8165 ? 1 : 2;
+      if (currentActive !== activeSectionRef.current) {
+        activeSectionRef.current = currentActive;
+        setActiveSection(currentActive);
       }
     };
 
-    const onMove = (e: TouchEvent) => {
-      if (e.touches.length === 2) {
-        e.preventDefault();
-        const d = getDistance(e.touches[0], e.touches[1]);
-        const ratio = d / Math.max(1, pinchStartDistanceRef.current);
-        const next = Math.max(1, Math.min(4, pinchStartScaleRef.current * ratio));
-        setScale(next);
-      } else if (e.touches.length === 1 && scale > 1) {
-        e.preventDefault();
-        const x = e.touches[0].clientX;
-        const y = e.touches[0].clientY;
-        if (lastPanXRef.current != null && lastPanYRef.current != null) {
-          const dx = x - lastPanXRef.current!;
-          const dy = y - lastPanYRef.current!;
-          const maxX = (window.innerWidth * (scale - 1)) / 2;
-          const maxY = (window.innerHeight * (scale - 1)) / 2;
-          setTranslateX(prev => clamp(prev + dx, -maxX, maxX));
-          setTranslateY(prev => clamp(prev + dy, -maxY, maxY));
-        }
-        lastPanXRef.current = x;
-        lastPanYRef.current = y;
-      }
+    const handleResize = () => {
+      handleScroll();
     };
 
-    const onEnd = () => {
-      lastPanXRef.current = null;
-      lastPanYRef.current = null;
-    };
-
-    bg.addEventListener('touchstart', onStart, { passive: true });
-    bg.addEventListener('touchmove', onMove, { passive: false });
-    bg.addEventListener('touchend', onEnd);
-    bg.addEventListener('touchcancel', onEnd);
+    // Event listeners לגלילה אנכית רגילה
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
+    handleScroll();
 
     return () => {
-      bg.removeEventListener('touchstart', onStart as EventListener);
-      bg.removeEventListener('touchmove', onMove as EventListener);
-      bg.removeEventListener('touchend', onEnd as EventListener);
-      bg.removeEventListener('touchcancel', onEnd as EventListener);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
     };
-  }, [scale]);
-
-  // איפוס זום ומיקום
-  const handleResetView = () => {
-    setScale(1);
-    setTranslateX(0);
-    setTranslateY(0);
-  };
+  }, []);
 
   return (
     <>
       <div ref={wrapperRef} className={`${styles.wrapper} ${className}`}>
         {/* Fixed background that moves horizontally */}
-        <img
+        <div
           ref={bgRef}
           className={styles.bg}
-          src={imageUrl}
-          alt="רקע דף הבית"
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
-          style={{ transform: `translate(${translateX}px, ${translateY}px) scale(${scale})` }}
+          style={{ backgroundImage: `url('${imageUrl}')` }}
           aria-hidden="true"
         />
 
@@ -150,17 +157,6 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         title="לחץ לעבור לסקשן הבא"
       >
         <div className={styles.arrowIcon}></div>
-      </button>
-
-      {/* כפתור איפוס תצוגה */}
-      <button
-        type="button"
-        className={styles.resetButton}
-        onClick={handleResetView}
-        aria-label="איפוס תצוגה"
-        title="איפוס זום ומיקום"
-      >
-        איפוס
       </button>
 
       {/* אינדיקטור נקודות ניווט לסקשנים */}
