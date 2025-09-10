@@ -11,7 +11,7 @@ import { Header } from './components/Layout/Header';
 import { Footer } from './components/Layout/Footer';
 
 // UI Components
-import { HorizontalScrollSections } from './components/UI/HorizontalScrollSections';
+import { TrueHorizontalScroll } from './components/UI/TrueHorizontalScroll';
 // import { SocialFloat } from './components/UI/SocialFloat';
 import Spinner from './components/UI/Spinner';
 
@@ -28,12 +28,12 @@ import { BusinessClients } from './components/Pages/BusinessClients';
 // Accessibility
 // import { AccessibilityProvider } from './components/Accessibility/AccessibilityProvider';
 
-// דף הבית עם גלילה אופקית
+// דף הבית עם גלילה אופקית אמיתית
 const HomePage: React.FC = () => {
   return (
     <>
-      {/* תמונה רחבה לאורך 3 סקשנים והרקע נע אלכסונית עם הגלילה */}
-      <HorizontalScrollSections imageUrl="/homep.png" />
+      {/* גלילה אופקית אמיתית עם תמונת רקע */}
+      <TrueHorizontalScroll imageUrl="/homep.png" />
     </>
   );
 };
