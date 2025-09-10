@@ -9,28 +9,12 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(true);
   const location = useLocation();
 
-  // טיפול בגלילה - רק עבור שינוי רקע
+  // רקע לבן קבוע בכל הדפים
   useEffect(() => {
-    if (location.pathname !== '/') {
-      setIsScrolled(true); // Force white background and black text on other pages
-      return;
-    }
-  
-    // בדף הבית - התחל שקוף
-    setIsScrolled(false);
-  
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setIsScrolled(currentScrollY > 50);
-    };
-  
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Trigger once on load
-  
-    return () => window.removeEventListener('scroll', handleScroll);
+    setIsScrolled(true);
   }, [location.pathname]);
   
 
@@ -44,17 +28,7 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   ];
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => {
-      const newState = !prev;
-      if (!newState) {
-        if (location.pathname === '/' && window.scrollY <= 50) {
-          setIsScrolled(false); // חזרה לשקיפות רק אם בראש דף הבית
-        } else {
-          setIsScrolled(true); // דפים אחרים תמיד נשארים עם רקע
-        }
-      }
-      return newState;
-    });
+    setIsMobileMenuOpen((prev) => !prev);
   };
 
 
