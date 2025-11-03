@@ -220,16 +220,19 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  border-radius: 8px;
+  padding: 0;
+  z-index: 10;
+  -webkit-tap-highlight-color: transparent; /* מסיר highlight כחול בניגוע */
 }
 
 .mobileClickableArea:hover {
-  background: rgba(255, 255, 255, 0.1); /* רמז עדין על hover */
-  border-radius: 10px;
+  background: rgba(139, 69, 19, 0.15); /* חום שקוף - מתאים יותר לעיצוב */
 }
 
 .mobileClickableArea:active {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(139, 69, 19, 0.3); /* אפקט טיפ חזק יותר במובייל */
   transform: scale(0.98);
 }
 
@@ -342,14 +345,37 @@
   50% { transform: translateY(5px); }
 }
 
+/* אנימציה לחץ - תנועה ימינה-שמאלה */
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
+}
+
+/* wrapper לחץ - מטפל בסיבוב */
+.arrowWrapper {
+  position: absolute;
+  pointer-events: none;
+  z-index: 11;
+}
+
+/* חץ מונפש ליד כפתורים */
+.arrowIndicator {
+  display: block;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  animation: arrowBounce 1.5s ease-in-out infinite;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
 /* עיצוב מיוחד למובייל */
 @media (max-width: 768px) {
   .mobileClickableArea {
-    border-radius: 8px;
+    /* הגדרות כבר מוגדרות למעלה */
   }
   
   .mobileClickableArea:active {
-    background: rgba(139, 69, 19, 0.3); /* אפקט טיפ במובייל */
+    background: rgba(139, 69, 19, 0.4); /* אפקט טיפ חזק יותר במסכים קטנים */
   }
   
   .navigationArrow {
