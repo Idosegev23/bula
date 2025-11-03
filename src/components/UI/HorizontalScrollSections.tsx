@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './HorizontalScrollSections.module.css';
 
 export interface HorizontalScrollSectionsProps {
@@ -10,43 +10,38 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   className = '',
   imageUrl = '/homep.png',
 }) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
+  // זיהוי מובייל
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const wrapper = wrapperRef.current;
-      const bg = bgRef.current;
-      if (!wrapper || !bg) return;
-
-      const wrapperRect = wrapper.getBoundingClientRect();
-      const pageY = window.scrollY || window.pageYOffset;
-      const wrapperTop = wrapperRect.top + pageY;
-      const wrapperHeight = wrapper.offsetHeight;
-      const viewportH = window.innerHeight;
-
-      const start = wrapperTop;
-      const end = wrapperTop + wrapperHeight - viewportH;
-      const progress = Math.min(1, Math.max(0, (pageY - start) / Math.max(1, (end - start))));
-
-      // פרלקס אופקי פשוט: 0% -> 100% X
-      const xPos = progress * 100;
-      bg.style.backgroundPosition = `${xPos}% 50%`;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // במובייל - רק תמונה אחת ללא כלום
+  if (isMobile) {
+    return (
+      <div className={styles.mobileWrapper}>
+        <div
+          className={styles.mobileBg}
+          style={{ backgroundImage: 'url("/mobileBG.png")' }}
+          aria-hidden="true"
+        />
+      </div>
+    );
+  }
+
+  // בדסקטופ - המבנה הקיים
   return (
-    <div ref={wrapperRef} className={`${styles.wrapper} ${className}`}>
-      {/* Fixed background that moves horizontally */}
+    <div className={`${styles.wrapper} ${className}`}>
+      {/* Fixed background rotated 90 degrees */}
       <div
-        ref={bgRef}
         className={styles.bg}
         style={{ backgroundImage: `url('${imageUrl}')` }}
         aria-hidden="true"
