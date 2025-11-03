@@ -41,7 +41,6 @@ const HomePage: React.FC = () => {
 // תוכן האפליקציה הפנימי עם תנאי לפוטר
 const AppContent: React.FC = () => {
   const location = useLocation();
-  const isHome = location.pathname === '/';
 
   return (
     <>
@@ -64,7 +63,7 @@ const AppContent: React.FC = () => {
             <Route path="/projects" element={<ProjectsPage />} />
           </Routes>
         </main>
-        {!isHome && <Footer />}
+        <Footer />
         {/* כפתורי רשתות חברתיות צפים */}
         {/* <SocialFloat /> */}
         {/* <FloatingServicesFooter /> */}

@@ -6,10 +6,7 @@ export interface HorizontalScrollSectionsProps {
   imageUrl?: string; // default: /homep.png
 }
 
-export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> = ({
-  className = '',
-  imageUrl = '/homep.png',
-}) => {
+export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> = () => {
   // זיהוי מובייל
   const [isMobile, setIsMobile] = useState(false);
 
@@ -37,24 +34,14 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
     );
   }
 
-  // בדסקטופ - המבנה הקיים
+  // בדסקטופ - רק הירו עם התמונה homep.png
   return (
-    <div className={`${styles.wrapper} ${className}`}>
-      {/* Fixed background rotated 90 degrees */}
-      <div
-        className={styles.bg}
-        style={{ backgroundImage: `url('${imageUrl}')` }}
-        aria-hidden="true"
+    <div className={styles.desktopHero}>
+      <img
+        src="/homep.png"
+        alt="Woodcraft Hero"
+        className={styles.desktopHeroImage}
       />
-
-      {/* Section 1 */}
-      <section className={styles.section}></section>
-
-      {/* Section 2 */}
-      <section className={styles.section}></section>
-
-      {/* Section 3 */}
-      <section className={styles.section}></section>
     </div>
   );
 };
