@@ -24,14 +24,14 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // במובייל - רק תמונה אחת ללא כלום
+  // במובייל - רק תמונה אחת ניתנת לגלילה
   if (isMobile) {
     return (
       <div className={styles.mobileWrapper}>
-        <div
+        <img
+          src="/mobileBG.png"
+          alt="Woodcraft Background"
           className={styles.mobileBg}
-          style={{ backgroundImage: 'url("/mobileBG.png")' }}
-          aria-hidden="true"
         />
       </div>
     );
