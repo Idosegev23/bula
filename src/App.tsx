@@ -1,6 +1,6 @@
 // App.tsx - Bulla Studio
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { ScrollToTop } from './components/UI/ScrollToTop';
 // import FloatingServicesFooter from './components/UI/FloatingServicesFooter';
@@ -38,10 +38,8 @@ const HomePage: React.FC = () => {
   );
 };
 
-// תוכן האפליקציה הפנימי עם תנאי לפוטר
+// תוכן האפליקציה הפנימי
 const AppContent: React.FC = () => {
-  const location = useLocation();
-
   return (
     <>
       <ScrollToTop />
