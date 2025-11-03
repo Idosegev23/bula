@@ -88,7 +88,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
           aria-label="ליווי עסקי"
         />
         <span 
-          className={styles.arrowWrapper}
+          className={styles.arrowWrapperMobile}
           style={{
             top: '30.9%',
             left: '25%',
@@ -119,7 +119,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
           aria-label="אדריכלים"
         />
         <span 
-          className={styles.arrowWrapper}
+          className={styles.arrowWrapperMobile}
           style={{
             top: '48.6%',
             left: '9.5%',
@@ -150,7 +150,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
           aria-label="לקוחות פרטיים"
         />
         <span 
-          className={styles.arrowWrapper}
+          className={styles.arrowWrapperMobile}
           style={{
             top: '55.8%',
             left: '19%',
@@ -169,7 +169,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
     );
   }
 
-  // בדסקטופ - רק הירו עם התמונה homep.png
+  // בדסקטופ - הירו עם התמונה homep.png וכפתורים קליקביליים
   return (
     <div className={styles.desktopHero}>
       <img
@@ -179,6 +179,86 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         loading="eager"
         fetchPriority="high"
       />
+      
+      {/* כפתור: ליווי עסקי - יצירת והקמת עסקים */}
+      <button
+        className={styles.desktopClickableArea}
+        style={{
+          position: 'absolute',
+          top: '20.5%',
+          left: '43%',
+          width: '16%',
+          height: '8%',
+          transform: 'rotate(18deg)',
+        }}
+        onClick={() => navigate('/services')}
+        aria-label="ליווי עסקי"
+      />
+
+      {/* כפתור: אדריכלים */}
+      <button
+        className={styles.desktopClickableArea}
+        style={{
+          position: 'absolute',
+          top: '60%',
+          left: '43%',
+          width: '14%',
+          height: '10%',
+          transform: 'rotate(-35deg)',
+        }}
+        onClick={() => navigate('/architects')}
+        aria-label="אדריכלים"
+      />
+
+      {/* כפתור: לקוחות פרטיים - נגרות בהתאמה אישית */}
+      <button
+        className={styles.desktopClickableArea}
+        style={{
+          position: 'absolute',
+          top: '27%',
+          left: '60%',
+          width: '11%',
+          height: '11%',
+          transform: 'rotate(-13deg)',
+        }}
+        onClick={() => navigate('/private-clients')}
+        aria-label="לקוחות פרטיים"
+      />
+
+      {/* אייפון - לינק לאינסטגרם עם סרטון */}
+      <a
+        href="https://www.instagram.com/bulla.studio/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.desktopClickableArea}
+        style={{
+          position: 'absolute',
+          top: '54.8%',
+          left: '80.2%',
+          width: '7.3%',
+          height: '26%',
+          transform: 'rotate(-10deg)',
+          overflow: 'hidden',
+        }}
+        aria-label="בקרו אותנו באינסטגרם"
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+            pointerEvents: 'none',
+          }}
+        >
+          <source src="/instegram.mp4" type="video/mp4" />
+        </video>
+      </a>
     </div>
   );
 };

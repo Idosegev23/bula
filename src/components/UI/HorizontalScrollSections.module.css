@@ -220,7 +220,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: transform 0.1s ease;
   border-radius: 8px;
   padding: 0;
   z-index: 10;
@@ -228,12 +228,11 @@
 }
 
 .mobileClickableArea:hover {
-  background: rgba(139, 69, 19, 0.15); /* חום שקוף - מתאים יותר לעיצוב */
+  /* ללא אוברליי */
 }
 
 .mobileClickableArea:active {
-  background: rgba(139, 69, 19, 0.3); /* אפקט טיפ חזק יותר במובייל */
-  transform: scale(0.98);
+  /* ללא אוברליי */
 }
 
 /* חץ ניווט אופקי */
@@ -351,11 +350,27 @@
   50% { transform: translateX(8px); }
 }
 
+/* אנימציה fade-in לחצים במובייל */
+@keyframes arrowFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* wrapper לחץ - מטפל בסיבוב */
 .arrowWrapper {
   position: absolute;
   pointer-events: none;
   z-index: 11;
+}
+
+/* wrapper לחץ במובייל - עם fade-in delay */
+.arrowWrapperMobile {
+  position: absolute;
+  pointer-events: none;
+  z-index: 11;
+  opacity: 0;
+  animation: arrowFadeIn 0.5s ease-in forwards;
+  animation-delay: 2s;
 }
 
 /* חץ מונפש ליד כפתורים */
@@ -368,6 +383,28 @@
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 }
 
+/* איזורים קליקאביליים בדסקטופ */
+.desktopClickableArea {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  border-radius: 8px;
+  padding: 0;
+  z-index: 10;
+  text-decoration: none;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.desktopClickableArea:hover {
+  /* ללא אוברליי */
+}
+
+.desktopClickableArea:active {
+  /* ללא אוברליי */
+}
+
 /* עיצוב מיוחד למובייל */
 @media (max-width: 768px) {
   .mobileClickableArea {
@@ -375,7 +412,7 @@
   }
   
   .mobileClickableArea:active {
-    background: rgba(139, 69, 19, 0.4); /* אפקט טיפ חזק יותר במסכים קטנים */
+    /* ללא אוברליי */
   }
   
   .navigationArrow {
