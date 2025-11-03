@@ -31,7 +31,47 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
           src="/mobileBG.png"
           alt="Woodcraft Background"
           className={styles.mobileBg}
+          loading="eager"
+          fetchPriority="high"
         />
+        
+        {/* סרטון בתוך מסך האייפון - עם לינק לאינסטגרם */}
+        <a
+          href="https://www.instagram.com/bulla.studio/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            position: 'absolute',
+            top: '69.2%',
+            left: '48%',
+            width: '23%',
+            height: '11%',
+            transform: 'rotate(25deg)',
+            zIndex: 999,
+            cursor: 'pointer',
+            display: 'block',
+          }}
+          aria-label="בקרו אותנו באינסטגרם"
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            webkit-playsinline="true"
+            x5-playsinline="true"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              pointerEvents: 'none',
+            }}
+          >
+            <source src="/instegram.mp4" type="video/mp4" />
+          </video>
+        </a>
         
         {/* כפתור: ליווי עסקי - יצירת והקמת עסקים */}
         <button
@@ -50,15 +90,17 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         <span 
           className={styles.arrowWrapper}
           style={{
-            top: '31%',
+            top: '30.9%',
             left: '25%',
-            transform: 'rotate(15deg) scale(0.9)',
+            transform: 'rotate(16deg) scale(0.9)',
           }}
         >
           <img 
             src="/arrow.png" 
             alt=""
             className={styles.arrowIndicator}
+            loading="eager"
+            fetchPriority="high"
           />
         </span>
 
@@ -79,7 +121,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         <span 
           className={styles.arrowWrapper}
           style={{
-            top: '48.7%',
+            top: '48.6%',
             left: '9.5%',
             transform: 'rotate(-17deg) scale(0.9)',
           }}
@@ -88,6 +130,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
             src="/arrow.png" 
             alt=""
             className={styles.arrowIndicator}
+            loading="eager"
+            fetchPriority="high"
           />
         </span>
 
@@ -117,6 +161,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
             src="/arrow.png" 
             alt=""
             className={styles.arrowIndicator}
+            loading="eager"
+            fetchPriority="high"
           />
         </span>
       </div>
@@ -130,6 +176,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         src="/homep.png"
         alt="Woodcraft Hero"
         className={styles.desktopHeroImage}
+        loading="eager"
+        fetchPriority="high"
       />
     </div>
   );
