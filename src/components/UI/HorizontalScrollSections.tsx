@@ -28,7 +28,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
     return (
       <div className={styles.mobileWrapper}>
         <img
-          src="/mobileBG.png"
+          src="/BullaMobile.png"
           alt="Woodcraft Background"
           className={styles.mobileBg}
           loading="eager"
@@ -78,93 +78,46 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
           className={styles.mobileClickableArea}
           style={{
             position: 'absolute',
-            top: '31%',
-            left: '16%',
-            width: '60%',
-            height: '5%',
-            transform: 'rotate(15deg)',
+            top: '31.5%',
+            left: '25.1%',
+            width: '47.3%',
+            height: '3.7%',
+            transform: 'rotate(18deg)',
           }}
           onClick={() => navigate('/services')}
           aria-label="ליווי עסקי"
         />
-        <span 
-          className={styles.arrowWrapperMobile}
-          style={{
-            top: '30.9%',
-            left: '25%',
-            transform: 'rotate(16deg) scale(0.9)',
-          }}
-        >
-          <img 
-            src="/arrow.png" 
-            alt=""
-            className={styles.arrowIndicator}
-            loading="eager"
-            fetchPriority="high"
-          />
-        </span>
 
         {/* כפתור: אדריכלים */}
         <button
           className={styles.mobileClickableArea}
           style={{
             position: 'absolute',
-            top: '44.5%',
-            left: '10%',
-            width: '50%',
+            top: '45.6%',
+            left: '-1.5%',
+            width: '57%',
             height: '5%',
-            transform: 'rotate(-17deg)',
+            transform: 'rotate(-18deg)',
+            clipPath: 'polygon(19% 28%, 87% 0%, 90% 93%, 21% 92%)',
           }}
           onClick={() => navigate('/architects')}
           aria-label="אדריכלים"
         />
-        <span 
-          className={styles.arrowWrapperMobile}
-          style={{
-            top: '48.6%',
-            left: '9.5%',
-            transform: 'rotate(-17deg) scale(0.9)',
-          }}
-        >
-          <img 
-            src="/arrow.png" 
-            alt=""
-            className={styles.arrowIndicator}
-            loading="eager"
-            fetchPriority="high"
-          />
-        </span>
 
         {/* כפתור: לקוחות פרטיים - נגרות בהתאמה אישית */}
         <button
           className={styles.mobileClickableArea}
           style={{
             position: 'absolute',
-            top: '52%',
-            left: '10%',
-            width: '55%',
-            height: '6%',
-            transform: 'rotate(-15deg)',
+            top: '52.3%',
+            left: '18.5%',
+            width: '38.5%',
+            height: '6.2%',
+            transform: 'rotate(-17deg)',
           }}
           onClick={() => navigate('/private-clients')}
           aria-label="לקוחות פרטיים"
         />
-        <span 
-          className={styles.arrowWrapperMobile}
-          style={{
-            top: '55.8%',
-            left: '19%',
-            transform: 'rotate(-15deg)',
-          }}
-        >
-          <img 
-            src="/arrow.png" 
-            alt=""
-            className={styles.arrowIndicator}
-            loading="eager"
-            fetchPriority="high"
-          />
-        </span>
       </div>
     );
   }

@@ -216,24 +216,46 @@
 }
 
 /* איזורים קליקאביליים מותאמים למובייל */
+/* Mobile clickable area with strong moving glow */
 .mobileClickableArea {
-  background: transparent;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.15); /* keeps transparency */
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  transition: transform 0.1s ease;
-  border-radius: 8px;
-  padding: 0;
-  z-index: 10;
-  -webkit-tap-highlight-color: transparent; /* מסיר highlight כחול בניגוע */
 }
 
-.mobileClickableArea:hover {
-  /* ללא אוברליי */
+/* Moving shimmer / “flashlight” but soft and strong */
+.mobileClickableArea::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  border-radius: 50%; /* soft circular shape */
+
+  /* UPDATED COLOR: warm amber matching wood tones */
+  background: radial-gradient(circle, rgba(255,180,80,0.8) 0%, rgba(255,180,80,0.0) 70%);
+
+  filter: blur(30px); /* wide, soft halo */
+  pointer-events: none; /* allow clicks through */
+  
+  animation: shimmerPop 2s infinite;
 }
 
-.mobileClickableArea:active {
-  /* ללא אוברליי */
+/* Smooth left-to-right animation */
+@keyframes shimmerPop {
+  0% { left: -120%; }
+  100% { left: 120%; }
 }
+
+
+
+
+
+
 
 /* חץ ניווט אופקי */
 .navigationArrow {
@@ -363,25 +385,6 @@
   z-index: 11;
 }
 
-/* wrapper לחץ במובייל - עם fade-in delay */
-.arrowWrapperMobile {
-  position: absolute;
-  pointer-events: none;
-  z-index: 11;
-  opacity: 0;
-  animation: arrowFadeIn 0.5s ease-in forwards;
-  animation-delay: 2s;
-}
-
-/* חץ מונפש ליד כפתורים */
-.arrowIndicator {
-  display: block;
-  width: 30px;
-  height: 30px;
-  pointer-events: none;
-  animation: arrowBounce 1.5s ease-in-out infinite;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
-}
 
 /* איזורים קליקאביליים בדסקטופ */
 .desktopClickableArea {
@@ -397,23 +400,9 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.desktopClickableArea:hover {
-  /* ללא אוברליי */
-}
-
-.desktopClickableArea:active {
-  /* ללא אוברליי */
-}
 
 /* עיצוב מיוחד למובייל */
 @media (max-width: 768px) {
-  .mobileClickableArea {
-    /* הגדרות כבר מוגדרות למעלה */
-  }
-  
-  .mobileClickableArea:active {
-    /* ללא אוברליי */
-  }
   
   .navigationArrow {
     width: 45px;
