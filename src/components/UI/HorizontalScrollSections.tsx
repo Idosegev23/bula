@@ -126,7 +126,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   return (
     <div className={styles.desktopHero}>
       <img
-        src="/homep.png"
+        src="/BullaDesktop.png"
         alt="Woodcraft Hero"
         className={styles.desktopHeroImage}
         loading="eager"
@@ -138,9 +138,9 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         className={styles.desktopClickableArea}
         style={{
           position: 'absolute',
-          top: '20.5%',
-          left: '43%',
-          width: '16%',
+          top: '34.3%',
+          left: '51%',
+          width: '14.2%',
           height: '8%',
           transform: 'rotate(18deg)',
         }}
@@ -153,11 +153,12 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         className={styles.desktopClickableArea}
         style={{
           position: 'absolute',
-          top: '60%',
-          left: '43%',
-          width: '14%',
-          height: '10%',
-          transform: 'rotate(-35deg)',
+          top: '69.5%',
+          left: '48.2%',
+          width: '17.5%',
+          height: '10.5%',
+          transform: 'rotate(-33deg)',
+          clipPath: 'polygon(18% 22%, 88% 0%, 89% 95%, 20% 92%)',
         }}
         onClick={() => navigate('/architects')}
         aria-label="אדריכלים"
@@ -168,11 +169,11 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         className={styles.desktopClickableArea}
         style={{
           position: 'absolute',
-          top: '27%',
-          left: '60%',
-          width: '11%',
+          top: '40.3%',
+          left: '67.2%',
+          width: '10%',
           height: '11%',
-          transform: 'rotate(-13deg)',
+          transform: 'rotate(-14deg)',
         }}
         onClick={() => navigate('/private-clients')}
         aria-label="לקוחות פרטיים"
@@ -183,13 +184,13 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         href="https://www.instagram.com/bulla.studio/"
         target="_blank"
         rel="noopener noreferrer"
-        className={styles.desktopClickableArea}
+        // className={styles.desktopClickableArea}
         style={{
           position: 'absolute',
-          top: '54.8%',
-          left: '80.2%',
-          width: '7.3%',
-          height: '26%',
+          top: '65.2%',
+          left: '85.6%',
+          width: '6.7%',
+          height: '21.3%',
           transform: 'rotate(-10deg)',
           overflow: 'hidden',
         }}
