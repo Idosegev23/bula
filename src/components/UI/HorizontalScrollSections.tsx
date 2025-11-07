@@ -138,12 +138,13 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         className={styles.desktopClickableArea}
         style={{
           position: 'absolute',
-          top: '34.3%',
+          top: '25.1%',
           left: '51%',
           width: '14.2%',
           height: '8%',
           transform: 'rotate(18deg)',
         }}
+        
         onClick={() => navigate('/services')}
         aria-label="ליווי עסקי"
       />
@@ -153,7 +154,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         className={styles.desktopClickableArea}
         style={{
           position: 'absolute',
-          top: '69.5%',
+          top: '60.9%',
           left: '48.2%',
           width: '17.5%',
           height: '10.5%',
@@ -169,10 +170,10 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         className={styles.desktopClickableArea}
         style={{
           position: 'absolute',
-          top: '40.3%',
+          top: '31%',
           left: '67.2%',
           width: '10%',
-          height: '11%',
+          height: '11.3%',
           transform: 'rotate(-14deg)',
         }}
         onClick={() => navigate('/private-clients')}
@@ -187,10 +188,10 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         // className={styles.desktopClickableArea}
         style={{
           position: 'absolute',
-          top: '65.2%',
+          top: '56.6%',
           left: '85.6%',
           width: '6.7%',
-          height: '21.3%',
+          height: '21.5%',
           transform: 'rotate(-10deg)',
           overflow: 'hidden',
         }}

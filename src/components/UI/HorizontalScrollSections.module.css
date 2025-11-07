@@ -20,21 +20,26 @@
 .desktopHero {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  aspect-ratio: var(--hero-aspect, 16 / 9);
+  /* min-height: 100vh; */
+  display: block;
+  /* align-items: center; */
+  /* justify-content: center; */
   overflow: hidden;
+  margin-top: 70px;
 }
 
 .desktopHeroImage {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
+  height: 100%;
   object-fit: cover;
   object-position: center top;
   display: block;
-  margin-top: 70px;
-
+  /* margin-top: 70px; */
 }
 
 /* Horizontal scroll across 3 sections */
