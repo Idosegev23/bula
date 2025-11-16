@@ -94,14 +94,19 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
 
   return (
     <main className={`${styles.privateClientsPage} ${className}`}>
+      <img 
+        src="/נגרות.png"
+        alt="נגרות"
+        className={styles.decoration}
+      />
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              <div>לקוחות</div>
-              <div>פרטיים</div>
-              <span className={styles.backgroundText}>DESIGN</span>
+              <div>נגרות</div>
+              <div>בהתאמה אישית</div>
+              {/* <span className={styles.backgroundText}>DESIGN</span> */}
             </h1>
             <p className={styles.heroSubtitle}>
               פתרונות מותאמים אישית לבית שלכם

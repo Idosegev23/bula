@@ -12,10 +12,10 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
 
   const footerLinks = {
     main: [
-      { label: 'פרויקטים', path: '/projects' },
-      { label: 'שירותים', path: '/services' },
-      { label: 'אדריכלים', path: '/architects' },
-      { label: 'אודות', path: '/about' },
+      { label: 'עיצוב והקמת עסקים', path: '/services' },
+      { label: 'קשרי אדריכלים', path: '/architects' },
+      { label: 'נגרות בהתאמה אישית', path: '/private-clients' },
+      { label: 'אודות', path: '/about' }
     ],
     contact: [
       { label: 'צור קשר', path: '/contact' },

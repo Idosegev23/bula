@@ -15,7 +15,7 @@ export const About: React.FC<AboutProps> = ({ className = '' }) => {
             <h1 className={styles.heroTitle}>
               <div>אודות</div>
               <div>בולה סטודיו</div>
-              <span className={styles.backgroundText}>STORY</span>
+              {/* <span className={styles.backgroundText}>STORY</span> */}
             </h1>
             <p className={styles.heroSubtitle}>
               יוצרים מרחבים שמספרים סיפור

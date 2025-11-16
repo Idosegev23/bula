@@ -11,6 +11,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   const navigate = useNavigate();
   // זיהוי מובייל
   const [isMobile, setIsMobile] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
 
   useEffect(() => {
     const checkMobile = () => {
@@ -33,6 +35,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
           className={styles.mobileBg}
           loading="eager"
           fetchPriority="high"
+          onLoad={() => setImageLoaded(true)}
         />
         
         {/* סרטון בתוך מסך האייפון - עם לינק לאינסטגרם */}
@@ -67,6 +70,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
               objectFit: 'cover',
               objectPosition: 'center',
               pointerEvents: 'none',
+              opacity: imageLoaded ? 1 : 0,
+              transition: 'opacity 0.3s ease',
             }}
           >
             <source src="/instegram.mp4" type="video/mp4" />
@@ -131,6 +136,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         className={styles.desktopHeroImage}
         loading="eager"
         fetchPriority="high"
+        onLoad={() => setImageLoaded(true)}
       />
       
       {/* כפתור: ליווי עסקי - יצירת והקמת עסקים */}
@@ -209,6 +215,8 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
             objectFit: 'cover',
             objectPosition: 'center',
             pointerEvents: 'none',
+            opacity: imageLoaded ? 1 : 0,
+            transition: 'opacity 0.3s ease',
           }}
         >
           <source src="/instegram.mp4" type="video/mp4" />

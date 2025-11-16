@@ -20,10 +20,10 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
   // רשימת פריטי התפריט
   const navigationItems = [
-    { label: 'ליווי עסקי', path: '/services' },
-    { label: 'אדריכלים', path: '/architects' },
-    { label: 'לקוחות פרטיים', path: '/private-clients' },
-    { label: 'לקוחות עסקיים', path: '/business-clients' },
+    { label: 'עיצוב והקמת עסקים', path: '/services' },
+    { label: 'קשרי אדריכלים', path: '/architects' },
+    { label: 'נגרות בהתאמה אישית', path: '/private-clients' },
+    // { label: 'לקוחות עסקיים', path: '/business-clients' },
     { label: 'אודות', path: '/about' }
   ];
 

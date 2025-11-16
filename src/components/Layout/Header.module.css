@@ -41,7 +41,7 @@
 /* Layout containers */
 .headerContainer {
   width: 100%;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   padding: 0 16px;
   margin: 0 auto;
 }
@@ -55,8 +55,10 @@
 }
 
 /* Desktop - swap sides */
-@media (min-width: 768px) {
+@media (min-width: 980px) {
   .headerContent {
+    max-width: none;
+    padding: 0 12px;
     flex-direction: row-reverse; /* swap children order */
   }
 }
@@ -279,7 +281,7 @@
 }
 
 /* ===== Responsive ===== */
-@media (min-width: 768px) {
+@media (min-width: 980px) {
   .headerContainer { padding: 0 24px; }
 
   .logo { height: 40px; }

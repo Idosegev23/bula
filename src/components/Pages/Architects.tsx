@@ -143,15 +143,20 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
 
   return (
     <main className={`${styles.architectsPage} ${className}`}>
+      <img 
+        src="/קשרי אדריכלים.png"
+        alt="קשרי אדריכלים"
+        className={styles.decoration}
+      />
       {/* Hero Section */}
       <section id="hero" className={styles.heroSection}>
         <canvas ref={heroCanvasRef} className={styles.heroCanvas}></canvas>
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              <div>אדריכלים</div>
-              <div className={styles.ampersand}>&</div>
-              <div>MORE</div>
+              <div>קשרי אדריכלים</div>
+              {/* <div className={styles.ampersand}>&</div>
+              <div>MORE</div> */}
             </h1>
             <p className={styles.heroSubtitle}>
               שרטוטים, פרטים וייצור – נקי וברור

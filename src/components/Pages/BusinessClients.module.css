@@ -159,7 +159,7 @@
   text-align: center;
 }
 
-.backgroundText {
+/* .backgroundText {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -172,7 +172,7 @@
   letter-spacing: 0.05em;
   text-align: center;
   white-space: nowrap;
-}
+} */
 
 .galleryGrid {
   display: grid;

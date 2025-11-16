@@ -25,6 +25,9 @@ import { About } from './components/Pages/About';
 import { PrivateClients } from './components/Pages/PrivateClients';
 import { BusinessClients } from './components/Pages/BusinessClients';
 
+import { Contact } from './components/Pages/Contact';
+
+
 // Accessibility
 // import { AccessibilityProvider } from './components/Accessibility/AccessibilityProvider';
 
@@ -59,6 +62,8 @@ const AppContent: React.FC = () => {
             <Route path="/business-clients" element={<BusinessClientsPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/contact" element={<Contact />} />
+
           </Routes>
         </main>
         <Footer />

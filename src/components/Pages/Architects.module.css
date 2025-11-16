@@ -55,7 +55,26 @@
   position: relative;
 }
 
-.ampersand {
+
+.decoration {
+  width: 150px;
+  height: auto;
+  position:absolute;
+  right: 0;
+  top: 150px; /* Adjust how far from the top it stays */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 📱 Mobile (up to ~768px) */
+@media (max-width: 768px) {
+  .decoration {
+    width: 100px;  
+    top: 100px;    
+  }
+}
+
+/* .ampersand {
   font-weight: 700;
   font-size: 2.5em;
   position: absolute;
@@ -66,7 +85,7 @@
   opacity: 0.15;
   z-index: -1;
   pointer-events: none;
-}
+} */
 
 .heroSubtitle {
   font-size: clamp(1.25rem, 3vw, 1.75rem);

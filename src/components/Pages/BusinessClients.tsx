@@ -109,7 +109,7 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
             <h1 className={styles.heroTitle}>
               <div>לקוחות</div>
               <div>עסקיים</div>
-              <span className={styles.backgroundText}>BUSINESS</span>
+              {/* <span className={styles.backgroundText}>BUSINESS</span> */}
             </h1>
             <p className={styles.heroSubtitle}>
               פתרונות מקצועיים לעסק המצליח שלכם

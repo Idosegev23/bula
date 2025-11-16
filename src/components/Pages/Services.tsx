@@ -200,15 +200,20 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   }, []);
   return (
     <main className={`${styles.servicesPage} ${className}`}>
+      <img 
+        src="/הקמת עסקים.png"
+        alt="הקמת עסקים"
+        className={styles.decoration}
+      />
       {/* Hero Section */}
       <section id="hero" className={styles.heroSection}>
         <canvas ref={heroCanvasRef} className={styles.heroCanvas}></canvas>
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              <div>ONE STOP</div>
-              <div className={styles.shopBackground}>SHOP</div>
-              <div>לעסק שלך</div>
+              <div>עיצוב והקמת</div>
+              {/* <div className={styles.shopBackground}>SHOP</div> */}
+              <div>עסקים</div>
             </h1>
             <p className={styles.heroSubtitle}>
               מרעיון לביצוע – הכל במקום אחד

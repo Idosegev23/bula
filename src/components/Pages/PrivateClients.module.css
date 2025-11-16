@@ -56,6 +56,24 @@
   text-align: center;
 }
 
+.decoration {
+  width: 150px;
+  height: auto;
+  position:absolute;
+  left: 0;
+  top: 150px; /* Adjust how far from the top it stays */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 📱 Mobile (up to ~768px) */
+@media (max-width: 768px) {
+  .decoration {
+    width: 100px;  
+    top: 100px;    
+  }
+}
+
 /* Content Section */
 .contentSection {
   padding: 80px 0;
@@ -159,7 +177,7 @@
   text-align: center;
 }
 
-.backgroundText {
+/* .backgroundText {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -172,7 +190,7 @@
   letter-spacing: 0.05em;
   text-align: center;
   white-space: nowrap;
-}
+} */
 
 .galleryGrid {
   display: grid;
