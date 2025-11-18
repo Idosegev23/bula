@@ -30,7 +30,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
     return (
       <div className={styles.mobileWrapper}>
         <img
-          src="/BullaMobile.png"
+          src="/mobile.webp"
           alt="Woodcraft Background"
           className={styles.mobileBg}
           loading="eager"
@@ -131,7 +131,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   return (
     <div className={styles.desktopHero}>
       <img
-        src="/BullaDesktop.png"
+        src="/desktop.webp"
         alt="Woodcraft Hero"
         className={styles.desktopHeroImage}
         loading="eager"

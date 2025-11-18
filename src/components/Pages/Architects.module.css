@@ -45,7 +45,7 @@
 }
 
 .heroTitle {
-  font-size: clamp(4rem, 10vw, 6rem);
+  font-size: clamp(3rem, 10vw, 6rem);
   font-weight: 200;
   line-height: 1.1;
   color: #000000;
@@ -61,7 +61,7 @@
   height: auto;
   position:absolute;
   right: 0;
-  top: 150px; /* Adjust how far from the top it stays */
+  top: 450px; /* Adjust how far from the top it stays */
   z-index: 0;
   pointer-events: none;
 }
@@ -70,7 +70,7 @@
 @media (max-width: 768px) {
   .decoration {
     width: 80px;  
-    top: 70px;    
+    top: 250px;    
   }
 }
 
@@ -653,7 +653,7 @@
   }
   
   .sectionHeader {
-    margin-bottom: 50px;
+    margin-bottom: 0px;
   }
   
   .servicesGrid {

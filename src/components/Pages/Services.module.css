@@ -48,7 +48,7 @@
 }
 
 .heroTitle {
-  font-size: clamp(4rem, 10vw, 6rem);
+  font-size: clamp(3rem, 10vw, 6rem);
   font-weight: 200;
   line-height: 1.1;
   color: #000000;
@@ -64,7 +64,7 @@
   height: auto;
   position:absolute;
   left: 0;
-  top: 150px; /* Adjust how far from the top it stays */
+  top: 350px; /* Adjust how far from the top it stays */
   z-index: 0;
   pointer-events: none;
 }
@@ -72,7 +72,7 @@
 /* 📱 Mobile (up to ~768px) */
 @media (max-width: 768px) {
   .decoration {
-    width: 60px;  
+    width: 100px;  
     top: 130px;    
   }
 }
@@ -239,10 +239,8 @@
 
 
 
-
-
 .heroTitle {
-  font-size: clamp(4rem, 10vw, 6rem);
+  font-size: clamp(3rem, 10vw, 6rem);
   font-weight: 200;
   line-height: 1.1;
   color: #000000;
@@ -251,6 +249,8 @@
   text-align: center;
   position: relative;
 }
+
+
 
 .boldText {
   font-weight: 700;
@@ -271,7 +271,7 @@
 
 /* Steps Container */
 .stepsContainer {
-  margin: 50px 0;
+  margin: 20px 0;
 }
 
 .stepBlock {
@@ -581,24 +581,23 @@
 .ctaButtonPrimary {
   display: inline-block;
   font-size: clamp(1.1rem, 2.5vw, 1.2rem);
-  font-weight: 600;
-  padding: 18px 40px;
-  border-radius: 12px;
-  border: none;
+  font-weight: 400;
+  color: #000000;
+  background: transparent;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  padding: 16px 40px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: #28939f;
-  color: white;
-  box-shadow: 0 4px 15px rgba(40, 147, 159, 0.3);
   min-width: 200px;
   text-decoration: none;
   text-align: center;
 }
 
 .ctaButtonPrimary:hover {
-  background: #207a84;
+  background: #000000;
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(40, 147, 159, 0.4);
 }
 
 /* Gallery Preview */

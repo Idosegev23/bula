@@ -144,7 +144,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
   return (
     <main className={`${styles.architectsPage} ${className}`}>
       <img 
-        src="/קשרי אדריכלים.png"
+        src="/קשרי אדריכלים.webp"
         alt="קשרי אדריכלים"
         className={styles.decoration}
       />
@@ -154,14 +154,15 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              <div>קשרי אדריכלים</div>
+              <div>קשרי</div>
+              <div>אדריכלים</div>
               {/* <div className={styles.ampersand}>&</div>
               <div>MORE</div> */}
             </h1>
             <p className={styles.heroSubtitle}>
               שרטוטים, פרטים וייצור – נקי וברור
               <img 
-                src="/פס כותרת קשרי אדריכלים.png"
+                src="/פס כותרת קשרי אדריכלים.webp"
                 alt="קשרי אדריכלים"
                 className={styles.decorationLine}
               />
@@ -174,7 +175,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
       <section className={styles.servicesSection}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>השירותים שלנו</h2>
+            <h2 className={styles.sectionTitle}>השירותים שלנו:</h2>
           </div>
           
           <div className={styles.servicesGrid}>

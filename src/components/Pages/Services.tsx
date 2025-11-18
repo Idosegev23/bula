@@ -201,7 +201,7 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   return (
     <main className={`${styles.servicesPage} ${className}`}>
       <img 
-        src="/הקמת עסקים.png"
+        src="/הקמת עסקים.webp"
         alt="הקמת עסקים"
         className={styles.decoration}
       />
@@ -216,13 +216,14 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
               <div>עסקים</div>
             </h1>
             <p className={styles.heroSubtitle}>
-              מרעיון לביצוע – הכל במקום אחד
-              <img 
-                src="/כותרת הקמת עסקים.png"
+              מרעיון לביצוע
+              {/* <img 
+                src="/כותרת הקמת עסקים.webp"
                 alt="הקמת עסקים"
                 className={styles.decorationLine}
-              />
+              /> */}
             </p>
+            <p className={styles.heroSubtitle}>הכל במקום אחד</p>
           </div>
         </div>
       </section>
@@ -230,7 +231,7 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       <section id="commercial" className={styles.commercialSection}>
         <div className={styles.container}>
           <div className={styles.commercialInner}>
-            <h3 className={styles.commercialTitle}>שלבים לבניית עסק חדש</h3>
+            <h3 className={styles.commercialTitle}>שלבים לבניית עסק חדש:</h3>
             
             <div className={styles.stepsContainer}>
               {stepTitles.map((stepTitle, index) => (
