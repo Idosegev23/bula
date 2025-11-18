@@ -160,6 +160,11 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
             </h1>
             <p className={styles.heroSubtitle}>
               שרטוטים, פרטים וייצור – נקי וברור
+              <img 
+                src="/פס כותרת קשרי אדריכלים.png"
+                alt="קשרי אדריכלים"
+                className={styles.decorationLine}
+              />
             </p>
           </div>
         </div>

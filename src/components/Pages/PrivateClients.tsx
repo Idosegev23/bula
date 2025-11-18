@@ -110,6 +110,11 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
             </h1>
             <p className={styles.heroSubtitle}>
               פתרונות מותאמים אישית לבית שלכם
+              <img 
+                src="/פס כותרת נגרות.png"
+                alt="נגרות"
+                className={styles.decorationLine}
+              />
             </p>
           </div>
         </div>

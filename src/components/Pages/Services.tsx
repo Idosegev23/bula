@@ -217,6 +217,11 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
             </h1>
             <p className={styles.heroSubtitle}>
               מרעיון לביצוע – הכל במקום אחד
+              <img 
+                src="/כותרת הקמת עסקים.png"
+                alt="הקמת עסקים"
+                className={styles.decorationLine}
+              />
             </p>
           </div>
         </div>

@@ -77,6 +77,26 @@
   }
 }
 
+.decorationLine {
+  height: auto;
+  width: 400px;
+  margin-top: -55px;
+  margin-right: 150px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 📱 Mobile (up to ~768px) */
+@media (max-width: 768px) {
+  .decorationLine {
+      margin-right: 0px;
+      margin-top: -45px;
+  }
+}
+
+
+
+
 /* .shopBackground {
   position: absolute;
   top: 50%;
