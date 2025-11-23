@@ -7,13 +7,22 @@ interface ServicesProps {
   className?: string;
 }
 
-
-
 export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   const location = useLocation();
   const [selectedStep, setSelectedStep] = useState<number | null>(null);
   const ctaCanvasRef = useRef<HTMLCanvasElement>(null);
   const heroCanvasRef = useRef<HTMLCanvasElement>(null);
+
+  // --- new: mobile detection (same approach as your other component) ---
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  // --------------------------------------------------------------------
 
   const stepTitles = [
     'סיור שטח',
@@ -200,11 +209,21 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   }, []);
   return (
     <main className={`${styles.servicesPage} ${className}`}>
-      <img 
-        src="/הקמת עסקים.webp"
-        alt="הקמת עסקים"
-        className={styles.decoration}
-      />
+      {/* conditional image based on isMobile */}
+      {isMobile ? (
+        <img
+          src="/הקמת עסקים.webp"
+          alt="הקמת עסקים"
+          className={styles.decoration}
+        />
+      ) : (
+        <img
+          src="/הקמת עסקים דסקטופ.webp"
+          alt="הקמת עסקים — דסקטופ"
+          className={styles.decoration}
+        />
+      )}
+
       {/* Hero Section */}
       <section id="hero" className={styles.heroSection}>
         <canvas ref={heroCanvasRef} className={styles.heroCanvas}></canvas>
@@ -215,15 +234,23 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
               {/* <div className={styles.shopBackground}>SHOP</div> */}
               <div>עסקים</div>
             </h1>
-            <p className={styles.heroSubtitle}>
-              מרעיון לביצוע
-              {/* <img 
-                src="/כותרת הקמת עסקים.webp"
-                alt="הקמת עסקים"
-                className={styles.decorationLine}
-              /> */}
-            </p>
-            <p className={styles.heroSubtitle}>הכל במקום אחד</p>
+            {isMobile ? (
+                <>
+                  <p className={styles.heroSubtitle}>מרעיון לביצוע</p>
+                  <p className={styles.heroSubtitle}>הכל במקום אחד</p>
+                </>
+              ) : (
+                <>
+                  <p className={styles.heroSubtitle}>
+                    מרעיון לביצוע הכל במקום אחד
+                    <img 
+                      src="/כותרת הקמת עסקים.webp"
+                      alt="הקמת עסקים"
+                      className={styles.decorationLine}
+                    />
+                  </p>
+                </>
+              )}
           </div>
         </div>
       </section>

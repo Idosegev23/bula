@@ -60,11 +60,11 @@
 
 
 .decoration {
-  width: 150px;
+  width: 300px;
   height: auto;
   position:absolute;
   left: 0;
-  top: 350px; /* Adjust how far from the top it stays */
+  top: 250px; /* Adjust how far from the top it stays */
   z-index: 0;
   pointer-events: none;
 }

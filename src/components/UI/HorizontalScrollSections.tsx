@@ -131,7 +131,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
   return (
     <div className={styles.desktopHero}>
       <img
-        src="/desktop.webp"
+        src="/desktop 20-11.webp"
         alt="Woodcraft Hero"
         className={styles.desktopHeroImage}
         loading="eager"
