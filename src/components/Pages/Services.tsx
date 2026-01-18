@@ -12,6 +12,8 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
   const [selectedStep, setSelectedStep] = useState<number | null>(null);
   const ctaCanvasRef = useRef<HTMLCanvasElement>(null);
   const heroCanvasRef = useRef<HTMLCanvasElement>(null);
+  const [openGroup, setOpenGroup] = useState<number | null>(null);
+
 
   // --- new: mobile detection (same approach as your other component) ---
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -140,6 +142,31 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
     }
   ];
 
+
+  const groupedSteps = [
+    {
+      groupTitle: 'שלב התכנון וההכנה',
+      steps: [0, 1],
+    },
+    {
+      groupTitle: 'שלב הקונספט והמיתוג',
+      steps: [2, 3],
+    },
+    {
+      groupTitle: 'אישורים ועיצוב מתקדם',
+      steps: [4, 5],
+    },
+    {
+      groupTitle: 'תוכניות וביצוע',
+      steps: [6, 7],
+    },
+    {
+      groupTitle: 'ליווי וסגירת פרויקט',
+      steps: [8, 9],
+    },
+  ];
+  
+
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace('#', '');
@@ -261,22 +288,47 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
             <h3 className={styles.commercialTitle}>שלבים לבניית עסק חדש:</h3>
             
             <div className={styles.stepsContainer}>
-              {stepTitles.map((stepTitle, index) => (
-                <div 
-                  key={index} 
-                  className={styles.stepBlock}
-                  onClick={() => setSelectedStep(index)}
-                >
-                  <div className={styles.stepHeader}>
-                    <div className={styles.stepNumber}>
-                      {String(index + 1).padStart(2, '0')}
-                    </div>
-                    <h4 className={styles.stepTitle}>{stepTitle}</h4>
-                    <div className={styles.stepToggle}>→</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+  {groupedSteps.map((group, groupIndex) => {
+    const isOpen = openGroup === groupIndex;
+
+    return (
+      <div key={groupIndex} className={styles.groupCard}>
+        <div
+          className={styles.groupHeader}
+          onClick={() =>
+            setOpenGroup(isOpen ? null : groupIndex)
+          }
+        >
+          <h4 className={styles.groupTitle}>{group.groupTitle}</h4>
+          <span className={styles.groupToggle}>
+            {isOpen ? '−' : '+'}
+          </span>
+        </div>
+
+        {isOpen && (
+          <div className={styles.groupBody}>
+            {group.steps.map((stepIndex) => (
+              <button
+                key={stepIndex}
+                className={styles.stepItem}
+                onClick={() => setSelectedStep(stepIndex)}
+              >
+                <span className={styles.stepNumber}>
+                  {String(stepIndex + 1).padStart(2, '0')}
+                </span>
+                <span className={styles.stepText}>
+                  {stepTitles[stepIndex]}
+                </span>
+                <span className={styles.stepArrow}>→</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  })}
+</div>
+
 
             {/* פופאפ פירוט השלב */}
             {selectedStep !== null && (

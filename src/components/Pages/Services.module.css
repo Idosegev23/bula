@@ -271,8 +271,109 @@
 
 /* Steps Container */
 .stepsContainer {
-  margin: 20px 0;
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
+
+.groupCard {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.groupCard:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 45px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.groupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 26px;
+  cursor: pointer;
+  background: linear-gradient(
+    135deg,
+    rgba(0,0,0,0.02),
+    rgba(0,0,0,0)
+  );
+}
+
+.groupTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.groupToggle {
+  font-size: 26px;
+  font-weight: 300;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,0.05);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.groupHeader:hover .groupToggle {
+  background: rgba(0,0,0,0.08);
+  transform: rotate(90deg);
+}
+
+.groupBody {
+  padding: 8px 18px 18px;
+  display: grid;
+  gap: 12px;
+  animation: groupReveal 0.35s ease forwards;
+}
+
+@keyframes groupReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stepItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  background: #f9f9f9;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.04);
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.stepItem:hover {
+  background: #ffffff;
+  transform: translateX(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+
+
 
 .stepBlock {
   cursor: pointer;
@@ -297,15 +398,41 @@
   position: relative;
 }
 
-.stepNumber {
-  font-size: clamp(2rem, 3vw, 2.5rem);
-  font-weight: 100;
-  color: #000000;
-  margin-bottom: 12px;
-  line-height: 1;
-  position: relative;
-  display: inline-block;
+.stepText {
+  font-size: 0.95rem;
+  font-weight: 500;
 }
+
+.stepArrow {
+  font-size: 1.2rem;
+  opacity: 0.35;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.stepItem:hover .stepArrow {
+  transform: translateX(6px);
+  opacity: 0.7;
+}
+
+
+
+.stepNumber {
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.6;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 768px) {
+  .groupHeader {
+    padding: 18px 20px;
+  }
+
+  .stepItem {
+    padding: 14px 16px;
+  }
+}
+
 
 .stepNumber::after {
   content: '';
