@@ -191,7 +191,11 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
           {elements.map((wordObj, wordIndex, array) => {
             const previousCharsCount = array.slice(0, wordIndex).reduce((sum, word) => sum + word.characters.length, 0);
             return (
-              <span key={wordIndex} className={cn('text-rotate-word', splitLevelClassName)}>
+              <span
+                key={wordIndex}
+                dir="auto"
+                className={cn('text-rotate-word', splitLevelClassName)}
+              >
                 {wordObj.characters.map((char, charIndex) => (
                   <motion.span
                     key={charIndex}
