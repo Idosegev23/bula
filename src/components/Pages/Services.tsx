@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './Services.module.css';
+import { ProjectsGallery } from '../UI/ProjectsGallery';
 
 interface ServicesProps {
   className?: string;
@@ -380,26 +381,10 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
         <canvas ref={ctaCanvasRef} className={styles.ctaCanvas}></canvas>
         <div className={styles.container}>
           <div className={styles.ctaContent}>
-            {/* Gallery Preview */}
+            {/* Gallery */}
             <div className={styles.galleryPreview}>
               <h3 className={styles.galleryTitle}>עבודות שביצענו</h3>
-              <div className={styles.galleryGrid}>
-                <div className={styles.galleryItem}>
-                  <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=400&fit=crop&crop=center" alt="פרויקט בניה מסחרי" className={styles.galleryImage} />
-                </div>
-                <div className={styles.galleryItem}>
-                  <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=400&fit=crop&crop=center" alt="פרויקט משרדים מודרני" className={styles.galleryImage} />
-                </div>
-                <div className={styles.galleryItem}>
-                  <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=400&fit=crop&crop=center" alt="פרויקט מסעדה עיצוב פנים" className={styles.galleryImage} />
-                </div>
-                <div className={styles.galleryItem}>
-                  <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=400&fit=crop&crop=center" alt="פרויקט חנות מסחרית" className={styles.galleryImage} />
-                </div>
-              </div>
-              <button className={styles.galleryViewMore}>
-                צפייה בכל העבודות →
-              </button>
+              <ProjectsGallery defaultCategory="businesses" />
             </div>
             
             <p className={styles.ctaSubtitle}>בואו נתחיל לבנות את העסק שלכם יחד</p>
