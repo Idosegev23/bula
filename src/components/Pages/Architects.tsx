@@ -16,7 +16,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
     {
       id: 'product-engineering',
       title: 'הנדסת מוצר',
-      description: 'פיתוח טכני מתקדם והתאמת פתרונות לדרישות מיוחדות. אנחנו מעמיקים בפרטים הטכניים ומוצאים פתרונות יצירתיים לאתגרים מורכבים.',
+      description: 'אובייקטים מורכבים של נגרות ומסגרות – זוויות, רדיוסים וחיבורים. לוקחים את הפרט שכולם מפחדים ממנו ומבצעים אותו מדויק. אנחנו אוהבים את הדברים המסובכים.',
       media: {
         type: 'gallery',
         items: ['https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=400&fit=crop', 'https://images.unsplash.com/photo-1596638731647-58c1bf79c0cb?w=400&h=400&fit=crop']
@@ -25,7 +25,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
     {
       id: 'materials-consulting',
       title: 'ייעוץ בחומרי גלם וגמרים',
-      description: 'הכוונה מקצועית בבחירת חומרים איכותיים ומתאימים. אנחנו עוזרים לבחור את החומרים הנכונים לכל פרויקט.',
+      description: 'לוח חומרים אמיתי – עץ, פורניר, מתכת, צבעים ופרזול. לא כל מה שיפה בקטלוג עובד במציאות, ואנחנו יודעים את ההבדל.',
       media: {
         type: 'gallery',
         items: ['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop', 'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&h=400&fit=crop']
@@ -33,8 +33,8 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
     },
     {
       id: 'shop-drawings',
-      title: 'הכנת שופ-דראוינג',
-      description: 'תכניות ביצוע מפורטות וליווי טכני לאורך הפרויקט. כל פרט מתועד בקפידה לביצוע מושלם.',
+      title: 'הכנת שופ דראוינג',
+      description: 'שרטוטי ביצוע מפורטים עם חיבורים, מידות וחתכים שמתורגמים לפרט מדויק בשטח. הקסם קורה לפני שמתחילים לייצר.',
       media: {
         type: 'gallery',
         items: ['https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=400&fit=crop', 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=400&fit=crop']
@@ -43,7 +43,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
     {
       id: 'manufacturing',
       title: 'ייצור נגרות ומסגרות',
-      description: 'ייצור מדויק ברמה גבוהה בהתאם לתוכניות ודרישות. הייצור שלנו משלב מקצועיות ודיוק.',
+      description: 'עבודה אותנטית בנגרייה ובמסגרייה – מכונות בפעולה, ריתוך, חיתוך ושיוף. זה נראה כמו עבודה, כי זאת עבודה מדויקת.',
       media: {
         type: 'gallery',
         items: ['https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=400&fit=crop', 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop']
@@ -52,7 +52,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
     {
       id: 'installation',
       title: 'התקנות',
-      description: 'ביצוע התקנה מקצועי עם קפידה על כל הפרטים. צוות ההתקנה שלנו מבטיח ביצוע איכותי ומדויק.',
+      description: 'התקנה בשטח – יישור, כיוונון והתאמות אחרונות. גם כשמשהו לא יושב בול, אנחנו כן, ופותרים התאמות במקום.',
       media: {
         type: 'gallery',
         items: ['https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&h=400&fit=crop', 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=400&fit=crop']
@@ -61,7 +61,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
     {
       id: 'client-coordination',
       title: 'שיתוף פעולה מול לקוח קצה',
-      description: 'ליווי ותיאום עם הלקוח הסופי במהלך הפרויקט. אנחנו מבטיחים תקשורת שקופה ושירות מותאם אישית.',
+      description: 'פגישות עבודה משותפות עם האדריכל, הלקוח ואיש הביצוע – שרטוטים פתוחים, דוגמיות ושיחה סביב אותו שולחן. אנחנו חלק מהצוות, לא "עוד ספק".',
       media: {
         type: 'gallery',
         items: ['https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=400&fit=crop', 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=400&fit=crop']

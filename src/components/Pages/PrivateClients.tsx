@@ -108,13 +108,7 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
               <div>בהתאמה אישית</div>
               {/* <span className={styles.backgroundText}>DESIGN</span> */}
             </h1>
-            <p className={styles.heroSubtitle}>
-              פתרונות מותאמים אישית
-            </p>
-            <p className={styles.heroSubtitle}>
-              לבית שלכם
-            </p>
-              <img 
+              <img
                 src="/פס כותרת נגרות.webp"
                 alt="נגרות"
                 className={styles.decorationLine}
@@ -128,25 +122,49 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
         <div className={styles.container}>
           <div className={styles.contentGrid}>
             <div className={styles.textContent}>
-              <h2 className={styles.sectionTitle}>הבית שלכם, החלום שלנו</h2>
+              <h2 className={styles.sectionTitle}>בלי תבניות. בלי הגבלות.</h2>
               <p className={styles.description}>
-                אנחנו מבינים שהבית שלכם הוא הרבה יותר ממקום מגורים - זה המקום שבו החיים שלכם מתרחשים. 
-                בגישה אישית ומקצועית, אנחנו מלווים אתכם בכל שלב של התהליך, מהתכנון הראשוני ועד לפרט האחרון.
+                אנחנו מייצרים נגרות בהתאמה אישית מלאה – מפריטים פשוטים לבית ועד אובייקטים מורכבים, מיוחדים וכאלה שלא רואים כל יום.
+                כל רעיון שעולה בדעת המעצב, אנחנו יודעים לקחת ולתרגם לעבודה מדויקת בשטח.
               </p>
-              
-              <h3 className={styles.subTitle}>השירותים שלנו כוללים:</h3>
+
+              <h3 className={styles.subTitle}>חופש מלא בעיצוב ובחומר</h3>
+              <p className={styles.description}>
+                אנחנו עובדים עם מגוון רחב של חומרים, גימורים ושיטות חיבור, ומאפשרים חופש תכנוני אמיתי:
+                זוויות מיוחדות, רדיוסים, שילובי חומרים ופתרונות לא שגרתיים – הכול בהתאמה לחלל, לשימוש ולאופי הפרויקט.
+              </p>
+
+              <h3 className={styles.subTitle}>רב־גוניות שמכסה הכול</h3>
+              <p className={styles.description}>הנגרות שלנו מתאימה ל:</p>
               <ul className={styles.servicesList}>
-                <li>תכנון ועיצוב פנים מלא</li>
-                <li>ליווי בבחירת חומרים וגימורים</li>
-                <li>ניהול פרויקט מקצועי</li>
-                <li>תיאום עם קבלנים ובעלי מקצוע</li>
-                <li>פיקוח על ביצוע העבודות</li>
-                <li>ייעוץ טכני ומקצועי</li>
+                <li>נגרות ביתית פשוטה ויומיומית</li>
+                <li>נגרות מורכבת עם דרישות גבוהות</li>
+                <li>חללים מסחריים ועסקיים</li>
+                <li>אובייקטים ייחודיים, ניסיוניים או יוצאי דופן</li>
+              </ul>
+              <p className={styles.description}>
+                כל פרויקט מקבל את אותה רמת מחשבה, דיוק ותשומת לב.
+              </p>
+
+              <h3 className={styles.subTitle}>נגרות שחושבת יחד עם התכנון</h3>
+              <p className={styles.description}>
+                כחלק מסטודיו לעיצוב ותכנון, הנגרות אצלנו היא חלק מתהליך שלם.
+                אנחנו מבינים שרטוטים, עובדים בשיתוף עם מעצבים ולקוחות, ויודעים לפתור פרטים כבר בשלב התכנון – לפני שהם הופכים לבעיה.
+              </p>
+
+              <h3 className={styles.subTitle}>מה השירות כולל</h3>
+              <ul className={styles.servicesList}>
+                <li>פגישות תכנון וליווי בהתאם להיקף הפרויקט</li>
+                <li>חשיבה משותפת על פתרונות נגרות וביצוע</li>
+                <li>בחירת חומרים, גימורים ופרזול שמתאימים לעיצוב ולשימוש</li>
+                <li>ייצור בנגרייה שלנו לפי מלאכת אומן</li>
+                <li>התאמות, דיוקים וליווי עד התקנה וגמר</li>
               </ul>
 
+              <h3 className={styles.subTitle}>מלאכת אומן. גישה פרקטית.</h3>
               <p className={styles.description}>
-                עם ניסיון של שנים רבות בתחום, אנחנו יודעים להתאים את עצמנו לכל סגנון חיים ותקציב. 
-                מהשיפוץ הקטן ועד לבנייה מאפס - אנחנו כאן כדי להפוך את החזון שלכם למציאות.
+                אנחנו מקפידים על עבודה מדויקת, חומרי גלם איכותיים וגימור נקי –
+                נגרות שנראית טוב, מרגישה נכון, ומחזיקה לאורך זמן.
               </p>
             </div>
             

@@ -28,14 +28,14 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
 
   const stepTitles = [
     'סיור שטח',
-    'מדידות או עבודה לפי תוכנית',
+    'מדידות או עבודה לפי תכנית',
     'סקיצות העמדה',
-    'סקיצות לבניית מותג גרפי',
-    'אישורים ותכנון ייעודי',
-    'עיצוב ותכנון והדמיות',
+    'מחקר וסקיצות לבניית מותג',
+    'אישורים ותכנון יעודי',
+    'עיצוב ותכנון הדמיות',
     'סט תוכניות עבודה',
     'בחירת ספקים וקבלני ביצוע',
-    'ליווי בתהליך הבנייה',
+    'ליווי בתהליך הבניה',
     'עבודות משלימות והתאמות'
   ];
 
@@ -51,8 +51,8 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       }
     },
     {
-      title: 'מדידות או עבודה לפי תוכנית',
-      description: `בשלב הזה אנחנו מודדים את כל החלל באמצעים מדויקים, או מאמתים את המידות מול תוכניות קיימות.
+      title: 'מדידות או עבודה לפי תכנית',
+      description: `בשלב הזה מגיע מודד מקצועי שמודד את כל החלל באמצעים מדויקים, או שאנחנו מאמתים את המידות מול תוכניות קיימות.
 אנחנו מסמנים סטיות, מזהים מגבלות ומעדכנים את השרטוטים בהתאם.
 כך יש לנו "מצב קיים" מדויק שמונע הפתעות בהמשך.`,
       media: {
@@ -71,9 +71,8 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       }
     },
     {
-      title: 'סקיצות לבניית מותג גרפי',
-      description: `בשלב הזה אנחנו מפתחים את הזהות הוויזואלית של העסק – לוגו, צבעים, טיפוגרפיה, אייקונים, שפת עיצוב.
-אנחנו יוצרים חומרים שיתמכו בכל הפלטפורמות – דיגיטל, פרינט, שילוט, אריזות או מצגות.
+      title: 'מחקר וסקיצות לבניית מותג',
+      description: `בשלב הזה אנחנו מפתחים את הזהות הוויזואלית של העסק – סקיצות ללוגו, צבעים, טיפוגרפיה, אייקונים, שפת עיצוב שיופיעו במארזים, שילוט ותוצרי דפוס.
 זה הבסיס להופעה אחידה ומקצועית בכל נקודת מגע עם הלקוח.`,
       media: {
         type: 'gallery',
@@ -81,9 +80,8 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       }
     },
     {
-      title: 'אישורים ותכנון ייעודי',
-      description: `בשלב הזה אנחנו מטפלים בכל הדרישות החוקיות והמקצועיות – רישוי עסקים, היתרים, תקנים, נגישות ובטיחות.
-אנחנו מתאמים עם הרשויות, יועצים ומנהלי פרויקטים כדי לוודא שכל התהליך מתבצע בהתאם לחוק.
+      title: 'אישורים ותכנון יעודי',
+      description: `בשלב הזה אנחנו מאשרים מול כל לקוח את ההעמדה הסופית של תצורת החלל, מוודאים את כל הציוד הנדרש בחלל ומיקומו, על מנת שבשלב הבא נוכל לתכנן לו תשתית מספקת לכל מה שהוא דורש (הזנת חשמל/מים/ניקוז וכדומה).
 כך אפשר להתקדם בלי חשש לעיכובים בשלב הביצוע.`,
       media: {
         type: 'video',
@@ -91,9 +89,9 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       }
     },
     {
-      title: 'עיצוב ותכנון והדמיות',
-      description: `בשלב הזה אנחנו מפתחים עיצוב מלא שמחבר בין המותג לבין החלל הפיזי.
-אנחנו בוחרים חומרים, צבעים, תאורה, ריהוט ואביזרים, ומפיקים הדמיות תלת־ממד להמחשה מלאה.
+      title: 'עיצוב ותכנון הדמיות',
+      description: `לאחר אישור סופי של ההעמדה - אנחנו מפתחים עיצוב מלא שמחבר בין המותג לבין החלל הפיזי.
+אנחנו בוחרים חומרים, צבעים, תאורה, ריהוט ואביזרים, שילוט והלבשה גרפית ומפיקים הדמיות תלת־ממד להמחשה מלאה.
 המטרה היא שתדעו בדיוק איך ייראה העסק עוד לפני תחילת הביצוע.`,
       media: {
         type: 'gallery',
@@ -103,8 +101,7 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
     {
       title: 'סט תוכניות עבודה',
       description: `בשלב הזה אנחנו מפיקים סט ביצוע מלא – שרטוטים, מידות, מפרטים טכניים, כתב כמויות ותיאומים עם כל בעלי המקצוע.
-כך כולם עובדים לפי אותו מסמך, בלי טעויות ובלי פרשנויות שונות.
-השלב הזה חוסך כסף וזמן בשטח.`,
+בנוסף נתחיל לעבוד על מפרט תכנית הנגרות והמסגרות לכלל האלמנטים שתוכננו בשלב ההעמדה.`,
       media: {
         type: 'gallery',
         items: ['/placeholder13.jpg', '/placeholder14.jpg']
@@ -121,9 +118,9 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
       }
     },
     {
-      title: 'ליווי בתהליך הבנייה',
-      description: `בשלב הזה אנחנו נמצאים בשטח באופן שוטף – מפקחים, בודקים איכות, פותרים בעיות בזמן אמת ומתאמים בין כל בעלי המקצוע.
-אנחנו מנהלים ישיבות, עוקבים אחרי לוחות הזמנים ומוודאים שהכל מתקדם לפי התוכנית.
+      title: 'ליווי בתהליך הבניה',
+      description: `בשלב הזה אנחנו נמצאים בשטח לעיתים תכופות – בודקים איכות, פותרים בעיות בזמן אמת ומתאמים בין כל בעלי המקצוע.
+אנחנו מנהלים ישיבות, עוקבים אחרי ההתקדמות ומוודאים שהכל מתנהל על פי התוכנית.
 כך אתם יכולים להיות רגועים שהפרויקט בידיים טובות.`,
       media: {
         type: 'gallery',
@@ -133,8 +130,7 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
     {
       title: 'עבודות משלימות והתאמות',
       description: `בשלב הזה אנחנו מטפלים בכל העבודות המיוחדות – נגרות, מסגרות, הדפסות, שילוט, פתרונות טכנולוגיים ועוד.
-אנחנו בודקים איכות, מבצעים התקנות, ומתאמים את כל הפרטים הקטנים שמייצרים את הגימור המושלם.
-המטרה – שהעסק ייראה מוכן ומזמין ביום הפתיחה.`,
+אנחנו בודקים איכות, מבצעים התקנות, ומתאמים את כל הפרטים הקטנים שמייצרים את הגימור המושלם.`,
       media: {
         type: 'gallery',
         items: ['/placeholder18.jpg', '/placeholder19.jpg']
@@ -288,47 +284,46 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
             <h3 className={styles.commercialTitle}>שלבים לבניית עסק חדש:</h3>
             
             <div className={styles.stepsContainer}>
-  {groupedSteps.map((group, groupIndex) => {
-    const isOpen = openGroup === groupIndex;
+              {groupedSteps.map((group, groupIndex) => {
+                const isOpen = openGroup === groupIndex;
 
-    return (
-      <div key={groupIndex} className={styles.groupCard}>
-        <div
-          className={styles.groupHeader}
-          onClick={() =>
-            setOpenGroup(isOpen ? null : groupIndex)
-          }
-        >
-          <h4 className={styles.groupTitle}>{group.groupTitle}</h4>
-          <span className={styles.groupToggle}>
-            {isOpen ? '−' : '+'}
-          </span>
-        </div>
+                return (
+                  <div key={groupIndex} className={styles.groupCard}>
+                    <div
+                      className={styles.groupHeader}
+                      onClick={() =>
+                        setOpenGroup(isOpen ? null : groupIndex)
+                      }
+                    >
+                      <h4 className={styles.groupTitle}>{group.groupTitle}</h4>
+                      <span className={styles.groupToggle}>
+                        {isOpen ? '−' : '+'}
+                      </span>
+                    </div>
 
-        {isOpen && (
-          <div className={styles.groupBody}>
-            {group.steps.map((stepIndex) => (
-              <button
-                key={stepIndex}
-                className={styles.stepItem}
-                onClick={() => setSelectedStep(stepIndex)}
-              >
-                <span className={styles.stepNumber}>
-                  {String(stepIndex + 1).padStart(2, '0')}
-                </span>
-                <span className={styles.stepText}>
-                  {stepTitles[stepIndex]}
-                </span>
-                <span className={styles.stepArrow}>→</span>
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-    );
-  })}
-</div>
-
+                    {isOpen && (
+                      <div className={styles.groupBody}>
+                        {group.steps.map((stepIndex) => (
+                          <button
+                            key={stepIndex}
+                            className={styles.stepItem}
+                            onClick={() => setSelectedStep(stepIndex)}
+                          >
+                            <span className={styles.stepNumber}>
+                              {String(stepIndex + 1).padStart(2, '0')}
+                            </span>
+                            <span className={styles.stepText}>
+                              {stepTitles[stepIndex]}
+                            </span>
+                            <span className={styles.stepArrow}>→</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
 
             {/* פופאפ פירוט השלב */}
             {selectedStep !== null && (
