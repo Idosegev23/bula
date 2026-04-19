@@ -9,18 +9,30 @@ import {
 
 export interface ProjectsGalleryProps {
   defaultCategory?: ParentCategoryId;
+  /** מסנן אילו קטגוריות-אם יופיעו. אם מועברת רק קטגוריה אחת — שורת הכרטיסיות-אם מוסתרת אוטומטית. */
+  parents?: ParentCategoryId[];
   data?: GalleryParentCategory[];
   className?: string;
 }
 
 export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
-  defaultCategory = 'businesses',
+  defaultCategory,
+  parents,
   data = projectsGalleryData,
   className = '',
 }) => {
-  const [activeParent, setActiveParent] = useState<ParentCategoryId>(defaultCategory);
+  const filteredData = useMemo(
+    () => (parents && parents.length ? data.filter((c) => parents.includes(c.id)) : data),
+    [data, parents]
+  );
+
+  const initialParent = defaultCategory && filteredData.some((c) => c.id === defaultCategory)
+    ? defaultCategory
+    : filteredData[0]?.id ?? 'businesses';
+
+  const [activeParent, setActiveParent] = useState<ParentCategoryId>(initialParent);
   const [activeSub, setActiveSub] = useState<string>(
-    () => data.find((c) => c.id === defaultCategory)?.subCategories[0]?.id ?? ''
+    () => filteredData.find((c) => c.id === initialParent)?.subCategories[0]?.id ?? ''
   );
   const [lightboxBusiness, setLightboxBusiness] = useState<GalleryBusiness | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -29,28 +41,32 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
   const parentButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
   const thumbsSliderRef = useRef<HTMLDivElement>(null);
   const thumbButtonsRef = useRef<Record<number, HTMLButtonElement | null>>({});
+  const stageRef = useRef<HTMLDivElement>(null);
+  const suppressScrollSyncRef = useRef(false);
   const [indicator, setIndicator] = useState<{ width: number; offset: number }>({ width: 0, offset: 0 });
 
   const activeParentData = useMemo(
-    () => data.find((c) => c.id === activeParent) ?? data[0],
-    [data, activeParent]
+    () => filteredData.find((c) => c.id === activeParent) ?? filteredData[0],
+    [filteredData, activeParent]
   );
 
   const activeSubData = useMemo(
-    () => activeParentData.subCategories.find((s) => s.id === activeSub) ?? activeParentData.subCategories[0],
+    () => activeParentData?.subCategories.find((s) => s.id === activeSub) ?? activeParentData?.subCategories[0],
     [activeParentData, activeSub]
   );
+
+  const showParentTabs = filteredData.length > 1;
 
   const handleParentChange = useCallback(
     (id: ParentCategoryId) => {
       setActiveParent(id);
-      const firstSub = data.find((c) => c.id === id)?.subCategories[0]?.id ?? '';
+      const firstSub = filteredData.find((c) => c.id === id)?.subCategories[0]?.id ?? '';
       setActiveSub(firstSub);
     },
-    [data]
+    [filteredData]
   );
 
-  useEffect(() => {
+  const recomputeIndicator = useCallback(() => {
     const btn = parentButtonsRef.current[activeParent];
     const container = parentTabsRef.current;
     if (!btn || !container) return;
@@ -60,7 +76,14 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
       width: btnRect.width,
       offset: btnRect.left - containerRect.left,
     });
-  }, [activeParent, activeParentData]);
+  }, [activeParent]);
+
+  useEffect(() => {
+    if (!showParentTabs) return;
+    recomputeIndicator();
+    window.addEventListener('resize', recomputeIndicator);
+    return () => window.removeEventListener('resize', recomputeIndicator);
+  }, [recomputeIndicator, activeParentData, showParentTabs]);
 
   const openLightbox = useCallback((business: GalleryBusiness) => {
     setLightboxBusiness(business);
@@ -73,15 +96,31 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
     document.body.style.overflow = '';
   }, []);
 
+  const goToIndex = useCallback((targetIndex: number) => {
+    const stage = stageRef.current;
+    if (!stage) {
+      setLightboxIndex(targetIndex);
+      return;
+    }
+    suppressScrollSyncRef.current = true;
+    stage.scrollTo({ left: targetIndex * stage.clientWidth, behavior: 'smooth' });
+    setLightboxIndex(targetIndex);
+    window.setTimeout(() => {
+      suppressScrollSyncRef.current = false;
+    }, 450);
+  }, []);
+
   const showNext = useCallback(() => {
     if (!lightboxBusiness) return;
-    setLightboxIndex((i) => (i + 1) % lightboxBusiness.images.length);
-  }, [lightboxBusiness]);
+    const count = lightboxBusiness.images.length;
+    goToIndex((lightboxIndex + 1) % count);
+  }, [lightboxBusiness, lightboxIndex, goToIndex]);
 
   const showPrev = useCallback(() => {
     if (!lightboxBusiness) return;
-    setLightboxIndex((i) => (i - 1 + lightboxBusiness.images.length) % lightboxBusiness.images.length);
-  }, [lightboxBusiness]);
+    const count = lightboxBusiness.images.length;
+    goToIndex((lightboxIndex - 1 + count) % count);
+  }, [lightboxBusiness, lightboxIndex, goToIndex]);
 
   useEffect(() => {
     if (!lightboxBusiness) return;
@@ -98,6 +137,31 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
     document.body.style.overflow = '';
   }, []);
 
+  // סנכרון אינדקס פעיל לפי מיקום הגלילה בתצוגת ה-stage
+  useEffect(() => {
+    if (!lightboxBusiness) return;
+    const stage = stageRef.current;
+    if (!stage) return;
+
+    let raf = 0;
+    const handleScroll = () => {
+      if (suppressScrollSyncRef.current) return;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const width = stage.clientWidth;
+        if (!width) return;
+        const index = Math.round(stage.scrollLeft / width);
+        setLightboxIndex((prev) => (prev === index ? prev : index));
+      });
+    };
+    stage.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      stage.removeEventListener('scroll', handleScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [lightboxBusiness]);
+
+  // גלילה של רצועת ה-thumbs כך שה-thumb הפעיל תמיד ממורכז
   useEffect(() => {
     if (!lightboxBusiness) return;
     const slider = thumbsSliderRef.current;
@@ -111,31 +175,37 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
 
   return (
     <div className={`${styles.gallery} ${className}`} dir="rtl">
-      <div className={styles.parentTabs} ref={parentTabsRef} role="tablist" aria-label="קטגוריות ראשיות">
-        {data.map((category) => (
-          <button
-            key={category.id}
-            ref={(el) => {
-              parentButtonsRef.current[category.id] = el;
+      {showParentTabs && (
+        <div className={styles.parentTabs} ref={parentTabsRef} role="tablist" aria-label="קטגוריות ראשיות">
+          {filteredData.map((category) => (
+            <button
+              key={category.id}
+              ref={(el) => {
+                parentButtonsRef.current[category.id] = el;
+              }}
+              className={`${styles.parentTab} ${activeParent === category.id ? styles.parentTabActive : ''}`}
+              onClick={() => handleParentChange(category.id)}
+              role="tab"
+              aria-selected={activeParent === category.id}
+              type="button"
+            >
+              {category.label}
+            </button>
+          ))}
+          <span
+            className={styles.parentIndicator}
+            style={{
+              width: indicator.width,
+              transform: `translateX(${indicator.offset}px)`,
+              visibility: indicator.width > 0 ? 'visible' : 'hidden',
             }}
-            className={`${styles.parentTab} ${activeParent === category.id ? styles.parentTabActive : ''}`}
-            onClick={() => handleParentChange(category.id)}
-            role="tab"
-            aria-selected={activeParent === category.id}
-            type="button"
-          >
-            {category.label}
-          </button>
-        ))}
-        <span
-          className={styles.parentIndicator}
-          style={{ width: indicator.width, transform: `translateX(${indicator.offset}px)` }}
-          aria-hidden="true"
-        />
-      </div>
+            aria-hidden="true"
+          />
+        </div>
+      )}
 
       <div className={styles.subTabs} role="tablist" aria-label="תתי קטגוריות">
-        {activeParentData.subCategories.map((sub) => (
+        {activeParentData?.subCategories.map((sub) => (
           <button
             key={sub.id}
             className={`${styles.subTab} ${activeSub === sub.id ? styles.subTabActive : ''}`}
@@ -177,88 +247,117 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
       </div>
 
       {lightboxBusiness && (
-        <div className={styles.lightbox} onClick={closeLightbox} role="dialog" aria-modal="true" aria-label={lightboxBusiness.name}>
-          <div className={styles.lightboxInner} onClick={(e) => e.stopPropagation()}>
-            <header className={styles.lightboxHeader}>
-              <div className={styles.lightboxTitles}>
-                <h3 className={styles.lightboxName}>{lightboxBusiness.name}</h3>
-                {lightboxBusiness.location && (
-                  <p className={styles.lightboxLocation}>{lightboxBusiness.location}</p>
-                )}
-              </div>
-              <div className={styles.lightboxCounter}>
-                {lightboxIndex + 1} / {lightboxBusiness.images.length}
-              </div>
-              <button
-                className={styles.lightboxClose}
-                onClick={closeLightbox}
-                aria-label="סגור"
-                type="button"
-              >
-                <span aria-hidden="true">×</span>
-              </button>
-            </header>
+        <div
+          className={styles.lightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightboxBusiness.name}
+          onClick={closeLightbox}
+        >
+          {/* כפתור סגירה צף — נשאר גלוי וקליקבילי בכל מצב וגודל מסך */}
+          <button
+            className={styles.lightboxClose}
+            onClick={closeLightbox}
+            aria-label="סגור גלריה"
+            type="button"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
 
-            <div className={styles.lightboxStage}>
+          {/* כותרת עליונה דקה */}
+          <div
+            className={styles.lightboxTopbar}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className={styles.lightboxTitles}>
+              <h3 className={styles.lightboxName}>{lightboxBusiness.name}</h3>
+              {lightboxBusiness.location && (
+                <p className={styles.lightboxLocation}>{lightboxBusiness.location}</p>
+              )}
+            </div>
+            <div className={styles.lightboxCounter}>
+              <span className={styles.lightboxCounterCurrent}>{lightboxIndex + 1}</span>
+              <span className={styles.lightboxCounterDivider}>/</span>
+              <span>{lightboxBusiness.images.length}</span>
+            </div>
+          </div>
+
+          {/* במת תמונות — scroll-snap אופקי: swipe במובייל, חצים בדסקטופ */}
+          <div
+            className={styles.lightboxStage}
+            ref={stageRef}
+            onClick={(e) => e.stopPropagation()}
+            dir="ltr"
+          >
+            {lightboxBusiness.images.map((img, i) => (
+              <div key={img + i} className={styles.lightboxSlide}>
+                <img
+                  src={img}
+                  alt={`${lightboxBusiness.name} — תמונה ${i + 1}`}
+                  className={styles.lightboxImage}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* חצי ניווט — מופיעים רק בדסקטופ, לא חוסמים את התמונה */}
+          {lightboxBusiness.images.length > 1 && (
+            <>
               <button
                 className={`${styles.lightboxArrow} ${styles.lightboxArrowPrev}`}
-                onClick={showPrev}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  showPrev();
+                }}
                 aria-label="הקודם"
                 type="button"
-                disabled={lightboxBusiness.images.length <= 1}
-              >
-                <span aria-hidden="true">›</span>
-              </button>
-
-              <img
-                key={lightboxIndex}
-                src={lightboxBusiness.images[lightboxIndex]}
-                alt={`${lightboxBusiness.name} — תמונה ${lightboxIndex + 1}`}
-                className={styles.lightboxImage}
-              />
-
-              <button
-                className={`${styles.lightboxArrow} ${styles.lightboxArrowNext}`}
-                onClick={showNext}
-                aria-label="הבא"
-                type="button"
-                disabled={lightboxBusiness.images.length <= 1}
               >
                 <span aria-hidden="true">‹</span>
               </button>
-            </div>
-
-            {lightboxBusiness.images.length > 1 && (
-              <div
-                className={styles.carouselSlider}
-                ref={thumbsSliderRef}
-                role="tablist"
-                aria-label="תמונות בגלריה"
+              <button
+                className={`${styles.lightboxArrow} ${styles.lightboxArrowNext}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  showNext();
+                }}
+                aria-label="הבא"
+                type="button"
               >
-                {lightboxBusiness.images.map((img, i) => (
-                  <button
-                    key={img + i}
-                    ref={(el) => {
-                      thumbButtonsRef.current[i] = el;
-                    }}
-                    className={`${styles.carouselSlide} ${i === lightboxIndex ? styles.carouselSlideActive : ''}`}
-                    onClick={() => setLightboxIndex(i)}
-                    aria-label={`תמונה ${i + 1}`}
-                    aria-selected={i === lightboxIndex}
-                    role="tab"
-                    type="button"
-                  >
-                    <img
-                      src={img}
-                      alt=""
-                      loading="lazy"
-                      className={styles.carouselThumb}
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+                <span aria-hidden="true">›</span>
+              </button>
+            </>
+          )}
+
+          {/* רצועת thumbnails בתחתית — תמיד thumbnails אמיתיים, גם במובייל */}
+          {lightboxBusiness.images.length > 1 && (
+            <div
+              className={styles.lightboxThumbs}
+              ref={thumbsSliderRef}
+              role="tablist"
+              aria-label="תמונות בגלריה"
+              onClick={(e) => e.stopPropagation()}
+              dir="ltr"
+            >
+              {lightboxBusiness.images.map((img, i) => (
+                <button
+                  key={img + i}
+                  ref={(el) => {
+                    thumbButtonsRef.current[i] = el;
+                  }}
+                  className={`${styles.lightboxThumb} ${i === lightboxIndex ? styles.lightboxThumbActive : ''}`}
+                  onClick={() => goToIndex(i)}
+                  aria-label={`תמונה ${i + 1}`}
+                  aria-selected={i === lightboxIndex}
+                  role="tab"
+                  type="button"
+                >
+                  <img src={img} alt="" loading="lazy" />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

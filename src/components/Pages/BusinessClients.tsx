@@ -80,7 +80,7 @@ export const BusinessClients: React.FC<BusinessClientsProps> = ({ className = ''
       <section className={styles.gallerySection}>
         <div className={styles.container}>
           <h2 className={styles.galleryTitle}>פרויקטים שביצענו</h2>
-          <ProjectsGallery defaultCategory="businesses" />
+          <ProjectsGallery parents={['businesses']} />
         </div>
       </section>
 

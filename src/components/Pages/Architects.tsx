@@ -228,7 +228,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
             {/* Gallery Preview */}
             <div className={styles.galleryPreview}>
               <h3 className={styles.galleryTitle}>פרויקטים שביצענו</h3>
-              <ProjectsGallery defaultCategory="architecture" />
+              <ProjectsGallery parents={['architecture']} />
             </div>
             
             <p className={styles.ctaSubtitle}>בואו נתחיל לעבוד יחד על הפרויקט הבא</p>
