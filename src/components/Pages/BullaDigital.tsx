@@ -19,7 +19,25 @@ export const BullaDigital: React.FC<BullaDigitalProps> = ({ className = '' }) =>
     <main className={`${styles.digitalPage} ${className}`}>
       {/* Hero */}
       <section className={styles.heroSection}>
+        {/* Technical drawing corners */}
+        <span className={`${styles.corner} ${styles.cornerTL}`} aria-hidden="true" />
+        <span className={`${styles.corner} ${styles.cornerTR}`} aria-hidden="true" />
+        <span className={`${styles.corner} ${styles.cornerBL}`} aria-hidden="true" />
+        <span className={`${styles.corner} ${styles.cornerBR}`} aria-hidden="true" />
+
         <div className={styles.container}>
+          {/* Terminal-style meta strip */}
+          <div className={styles.heroMeta} aria-hidden="true">
+            <span className={styles.metaItem}>bulla/digital</span>
+            <span className={styles.metaBar} />
+            <span className={styles.metaItem}>v.2026</span>
+            <span className={styles.metaBar} />
+            <span className={styles.metaStatus}>
+              <span className={styles.statusDot} />
+              <span>online</span>
+            </span>
+          </div>
+
           <div className={styles.stamp}>
             <img src="/bulla_logo.svg" alt="" className={styles.heroLogoSymbol} />
             <img src="/header-logo.svg" alt="Bulla Studio" className={styles.heroLogoWordmark} />
@@ -30,23 +48,47 @@ export const BullaDigital: React.FC<BullaDigitalProps> = ({ className = '' }) =>
           <h1 className={styles.heroTitle}>
             <span className={styles.heroLine}>הסטודיו הדיגיטלי</span>
             <span className={styles.heroLine}>
-              ל
+              <span className={styles.heroConnector}>ל</span>
               <span className={styles.rotator} aria-hidden="true">
-                <span className={styles.rotatorTrack}>
-                  <span>מיתוג</span>
-                  <span>אתרים</span>
-                  <span>אוטומציות</span>
-                  <span>AI</span>
-                  <span>מיתוג</span>
-                </span>
+                <span className={styles.rotatorWord}>מיתוג</span>
+                <span className={styles.rotatorWord}>אתרים</span>
+                <span className={styles.rotatorWord}>אוטומציות</span>
+                <span className={styles.rotatorWord}>AI</span>
               </span>
               <span className={styles.srOnly}>מיתוג, אתרים, אוטומציות ו-AI</span>
             </span>
           </h1>
 
-          <div className={styles.heroCaret} aria-hidden="true">
-            <span className={styles.heroCaretDot} />
-            <span className={styles.heroCaretLabel}>scroll</span>
+          <p className={styles.heroTagline}>
+            סטודיו אחד. אחריות אחת.<span className={styles.taglineSep} aria-hidden="true"> · </span>מהשלד הראשוני ועד ההשקה לאוויר.
+          </p>
+
+          <div className={styles.heroCTAs}>
+            <a
+              href="https://wa.me/972549739577?text=שלום,%20אני%20מעוניין%20בייעוץ%20לסטודיו%20הדיגיטלי"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.heroPrimary}
+            >
+              <span>בואו נדבר</span>
+              <span className={styles.heroPrimaryArrow} aria-hidden="true">←</span>
+            </a>
+            <a href="#services" className={styles.heroSecondary}>
+              או ראו מה אנחנו עושים
+            </a>
+          </div>
+
+          <div className={styles.scrollMarker} aria-hidden="true">
+            <span className={styles.scrollRule}>
+              <span className={styles.tick} />
+              <span className={styles.tick} />
+              <span className={styles.tick} />
+              <span className={`${styles.tick} ${styles.tickMajor}`} />
+              <span className={styles.tick} />
+              <span className={styles.tick} />
+              <span className={styles.tick} />
+            </span>
+            <span className={styles.scrollLabel}>scroll</span>
           </div>
         </div>
       </section>
@@ -65,7 +107,7 @@ export const BullaDigital: React.FC<BullaDigitalProps> = ({ className = '' }) =>
       </section>
 
       {/* Services — each with its own motif */}
-      <section className={styles.servicesSection}>
+      <section id="services" className={styles.servicesSection}>
         <div className={styles.container}>
           <div className={styles.servicesHeader}>
             <span className={styles.sectionKicker}>01 / שירותים</span>
