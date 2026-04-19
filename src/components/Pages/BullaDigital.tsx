@@ -1,4 +1,6 @@
 import React from 'react';
+import RotatingText from '../UI/RotatingText/RotatingText';
+import PixelBlast from '../UI/PixelBlast/PixelBlast';
 import styles from './BullaDigital.module.css';
 
 export interface BullaDigitalProps {
@@ -49,11 +51,15 @@ export const BullaDigital: React.FC<BullaDigitalProps> = ({ className = '' }) =>
             <span className={styles.heroLine}>הסטודיו הדיגיטלי</span>
             <span className={styles.heroLine}>
               <span className={styles.heroConnector}>ל</span>
-              <span className={styles.rotator} aria-hidden="true">
-                <span className={styles.rotatorWord}>מיתוג</span>
-                <span className={styles.rotatorWord}>אתרים</span>
-                <span className={styles.rotatorWord}>אוטומציות</span>
-                <span className={styles.rotatorWord}>AI</span>
+              <span className={styles.rotatorWrap}>
+                <RotatingText
+                  texts={['מיתוג', 'אתרים', 'אוטומציות', 'AI']}
+                  staggerFrom="last"
+                  staggerDuration={0.025}
+                  rotationInterval={2400}
+                  splitLevelClassName={styles.rotatorWord}
+                  transition={{ type: 'spring', damping: 28, stiffness: 360 }}
+                />
               </span>
               <span className={styles.srOnly}>מיתוג, אתרים, אוטומציות ו-AI</span>
             </span>
@@ -93,9 +99,26 @@ export const BullaDigital: React.FC<BullaDigitalProps> = ({ className = '' }) =>
         </div>
       </section>
 
-      {/* Manifesto */}
+      {/* Manifesto — רקע של פיקסלים אינטראקטיביים שמתקשר ישירות ל"בפיקסלים" */}
       <section className={styles.manifestoSection}>
-        <div className={styles.container}>
+        <div className={styles.manifestoBg} aria-hidden="true">
+          <PixelBlast
+            variant="square"
+            pixelSize={5}
+            color="#28939f"
+            patternScale={2.6}
+            patternDensity={1}
+            pixelSizeJitter={0.25}
+            enableRipples
+            rippleSpeed={0.38}
+            rippleThickness={0.12}
+            rippleIntensityScale={1.4}
+            speed={0.45}
+            edgeFade={0.35}
+            transparent
+          />
+        </div>
+        <div className={`${styles.container} ${styles.manifestoContent}`}>
           <p className={styles.manifestoText}>
             <span className={styles.manifestoLine}>נגרות.</span>
             <span className={styles.manifestoLine}>בפיקסלים.</span>
@@ -289,7 +312,7 @@ export const BullaDigital: React.FC<BullaDigitalProps> = ({ className = '' }) =>
               >
                 שליחת פרויקט
               </a>
-              <a href="mailto:info@bulla.studio" className={styles.ctaSecondary}>
+              <a href="mailto:bulla.hstudio@gmail.com" className={styles.ctaSecondary}>
                 או במייל
               </a>
             </div>

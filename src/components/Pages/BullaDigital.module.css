@@ -240,52 +240,40 @@
   margin-left: 0.08em;
 }
 
-/* רוטטור — גישת grid-layer: כל המילים באותו תא, רק הפעילה גלויה.
-   מבטיחה יישור baseline מדויק עם הטקסט הסמוך, בלי הטיה של overflow. */
-.rotator {
-  display: inline-grid;
-  grid-template-columns: max-content;
-  grid-template-rows: 1fr;
+/* עטיפה לרוטטור (RotatingText) — מתוכננת לחיות inline בתוך כותרת,
+   עם overflow hidden כדי לחתוך אנימציות כניסה/יציאה של אותיות,
+   ו-hairline טורקיז מתחת שמחבר ויזואלית את המילה המתחלפת לשפה. */
+.rotatorWrap {
+  display: inline-flex;
+  align-items: baseline;
   vertical-align: baseline;
   position: relative;
   font-weight: 500;
   color: #1a1a1a;
   letter-spacing: -0.01em;
+  overflow: hidden;
+  line-height: 1;
+  padding: 0.08em 0.1em;
+  margin-right: 0.04em;
 }
 
-.rotatorWord {
-  grid-row: 1;
-  grid-column: 1;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateY(0.22em);
-  animation: wordCycle 10s infinite;
-  will-change: opacity, transform;
-}
-
-.rotatorWord:nth-child(1) { animation-delay: 0s; }
-.rotatorWord:nth-child(2) { animation-delay: 2.5s; }
-.rotatorWord:nth-child(3) { animation-delay: 5s; }
-.rotatorWord:nth-child(4) { animation-delay: 7.5s; }
-
-@keyframes wordCycle {
-  0%           { opacity: 0; transform: translateY(0.22em); }
-  2.5%, 22.5%  { opacity: 1; transform: translateY(0); }
-  25%          { opacity: 0; transform: translateY(-0.22em); }
-  100%         { opacity: 0; transform: translateY(-0.22em); }
-}
-
-/* hairline דק רציף בטורקיז — מחליף את הקו המקווקו */
-.rotator::after {
+.rotatorWrap::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.1em;
+  left: 0.1em;
+  right: 0.1em;
+  bottom: 0;
   height: 1px;
   background: #28939f;
   opacity: 0.45;
   pointer-events: none;
+}
+
+/* מילה בודדת בתוך ה-RotatingText — inline-flex נוצרת כבר מה-CSS של הקומפוננטה,
+   כאן רק מוודאים שה-letter-spacing וה-white-space מתיישרים עם הטיפוגרפיה של ההירו. */
+.rotatorWord {
+  white-space: nowrap;
+  letter-spacing: inherit;
 }
 
 /* Hero tagline */
@@ -305,14 +293,14 @@
   padding: 0 4px;
 }
 
-/* Hero CTAs */
+/* Hero CTAs — block-level כדי ליצור שורה נפרדת מתחת לטאגליין */
 .heroCTAs {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 26px;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 32px;
+  margin: 32px 0 0;
 }
 
 .heroPrimary {
@@ -381,14 +369,15 @@
   opacity: 1;
 }
 
-/* Scroll marker — ruler ticks */
+/* Scroll marker — ruler ticks. block-level + gap מצומצם כדי להרגיש
+   כסימון משני ולא כ-CTA שלישי שנלחם על תשומת לב */
 .scrollMarker {
-  margin-top: 52px;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  color: #888;
+  gap: 8px;
+  margin: 56px 0 0;
+  color: #999;
 }
 
 .scrollRule {
@@ -439,6 +428,27 @@
   padding: 100px 0 120px 0;
   text-align: center;
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #ffffff;
+}
+
+/* שכבת הפיקסלים — מלאת הסקציה, מאחורי התוכן */
+.manifestoBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* התוכן צף מעל הפיקסלים ולא חוסם את האינטראקציה איתם */
+.manifestoContent {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.manifestoContent > * {
+  pointer-events: auto;
 }
 
 .manifestoSection::before,
@@ -447,6 +457,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 1;
   width: 48px;
   height: 1px;
   background: #1a1a1a;
@@ -1176,24 +1187,15 @@
   }
 }
 
-/* reduce motion */
+/* reduce motion — ה-RotatingText מטפל פנימית באמצעות framer-motion,
+   כאן רק מנטרלים אנימציות CSS ידניות בפריטים אחרים של ההירו */
 @media (prefers-reduced-motion: reduce) {
-  .rotatorWord,
   .statusDot,
   .tick,
   .browserSkeleton,
   .flowLine,
   .chatTyping span {
     animation: none !important;
-  }
-
-  .rotatorWord {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .rotatorWord:not(:first-child) {
-    display: none;
   }
 
   .tick {
