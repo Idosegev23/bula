@@ -60,20 +60,20 @@ export const Contact: React.FC<ContactProps> = ({ className = '' }) => {
     {
       id: 'phone',
       label: 'טלפון',
-      value: '050-123-4567',
-      link: 'tel:+972501234567'
+      value: '054-973-9577',
+      link: 'tel:+972549739577'
     },
     {
       id: 'email',
       label: 'אימייל',
-      value: 'info@bullastudio.com',
-      link: 'mailto:info@bullastudio.com'
+      value: 'bulla.hstudio@gmail.com',
+      link: 'mailto:bulla.hstudio@gmail.com'
     },
     {
       id: 'address',
       label: 'כתובת',
-      value: 'רחוב התעשייה 15, תל אביב',
-      link: 'https://maps.google.com'
+      value: 'הנגר 10, אשקלון',
+      link: 'https://maps.google.com/?q=הנגר+10+אשקלון'
     },
     {
       id: 'hours',
