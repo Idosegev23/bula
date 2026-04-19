@@ -27,6 +27,8 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
 
   const parentTabsRef = useRef<HTMLDivElement>(null);
   const parentButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
+  const thumbsSliderRef = useRef<HTMLDivElement>(null);
+  const thumbButtonsRef = useRef<Record<number, HTMLButtonElement | null>>({});
   const [indicator, setIndicator] = useState<{ width: number; offset: number }>({ width: 0, offset: 0 });
 
   const activeParentData = useMemo(
@@ -95,6 +97,17 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
   useEffect(() => () => {
     document.body.style.overflow = '';
   }, []);
+
+  useEffect(() => {
+    if (!lightboxBusiness) return;
+    const slider = thumbsSliderRef.current;
+    const thumb = thumbButtonsRef.current[lightboxIndex];
+    if (!slider || !thumb) return;
+    const sliderRect = slider.getBoundingClientRect();
+    const thumbRect = thumb.getBoundingClientRect();
+    const delta = thumbRect.left + thumbRect.width / 2 - (sliderRect.left + sliderRect.width / 2);
+    slider.scrollBy({ left: delta, behavior: 'smooth' });
+  }, [lightboxIndex, lightboxBusiness]);
 
   return (
     <div className={`${styles.gallery} ${className}`} dir="rtl">
@@ -216,16 +229,31 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
             </div>
 
             {lightboxBusiness.images.length > 1 && (
-              <div className={styles.thumbs}>
+              <div
+                className={styles.carouselSlider}
+                ref={thumbsSliderRef}
+                role="tablist"
+                aria-label="תמונות בגלריה"
+              >
                 {lightboxBusiness.images.map((img, i) => (
                   <button
                     key={img + i}
-                    className={`${styles.thumb} ${i === lightboxIndex ? styles.thumbActive : ''}`}
+                    ref={(el) => {
+                      thumbButtonsRef.current[i] = el;
+                    }}
+                    className={`${styles.carouselSlide} ${i === lightboxIndex ? styles.carouselSlideActive : ''}`}
                     onClick={() => setLightboxIndex(i)}
                     aria-label={`תמונה ${i + 1}`}
+                    aria-selected={i === lightboxIndex}
+                    role="tab"
                     type="button"
                   >
-                    <img src={img} alt="" loading="lazy" />
+                    <img
+                      src={img}
+                      alt=""
+                      loading="lazy"
+                      className={styles.carouselThumb}
+                    />
                   </button>
                 ))}
               </div>
