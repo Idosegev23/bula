@@ -123,6 +123,42 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
           onClick={() => navigate('/private-clients')}
           aria-label="לקוחות פרטיים"
         />
+
+        {/* Bulla Studio Shop - חותמת דהויה */}
+        <button
+          className={`${styles.deskStamp} ${styles.deskStampMobile}`}
+          style={{
+            top: '68%',
+            left: '7%',
+            width: '26%',
+            ['--stamp-angle' as string]: '-5deg',
+          } as React.CSSProperties}
+          onClick={() => navigate('/shop')}
+          aria-label="Bulla Studio Shop"
+        >
+          <img src="/bulla_logo.svg" alt="" className={styles.deskStampSymbol} />
+          <img src="/header-logo.svg" alt="Bulla Studio" className={styles.deskStampWordmark} />
+          <span className={styles.deskStampDivider} />
+          <span className={styles.deskStampLabel}>Shop</span>
+        </button>
+
+        {/* Bulla Studio Digital - חותמת דהויה (מעל נגרות בהתאמה אישית) */}
+        <button
+          className={`${styles.deskStamp} ${styles.deskStampMobile}`}
+          style={{
+            top: '42%',
+            left: '56%',
+            width: '22%',
+            ['--stamp-angle' as string]: '3deg',
+          } as React.CSSProperties}
+          onClick={() => navigate('/digital')}
+          aria-label="Bulla Studio Digital"
+        >
+          <img src="/bulla_logo.svg" alt="" className={styles.deskStampSymbol} />
+          <img src="/header-logo.svg" alt="Bulla Studio" className={styles.deskStampWordmark} />
+          <span className={styles.deskStampDivider} />
+          <span className={styles.deskStampLabel}>Digital</span>
+        </button>
       </div>
     );
   }
@@ -185,6 +221,42 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
         onClick={() => navigate('/private-clients')}
         aria-label="לקוחות פרטיים"
       />
+
+      {/* Bulla Studio Shop - חותמת דהויה (צד שמאל של השולחן) */}
+      <button
+        className={styles.deskStamp}
+        style={{
+          top: '22%',
+          left: '7%',
+          width: '13%',
+          ['--stamp-angle' as string]: '-5deg',
+        } as React.CSSProperties}
+        onClick={() => navigate('/shop')}
+        aria-label="Bulla Studio Shop"
+      >
+        <img src="/bulla_logo.svg" alt="" className={styles.deskStampSymbol} />
+        <img src="/header-logo.svg" alt="Bulla Studio" className={styles.deskStampWordmark} />
+        <span className={styles.deskStampDivider} />
+        <span className={styles.deskStampLabel}>Shop</span>
+      </button>
+
+      {/* Bulla Studio Digital - חותמת דהויה (מעל נגרות בהתאמה אישית) */}
+      <button
+        className={styles.deskStamp}
+        style={{
+          top: '13%',
+          left: '66.5%',
+          width: '10.5%',
+          ['--stamp-angle' as string]: '3deg',
+        } as React.CSSProperties}
+        onClick={() => navigate('/digital')}
+        aria-label="Bulla Studio Digital"
+      >
+        <img src="/bulla_logo.svg" alt="" className={styles.deskStampSymbol} />
+        <img src="/header-logo.svg" alt="Bulla Studio" className={styles.deskStampWordmark} />
+        <span className={styles.deskStampDivider} />
+        <span className={styles.deskStampLabel}>Digital</span>
+      </button>
 
       {/* אייפון - לינק לאינסטגרם עם סרטון */}
       <a

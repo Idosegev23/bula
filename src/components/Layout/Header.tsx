@@ -23,6 +23,8 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     { label: 'עיצוב והקמת עסקים', path: '/services' },
     { label: 'קשרי אדריכלים', path: '/architects' },
     { label: 'נגרות בהתאמה אישית', path: '/private-clients' },
+    { label: 'Bulla Shop', path: '/shop' },
+    { label: 'Bulla Digital', path: '/digital' },
     // { label: 'לקוחות עסקיים', path: '/business-clients' },
     { label: 'אודות', path: '/about' }
   ];
