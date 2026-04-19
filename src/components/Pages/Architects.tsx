@@ -2,6 +2,7 @@
 // Text-focused minimalistic design following established patterns
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Architects.module.css';
+import { ProjectsGallery } from '../UI/ProjectsGallery';
 
 interface ArchitectsProps {
   className?: string;
@@ -227,23 +228,7 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
             {/* Gallery Preview */}
             <div className={styles.galleryPreview}>
               <h3 className={styles.galleryTitle}>פרויקטים שביצענו</h3>
-              <div className={styles.galleryGrid}>
-                <div className={styles.galleryItem}>
-                  <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=400&fit=crop&crop=center" alt="פרויקט אדריכלי מסחרי" className={styles.galleryImage} />
-                </div>
-                <div className={styles.galleryItem}>
-                  <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center" alt="פרויקט עיצוב פנים" className={styles.galleryImage} />
-                </div>
-                <div className={styles.galleryItem}>
-                  <img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&h=400&fit=crop&crop=center" alt="פרויקט נגרות מותאמת" className={styles.galleryImage} />
-                </div>
-                <div className={styles.galleryItem}>
-                  <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=400&fit=crop&crop=center" alt="פרויקט קונסטרוקציה" className={styles.galleryImage} />
-                </div>
-              </div>
-              <button className={styles.galleryViewMore}>
-                צפייה בכל הפרויקטים
-              </button>
+              <ProjectsGallery defaultCategory="architecture" />
             </div>
             
             <p className={styles.ctaSubtitle}>בואו נתחיל לעבוד יחד על הפרויקט הבא</p>

@@ -1,0 +1,6 @@
+/* RoughBracket Styles */
+.bracket {
+  display: block;
+  flex-shrink: 0;
+}
+

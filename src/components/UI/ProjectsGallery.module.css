@@ -1,0 +1,422 @@
+.gallery {
+  width: 100%;
+  direction: rtl;
+}
+
+/* === Parent tabs === */
+.parentTabs {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--color-light-gray);
+  padding-bottom: 0;
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.parentTab {
+  background: transparent;
+  border: none;
+  padding: var(--space-sm) var(--space-xs);
+  font-family: inherit;
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  font-weight: 500;
+  color: var(--color-medium-gray);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: color var(--transition-normal);
+  position: relative;
+  white-space: nowrap;
+}
+
+.parentTab:hover {
+  color: var(--color-charcoal);
+}
+
+.parentTabActive {
+  color: var(--color-black);
+  font-weight: 600;
+}
+
+.parentIndicator {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--color-black);
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1),
+    width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  pointer-events: none;
+  will-change: transform, width;
+}
+
+/* === Sub tabs === */
+.subTabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xl);
+}
+
+.subTab {
+  background: transparent;
+  border: 1px solid var(--color-light-gray);
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--color-dark-gray);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+}
+
+.subTab:hover {
+  border-color: var(--color-black);
+  color: var(--color-black);
+}
+
+.subTabActive {
+  background: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+}
+
+/* === Grid === */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+.card {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background: var(--color-white);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: cardEnter 0.5s ease forwards;
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+.card:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-black);
+}
+
+@keyframes cardEnter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cardImageWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--color-off-white);
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  display: block;
+}
+
+.card:hover .cardImage {
+  transform: scale(1.05);
+}
+
+.cardImageWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.25));
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+.card:hover .cardImageWrap::after {
+  opacity: 1;
+}
+
+.cardCount {
+  position: absolute;
+  top: var(--space-sm);
+  inset-inline-start: var(--space-sm);
+  background: rgba(0, 0, 0, 0.72);
+  color: var(--color-white);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(6px);
+}
+
+.cardMeta {
+  padding: var(--space-sm) 0.25rem;
+  text-align: start;
+}
+
+.cardName {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-black);
+  letter-spacing: 0.01em;
+}
+
+.cardLocation {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--color-medium-gray);
+}
+
+/* === Lightbox === */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.25s ease;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightboxInner {
+  position: relative;
+  width: min(1200px, 100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  color: var(--color-white);
+}
+
+.lightboxHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lightboxTitles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.lightboxName {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.lightboxLocation {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.lightboxCounter {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+.lightboxClose {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--color-white);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all var(--transition-normal);
+  flex-shrink: 0;
+}
+
+.lightboxClose:hover {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.lightboxStage {
+  position: relative;
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  animation: imgFade 0.35s ease;
+  display: block;
+}
+
+@keyframes imgFade {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.lightboxArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(6px);
+}
+
+.lightboxArrow:hover:not(:disabled) {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.lightboxArrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.lightboxArrowPrev {
+  inset-inline-start: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.lightboxArrowNext {
+  inset-inline-end: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.thumbs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.25rem 0;
+  scrollbar-width: thin;
+}
+
+.thumb {
+  all: unset;
+  width: 72px;
+  height: 54px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  opacity: 0.5;
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+  border: 2px solid transparent;
+  outline: none;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.thumb:hover {
+  opacity: 0.85;
+}
+
+.thumbActive {
+  opacity: 1;
+  border-color: var(--color-white);
+}
+
+/* === Responsive === */
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .parentTabs {
+    gap: 1.25rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .parentTabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .subTabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    padding-bottom: 0.25rem;
+  }
+
+  .subTabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lightboxArrow {
+    width: 42px;
+    height: 42px;
+    font-size: 1.5rem;
+  }
+
+  .thumb {
+    width: 56px;
+    height: 42px;
+  }
+
+  .lightboxHeader {
+    flex-wrap: wrap;
+  }
+
+  .lightboxCounter {
+    order: 3;
+    width: 100%;
+    text-align: center;
+  }
+}
