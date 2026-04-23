@@ -20,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
     contact: [
       { label: 'צור קשר', path: '/contact' },
       { label: '054-973-9577', href: 'tel:+972549739577' },
-      { label: 'bulla.hstudio@gmail.com', href: 'mailto:bulla.hstudio@gmail.com' },
+      { label: 'info@bulla.co.il', href: 'mailto:info@bulla.co.il' },
       { label: 'הנגר 10, אשקלון', href: 'https://maps.google.com/?q=הנגר+10+אשקלון' },
     ],
   };

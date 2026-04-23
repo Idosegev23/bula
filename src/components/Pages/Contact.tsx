@@ -66,8 +66,8 @@ export const Contact: React.FC<ContactProps> = ({ className = '' }) => {
     {
       id: 'email',
       label: 'אימייל',
-      value: 'bulla.hstudio@gmail.com',
-      link: 'mailto:bulla.hstudio@gmail.com'
+      value: 'info@bulla.co.il',
+      link: 'mailto:info@bulla.co.il'
     },
     {
       id: 'address',

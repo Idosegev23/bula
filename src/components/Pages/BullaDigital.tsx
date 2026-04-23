@@ -312,7 +312,7 @@ export const BullaDigital: React.FC<BullaDigitalProps> = ({ className = '' }) =>
               >
                 שליחת פרויקט
               </a>
-              <a href="mailto:bulla.hstudio@gmail.com" className={styles.ctaSecondary}>
+              <a href="mailto:info@bulla.co.il" className={styles.ctaSecondary}>
                 או במייל
               </a>
             </div>
