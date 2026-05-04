@@ -56,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ className = '' }) => {
     if (!isLoaded) return;
 
     const currentWord = rotatingWords[currentWordIndex].text;
-    let timer: number;
+    let timer: ReturnType<typeof setTimeout>;
 
     if (isDeleting) {
       // Deleting effect

@@ -1,0 +1,438 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  font-size: 13px;
+  direction: ltr;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #0f0f10;
+  border-bottom: 1px solid #2a2a2c;
+  flex-wrap: wrap;
+}
+
+.toolbar h1 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  margin-right: 12px;
+  letter-spacing: 0.05em;
+}
+
+.toolbar select,
+.toolbar button,
+.toolbar input[type='checkbox'] {
+  background: #2a2a2c;
+  border: 1px solid #3a3a3c;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.toolbar button:hover {
+  background: #3a3a3c;
+}
+
+.toolbar button.primary {
+  background: #28939f;
+  border-color: #28939f;
+}
+
+.toolbar button.primary:hover {
+  background: #2da6b3;
+}
+
+.toolbar button.send {
+  background: linear-gradient(180deg, #34a049 0%, #2a8a3e 100%);
+  border-color: #2a8a3e;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 22px;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px rgba(42, 138, 62, 0.4);
+}
+
+.toolbar button.send:hover {
+  background: linear-gradient(180deg, #3eb455 0%, #2f9344 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(42, 138, 62, 0.55);
+}
+
+/* כפתור Send צף קבוע בפינה התחתונה-ימנית — תמיד גלוי תוך כדי עריכה */
+.floatingSend {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  background: linear-gradient(180deg, #34a049 0%, #2a8a3e 100%);
+  border: 2px solid #237233;
+  border-radius: 999px;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(42, 138, 62, 0.4);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.floatingSend:hover {
+  background: linear-gradient(180deg, #3eb455 0%, #2f9344 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 4px 14px rgba(42, 138, 62, 0.6);
+}
+
+.floatingSend:active {
+  transform: translateY(0);
+}
+
+.floatingSend.busy {
+  background: #555;
+  border-color: #666;
+  cursor: wait;
+}
+
+.floatingSend.success {
+  background: linear-gradient(180deg, #4ec96b 0%, #34a049 100%);
+}
+
+.floatingSend.error {
+  background: linear-gradient(180deg, #d04040 0%, #a02828 100%);
+  border-color: #802020;
+}
+
+.floatingSend small {
+  font-size: 11px;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.floatingHint {
+  position: fixed;
+  bottom: 84px;
+  right: 24px;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  font-family: -apple-system, sans-serif;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  pointer-events: none;
+  white-space: nowrap;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.statusOk {
+  color: #6dd693;
+  font-size: 12px;
+  margin-left: 8px;
+  font-family: -apple-system, sans-serif;
+}
+
+.statusErr {
+  color: #ff7070;
+  font-size: 12px;
+  margin-left: 8px;
+  font-family: -apple-system, sans-serif;
+}
+
+.toolbar button.danger {
+  background: #5a2a2a;
+  border-color: #6a3a3a;
+}
+
+.toolbar label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+
+.layout {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.canvas {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: auto;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  background-size: cover;
+  background-position: center;
+  background-color: #2a2a2c;
+  cursor: crosshair;
+  user-select: none;
+  -webkit-user-select: none;
+  border: 1px solid #3a3a3c;
+}
+
+/* במצב מובייל — תמונה צרה וגבוהה, מגבילים רוחב כדי שתיכנס במסך */
+.imageWrapMobile {
+  max-width: 380px;
+}
+
+.hotspot {
+  position: absolute;
+  border: 2px solid rgba(40, 147, 159, 0.85);
+  background: rgba(40, 147, 159, 0.18);
+  pointer-events: auto;
+  cursor: move;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.hotspotSelected {
+  border-color: #ffd400;
+  background: rgba(255, 212, 0, 0.18);
+  z-index: 5;
+}
+
+.hotspotLabel {
+  position: absolute;
+  top: -22px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  pointer-events: none;
+  font-family: 'SF Mono', 'Menlo', monospace;
+}
+
+.hotspotSelected .hotspotLabel {
+  background: #ffd400;
+  color: #000;
+}
+
+.hotspotDelete {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #d04040;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  z-index: 6;
+}
+
+.handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #ffd400;
+  border: 1px solid #1a1a1a;
+  z-index: 7;
+}
+
+.handleNW { top: -6px; left: -6px; cursor: nwse-resize; }
+.handleNE { top: -6px; right: -6px; cursor: nesw-resize; }
+.handleSW { bottom: -6px; left: -6px; cursor: nesw-resize; }
+.handleSE { bottom: -6px; right: -6px; cursor: nwse-resize; }
+
+/* ידית סיבוב — עיגול מעל המלבן עם קו מחבר */
+.rotateHandle {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  background: #ffd400;
+  border: 2px solid #1a1a1a;
+  border-radius: 50%;
+  cursor: grab;
+  z-index: 8;
+}
+
+.rotateHandle:active {
+  cursor: grabbing;
+}
+
+.rotateLine {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  width: 1px;
+  height: 22px;
+  background: #ffd400;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.drawingRect {
+  position: absolute;
+  border: 2px dashed #ffd400;
+  background: rgba(255, 212, 0, 0.12);
+  pointer-events: none;
+}
+
+.sidebar {
+  width: 380px;
+  background: #0f0f10;
+  border-left: 1px solid #2a2a2c;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  font-size: 12px;
+  margin: 0 0 12px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hotspotItem {
+  background: #1a1a1c;
+  border: 1px solid #2a2a2c;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.hotspotItem.selected {
+  border-color: #ffd400;
+}
+
+.hotspotItem strong {
+  display: block;
+  font-size: 13px;
+  color: #28939f;
+  margin-bottom: 6px;
+}
+
+.coords {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 12px;
+  font-size: 11px;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+.coords > span {
+  font-variant-numeric: tabular-nums;
+}
+
+.rotationRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.rotationRow label {
+  font-size: 11px;
+  color: #aaa;
+}
+
+.rotationRow input {
+  width: 60px;
+  background: #2a2a2c;
+  border: 1px solid #3a3a3c;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 11px;
+}
+
+.itemActions {
+  display: flex;
+  gap: 6px;
+}
+
+.itemActions button {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #3a3a3c;
+  color: #ccc;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.itemActions button:hover {
+  background: #2a2a2c;
+}
+
+.itemActions .deleteBtn:hover {
+  background: #5a2a2a;
+  border-color: #d04040;
+  color: #fff;
+}
+
+.exportPanel {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #2a2a2c;
+}
+
+.exportPanel pre {
+  background: #000;
+  border: 1px solid #2a2a2c;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 8px 0;
+  font-size: 11px;
+  max-height: 320px;
+  overflow: auto;
+  white-space: pre-wrap;
+  color: #98c379;
+}
+
+.empty {
+  color: #666;
+  font-style: italic;
+  text-align: center;
+  padding: 24px 12px;
+  border: 1px dashed #2a2a2c;
+  border-radius: 6px;
+  font-family: -apple-system, sans-serif;
+}
+
+.help {
+  font-size: 11px;
+  color: #888;
+  font-family: -apple-system, sans-serif;
+  margin-left: auto;
+}

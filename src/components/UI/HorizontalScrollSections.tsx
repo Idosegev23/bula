@@ -38,20 +38,113 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
           onLoad={() => setImageLoaded(true)}
         />
         
-        {/* סרטון בתוך מסך האייפון - עם לינק לאינסטגרם */}
+        {/* כל הקואורדינטות עודכנו ידנית דרך Hotspot Editor (?mode=mobile),
+           ונשמרו ב-hotspots-mobile.json. */}
+
+        {/* עיצוב והקמת עסקים — מניפת צבעים בראש */}
+        <button
+          className={styles.mobileClickableArea}
+          style={{
+            position: 'absolute',
+            top: '10.32%',
+            left: '7.38%',
+            width: '67.8%',
+            height: '3.95%',
+            transform: 'rotate(-22.6deg)',
+          }}
+          onClick={() => navigate('/services')}
+          aria-label="עיצוב והקמת עסקים"
+        />
+
+        {/* נגרות בהתאמה אישית — בלוק חיתוך עץ */}
+        <button
+          className={styles.mobileClickableArea}
+          style={{
+            position: 'absolute',
+            top: '27.19%',
+            left: '11.12%',
+            width: '37.3%',
+            height: '4.59%',
+            transform: 'rotate(-8.5deg)',
+          }}
+          onClick={() => navigate('/private-clients')}
+          aria-label="נגרות בהתאמה אישית"
+        />
+
+        {/* קשרי אדריכלים — מניפת פנטון */}
+        <button
+          className={styles.mobileClickableArea}
+          style={{
+            position: 'absolute',
+            top: '37.42%',
+            left: '27.75%',
+            width: '49.41%',
+            height: '4.23%',
+            transform: 'rotate(-13.9deg)',
+          }}
+          onClick={() => navigate('/architects')}
+          aria-label="קשרי אדריכלים"
+        />
+
+        {/* בולה שופ — מסך הלפטופ */}
+        <button
+          className={styles.mobileClickableArea}
+          style={{
+            position: 'absolute',
+            top: '47.06%',
+            left: '0.85%',
+            width: '62.42%',
+            height: '7.57%',
+            transform: 'rotate(25.4deg)',
+          }}
+          onClick={() => navigate('/shop')}
+          aria-label="Bulla Shop"
+        />
+
+        {/* מיתוג — קלפים + פלטת צבעים */}
+        <button
+          className={styles.mobileClickableArea}
+          style={{
+            position: 'absolute',
+            top: '62.77%',
+            left: '10.43%',
+            width: '37.22%',
+            height: '3.29%',
+          }}
+          onClick={() => navigate('/digital')}
+          aria-label="מיתוג"
+        />
+
+        {/* BULLA Digital — מדבקה + עכבר */}
+        <button
+          className={styles.mobileClickableArea}
+          style={{
+            position: 'absolute',
+            top: '77.41%',
+            left: '10.44%',
+            width: '41.32%',
+            height: '1.85%',
+            transform: 'rotate(9.7deg)',
+          }}
+          onClick={() => navigate('/digital')}
+          aria-label="Bulla Digital"
+        />
+
+        {/* אייפון — וידאו אינסטגרם נטען לתוך המסך הפנימי */}
         <a
           href="https://www.instagram.com/bulla.studio/"
           target="_blank"
           rel="noopener noreferrer"
           style={{
             position: 'absolute',
-            top: '69.2%',
-            left: '48%',
-            width: '23%',
-            height: '11%',
-            transform: 'rotate(25deg)',
+            top: '84.26%',
+            left: '20.34%',
+            width: '23.01%',
+            height: '7.5%',
+            transform: 'rotate(8.5deg)',
             zIndex: 999,
-            cursor: 'pointer',
+            overflow: 'hidden',
+            borderRadius: '12px',
             display: 'block',
           }}
           aria-label="בקרו אותנו באינסטגרם"
@@ -77,201 +170,131 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
             <source src="/instegram.mp4" type="video/mp4" />
           </video>
         </a>
-        
-        {/* כפתור: ליווי עסקי - יצירת והקמת עסקים */}
-        <button
-          className={styles.mobileClickableArea}
-          style={{
-            position: 'absolute',
-            top: '31.5%',
-            left: '25.1%',
-            width: '47.3%',
-            height: '3.7%',
-            transform: 'rotate(18deg)',
-          }}
-          onClick={() => navigate('/services')}
-          aria-label="ליווי עסקי"
-        />
-
-        {/* כפתור: אדריכלים */}
-        <button
-          className={styles.mobileClickableArea}
-          style={{
-            position: 'absolute',
-            top: '45.6%',
-            left: '-1.5%',
-            width: '57%',
-            height: '5%',
-            transform: 'rotate(-18deg)',
-            clipPath: 'polygon(19% 28%, 87% 0%, 90% 93%, 21% 92%)',
-          }}
-          onClick={() => navigate('/architects')}
-          aria-label="אדריכלים"
-        />
-
-        {/* כפתור: לקוחות פרטיים - נגרות בהתאמה אישית */}
-        <button
-          className={styles.mobileClickableArea}
-          style={{
-            position: 'absolute',
-            top: '52.3%',
-            left: '18.5%',
-            width: '38.5%',
-            height: '6.2%',
-            transform: 'rotate(-17deg)',
-          }}
-          onClick={() => navigate('/private-clients')}
-          aria-label="לקוחות פרטיים"
-        />
-
-        {/* Bulla Studio Shop - חותמת דהויה */}
-        <button
-          className={`${styles.deskStamp} ${styles.deskStampMobile}`}
-          style={{
-            top: '68%',
-            left: '7%',
-            width: '26%',
-            ['--stamp-angle' as string]: '-5deg',
-          } as React.CSSProperties}
-          onClick={() => navigate('/shop')}
-          aria-label="Bulla Studio Shop"
-        >
-          <img src="/bulla_logo.svg" alt="" className={styles.deskStampSymbol} />
-          <img src="/header-logo.svg" alt="Bulla Studio" className={styles.deskStampWordmark} />
-          <span className={styles.deskStampDivider} />
-          <span className={styles.deskStampLabel}>Shop</span>
-        </button>
-
-        {/* Bulla Studio Digital - חותמת דהויה (מעל נגרות בהתאמה אישית) */}
-        <button
-          className={`${styles.deskStamp} ${styles.deskStampMobile}`}
-          style={{
-            top: '42%',
-            left: '56%',
-            width: '22%',
-            ['--stamp-angle' as string]: '3deg',
-          } as React.CSSProperties}
-          onClick={() => navigate('/digital')}
-          aria-label="Bulla Studio Digital"
-        >
-          <img src="/bulla_logo.svg" alt="" className={styles.deskStampSymbol} />
-          <img src="/header-logo.svg" alt="Bulla Studio" className={styles.deskStampWordmark} />
-          <span className={styles.deskStampDivider} />
-          <span className={styles.deskStampLabel}>Digital</span>
-        </button>
       </div>
     );
   }
 
-  // בדסקטופ - הירו עם התמונה homep.png וכפתורים קליקביליים
+  // בדסקטופ - הירו של "שולחן עבודה" עם הדמיה חדשה (אתר בולה 2026)
+  // התמונה 4800×2700 כוללת את כל התוויות מצוירות בתוכה — אזורי הקליק שקופים מעליהן.
+  // המיקומים מבוססים על אומדן חזותי ראשוני, ניתן לכוון בעין על גבי הדף החי.
   return (
     <div className={styles.desktopHero}>
       <img
-        src="/desktop 20-11.webp"
-        alt="Woodcraft Hero"
+        src="/desktop.webp"
+        alt="Bulla Studio - שולחן עבודה"
         className={styles.desktopHeroImage}
         loading="eager"
         fetchPriority="high"
         onLoad={() => setImageLoaded(true)}
       />
-      
-      {/* כפתור: ליווי עסקי - יצירת והקמת עסקים */}
+
+      {/* כל הקואורדינטות הבאות מקורן ב-Hotspot Editor (ב-localhost/hotspot-edit) —
+         המשתמש סימן ידנית על התמונה החיה ושלח דרך כפתור "Send to Claude". */}
+
+      {/* עיצוב והקמת עסקים — מניפת צבעים שמאל-עליון */}
       <button
         className={styles.desktopClickableArea}
         style={{
           position: 'absolute',
-          top: '25.1%',
-          left: '51%',
-          width: '14.2%',
-          height: '8%',
-          transform: 'rotate(18deg)',
+          top: '18.05%',
+          left: '12.4%',
+          width: '18.02%',
+          height: '10.25%',
+          transform: 'rotate(-13.8deg)',
         }}
-        
         onClick={() => navigate('/services')}
-        aria-label="ליווי עסקי"
+        aria-label="עיצוב והקמת עסקים"
       />
 
-      {/* כפתור: אדריכלים */}
+      {/* נגרות בהתאמה אישית — בלוק חיתוך עץ, מרכז-עליון */}
       <button
         className={styles.desktopClickableArea}
         style={{
           position: 'absolute',
-          top: '60.9%',
-          left: '48.2%',
-          width: '17.5%',
-          height: '10.5%',
-          transform: 'rotate(-33deg)',
-          clipPath: 'polygon(18% 22%, 88% 0%, 89% 95%, 20% 92%)',
-        }}
-        onClick={() => navigate('/architects')}
-        aria-label="אדריכלים"
-      />
-
-      {/* כפתור: לקוחות פרטיים - נגרות בהתאמה אישית */}
-      <button
-        className={styles.desktopClickableArea}
-        style={{
-          position: 'absolute',
-          top: '31%',
-          left: '67.2%',
-          width: '10%',
-          height: '11.3%',
-          transform: 'rotate(-14deg)',
+          top: '21.13%',
+          left: '42.08%',
+          width: '11.41%',
+          height: '13.01%',
+          transform: 'rotate(-14.3deg)',
         }}
         onClick={() => navigate('/private-clients')}
-        aria-label="לקוחות פרטיים"
+        aria-label="נגרות בהתאמה אישית"
       />
 
-      {/* Bulla Studio Shop - חותמת דהויה (צד שמאל של השולחן) */}
+      {/* מיתוג — קלפים עם עלים + פלטת צבעים. מנותב לדף הדיגיטל */}
       <button
-        className={styles.deskStamp}
+        className={styles.desktopClickableArea}
         style={{
-          top: '22%',
-          left: '7%',
-          width: '13%',
-          ['--stamp-angle' as string]: '-5deg',
-        } as React.CSSProperties}
-        onClick={() => navigate('/shop')}
-        aria-label="Bulla Studio Shop"
-      >
-        <img src="/bulla_logo.svg" alt="" className={styles.deskStampSymbol} />
-        <img src="/header-logo.svg" alt="Bulla Studio" className={styles.deskStampWordmark} />
-        <span className={styles.deskStampDivider} />
-        <span className={styles.deskStampLabel}>Shop</span>
-      </button>
-
-      {/* Bulla Studio Digital - חותמת דהויה (מעל נגרות בהתאמה אישית) */}
-      <button
-        className={styles.deskStamp}
-        style={{
-          top: '13%',
-          left: '66.5%',
-          width: '10.5%',
-          ['--stamp-angle' as string]: '3deg',
-        } as React.CSSProperties}
+          position: 'absolute',
+          top: '34.43%',
+          left: '63.39%',
+          width: '10.57%',
+          height: '8.98%',
+          transform: 'rotate(0.4deg)',
+        }}
         onClick={() => navigate('/digital')}
-        aria-label="Bulla Studio Digital"
-      >
-        <img src="/bulla_logo.svg" alt="" className={styles.deskStampSymbol} />
-        <img src="/header-logo.svg" alt="Bulla Studio" className={styles.deskStampWordmark} />
-        <span className={styles.deskStampDivider} />
-        <span className={styles.deskStampLabel}>Digital</span>
-      </button>
+        aria-label="מיתוג"
+      />
 
-      {/* אייפון - לינק לאינסטגרם עם סרטון */}
+      {/* קשרי אדריכלים — מניפת פנטון מרכז-שמאל */}
+      <button
+        className={styles.desktopClickableArea}
+        style={{
+          position: 'absolute',
+          top: '50.44%',
+          left: '24.83%',
+          width: '14.46%',
+          height: '10.36%',
+          transform: 'rotate(-18.7deg)',
+        }}
+        onClick={() => navigate('/architects')}
+        aria-label="קשרי אדריכלים"
+      />
+
+      {/* בולה שופ — מסך הלפטופ במרכז */}
+      <button
+        className={styles.desktopClickableArea}
+        style={{
+          position: 'absolute',
+          top: '55.65%',
+          left: '44.76%',
+          width: '18.49%',
+          height: '18.86%',
+          transform: 'rotate(-16.3deg)',
+        }}
+        onClick={() => navigate('/shop')}
+        aria-label="Bulla Shop"
+      />
+
+      {/* BULLA Digital — מדבקה + עכבר ימין-מרכז */}
+      <button
+        className={styles.desktopClickableArea}
+        style={{
+          position: 'absolute',
+          top: '66.29%',
+          left: '69.59%',
+          width: '12.17%',
+          height: '4.71%',
+          transform: 'rotate(8.2deg)',
+        }}
+        onClick={() => navigate('/digital')}
+        aria-label="Bulla Digital"
+      />
+
+      {/* אייפון — מסך הטלפון בימין-עליון; וידאו אינסטגרם נטען לתוך המסך */}
       <a
         href="https://www.instagram.com/bulla.studio/"
         target="_blank"
         rel="noopener noreferrer"
-        // className={styles.desktopClickableArea}
         style={{
           position: 'absolute',
-          top: '56.6%',
-          left: '85.6%',
-          width: '6.7%',
-          height: '21.5%',
-          transform: 'rotate(-10deg)',
+          top: '33.95%',
+          left: '87.11%',
+          width: '5.71%',
+          height: '16.51%',
+          transform: 'rotate(8.3deg)',
           overflow: 'hidden',
+          borderRadius: '14px',
         }}
         aria-label="בקרו אותנו באינסטגרם"
       >
