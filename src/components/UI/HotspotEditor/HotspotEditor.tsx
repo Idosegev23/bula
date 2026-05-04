@@ -20,6 +20,7 @@ const PRESETS = [
   'shop',
   'digital',
   'instagram-screen',
+  'coffee',
 ];
 
 const STORAGE_KEY_DESKTOP = 'bulla-hotspot-editor-desktop-v1';
@@ -34,17 +35,21 @@ const PRELOADED_DESKTOP: Hotspot[] = [
   { id: 'p-shop', label: 'shop', top: 55.65, left: 44.76, width: 18.49, height: 18.86, rotation: -16.3 },
   { id: 'p-digital', label: 'digital', top: 66.29, left: 69.59, width: 12.17, height: 4.71, rotation: 8.2 },
   { id: 'p-instagram-screen', label: 'instagram-screen', top: 33.95, left: 87.11, width: 5.71, height: 16.51, rotation: 8.3 },
+  // הערכה ראשונית — סמן ידני ב-Editor כדי לדייק
+  { id: 'p-coffee', label: 'coffee', top: 60, left: 4, width: 8, height: 12, rotation: 0 },
 ];
 
 // אזורי מובייל — 4 מתוכם מתוך .ai (Fm153-156), 3 הערכות חזותיות.
 const PRELOADED_MOBILE: Hotspot[] = [
-  { id: 'p-services', label: 'services', top: 8.10, left: 7.39, width: 68.27, height: 8.57, rotation: 0 },
-  { id: 'p-private-clients', label: 'private-clients', top: 26.72, left: 10.5, width: 39.44, height: 5.38, rotation: 0 },
-  { id: 'p-architects', label: 'architects', top: 35.89, left: 22.37, width: 59.54, height: 7.86, rotation: 0 },
-  { id: 'p-shop', label: 'shop', top: 44.5, left: 18.5, width: 53, height: 11, rotation: 0 },
-  { id: 'p-branding', label: 'branding', top: 56, left: 12, width: 60, height: 14, rotation: 0 },
-  { id: 'p-digital', label: 'digital', top: 75.5, left: 10.04, width: 45.45, height: 7.5, rotation: 0 },
-  { id: 'p-instagram-screen', label: 'instagram-screen', top: 86.5, left: 5, width: 22, height: 9, rotation: 0 },
+  { id: 'p-services', label: 'services', top: 10.32, left: 7.38, width: 67.8, height: 3.95, rotation: -22.6 },
+  { id: 'p-private-clients', label: 'private-clients', top: 27.19, left: 11.12, width: 37.3, height: 4.59, rotation: -8.5 },
+  { id: 'p-architects', label: 'architects', top: 37.42, left: 27.75, width: 49.41, height: 4.23, rotation: -13.9 },
+  { id: 'p-shop', label: 'shop', top: 47.06, left: 0.85, width: 62.42, height: 7.57, rotation: 25.4 },
+  { id: 'p-branding', label: 'branding', top: 62.77, left: 10.43, width: 37.22, height: 3.29, rotation: 0 },
+  { id: 'p-digital', label: 'digital', top: 77.41, left: 10.44, width: 41.32, height: 1.85, rotation: 9.7 },
+  { id: 'p-instagram-screen', label: 'instagram-screen', top: 84.26, left: 20.34, width: 23.01, height: 7.5, rotation: 8.5 },
+  // הערכה ראשונית — סמן ידני ב-Editor כדי לדייק
+  { id: 'p-coffee', label: 'coffee', top: 70, left: 60, width: 12, height: 5, rotation: 0 },
 ];
 
 const clamp = (n: number) => Math.max(0, Math.min(100, n));

@@ -170,6 +170,23 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
             <source src="/instegram.mp4" type="video/mp4" />
           </video>
         </a>
+
+        {/* כוס קפה — לינק חיצוני ל-Coffeeland Club */}
+        <a
+          href="https://www.coffelandclub.co.il/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            position: 'absolute',
+            top: '57.67%',
+            left: '14%',
+            width: '13.56%',
+            height: '3.82%',
+            transform: 'rotate(-15.7deg)',
+            display: 'block',
+          }}
+          aria-label="Coffeeland Club"
+        />
       </div>
     );
   }
@@ -317,6 +334,23 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
           <source src="/instegram.mp4" type="video/mp4" />
         </video>
       </a>
+
+      {/* כוס קפה — לינק חיצוני ל-Coffeeland Club */}
+      <a
+        href="https://www.coffelandclub.co.il/"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          position: 'absolute',
+          top: '22.26%',
+          left: '64.55%',
+          width: '3.95%',
+          height: '8.78%',
+          transform: 'rotate(-14.6deg)',
+          display: 'block',
+        }}
+        aria-label="Coffeeland Club"
+      />
     </div>
   );
 };
