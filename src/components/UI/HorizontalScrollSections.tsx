@@ -111,7 +111,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
             width: '37.22%',
             height: '3.29%',
           }}
-          onClick={() => navigate('/digital')}
+          onClick={() => navigate('/branding')}
           aria-label="מיתוג"
         />
 
@@ -232,7 +232,7 @@ export const HorizontalScrollSections: React.FC<HorizontalScrollSectionsProps> =
           height: '8.98%',
           transform: 'rotate(0.4deg)',
         }}
-        onClick={() => navigate('/digital')}
+        onClick={() => navigate('/branding')}
         aria-label="מיתוג"
       />
 

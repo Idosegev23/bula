@@ -26,6 +26,7 @@ import { PrivateClients } from './components/Pages/PrivateClients';
 import { BusinessClients } from './components/Pages/BusinessClients';
 import { BullaShop } from './components/Pages/BullaShop';
 import { BullaDigital } from './components/Pages/BullaDigital';
+import { BullaBranding } from './components/Pages/BullaBranding';
 import HotspotEditor from './components/UI/HotspotEditor/HotspotEditor';
 
 import { Contact } from './components/Pages/Contact';
@@ -67,6 +68,7 @@ const AppContent: React.FC = () => {
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/shop" element={<BullaShop />} />
             <Route path="/digital" element={<BullaDigital />} />
+            <Route path="/branding" element={<BullaBranding />} />
             <Route path="/hotspot-edit" element={<HotspotEditor />} />
             <Route path="/contact" element={<Contact />} />
 
