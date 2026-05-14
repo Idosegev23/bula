@@ -1,0 +1,24 @@
+{
+  "_comment": "מיפוי ID של תיקיות (אנגלית, kebab-case) → תווית עברית שתופיע באתר. הוסף כאן כל sub-category חדשה שיצרת ב-public/gallery/.",
+  "parents": {
+    "businesses": "עסקים",
+    "architecture": "אדריכלות",
+    "carpentry": "נגרות"
+  },
+  "subs": {
+    "cafes-bakeries": "בתי קפה ומאפיות",
+    "restaurants": "מסעדות",
+    "ice-cream": "גלידריות",
+    "barbershops": "מספרות",
+    "gyms": "חדרי כושר",
+    "shops-markets": "חנויות ושווקים",
+    "hitech-offices": "הייטק ומשרדים",
+    "offices-authorities": "משרדים ורשויות",
+    "commercial-spaces": "חללים מסחריים",
+    "private-homes": "בתים פרטיים",
+    "corporate": "מותגים תאגידיים",
+    "other": "אחר",
+    "commercial": "מסחרי",
+    "residential": "מגורים"
+  }
+}

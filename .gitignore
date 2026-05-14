@@ -22,3 +22,21 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local gallery staging — האימג'ים חיים ב-Vercel Blob, לא בריפו.
+# התיקיה משמשת רק כ-staging לפני `npm run gallery:upload`.
+public/gallery/**
+!public/gallery/README.md
+!public/gallery/.gitkeep
+!public/gallery/businesses/.gitkeep
+!public/gallery/architecture/.gitkeep
+!public/gallery/carpentry/.gitkeep
+
+# Blob upload cache — נבנה מחדש בכל מחשב
+scripts/gallery-blob-cache.json
+
+# Env (Vercel Blob token, Instagram tokens, וכו')
+.env
+.env.local
+.env*.local
+.vercel

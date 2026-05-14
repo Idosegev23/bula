@@ -228,7 +228,11 @@ export const Architects: React.FC<ArchitectsProps> = ({ className = '' }) => {
             {/* Gallery Preview */}
             <div className={styles.galleryPreview}>
               <h3 className={styles.galleryTitle}>פרויקטים שביצענו</h3>
-              <ProjectsGallery parents={['architecture']} />
+              <ProjectsGallery
+                parents={['architecture']}
+                kicker="01 / גלריה"
+                title="פרויקטים עם אדריכלים"
+              />
             </div>
             
             <p className={styles.ctaSubtitle}>בואו נתחיל לעבוד יחד על הפרויקט הבא</p>

@@ -4,21 +4,30 @@ import {
   projectsGalleryData,
   type GalleryBusiness,
   type GalleryParentCategory,
+  type GallerySubCategory,
   type ParentCategoryId,
 } from '../../data/projectsGallery';
 
 export interface ProjectsGalleryProps {
   defaultCategory?: ParentCategoryId;
-  /** מסנן אילו קטגוריות-אם יופיעו. אם מועברת רק קטגוריה אחת — שורת הכרטיסיות-אם מוסתרת אוטומטית. */
+  /** מסנן אילו קטגוריות-אם יופיעו. */
   parents?: ParentCategoryId[];
   data?: GalleryParentCategory[];
+  /** מילת הכותרת מעל הגלריה (kicker — `01 / גלריה`). */
+  kicker?: string;
+  /** הכותרת הראשית מעל הגלריה. אם לא מועבר — נשתמש בשם הקטגוריה. */
+  title?: string;
   className?: string;
 }
+
+const ALL_SUB_ID = '__all__';
 
 export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
   defaultCategory,
   parents,
   data = projectsGalleryData,
+  kicker,
+  title,
   className = '',
 }) => {
   const filteredData = useMemo(
@@ -26,16 +35,16 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
     [data, parents]
   );
 
-  const initialParent = defaultCategory && filteredData.some((c) => c.id === defaultCategory)
-    ? defaultCategory
-    : filteredData[0]?.id ?? 'businesses';
+  const initialParent =
+    defaultCategory && filteredData.some((c) => c.id === defaultCategory)
+      ? defaultCategory
+      : filteredData[0]?.id ?? 'businesses';
 
   const [activeParent, setActiveParent] = useState<ParentCategoryId>(initialParent);
-  const [activeSub, setActiveSub] = useState<string>(
-    () => filteredData.find((c) => c.id === initialParent)?.subCategories[0]?.id ?? ''
-  );
+  const [activeSub, setActiveSub] = useState<string>(ALL_SUB_ID);
   const [lightboxBusiness, setLightboxBusiness] = useState<GalleryBusiness | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [filterKey, setFilterKey] = useState(0); // לאניס את האנימציה ברענון פילטר
 
   const parentTabsRef = useRef<HTMLDivElement>(null);
   const parentButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -45,26 +54,38 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
   const suppressScrollSyncRef = useRef(false);
   const [indicator, setIndicator] = useState<{ width: number; offset: number }>({ width: 0, offset: 0 });
 
-  const activeParentData = useMemo(
+  const activeParentData: GalleryParentCategory | undefined = useMemo(
     () => filteredData.find((c) => c.id === activeParent) ?? filteredData[0],
     [filteredData, activeParent]
   );
 
-  const activeSubData = useMemo(
-    () => activeParentData?.subCategories.find((s) => s.id === activeSub) ?? activeParentData?.subCategories[0],
-    [activeParentData, activeSub]
+  // פריטים מוצגים — לפי תת-קטגוריה פעילה או "הכל"
+  const visibleBusinesses = useMemo<GalleryBusiness[]>(() => {
+    if (!activeParentData) return [];
+    if (activeSub === ALL_SUB_ID) {
+      return activeParentData.subCategories.flatMap((s) => s.businesses);
+    }
+    const sub = activeParentData.subCategories.find((s) => s.id === activeSub);
+    return sub ? sub.businesses : [];
+  }, [activeParentData, activeSub]);
+
+  const totalParentCount = useMemo<number>(
+    () => activeParentData?.subCategories.reduce((sum, s) => sum + s.businesses.length, 0) ?? 0,
+    [activeParentData]
   );
 
   const showParentTabs = filteredData.length > 1;
 
-  const handleParentChange = useCallback(
-    (id: ParentCategoryId) => {
-      setActiveParent(id);
-      const firstSub = filteredData.find((c) => c.id === id)?.subCategories[0]?.id ?? '';
-      setActiveSub(firstSub);
-    },
-    [filteredData]
-  );
+  const handleParentChange = useCallback((id: ParentCategoryId) => {
+    setActiveParent(id);
+    setActiveSub(ALL_SUB_ID);
+    setFilterKey((k) => k + 1);
+  }, []);
+
+  const handleSubChange = useCallback((id: string) => {
+    setActiveSub(id);
+    setFilterKey((k) => k + 1);
+  }, []);
 
   const recomputeIndicator = useCallback(() => {
     const btn = parentButtonsRef.current[activeParent];
@@ -85,6 +106,7 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
     return () => window.removeEventListener('resize', recomputeIndicator);
   }, [recomputeIndicator, activeParentData, showParentTabs]);
 
+  // ---- Lightbox ----
   const openLightbox = useCallback((business: GalleryBusiness) => {
     setLightboxBusiness(business);
     setLightboxIndex(0);
@@ -133,9 +155,12 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
     return () => window.removeEventListener('keydown', onKey);
   }, [lightboxBusiness, closeLightbox, showNext, showPrev]);
 
-  useEffect(() => () => {
-    document.body.style.overflow = '';
-  }, []);
+  useEffect(
+    () => () => {
+      document.body.style.overflow = '';
+    },
+    []
+  );
 
   // סנכרון אינדקס פעיל לפי מיקום הגלילה בתצוגת ה-stage
   useEffect(() => {
@@ -173,79 +198,132 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
     slider.scrollBy({ left: delta, behavior: 'smooth' });
   }, [lightboxIndex, lightboxBusiness]);
 
+  // כותרת תצוגה — אם הועבר prop, אחרת label של הקטגוריה הראשית
+  const displayTitle = title ?? activeParentData?.label ?? 'גלריה';
+  const headerKicker = kicker ?? '01 / גלריה';
+  const subCategories: GallerySubCategory[] = activeParentData?.subCategories ?? [];
+
   return (
     <div className={`${styles.gallery} ${className}`} dir="rtl">
-      {showParentTabs && (
-        <div className={styles.parentTabs} ref={parentTabsRef} role="tablist" aria-label="קטגוריות ראשיות">
-          {filteredData.map((category) => (
-            <button
-              key={category.id}
-              ref={(el) => {
-                parentButtonsRef.current[category.id] = el;
+      {/* ===== הדר הגלריה ===== */}
+      <header className={styles.galleryHeader}>
+        <div className={styles.headerKicker}>{headerKicker}</div>
+
+        {showParentTabs ? (
+          // 2+ קטגוריות — להציג טאבים
+          <div className={styles.parentTabs} ref={parentTabsRef} role="tablist" aria-label="קטגוריות ראשיות">
+            {filteredData.map((category) => (
+              <button
+                key={category.id}
+                ref={(el) => {
+                  parentButtonsRef.current[category.id] = el;
+                }}
+                className={`${styles.parentTab} ${activeParent === category.id ? styles.parentTabActive : ''}`}
+                onClick={() => handleParentChange(category.id)}
+                role="tab"
+                aria-selected={activeParent === category.id}
+                type="button"
+              >
+                {category.label}
+              </button>
+            ))}
+            <span
+              className={styles.parentIndicator}
+              style={{
+                width: indicator.width,
+                transform: `translateX(${indicator.offset}px)`,
+                visibility: indicator.width > 0 ? 'visible' : 'hidden',
               }}
-              className={`${styles.parentTab} ${activeParent === category.id ? styles.parentTabActive : ''}`}
-              onClick={() => handleParentChange(category.id)}
+              aria-hidden="true"
+            />
+          </div>
+        ) : (
+          // קטגוריה יחידה — להציג ככותרת מהממת
+          <h2 className={styles.headerTitle}>{displayTitle}</h2>
+        )}
+
+        <div className={styles.headerCount}>
+          <span className={styles.countNum}>{visibleBusinesses.length}</span>
+          <span className={styles.countLabel}>
+            {visibleBusinesses.length === totalParentCount
+              ? 'פרויקטים בקטגוריה'
+              : `מתוך ${totalParentCount} פרויקטים`}
+          </span>
+        </div>
+      </header>
+
+      {/* ===== Sub-tabs (כדורי פילטר) ===== */}
+      {subCategories.length > 1 && (
+        <div className={styles.subTabs} role="tablist" aria-label="תתי קטגוריות">
+          <button
+            className={`${styles.subTab} ${activeSub === ALL_SUB_ID ? styles.subTabActive : ''}`}
+            onClick={() => handleSubChange(ALL_SUB_ID)}
+            role="tab"
+            aria-selected={activeSub === ALL_SUB_ID}
+            type="button"
+          >
+            הכל
+            <span className={styles.subTabCount}>{totalParentCount}</span>
+          </button>
+          {subCategories.map((sub) => (
+            <button
+              key={sub.id}
+              className={`${styles.subTab} ${activeSub === sub.id ? styles.subTabActive : ''}`}
+              onClick={() => handleSubChange(sub.id)}
               role="tab"
-              aria-selected={activeParent === category.id}
+              aria-selected={activeSub === sub.id}
               type="button"
             >
-              {category.label}
+              {sub.label}
+              <span className={styles.subTabCount}>{sub.businesses.length}</span>
             </button>
           ))}
-          <span
-            className={styles.parentIndicator}
-            style={{
-              width: indicator.width,
-              transform: `translateX(${indicator.offset}px)`,
-              visibility: indicator.width > 0 ? 'visible' : 'hidden',
-            }}
-            aria-hidden="true"
-          />
         </div>
       )}
 
-      <div className={styles.subTabs} role="tablist" aria-label="תתי קטגוריות">
-        {activeParentData?.subCategories.map((sub) => (
-          <button
-            key={sub.id}
-            className={`${styles.subTab} ${activeSub === sub.id ? styles.subTabActive : ''}`}
-            onClick={() => setActiveSub(sub.id)}
-            role="tab"
-            aria-selected={activeSub === sub.id}
-            type="button"
-          >
-            {sub.label}
-          </button>
-        ))}
-      </div>
+      {/* ===== Grid / Empty State ===== */}
+      {visibleBusinesses.length === 0 ? (
+        <div className={styles.emptyState}>
+          <div className={styles.emptyMark}>—</div>
+          <p className={styles.emptyText}>בקרוב — נעדכן את הקטגוריה בקרוב.</p>
+        </div>
+      ) : (
+        <div className={styles.grid} key={filterKey}>
+          {visibleBusinesses.map((business, index) => (
+            <button
+              key={business.id}
+              className={`${styles.card} ${styles[`cardVariant${(index % 5) + 1}`]}`}
+              onClick={() => openLightbox(business)}
+              style={{ animationDelay: `${Math.min(index, 8) * 50}ms` }}
+              type="button"
+              aria-label={`פתיחת גלריה של ${business.name}`}
+            >
+              <div className={styles.cardImageWrap}>
+                <img
+                  src={business.images[0]}
+                  alt={business.name}
+                  className={styles.cardImage}
+                  loading="lazy"
+                />
+                {business.images.length > 1 && (
+                  <span className={styles.cardCount}>{business.images.length}</span>
+                )}
+                <div className={styles.cardOverlay}>
+                  <div className={styles.cardOverlayInner}>
+                    <h3 className={styles.cardName}>{business.name}</h3>
+                    {business.location && <p className={styles.cardLocation}>{business.location}</p>}
+                    <span className={styles.cardArrow} aria-hidden="true">
+                      ←
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
 
-      <div className={styles.grid} key={`${activeParent}-${activeSub}`}>
-        {activeSubData?.businesses.map((business, index) => (
-          <button
-            key={business.id}
-            className={styles.card}
-            onClick={() => openLightbox(business)}
-            style={{ animationDelay: `${index * 60}ms` }}
-            type="button"
-            aria-label={`פתיחת גלריה של ${business.name}`}
-          >
-            <div className={styles.cardImageWrap}>
-              <img
-                src={business.images[0]}
-                alt={business.name}
-                className={styles.cardImage}
-                loading="lazy"
-              />
-              <span className={styles.cardCount}>{business.images.length}</span>
-            </div>
-            <div className={styles.cardMeta}>
-              <h3 className={styles.cardName}>{business.name}</h3>
-              {business.location && <p className={styles.cardLocation}>{business.location}</p>}
-            </div>
-          </button>
-        ))}
-      </div>
-
+      {/* ===== Lightbox (כפי שבנינו קודם — full-screen scroll-snap) ===== */}
       {lightboxBusiness && (
         <div
           className={styles.lightbox}
@@ -254,7 +332,6 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
           aria-label={lightboxBusiness.name}
           onClick={closeLightbox}
         >
-          {/* כפתור סגירה צף — נשאר גלוי וקליקבילי בכל מצב וגודל מסך */}
           <button
             className={styles.lightboxClose}
             onClick={closeLightbox}
@@ -264,11 +341,7 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
             <span aria-hidden="true">×</span>
           </button>
 
-          {/* כותרת עליונה דקה */}
-          <div
-            className={styles.lightboxTopbar}
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className={styles.lightboxTopbar} onClick={(e) => e.stopPropagation()}>
             <div className={styles.lightboxTitles}>
               <h3 className={styles.lightboxName}>{lightboxBusiness.name}</h3>
               {lightboxBusiness.location && (
@@ -282,13 +355,7 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
             </div>
           </div>
 
-          {/* במת תמונות — scroll-snap אופקי: swipe במובייל, חצים בדסקטופ */}
-          <div
-            className={styles.lightboxStage}
-            ref={stageRef}
-            onClick={(e) => e.stopPropagation()}
-            dir="ltr"
-          >
+          <div className={styles.lightboxStage} ref={stageRef} onClick={(e) => e.stopPropagation()} dir="ltr">
             {lightboxBusiness.images.map((img, i) => (
               <div key={img + i} className={styles.lightboxSlide}>
                 <img
@@ -302,7 +369,6 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
             ))}
           </div>
 
-          {/* חצי ניווט — מופיעים רק בדסקטופ, לא חוסמים את התמונה */}
           {lightboxBusiness.images.length > 1 && (
             <>
               <button
@@ -330,7 +396,6 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
             </>
           )}
 
-          {/* רצועת thumbnails בתחתית — תמיד thumbnails אמיתיים, גם במובייל */}
           {lightboxBusiness.images.length > 1 && (
             <div
               className={styles.lightboxThumbs}

@@ -5,109 +5,203 @@
   --carousel-gap: 0.75rem;
 }
 
-/* === Parent tabs === */
+/* ============================================================
+   Gallery Header — kicker + title/tabs + count
+   ============================================================ */
+.galleryHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(28px, 5vw, 56px);
+  padding-bottom: clamp(20px, 3vw, 32px);
+  position: relative;
+}
+
+.galleryHeader::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 1px;
+  background: #1a1a1a;
+  opacity: 0.25;
+}
+
+.headerKicker {
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #999;
+  direction: ltr;
+}
+
+.headerTitle {
+  font-size: clamp(2rem, 5.5vw, 3.25rem);
+  font-weight: 200;
+  letter-spacing: -0.025em;
+  color: #1a1a1a;
+  margin: 0;
+  text-align: center;
+  line-height: 1.05;
+}
+
+/* כשיש כמה קטגוריות-אם — להציג כטאבים מתחת ל-kicker */
 .parentTabs {
   position: relative;
   display: flex;
   justify-content: center;
-  gap: clamp(1rem, 4vw, 3rem);
-  border-bottom: 1px solid var(--color-light-gray);
-  padding-bottom: 0;
-  margin-bottom: var(--space-xl);
+  gap: clamp(1.5rem, 5vw, 3.5rem);
   flex-wrap: wrap;
+  padding-bottom: 6px;
 }
 
 .parentTab {
   background: transparent;
   border: none;
-  padding: var(--space-sm) var(--space-xs);
+  padding: 6px 0;
   font-family: inherit;
-  font-size: clamp(1rem, 2.2vw, 1.4rem);
-  font-weight: 500;
-  color: var(--color-medium-gray);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 200;
+  color: #aaa;
   cursor: pointer;
-  letter-spacing: 0.02em;
-  transition: color var(--transition-normal);
+  letter-spacing: -0.02em;
+  transition: color 0.3s ease;
   position: relative;
   white-space: nowrap;
 }
 
 .parentTab:hover {
-  color: var(--color-charcoal);
+  color: #555;
 }
 
 .parentTabActive {
-  color: var(--color-black);
-  font-weight: 600;
+  color: #1a1a1a;
+  font-weight: 300;
 }
 
 .parentIndicator {
   position: absolute;
-  bottom: -1px;
+  bottom: 0;
   left: 0;
   height: 2px;
-  background: var(--color-black);
-  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1),
-    width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  background: #1a1a1a;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1),
+    width 0.45s cubic-bezier(0.65, 0, 0.35, 1);
   pointer-events: none;
   will-change: transform, width;
 }
 
-/* === Sub tabs === */
+.headerCount {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.countNum {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #28939f;
+  font-variant-numeric: tabular-nums;
+}
+
+.countLabel {
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   Sub-tabs — pill filters
+   ============================================================ */
 .subTabs {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-bottom: var(--space-xl);
+  gap: 10px 12px;
+  margin-bottom: clamp(28px, 4vw, 44px);
 }
 
 .subTab {
   background: transparent;
-  border: 1px solid var(--color-light-gray);
-  padding: 0.55rem 1.25rem;
+  border: 1px solid #d8d8d8;
+  padding: 0.6rem 1.15rem;
   border-radius: 999px;
   font-family: inherit;
   font-size: 0.95rem;
-  color: var(--color-dark-gray);
+  font-weight: 400;
+  color: #555;
   cursor: pointer;
-  transition: all var(--transition-normal);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.005em;
 }
 
 .subTab:hover {
-  border-color: var(--color-black);
-  color: var(--color-black);
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+  transform: translateY(-1px);
 }
 
 .subTabActive {
-  background: var(--color-black);
-  border-color: var(--color-black);
-  color: var(--color-white);
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #ffffff;
 }
 
-/* === Grid === */
+.subTabActive:hover {
+  background: #1a1a1a;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.subTabCount {
+  display: inline-block;
+  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: inherit;
+  opacity: 0.55;
+  font-variant-numeric: tabular-nums;
+}
+
+.subTabActive .subTabCount {
+  opacity: 0.75;
+}
+
+/* ============================================================
+   Grid — magazine-style masonry with varied aspect ratios
+   ============================================================ */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1rem, 2vw, 1.75rem);
+  gap: clamp(14px, 2vw, 22px);
 }
 
 .card {
   all: unset;
-  display: flex;
-  flex-direction: column;
+  display: block;
   cursor: pointer;
-  background: var(--color-white);
+  background: #ffffff;
   opacity: 0;
-  transform: translateY(12px);
-  animation: cardEnter 0.5s ease forwards;
-  border-radius: var(--radius-sm);
+  transform: translateY(18px);
+  animation: cardEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  border-radius: 8px;
   outline: none;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .card:focus-visible {
-  box-shadow: 0 0 0 2px var(--color-black);
+  outline: 2px solid #1a1a1a;
+  outline-offset: 4px;
 }
 
 @keyframes cardEnter {
@@ -119,69 +213,143 @@
 
 .cardImageWrap {
   position: relative;
-  aspect-ratio: 4 / 3;
+  width: 100%;
   overflow: hidden;
-  border-radius: var(--radius-sm);
-  background: var(--color-off-white);
+  border-radius: 8px;
+  background: #f0f0f0;
+  aspect-ratio: 4 / 3;
 }
+
+/* רוטציה של יחסי תמונה לפי מיקום הכרטיס — יוצר ריתמוס מגזיני */
+.cardVariant1 .cardImageWrap { aspect-ratio: 4 / 5; }
+.cardVariant2 .cardImageWrap { aspect-ratio: 4 / 3; }
+.cardVariant3 .cardImageWrap { aspect-ratio: 1 / 1; }
+.cardVariant4 .cardImageWrap { aspect-ratio: 3 / 4; }
+.cardVariant5 .cardImageWrap { aspect-ratio: 5 / 4; }
 
 .cardImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   display: block;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
+  filter: saturate(0.92);
 }
 
-.card:hover .cardImage {
-  transform: scale(1.05);
-}
-
-.cardImageWrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.25));
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-  pointer-events: none;
-}
-
-.card:hover .cardImageWrap::after {
-  opacity: 1;
+.card:hover .cardImage,
+.card:focus-visible .cardImage {
+  transform: scale(1.06);
+  filter: saturate(1);
 }
 
 .cardCount {
   position: absolute;
-  top: var(--space-sm);
-  inset-inline-start: var(--space-sm);
-  background: rgba(0, 0, 0, 0.72);
-  color: var(--color-white);
-  font-size: 0.8rem;
+  top: 12px;
+  inset-inline-end: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1a1a1a;
+  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 0.72rem;
   font-weight: 500;
-  padding: 0.25rem 0.55rem;
+  padding: 4px 9px;
   border-radius: 999px;
-  letter-spacing: 0.05em;
-  backdrop-filter: blur(6px);
+  letter-spacing: 0.06em;
+  backdrop-filter: blur(8px);
+  z-index: 2;
 }
 
-.cardMeta {
-  padding: var(--space-sm) 0.5rem 0;
-  text-align: start;
+/* ===== Hover overlay ===== */
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.78) 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 22px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card:hover .cardOverlay,
+.card:focus-visible .cardOverlay {
+  opacity: 1;
+}
+
+.cardOverlayInner {
+  width: 100%;
+  color: #ffffff;
+  text-align: right;
+  transform: translateY(12px);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .cardOverlayInner,
+.card:focus-visible .cardOverlayInner {
+  transform: translateY(0);
 }
 
 .cardName {
   margin: 0;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--color-black);
-  letter-spacing: 0.01em;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
 }
 
 .cardLocation {
-  margin: 0.25rem 0 0;
-  font-size: 0.85rem;
-  color: var(--color-medium-gray);
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.78);
+  letter-spacing: 0.02em;
+}
+
+.cardArrow {
+  position: absolute;
+  bottom: 20px;
+  inset-inline-start: 22px;
+  font-size: 1.6rem;
+  font-weight: 200;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .cardArrow,
+.card:focus-visible .cardArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ===== Empty state ===== */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(60px, 10vw, 120px) 24px;
+  text-align: center;
+  color: #999;
+}
+
+.emptyMark {
+  font-size: 3rem;
+  font-weight: 100;
+  color: #28939f;
+  opacity: 0.5;
+  letter-spacing: 0.5em;
+  margin-bottom: 14px;
+}
+
+.emptyText {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #888;
+  margin: 0;
+  letter-spacing: 0.01em;
 }
 
 /* === Lightbox === */
@@ -471,19 +639,60 @@
 @media (max-width: 960px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  /* בטאבלט — מבטלים hover-only overlay; ה-overlay מופיע תמיד עדין */
+  .cardOverlay {
+    opacity: 0.85;
+    background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.6) 100%);
+  }
+  .cardOverlayInner {
+    transform: translateY(0);
+  }
+  .cardArrow {
+    display: none;
   }
 }
 
 @media (max-width: 600px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* במובייל — יחס תמונה אחיד 4/5 כדי להעלים את ההבדלים בין variants */
+  .cardVariant1 .cardImageWrap,
+  .cardVariant2 .cardImageWrap,
+  .cardVariant3 .cardImageWrap,
+  .cardVariant4 .cardImageWrap,
+  .cardVariant5 .cardImageWrap {
+    aspect-ratio: 4 / 5;
+  }
+
+  .cardOverlay {
+    padding: 14px;
+  }
+
+  .cardName {
+    font-size: 0.95rem;
+  }
+
+  .cardLocation {
+    font-size: 0.72rem;
+  }
+
+  .galleryHeader {
+    gap: 10px;
   }
 
   .parentTabs {
     gap: 1.25rem;
-    justify-content: flex-start;
+    justify-content: center;
+    flex-wrap: nowrap;
     overflow-x: auto;
     scrollbar-width: none;
+    width: 100%;
   }
 
   .parentTabs::-webkit-scrollbar {

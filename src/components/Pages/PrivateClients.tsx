@@ -100,7 +100,11 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
       <section className={styles.gallerySection}>
         <div className={styles.container}>
           <h2 className={styles.galleryTitle}>מהפרויקטים שלנו</h2>
-          <ProjectsGallery parents={['carpentry']} />
+          <ProjectsGallery
+            parents={['carpentry']}
+            kicker="01 / גלריה"
+            title="פרויקטי נגרות אישית"
+          />
         </div>
       </section>
 

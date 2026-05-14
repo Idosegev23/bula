@@ -384,7 +384,11 @@ export const Services: React.FC<ServicesProps> = ({ className = '' }) => {
             {/* Gallery */}
             <div className={styles.galleryPreview}>
               <h3 className={styles.galleryTitle}>עבודות שביצענו</h3>
-              <ProjectsGallery parents={['businesses']} />
+              <ProjectsGallery
+                parents={['businesses']}
+                kicker="01 / גלריה"
+                title="עסקים שהקמנו"
+              />
             </div>
             
             <p className={styles.ctaSubtitle}>בואו נתחיל לבנות את העסק שלכם יחד</p>
