@@ -35,7 +35,7 @@ const OUT_FILE = join(PROJECT_ROOT, 'src/data/projectsGallery.ts');
 const LABELS_FILE = join(__dirname, 'gallery-labels.json');
 const CACHE_FILE = join(__dirname, 'gallery-blob-cache.json');
 
-const SOURCE_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+const SOURCE_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.heic']);
 const PARENT_IDS = ['businesses', 'architecture', 'carpentry'];
 const TARGET_WIDTH = 1400;
 const WEBP_QUALITY = 82;
