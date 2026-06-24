@@ -496,26 +496,25 @@
   opacity: 0.4;
 }
 
-/* במת התמונות — scroll-snap אופקי, כל תמונה תופסת רוחב מלא */
+/* במת התמונות — קרוסלת transform דטרמיניסטית: התזוזה דרך translateX על ה-track,
+   תמונה אחת בכל פעם. גובה מוגדר לכל הדרך כך שהתמונה תמיד נכנסת למסך. */
 .lightboxStage {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  overscroll-behavior: contain;
+  position: relative;
+  overflow: hidden;
   min-height: 0;
-  scroll-behavior: smooth;
+  touch-action: pan-y;
 }
 
-.lightboxStage::-webkit-scrollbar {
-  display: none;
+.lightboxTrack {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .lightboxSlide {
   flex: 0 0 100%;
-  scroll-snap-align: center;
+  height: 100%;
   display: grid;
   place-items: center;
   padding: 24px clamp(16px, 4vw, 48px);

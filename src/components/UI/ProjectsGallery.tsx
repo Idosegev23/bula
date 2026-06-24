@@ -183,8 +183,7 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
   const parentButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
   const thumbsSliderRef = useRef<HTMLDivElement>(null);
   const thumbButtonsRef = useRef<Record<number, HTMLButtonElement | null>>({});
-  const stageRef = useRef<HTMLDivElement>(null);
-  const suppressScrollSyncRef = useRef(false);
+  const touchStartXRef = useRef<number | null>(null);
   const [indicator, setIndicator] = useState<{ width: number; offset: number }>({ width: 0, offset: 0 });
 
   const activeParentData: GalleryParentCategory | undefined = useMemo(
@@ -277,31 +276,36 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
     document.body.style.overflow = '';
   }, []);
 
-  const goToIndex = useCallback((targetIndex: number) => {
-    const stage = stageRef.current;
-    if (!stage) {
-      setLightboxIndex(targetIndex);
-      return;
-    }
-    suppressScrollSyncRef.current = true;
-    stage.scrollTo({ left: targetIndex * stage.clientWidth, behavior: 'smooth' });
-    setLightboxIndex(targetIndex);
-    window.setTimeout(() => {
-      suppressScrollSyncRef.current = false;
-    }, 450);
+  // ניווט דטרמיניסטי — מקבעים אינדקס בטווח [0, count-1] (בלי גלישה מעגלית
+  // שגרמה ל"מעבר מהיר על כל התמונות וחזרה לראשונה"). התזוזה עצמה היא transform.
+  const goToIndex = useCallback(
+    (targetIndex: number) => {
+      if (!lightboxBusiness) return;
+      const count = lightboxBusiness.images.length;
+      setLightboxIndex(Math.max(0, Math.min(targetIndex, count - 1)));
+    },
+    [lightboxBusiness]
+  );
+
+  const showNext = useCallback(() => goToIndex(lightboxIndex + 1), [goToIndex, lightboxIndex]);
+  const showPrev = useCallback(() => goToIndex(lightboxIndex - 1), [goToIndex, lightboxIndex]);
+
+  // החלקה במובייל — swipe שמאלה = הבא, ימינה = הקודם (קרוסלת LTR)
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
   }, []);
 
-  const showNext = useCallback(() => {
-    if (!lightboxBusiness) return;
-    const count = lightboxBusiness.images.length;
-    goToIndex((lightboxIndex + 1) % count);
-  }, [lightboxBusiness, lightboxIndex, goToIndex]);
-
-  const showPrev = useCallback(() => {
-    if (!lightboxBusiness) return;
-    const count = lightboxBusiness.images.length;
-    goToIndex((lightboxIndex - 1 + count) % count);
-  }, [lightboxBusiness, lightboxIndex, goToIndex]);
+  const onTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      if (touchStartXRef.current === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartXRef.current;
+      touchStartXRef.current = null;
+      if (Math.abs(dx) < 40) return;
+      if (dx < 0) showNext();
+      else showPrev();
+    },
+    [showNext, showPrev]
+  );
 
   useEffect(() => {
     if (!lightboxBusiness) return;
@@ -320,30 +324,6 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
     },
     []
   );
-
-  // סנכרון אינדקס פעיל לפי מיקום הגלילה בתצוגת ה-stage
-  useEffect(() => {
-    if (!lightboxBusiness) return;
-    const stage = stageRef.current;
-    if (!stage) return;
-
-    let raf = 0;
-    const handleScroll = () => {
-      if (suppressScrollSyncRef.current) return;
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const width = stage.clientWidth;
-        if (!width) return;
-        const index = Math.round(stage.scrollLeft / width);
-        setLightboxIndex((prev) => (prev === index ? prev : index));
-      });
-    };
-    stage.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      stage.removeEventListener('scroll', handleScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, [lightboxBusiness]);
 
   // גלילה של רצועת ה-thumbs כך שה-thumb הפעיל תמיד ממורכז
   useEffect(() => {
@@ -526,18 +506,29 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
             </div>
           </div>
 
-          <div className={styles.lightboxStage} ref={stageRef} onClick={(e) => e.stopPropagation()} dir="ltr">
-            {lightboxBusiness.images.map((img, i) => (
-              <div key={img + i} className={styles.lightboxSlide}>
-                <img
-                  src={img}
-                  alt={`${lightboxBusiness.name} — תמונה ${i + 1}`}
-                  className={styles.lightboxImage}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                  draggable={false}
-                />
-              </div>
-            ))}
+          <div
+            className={styles.lightboxStage}
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+            dir="ltr"
+          >
+            <div
+              className={styles.lightboxTrack}
+              style={{ transform: `translateX(-${lightboxIndex * 100}%)` }}
+            >
+              {lightboxBusiness.images.map((img, i) => (
+                <div key={img + i} className={styles.lightboxSlide}>
+                  <img
+                    src={img}
+                    alt={`${lightboxBusiness.name} — תמונה ${i + 1}`}
+                    className={styles.lightboxImage}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    draggable={false}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           {lightboxBusiness.images.length > 1 && (
