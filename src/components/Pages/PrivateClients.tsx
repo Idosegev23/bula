@@ -19,7 +19,7 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              <div>נגרות</div>
+              <div>נגרות ומסגרות</div>
               <div>בהתאמה אישית</div>
               {/* <span className={styles.backgroundText}>DESIGN</span> */}
             </h1>
