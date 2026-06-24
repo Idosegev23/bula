@@ -22,6 +22,137 @@ export interface ProjectsGalleryProps {
 
 const ALL_SUB_ID = '__all__';
 
+/** טווח span במשבצות גריד (רוחב × גובה). */
+type BentoSpan = { w: number; h: number };
+
+/** סיווג משבצת לפי יחס הממדים של התמונה: לרוחב→רחבה, לאורך→גבוהה, מרובעת→1×1. */
+function spanForRatio(ratio: number | undefined, index: number, cols: number): BentoSpan {
+  if (!ratio) return { w: 1, h: 1 }; // טרם נמדד — ברירת מחדל מרובעת
+  if (index === 0 && cols >= 3 && ratio >= 1.1 && ratio <= 1.9) return { w: 2, h: 2 }; // פיצ'ר בולט
+  if (ratio >= 1.5) return { w: 2, h: 1 }; // לרוחב → רחבה
+  if (ratio <= 0.7) return { w: 1, h: 2 }; // לאורך → גבוהה
+  return { w: 1, h: 1 };
+}
+
+type BentoCell = { r: number; c: number; w: number; h: number };
+
+/**
+ * אורז את המשבצות לגריד בעל `cols` עמודות (first-fit row-major — ממלא חורים כמו dense),
+ * ואז "מותח" שכנים כדי לסגור כל תא שנשאר ריק → הגלריה תמיד יוצאת מלבן מלא בלי שוליים משוננים.
+ */
+type PackResult = { cells: BentoCell[]; owner: (number | undefined)[][]; rows: number };
+
+function attemptPack(spans: BentoSpan[], cols: number): PackResult {
+  const occ: boolean[][] = [];
+  const ensure = (r: number) => {
+    while (occ.length <= r) occ.push(new Array<boolean>(cols).fill(false));
+  };
+  const fits = (r: number, c: number, w: number, h: number) => {
+    if (c + w > cols) return false;
+    for (let i = 0; i < h; i++) {
+      ensure(r + i);
+      for (let j = 0; j < w; j++) if (occ[r + i][c + j]) return false;
+    }
+    return true;
+  };
+  const fill = (r: number, c: number, w: number, h: number) => {
+    for (let i = 0; i < h; i++) {
+      ensure(r + i);
+      for (let j = 0; j < w; j++) occ[r + i][c + j] = true;
+    }
+  };
+
+  const cells: BentoCell[] = spans.map((s) => {
+    const w = Math.min(Math.max(1, s.w), cols);
+    const h = Math.max(1, s.h);
+    for (let r = 0; ; r++) {
+      ensure(r);
+      for (let c = 0; c < cols; c++) {
+        if (fits(r, c, w, h)) {
+          fill(r, c, w, h);
+          return { r, c, w, h };
+        }
+      }
+    }
+  });
+
+  const rows = occ.length;
+  if (rows === 0) return { cells, owner: [], rows: 0 };
+
+  // מפת בעלות: איזה תא שייך לאיזו משבצת
+  const owner: (number | undefined)[][] = Array.from({ length: rows }, () =>
+    new Array<number | undefined>(cols).fill(undefined)
+  );
+  cells.forEach((p, idx) => {
+    for (let i = 0; i < p.h; i++) for (let j = 0; j < p.w; j++) owner[p.r + i][p.c + j] = idx;
+  });
+
+  // מעבר מתיחה: כל תא ריק מורחב מהשכן הצמוד (משמאל/מימין/מלמעלה/מלמטה)
+  const tryFill = (r: number, c: number): boolean => {
+    // שמאל → להרחיב ימינה
+    const left = c > 0 ? owner[r][c - 1] : undefined;
+    if (left !== undefined) {
+      const p = cells[left];
+      let ok = true;
+      for (let i = 0; i < p.h; i++) if (owner[p.r + i][c] !== undefined) { ok = false; break; }
+      if (ok) { for (let i = 0; i < p.h; i++) owner[p.r + i][c] = left; p.w += 1; return true; }
+    }
+    // מעל → להרחיב מטה
+    const top = r > 0 ? owner[r - 1][c] : undefined;
+    if (top !== undefined) {
+      const p = cells[top];
+      let ok = true;
+      for (let j = 0; j < p.w; j++) if (owner[r][p.c + j] !== undefined) { ok = false; break; }
+      if (ok) { for (let j = 0; j < p.w; j++) owner[r][p.c + j] = top; p.h += 1; return true; }
+    }
+    // ימין → להרחיב שמאלה
+    const right = c < cols - 1 ? owner[r][c + 1] : undefined;
+    if (right !== undefined) {
+      const p = cells[right];
+      if (p.c === c + 1) {
+        let ok = true;
+        for (let i = 0; i < p.h; i++) if (owner[p.r + i][c] !== undefined) { ok = false; break; }
+        if (ok) { for (let i = 0; i < p.h; i++) owner[p.r + i][c] = right; p.c -= 1; p.w += 1; return true; }
+      }
+    }
+    // מתחת → להרחיב מעלה
+    const bottom = r < rows - 1 ? owner[r + 1][c] : undefined;
+    if (bottom !== undefined) {
+      const p = cells[bottom];
+      if (p.r === r + 1) {
+        let ok = true;
+        for (let j = 0; j < p.w; j++) if (owner[r][p.c + j] !== undefined) { ok = false; break; }
+        if (ok) { for (let j = 0; j < p.w; j++) owner[r][p.c + j] = bottom; p.r -= 1; p.h += 1; return true; }
+      }
+    }
+    return false;
+  };
+
+  let changed = true;
+  let guard = 0;
+  while (changed && guard++ < cols * rows + 1) {
+    changed = false;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (owner[r][c] === undefined && tryFill(r, c)) changed = true;
+      }
+    }
+  }
+
+  return { cells, owner, rows };
+}
+
+/**
+ * עוטף את האריזה עם ערובת מלבן: אם פריסת היחסים השאירה חור נדיר (interlock),
+ * נופלים לאחור לגריד אחיד (1×1) שלא יכול ליצור חורים — תמיד יוצא מלבן מלא.
+ */
+function packBento(spans: BentoSpan[], cols: number): BentoCell[] {
+  const hasHole = (res: PackResult) => res.owner.some((row) => row.some((v) => v === undefined));
+  let res = attemptPack(spans, cols);
+  if (hasHole(res)) res = attemptPack(spans.map(() => ({ w: 1, h: 1 })), cols);
+  return res.cells;
+}
+
 export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
   defaultCategory,
   parents,
@@ -45,6 +176,8 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
   const [lightboxBusiness, setLightboxBusiness] = useState<GalleryBusiness | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [filterKey, setFilterKey] = useState(0); // לאניס את האנימציה ברענון פילטר
+  const [cols, setCols] = useState(2); // מספר עמודות הבנטו — רספונסיבי (2 / 3 / 4)
+  const [imageRatios, setImageRatios] = useState<Record<string, number>>({}); // יחס ממדים נמדד לפי id
 
   const parentTabsRef = useRef<HTMLDivElement>(null);
   const parentButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -73,6 +206,32 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
     () => activeParentData?.subCategories.reduce((sum, s) => sum + s.businesses.length, 0) ?? 0,
     [activeParentData]
   );
+
+  // מספר עמודות הבנטו לפי רוחב המסך — מובייל-פירסט (2 / 3 / 4)
+  useEffect(() => {
+    const computeCols = () => {
+      const w = window.innerWidth;
+      setCols(w >= 960 ? 4 : w >= 600 ? 3 : 2);
+    };
+    computeCols();
+    window.addEventListener('resize', computeCols);
+    return () => window.removeEventListener('resize', computeCols);
+  }, []);
+
+  // מדידת יחס הממדים האמיתי של כל תמונה כשהיא נטענת
+  const handleImageLoad = useCallback((id: string, e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    if (!img.naturalWidth || !img.naturalHeight) return;
+    const ratio = img.naturalWidth / img.naturalHeight;
+    setImageRatios((prev) => (Math.abs((prev[id] ?? 0) - ratio) < 0.001 ? prev : { ...prev, [id]: ratio }));
+  }, []);
+
+  // פריסת הבנטו — span לכל תמונה לפי היחס שלה, ואז אריזה למלבן נקי
+  const galleryLayout = useMemo<BentoCell[]>(() => {
+    const spans = visibleBusinesses.map((b, i) => spanForRatio(imageRatios[b.id], i, cols));
+    if (spans.length) spans[spans.length - 1] = { w: 1, h: 1 }; // המשבצת האחרונה תמיד 1×1 — מונע מתיחות קיצוניות
+    return packBento(spans, cols);
+  }, [visibleBusinesses, imageRatios, cols]);
 
   const showParentTabs = filteredData.length > 1;
 
@@ -288,13 +447,23 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
           <p className={styles.emptyText}>בקרוב — נעדכן את הקטגוריה בקרוב.</p>
         </div>
       ) : (
-        <div className={styles.grid} key={filterKey}>
-          {visibleBusinesses.map((business, index) => (
+        <div
+          className={styles.grid}
+          key={filterKey}
+          style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
+        >
+          {visibleBusinesses.map((business, index) => {
+            const cell = galleryLayout[index];
+            return (
             <button
               key={business.id}
-              className={`${styles.card} ${styles[`cardVariant${(index % 5) + 1}`]}`}
+              className={styles.card}
               onClick={() => openLightbox(business)}
-              style={{ animationDelay: `${Math.min(index, 8) * 50}ms` }}
+              style={{
+                animationDelay: `${Math.min(index, 8) * 50}ms`,
+                gridColumn: cell ? `${cell.c + 1} / span ${cell.w}` : undefined,
+                gridRow: cell ? `${cell.r + 1} / span ${cell.h}` : undefined,
+              }}
               type="button"
               aria-label={`פתיחת גלריה של ${business.name}`}
             >
@@ -304,6 +473,7 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
                   alt={business.name}
                   className={styles.cardImage}
                   loading="lazy"
+                  onLoad={(e) => handleImageLoad(business.id, e)}
                 />
                 {business.images.length > 1 && (
                   <span className={styles.cardCount}>{business.images.length}</span>
@@ -319,7 +489,8 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({
                 </div>
               </div>
             </button>
-          ))}
+            );
+          })}
         </div>
       )}
 

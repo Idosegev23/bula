@@ -179,15 +179,31 @@
 /* ============================================================
    Grid — magazine-style masonry with varied aspect ratios
    ============================================================ */
+/* ===== Bento grid — מובייל-פירסט. מספר העמודות נקבע ב-JS (inline), כאן רק גובה השורות והמרווחים ===== */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(14px, 2vw, 22px);
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: clamp(118px, 30vw, 150px);
+  gap: clamp(8px, 2.2vw, 14px);
+}
+
+@media (min-width: 600px) {
+  .grid {
+    grid-auto-rows: clamp(150px, 22vw, 200px);
+    gap: clamp(10px, 1.6vw, 18px);
+  }
+}
+
+@media (min-width: 960px) {
+  .grid {
+    grid-auto-rows: clamp(180px, 15vw, 230px);
+  }
 }
 
 .card {
   all: unset;
   display: block;
+  height: 100%;
   cursor: pointer;
   background: #ffffff;
   opacity: 0;
@@ -214,18 +230,11 @@
 .cardImageWrap {
   position: relative;
   width: 100%;
+  height: 100%;
   overflow: hidden;
   border-radius: 8px;
   background: #f0f0f0;
-  aspect-ratio: 4 / 3;
 }
-
-/* רוטציה של יחסי תמונה לפי מיקום הכרטיס — יוצר ריתמוס מגזיני */
-.cardVariant1 .cardImageWrap { aspect-ratio: 4 / 5; }
-.cardVariant2 .cardImageWrap { aspect-ratio: 4 / 3; }
-.cardVariant3 .cardImageWrap { aspect-ratio: 1 / 1; }
-.cardVariant4 .cardImageWrap { aspect-ratio: 3 / 4; }
-.cardVariant5 .cardImageWrap { aspect-ratio: 5 / 4; }
 
 .cardImage {
   width: 100%;
@@ -322,6 +331,20 @@
 .card:focus-visible .cardArrow {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* מסכי מגע / מובייל — אין hover, הכיתוב תמיד גלוי */
+@media (hover: none) {
+  .cardOverlay {
+    opacity: 1;
+    background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, 0.72) 100%);
+  }
+  .cardOverlayInner {
+    transform: none;
+  }
+  .cardArrow {
+    display: none;
+  }
 }
 
 /* ===== Empty state ===== */

@@ -6,7 +6,8 @@
 // Labels: scripts/gallery-labels.json
 // Run:    npm run gallery:upload
 //
-// Currently empty — populated by the next gallery:upload run.
+// Generated: 2026-06-24T08:41:13.507Z
+// Stats: 3 parents · 14 subs · 41 projects · 730 images
 // =====================================================================
 
 export type ParentCategoryId = 'businesses' | 'architecture' | 'carpentry';
@@ -30,4 +31,1083 @@ export interface GalleryParentCategory {
   subCategories: GallerySubCategory[];
 }
 
-export const projectsGalleryData: GalleryParentCategory[] = [];
+export const projectsGalleryData: GalleryParentCategory[] = [
+  {
+    id: "businesses",
+    label: "עסקים",
+    subCategories: [
+      {
+        id: "barbershops",
+        label: "מספרות",
+        businesses: [
+          {
+            id: "businesses-barbershops-מספרת-ארז-שירי",
+            name: "מספרת ארז שירי",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/barbershops/%D7%9E%D7%A1%D7%A4%D7%A8%D7%AA-%D7%90%D7%A8%D7%96-%D7%A9%D7%99%D7%A8%D7%99/20.webp"
+            ]
+          }
+        ]
+      },
+      {
+        id: "cafes-bakeries",
+        label: "בתי קפה ומאפיות",
+        businesses: [
+          {
+            id: "businesses-cafes-bakeries-אינגליש-קייק",
+            name: "אינגליש קייק",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%90%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%A9-%D7%A7%D7%99%D7%99%D7%A7/18.webp"
+            ]
+          },
+          {
+            id: "businesses-cafes-bakeries-לחמני",
+            name: "לחמני",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/22.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/23.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9C%D7%97%D7%9E%D7%A0%D7%99/24.webp"
+            ]
+          },
+          {
+            id: "businesses-cafes-bakeries-מאפיית-חוצות",
+            name: "מאפיית חוצות",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%AA-%D7%97%D7%95%D7%A6%D7%95%D7%AA/18.webp"
+            ]
+          },
+          {
+            id: "businesses-cafes-bakeries-קופילנד-מקום",
+            name: "קופילנד מקום",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/22.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/23.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/24.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/25.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/26.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/27.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/28.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/29.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/30.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/31.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/32.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/33.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/34.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/35.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/cafes-bakeries/%D7%A7%D7%95%D7%A4%D7%99%D7%9C%D7%A0%D7%93-%D7%9E%D7%A7%D7%95%D7%9D/36.webp"
+            ]
+          }
+        ]
+      },
+      {
+        id: "corporate",
+        label: "מותגים תאגידיים",
+        businesses: [
+          {
+            id: "businesses-corporate-חן-שחר",
+            name: "חן שחר",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/corporate/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/15.webp"
+            ]
+          }
+        ]
+      },
+      {
+        id: "gyms",
+        label: "חדרי כושר",
+        businesses: [
+          {
+            id: "businesses-gyms-ברביפיט",
+            name: "ברביפיט",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%91%D7%A8%D7%91%D7%99%D7%A4%D7%99%D7%98/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%91%D7%A8%D7%91%D7%99%D7%A4%D7%99%D7%98/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%91%D7%A8%D7%91%D7%99%D7%A4%D7%99%D7%98/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%91%D7%A8%D7%91%D7%99%D7%A4%D7%99%D7%98/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%91%D7%A8%D7%91%D7%99%D7%A4%D7%99%D7%98/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%91%D7%A8%D7%91%D7%99%D7%A4%D7%99%D7%98/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%91%D7%A8%D7%91%D7%99%D7%A4%D7%99%D7%98/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%91%D7%A8%D7%91%D7%99%D7%A4%D7%99%D7%98/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%91%D7%A8%D7%91%D7%99%D7%A4%D7%99%D7%98/09.webp"
+            ]
+          },
+          {
+            id: "businesses-gyms-חן-שחר",
+            name: "חן שחר",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/22.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/23.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/24.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/25.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/26.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/27.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/28.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/29.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/30.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/31.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/32.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/33.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/34.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%97%D7%9F-%D7%A9%D7%97%D7%A8/35.webp"
+            ]
+          },
+          {
+            id: "businesses-gyms-קולקטיב",
+            name: "קולקטיב",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%A7%D7%95%D7%9C%D7%A7%D7%98%D7%99%D7%91/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%A7%D7%95%D7%9C%D7%A7%D7%98%D7%99%D7%91/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%A7%D7%95%D7%9C%D7%A7%D7%98%D7%99%D7%91/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%A7%D7%95%D7%9C%D7%A7%D7%98%D7%99%D7%91/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%A7%D7%95%D7%9C%D7%A7%D7%98%D7%99%D7%91/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%A7%D7%95%D7%9C%D7%A7%D7%98%D7%99%D7%91/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%A7%D7%95%D7%9C%D7%A7%D7%98%D7%99%D7%91/07.webp"
+            ]
+          },
+          {
+            id: "businesses-gyms-תותי-פיטנס",
+            name: "תותי פיטנס",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%AA%D7%95%D7%AA%D7%99-%D7%A4%D7%99%D7%98%D7%A0%D7%A1/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%AA%D7%95%D7%AA%D7%99-%D7%A4%D7%99%D7%98%D7%A0%D7%A1/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%AA%D7%95%D7%AA%D7%99-%D7%A4%D7%99%D7%98%D7%A0%D7%A1/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%AA%D7%95%D7%AA%D7%99-%D7%A4%D7%99%D7%98%D7%A0%D7%A1/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/gyms/%D7%AA%D7%95%D7%AA%D7%99-%D7%A4%D7%99%D7%98%D7%A0%D7%A1/05.webp"
+            ]
+          }
+        ]
+      },
+      {
+        id: "hitech-offices",
+        label: "הייטק ומשרדים",
+        businesses: [
+          {
+            id: "businesses-hitech-offices-lsport",
+            name: "Lsport",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/lsport/16.webp"
+            ]
+          },
+          {
+            id: "businesses-hitech-offices-קליסטו",
+            name: "קליסטו",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/22.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/23.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/24.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/25.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/26.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/27.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/28.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/29.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/30.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/31.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/32.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/33.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95/34.webp"
+            ]
+          },
+          {
+            id: "businesses-hitech-offices-קליסטו-אשקלון",
+            name: "קליסטו אשקלון",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/09.webp"
+            ]
+          },
+          {
+            id: "businesses-hitech-offices-קליסטו-באר-שבע",
+            name: "קליסטו באר שבע",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%91%D7%90%D7%A8-%D7%A9%D7%91%D7%A2/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%91%D7%90%D7%A8-%D7%A9%D7%91%D7%A2/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%91%D7%90%D7%A8-%D7%A9%D7%91%D7%A2/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%91%D7%90%D7%A8-%D7%A9%D7%91%D7%A2/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%91%D7%90%D7%A8-%D7%A9%D7%91%D7%A2/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%91%D7%90%D7%A8-%D7%A9%D7%91%D7%A2/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%91%D7%90%D7%A8-%D7%A9%D7%91%D7%A2/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%91%D7%90%D7%A8-%D7%A9%D7%91%D7%A2/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/hitech-offices/%D7%A7%D7%9C%D7%99%D7%A1%D7%98%D7%95-%D7%91%D7%90%D7%A8-%D7%A9%D7%91%D7%A2/09.webp"
+            ]
+          }
+        ]
+      },
+      {
+        id: "ice-cream",
+        label: "גלידריות",
+        businesses: [
+          {
+            id: "businesses-ice-cream-קפטן-קרפ",
+            name: "קפטן קרפ",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/22.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/23.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/24.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/25.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/26.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/27.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/28.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/29.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/30.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/31.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/32.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/33.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/34.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/35.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/36.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/37.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/38.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/39.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/40.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/41.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/42.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/43.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/44.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/45.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/46.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/47.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/48.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/ice-cream/%D7%A7%D7%A4%D7%98%D7%9F-%D7%A7%D7%A8%D7%A4/49.webp"
+            ]
+          }
+        ]
+      },
+      {
+        id: "other",
+        label: "אחר",
+        businesses: [
+          {
+            id: "businesses-other-אוטובוס-מודיעין",
+            name: "אוטובוס מודיעין",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%90%D7%95%D7%98%D7%95%D7%91%D7%95%D7%A1-%D7%9E%D7%95%D7%93%D7%99%D7%A2%D7%99%D7%9F/13.webp"
+            ]
+          },
+          {
+            id: "businesses-other-סננס",
+            name: "סננס",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/other/%D7%A1%D7%A0%D7%A0%D7%A1/16.webp"
+            ]
+          }
+        ]
+      },
+      {
+        id: "restaurants",
+        label: "מסעדות",
+        businesses: [
+          {
+            id: "businesses-restaurants-איטאלי",
+            name: "איטאלי",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/22.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/23.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/24.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/25.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%90%D7%99%D7%98%D7%90%D7%9C%D7%99/26.webp"
+            ]
+          },
+          {
+            id: "businesses-restaurants-בנג-מין",
+            name: "בנג'מין",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%91%D7%A0%D7%92-%D7%9E%D7%99%D7%9F/22.webp"
+            ]
+          },
+          {
+            id: "businesses-restaurants-יין-בעיר",
+            name: "יין בעיר",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%99%D7%99%D7%9F-%D7%91%D7%A2%D7%99%D7%A8/19.webp"
+            ]
+          },
+          {
+            id: "businesses-restaurants-לולה-טורטיה-בר",
+            name: "לולה טורטיה בר",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9C%D7%95%D7%9C%D7%94-%D7%98%D7%95%D7%A8%D7%98%D7%99%D7%94-%D7%91%D7%A8/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9C%D7%95%D7%9C%D7%94-%D7%98%D7%95%D7%A8%D7%98%D7%99%D7%94-%D7%91%D7%A8/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9C%D7%95%D7%9C%D7%94-%D7%98%D7%95%D7%A8%D7%98%D7%99%D7%94-%D7%91%D7%A8/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9C%D7%95%D7%9C%D7%94-%D7%98%D7%95%D7%A8%D7%98%D7%99%D7%94-%D7%91%D7%A8/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9C%D7%95%D7%9C%D7%94-%D7%98%D7%95%D7%A8%D7%98%D7%99%D7%94-%D7%91%D7%A8/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9C%D7%95%D7%9C%D7%94-%D7%98%D7%95%D7%A8%D7%98%D7%99%D7%94-%D7%91%D7%A8/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9C%D7%95%D7%9C%D7%94-%D7%98%D7%95%D7%A8%D7%98%D7%99%D7%94-%D7%91%D7%A8/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9C%D7%95%D7%9C%D7%94-%D7%98%D7%95%D7%A8%D7%98%D7%99%D7%94-%D7%91%D7%A8/08.webp"
+            ]
+          },
+          {
+            id: "businesses-restaurants-מאי-וואי-נתיבות",
+            name: "מאי וואי נתיבות",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%9E%D7%90%D7%99-%D7%95%D7%95%D7%90%D7%99-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/22.webp"
+            ]
+          },
+          {
+            id: "businesses-restaurants-קראווג-יו",
+            name: "קראווג'יו",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%A7%D7%A8%D7%90%D7%95%D7%95%D7%92-%D7%99%D7%95/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%A7%D7%A8%D7%90%D7%95%D7%95%D7%92-%D7%99%D7%95/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%A7%D7%A8%D7%90%D7%95%D7%95%D7%92-%D7%99%D7%95/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%A7%D7%A8%D7%90%D7%95%D7%95%D7%92-%D7%99%D7%95/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/restaurants/%D7%A7%D7%A8%D7%90%D7%95%D7%95%D7%92-%D7%99%D7%95/05.webp"
+            ]
+          }
+        ]
+      },
+      {
+        id: "shops-markets",
+        label: "חנויות ושווקים",
+        businesses: [
+          {
+            id: "businesses-shops-markets-plantx",
+            name: "plantx",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/22.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/23.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/24.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/25.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/26.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/27.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/28.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/plantx/29.webp"
+            ]
+          },
+          {
+            id: "businesses-shops-markets-ג-טלג",
+            name: "ג'טלג",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%92-%D7%98%D7%9C%D7%92/19.webp"
+            ]
+          },
+          {
+            id: "businesses-shops-markets-סעדה-דגים",
+            name: "סעדה דגים",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%A1%D7%A2%D7%93%D7%94-%D7%93%D7%92%D7%99%D7%9D/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%A1%D7%A2%D7%93%D7%94-%D7%93%D7%92%D7%99%D7%9D/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%A1%D7%A2%D7%93%D7%94-%D7%93%D7%92%D7%99%D7%9D/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/businesses/shops-markets/%D7%A1%D7%A2%D7%93%D7%94-%D7%93%D7%92%D7%99%D7%9D/04.webp"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "architecture",
+    label: "אדריכלות",
+    subCategories: [
+      {
+        id: "cafes-bakeries",
+        label: "בתי קפה ומאפיות",
+        businesses: [
+          {
+            id: "architecture-cafes-bakeries-אורן-משי-מאפייה-נתיבות",
+            name: "אורן משי מאפייה  נתיבות",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%A0%D7%AA%D7%99%D7%91%D7%95%D7%AA/06.webp"
+            ]
+          },
+          {
+            id: "architecture-cafes-bakeries-אורן-משי-מאפייה-אגמים-אשקלון",
+            name: "אורן משי מאפייה  אגמים אשקלון",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%92%D7%9E%D7%99%D7%9D-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/12.webp"
+            ]
+          },
+          {
+            id: "architecture-cafes-bakeries-אורן-משי-מאפייה-כרמי-גת",
+            name: "אורן משי מאפייה  כרמי גת",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%90%D7%95%D7%A8%D7%9F-%D7%9E%D7%A9%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%9B%D7%A8%D7%9E%D7%99-%D7%92%D7%AA/14.webp"
+            ]
+          },
+          {
+            id: "architecture-cafes-bakeries-לה-קרמרי-מאפייה-אשדוד",
+            name: "לה קרמרי מאפייה אשדוד",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%9C%D7%94-%D7%A7%D7%A8%D7%9E%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%90%D7%A9%D7%93%D7%95%D7%93/14.webp"
+            ]
+          },
+          {
+            id: "architecture-cafes-bakeries-ריפא-מאפייה-בני-ברק",
+            name: "ריפא מאפייה בני ברק",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/cafes-bakeries/%D7%A8%D7%99%D7%A4%D7%90-%D7%9E%D7%90%D7%A4%D7%99%D7%99%D7%94-%D7%91%D7%A0%D7%99-%D7%91%D7%A8%D7%A7/16.webp"
+            ]
+          }
+        ]
+      },
+      {
+        id: "offices-authorities",
+        label: "משרדים ורשויות",
+        businesses: [
+          {
+            id: "architecture-offices-authorities-ויזה-כ-א-ל-משרדים-גבעתיים",
+            name: "ויזה כ.א.ל משרדים  גבעתיים",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%95%D7%99%D7%96%D7%94-%D7%9B-%D7%90-%D7%9C-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D-%D7%92%D7%91%D7%A2%D7%AA%D7%99%D7%99%D7%9D/13.webp"
+            ]
+          },
+          {
+            id: "architecture-offices-authorities-חולון-רשויות-hit",
+            name: "חולון רשויות hit",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%97%D7%95%D7%9C%D7%95%D7%9F-%D7%A8%D7%A9%D7%95%D7%99%D7%95%D7%AA-hit/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%97%D7%95%D7%9C%D7%95%D7%9F-%D7%A8%D7%A9%D7%95%D7%99%D7%95%D7%AA-hit/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%97%D7%95%D7%9C%D7%95%D7%9F-%D7%A8%D7%A9%D7%95%D7%99%D7%95%D7%AA-hit/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%97%D7%95%D7%9C%D7%95%D7%9F-%D7%A8%D7%A9%D7%95%D7%99%D7%95%D7%AA-hit/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%97%D7%95%D7%9C%D7%95%D7%9F-%D7%A8%D7%A9%D7%95%D7%99%D7%95%D7%AA-hit/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%97%D7%95%D7%9C%D7%95%D7%9F-%D7%A8%D7%A9%D7%95%D7%99%D7%95%D7%AA-hit/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%97%D7%95%D7%9C%D7%95%D7%9F-%D7%A8%D7%A9%D7%95%D7%99%D7%95%D7%AA-hit/07.webp"
+            ]
+          },
+          {
+            id: "architecture-offices-authorities-סיטי-פרויקטים-משרדים",
+            name: "סיטי פרויקטים משרדים",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/22.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/offices-authorities/%D7%A1%D7%99%D7%98%D7%99-%D7%A4%D7%A8%D7%95%D7%99%D7%A7%D7%98%D7%99%D7%9D-%D7%9E%D7%A9%D7%A8%D7%93%D7%99%D7%9D/23.webp"
+            ]
+          }
+        ]
+      },
+      {
+        id: "private-homes",
+        label: "בתים פרטיים",
+        businesses: [
+          {
+            id: "architecture-private-homes-וולדרסקי-בית-פרטי-אשדוד",
+            name: "וולדרסקי בית פרטי אשדוד",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%95%D7%95%D7%9C%D7%93%D7%A8%D7%A1%D7%A7%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99-%D7%90%D7%A9%D7%93%D7%95%D7%93/14.webp"
+            ]
+          },
+          {
+            id: "architecture-private-homes-יד-מרדכי-בית-פרטי",
+            name: "יד מרדכי בית פרטי",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/22.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/23.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/24.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/25.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/26.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/27.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/28.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/29.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/30.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/31.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/32.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/33.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/34.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/35.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/36.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/37.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/38.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/39.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/40.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/41.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/architecture/private-homes/%D7%99%D7%93-%D7%9E%D7%A8%D7%93%D7%9B%D7%99-%D7%91%D7%99%D7%AA-%D7%A4%D7%A8%D7%98%D7%99/42.webp"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "carpentry",
+    label: "נגרות",
+    subCategories: [
+      {
+        id: "commercial",
+        label: "מסחרי",
+        businesses: [
+          {
+            id: "carpentry-commercial-באבו",
+            name: "באבו",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%91%D7%90%D7%91%D7%95/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%91%D7%90%D7%91%D7%95/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%91%D7%90%D7%91%D7%95/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%91%D7%90%D7%91%D7%95/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%91%D7%90%D7%91%D7%95/05.webp"
+            ]
+          },
+          {
+            id: "carpentry-commercial-חביות-שקמה",
+            name: "חביות שקמה",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%97%D7%91%D7%99%D7%95%D7%AA-%D7%A9%D7%A7%D7%9E%D7%94/12.webp"
+            ]
+          },
+          {
+            id: "carpentry-commercial-יקבי-כרמל-ג-מס",
+            name: "יקבי כרמל   ג'מס",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%99%D7%A7%D7%91%D7%99-%D7%9B%D7%A8%D7%9E%D7%9C-%D7%92-%D7%9E%D7%A1/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%99%D7%A7%D7%91%D7%99-%D7%9B%D7%A8%D7%9E%D7%9C-%D7%92-%D7%9E%D7%A1/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%99%D7%A7%D7%91%D7%99-%D7%9B%D7%A8%D7%9E%D7%9C-%D7%92-%D7%9E%D7%A1/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%99%D7%A7%D7%91%D7%99-%D7%9B%D7%A8%D7%9E%D7%9C-%D7%92-%D7%9E%D7%A1/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%99%D7%A7%D7%91%D7%99-%D7%9B%D7%A8%D7%9E%D7%9C-%D7%92-%D7%9E%D7%A1/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%99%D7%A7%D7%91%D7%99-%D7%9B%D7%A8%D7%9E%D7%9C-%D7%92-%D7%9E%D7%A1/06.webp"
+            ]
+          },
+          {
+            id: "carpentry-commercial-קוקה-קולה",
+            name: "קוקה קולה",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/commercial/%D7%A7%D7%95%D7%A7%D7%94-%D7%A7%D7%95%D7%9C%D7%94/18.webp"
+            ]
+          }
+        ]
+      },
+      {
+        id: "residential",
+        label: "מגורים",
+        businesses: [
+          {
+            id: "carpentry-residential-פרטי",
+            name: "פרטי",
+            images: [
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/01.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/02.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/03.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/04.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/05.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/06.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/07.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/08.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/09.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/10.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/11.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/12.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/13.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/14.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/15.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/16.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/17.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/18.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/19.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/20.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/21.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/22.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/23.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/24.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/25.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/26.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/27.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/28.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/29.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/30.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/31.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/32.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/33.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/34.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/35.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/36.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/37.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/38.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/39.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/40.webp",
+              "https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/41.webp"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];
