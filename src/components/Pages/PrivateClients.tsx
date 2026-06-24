@@ -85,10 +85,11 @@ export const PrivateClients: React.FC<PrivateClientsProps> = ({ className = '' }
             
             <div className={styles.imageContent}>
               <div className={styles.mainImage}>
-                <img 
-                  src="https://images.unsplash.com/photo-1560184897-ae75f418493e?w=600&h=400&fit=crop" 
-                  alt="עיצוב פנים מודרני לבית פרטי"
+                <img
+                  src="https://gplwghpzrkgxplgk.public.blob.vercel-storage.com/gallery/carpentry/residential/%D7%A4%D7%A8%D7%98%D7%99/24.webp"
+                  alt="קיר טלוויזיה בהתאמה אישית עם חיפוי עץ ופינת אח — נגרות לבית פרטי"
                   className={styles.contentImage}
+                  loading="lazy"
                 />
               </div>
             </div>
