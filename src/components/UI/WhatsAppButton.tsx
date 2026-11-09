@@ -6,13 +6,12 @@ export default function WhatsAppButton() {
   const message = encodeURIComponent("שלום, הגעתי אליכם דרך האתר");
 
   return (
-    <a
-      className="whatsapp-fixed"
-      href={`https://web.whatsapp.com/send?phone=${phoneNumber}&text=${message}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Contact us on WhatsApp"
-    >
+        <a
+        className="whatsapp-fixed"
+        href={`https://wa.me/${phoneNumber}?text=${message}`}
+        rel="noopener noreferrer"
+        aria-label="Contact us on WhatsApp"
+        >
       <svg
         viewBox="0 0 32 32"
         width="32"
