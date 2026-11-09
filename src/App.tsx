@@ -14,6 +14,7 @@ import { Footer } from './components/Layout/Footer';
 import { HorizontalScrollSections } from './components/UI/HorizontalScrollSections';
 // import { SocialFloat } from './components/UI/SocialFloat';
 import Spinner from './components/UI/Spinner';
+import WhatsAppButton from './components/UI/WhatsAppButton';
 
 // Page Components
 import { Services } from './components/Pages/Services';
@@ -75,6 +76,8 @@ const AppContent: React.FC = () => {
           </Routes>
         </main>
         <Footer />
+        {/* Floating WhatsApp Button */}
+        <WhatsAppButton />
         {/* כפתורי רשתות חברתיות צפים */}
         {/* <SocialFloat /> */}
         {/* <FloatingServicesFooter /> */}
